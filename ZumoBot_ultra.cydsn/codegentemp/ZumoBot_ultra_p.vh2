@@ -1,5 +1,5 @@
 -- Project:   ZumoBot_ultra
--- Generated: 06/21/2016 15:03:19
+-- Generated: 07/06/2016 12:12:03
 -- PSoC Creator  3.3 CP3
 
 ENTITY ZumoBot_ultra IS
@@ -234,9 +234,9 @@ ARCHITECTURE __DEFAULT__ OF ZumoBot_ultra IS
     ATTRIBUTE lib_model OF MotorDirRight(0) : LABEL IS "iocell8";
     ATTRIBUTE Location OF MotorDirRight(0) : LABEL IS "P0[0]";
     ATTRIBUTE lib_model OF Trigger(0) : LABEL IS "iocell9";
-    ATTRIBUTE Location OF Trigger(0) : LABEL IS "P2[5]";
+    ATTRIBUTE Location OF Trigger(0) : LABEL IS "P0[7]";
     ATTRIBUTE lib_model OF Echo(0) : LABEL IS "iocell10";
-    ATTRIBUTE Location OF Echo(0) : LABEL IS "P2[6]";
+    ATTRIBUTE Location OF Echo(0) : LABEL IS "P2[0]";
     ATTRIBUTE lib_model OF SDA_2(0) : LABEL IS "iocell11";
     ATTRIBUTE Location OF SDA_2(0) : LABEL IS "P1[5]";
     ATTRIBUTE lib_model OF SCL_2(0) : LABEL IS "iocell12";

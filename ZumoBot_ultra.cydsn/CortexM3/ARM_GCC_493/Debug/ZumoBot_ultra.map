@@ -464,9 +464,9 @@ Discarded input sections
  .text.Trigger_SetDriveMode
                 0x00000000       0x18 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
  .text.Trigger_Read
-                0x00000000       0x10 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
+                0x00000000        0xc .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
  .text.Trigger_ReadDataReg
-                0x00000000       0x10 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
+                0x00000000        0xc .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
@@ -1263,9 +1263,9 @@ END GROUP
 .cyloadablemeta
  *(.cyloadablemeta)
 
-.cyconfigecc    0x80000000      0xb7c
+.cyconfigecc    0x80000000      0xb90
  *(.cyconfigecc)
- .cyconfigecc   0x80000000      0xb7c .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
+ .cyconfigecc   0x80000000      0xb90 .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
                 0x80000000                cy_meta_configecc
 
 .cycustnvl      0x90000000        0x4
@@ -1367,7 +1367,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x5274
+.debug_info     0x00000000     0x5250
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x613 .\CortexM3\ARM_GCC_493\Debug\main.o
  .debug_info    0x00000613      0x13f .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
@@ -1375,18 +1375,18 @@ END GROUP
  .debug_info    0x00000af7      0x621 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyfitter_cfg.o)
  .debug_info    0x00001118      0x603 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(UART.o)
  .debug_info    0x0000171b      0x283 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(UART_IntClock.o)
- .debug_info    0x0000199e       0xb3 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyBootAsmGnu.o)
- .debug_info    0x00001a51     0x1371 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyLib.o)
- .debug_info    0x00002dc2      0xa58 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyPm.o)
- .debug_info    0x0000381a      0x400 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_MASTER.o)
- .debug_info    0x00003c1a      0x11f .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
- .debug_info    0x00003d39      0x11f .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
- .debug_info    0x00003e58      0x2ce .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Timer.o)
- .debug_info    0x00004126      0x2cb .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(ultra_isr.o)
- .debug_info    0x000043f1      0x60a .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyFlash.o)
- .debug_info    0x000049fb      0x4f0 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CySpc.o)
- .debug_info    0x00004eeb      0x20a .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2.o)
- .debug_info    0x000050f5      0x17f .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_INT.o)
+ .debug_info    0x0000199e       0x8d .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyBootAsmGnu.o)
+ .debug_info    0x00001a2b     0x1371 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyLib.o)
+ .debug_info    0x00002d9c      0xa58 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyPm.o)
+ .debug_info    0x000037f4      0x400 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_MASTER.o)
+ .debug_info    0x00003bf4      0x121 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
+ .debug_info    0x00003d15      0x11f .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
+ .debug_info    0x00003e34      0x2ce .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Timer.o)
+ .debug_info    0x00004102      0x2cb .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(ultra_isr.o)
+ .debug_info    0x000043cd      0x60a .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyFlash.o)
+ .debug_info    0x000049d7      0x4f0 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CySpc.o)
+ .debug_info    0x00004ec7      0x20a .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2.o)
+ .debug_info    0x000050d1      0x17f .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_INT.o)
 
 .debug_abbrev   0x00000000     0x18c5
  *(.debug_abbrev)
@@ -1485,44 +1485,44 @@ END GROUP
  .debug_frame   0x00001e98       0x20 c:/program files (x86)/cypress/psoc creator/3.3/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libnosys.a(lseek.o)
  .debug_frame   0x00001eb8       0x20 c:/program files (x86)/cypress/psoc creator/3.3/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libnosys.a(read.o)
 
-.debug_str      0x00000000     0x1db1
+.debug_str      0x00000000     0x1d8b
  *(.debug_str)
- .debug_str     0x00000000      0x347 .\CortexM3\ARM_GCC_493\Debug\main.o
-                                0x3a5 (size before relaxing)
- .debug_str     0x00000347       0x77 .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
-                                0x20d (size before relaxing)
- .debug_str     0x000003be      0x153 .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o
-                                0x321 (size before relaxing)
- .debug_str     0x00000511      0x185 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyfitter_cfg.o)
-                                0x35b (size before relaxing)
- .debug_str     0x00000696      0x2be .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(UART.o)
-                                0x48c (size before relaxing)
- .debug_str     0x00000954      0x185 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(UART_IntClock.o)
-                                0x359 (size before relaxing)
- .debug_str     0x00000ad9      0x7ea .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyLib.o)
-                                0xa46 (size before relaxing)
- .debug_str     0x000012c3      0x35b .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyPm.o)
-                                0x73e (size before relaxing)
- .debug_str     0x0000161e      0x1e1 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_MASTER.o)
-                                0x3e9 (size before relaxing)
- .debug_str     0x000017ff       0x64 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
-                                0x20f (size before relaxing)
- .debug_str     0x00001863       0x4e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
-                                0x200 (size before relaxing)
- .debug_str     0x000018b1      0x112 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Timer.o)
-                                0x33c (size before relaxing)
- .debug_str     0x000019c3      0x10e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(ultra_isr.o)
-                                0x2f5 (size before relaxing)
- .debug_str     0x00001ad1      0x19e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyFlash.o)
-                                0x3b8 (size before relaxing)
- .debug_str     0x00001c6f       0xae .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CySpc.o)
-                                0x341 (size before relaxing)
- .debug_str     0x00001d1d       0x5e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2.o)
-                                0x2b0 (size before relaxing)
- .debug_str     0x00001d7b       0x36 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_INT.o)
-                                0x28c (size before relaxing)
+ .debug_str     0x00000000      0x321 .\CortexM3\ARM_GCC_493\Debug\main.o
+                                0x37f (size before relaxing)
+ .debug_str     0x00000321       0x77 .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
+                                0x1e7 (size before relaxing)
+ .debug_str     0x00000398      0x153 .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o
+                                0x2fb (size before relaxing)
+ .debug_str     0x000004eb      0x185 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyfitter_cfg.o)
+                                0x335 (size before relaxing)
+ .debug_str     0x00000670      0x2be .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(UART.o)
+                                0x466 (size before relaxing)
+ .debug_str     0x0000092e      0x185 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(UART_IntClock.o)
+                                0x333 (size before relaxing)
+ .debug_str     0x00000ab3      0x7ea .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyLib.o)
+                                0xa20 (size before relaxing)
+ .debug_str     0x0000129d      0x35b .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyPm.o)
+                                0x718 (size before relaxing)
+ .debug_str     0x000015f8      0x1e1 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_MASTER.o)
+                                0x3c3 (size before relaxing)
+ .debug_str     0x000017d9       0x64 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
+                                0x1e9 (size before relaxing)
+ .debug_str     0x0000183d       0x4e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
+                                0x1da (size before relaxing)
+ .debug_str     0x0000188b      0x112 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Timer.o)
+                                0x316 (size before relaxing)
+ .debug_str     0x0000199d      0x10e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(ultra_isr.o)
+                                0x2cf (size before relaxing)
+ .debug_str     0x00001aab      0x19e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyFlash.o)
+                                0x392 (size before relaxing)
+ .debug_str     0x00001c49       0xae .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CySpc.o)
+                                0x31b (size before relaxing)
+ .debug_str     0x00001cf7       0x5e .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2.o)
+                                0x28a (size before relaxing)
+ .debug_str     0x00001d55       0x36 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_INT.o)
+                                0x266 (size before relaxing)
 
-.debug_loc      0x00000000     0x23c2
+.debug_loc      0x00000000     0x23d5
  *(.debug_loc)
  .debug_loc     0x00000000       0xb8 .\CortexM3\ARM_GCC_493\Debug\main.o
  .debug_loc     0x000000b8      0x144 .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o
@@ -1532,14 +1532,14 @@ END GROUP
  .debug_loc     0x00000805      0xa11 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyLib.o)
  .debug_loc     0x00001216      0x1e4 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(cyPm.o)
  .debug_loc     0x000013fa      0x52f .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_MASTER.o)
- .debug_loc     0x00001929       0x42 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
- .debug_loc     0x0000196b       0x42 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
- .debug_loc     0x000019ad       0x36 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Timer.o)
- .debug_loc     0x000019e3       0x56 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(ultra_isr.o)
- .debug_loc     0x00001a39      0x300 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyFlash.o)
- .debug_loc     0x00001d39      0x64d .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CySpc.o)
- .debug_loc     0x00002386       0x13 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2.o)
- .debug_loc     0x00002399       0x29 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_INT.o)
+ .debug_loc     0x00001929       0x55 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Trigger.o)
+ .debug_loc     0x0000197e       0x42 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Echo.o)
+ .debug_loc     0x000019c0       0x36 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(Timer.o)
+ .debug_loc     0x000019f6       0x56 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(ultra_isr.o)
+ .debug_loc     0x00001a4c      0x300 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CyFlash.o)
+ .debug_loc     0x00001d4c      0x64d .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(CySpc.o)
+ .debug_loc     0x00002399       0x13 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2.o)
+ .debug_loc     0x000023ac       0x29 .\CortexM3\ARM_GCC_493\Debug\ZumoBot_ultra.a(I2C_2_INT.o)
 
 .debug_macinfo
  *(.debug_macinfo)

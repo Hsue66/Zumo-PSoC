@@ -1,0 +1,3630 @@
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"cymetadata.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	cy_metadata
+  19              		.global	cy_meta_flashprotect
+  20              		.global	cy_meta_wonvl
+  21              		.global	cy_meta_custnvl
+  22              		.global	cy_meta_configecc
+  23              		.section	.cyconfigecc,"a",%progbits
+  24              		.align	2
+  25              		.type	cy_meta_configecc, %object
+  26              		.size	cy_meta_configecc, 2960
+  27              	cy_meta_configecc:
+  28 0000 05       		.byte	5
+  29 0001 52       		.byte	82
+  30 0002 00       		.byte	0
+  31 0003 40       		.byte	64
+  32 0004 06       		.byte	6
+  33 0005 64       		.byte	100
+  34 0006 00       		.byte	0
+  35 0007 40       		.byte	64
+  36 0008 02       		.byte	2
+  37 0009 65       		.byte	101
+  38 000a 00       		.byte	0
+  39 000b 40       		.byte	64
+  40 000c 01       		.byte	1
+  41 000d 01       		.byte	1
+  42 000e 01       		.byte	1
+  43 000f 40       		.byte	64
+  44 0010 05       		.byte	5
+  45 0011 03       		.byte	3
+  46 0012 01       		.byte	1
+  47 0013 40       		.byte	64
+  48 0014 0D       		.byte	13
+  49 0015 04       		.byte	4
+  50 0016 01       		.byte	1
+  51 0017 40       		.byte	64
+  52 0018 42       		.byte	66
+  53 0019 05       		.byte	5
+  54 001a 01       		.byte	1
+  55 001b 40       		.byte	64
+  56 001c 14       		.byte	20
+  57 001d 07       		.byte	7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 2
+
+
+  58 001e 01       		.byte	1
+  59 001f 40       		.byte	64
+  60 0020 4B       		.byte	75
+  61 0021 08       		.byte	8
+  62 0022 01       		.byte	1
+  63 0023 40       		.byte	64
+  64 0024 51       		.byte	81
+  65 0025 09       		.byte	9
+  66 0026 01       		.byte	1
+  67 0027 40       		.byte	64
+  68 0028 4F       		.byte	79
+  69 0029 0A       		.byte	10
+  70 002a 01       		.byte	1
+  71 002b 40       		.byte	64
+  72 002c 4B       		.byte	75
+  73 002d 0B       		.byte	11
+  74 002e 01       		.byte	1
+  75 002f 40       		.byte	64
+  76 0030 2E       		.byte	46
+  77 0031 0C       		.byte	12
+  78 0032 01       		.byte	1
+  79 0033 40       		.byte	64
+  80 0034 41       		.byte	65
+  81 0035 0D       		.byte	13
+  82 0036 01       		.byte	1
+  83 0037 40       		.byte	64
+  84 0038 4E       		.byte	78
+  85 0039 0E       		.byte	14
+  86 003a 01       		.byte	1
+  87 003b 40       		.byte	64
+  88 003c 35       		.byte	53
+  89 003d 0F       		.byte	15
+  90 003e 01       		.byte	1
+  91 003f 40       		.byte	64
+  92 0040 5C       		.byte	92
+  93 0041 14       		.byte	20
+  94 0042 01       		.byte	1
+  95 0043 40       		.byte	64
+  96 0044 45       		.byte	69
+  97 0045 15       		.byte	21
+  98 0046 01       		.byte	1
+  99 0047 40       		.byte	64
+ 100 0048 0C       		.byte	12
+ 101 0049 17       		.byte	23
+ 102 004a 01       		.byte	1
+ 103 004b 40       		.byte	64
+ 104 004c 48       		.byte	72
+ 105 004d 18       		.byte	24
+ 106 004e 01       		.byte	1
+ 107 004f 40       		.byte	64
+ 108 0050 43       		.byte	67
+ 109 0051 19       		.byte	25
+ 110 0052 01       		.byte	1
+ 111 0053 40       		.byte	64
+ 112 0054 5B       		.byte	91
+ 113 0055 1A       		.byte	26
+ 114 0056 01       		.byte	1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 3
+
+
+ 115 0057 40       		.byte	64
+ 116 0058 52       		.byte	82
+ 117 0059 1B       		.byte	27
+ 118 005a 01       		.byte	1
+ 119 005b 40       		.byte	64
+ 120 005c 05       		.byte	5
+ 121 005d 40       		.byte	64
+ 122 005e 01       		.byte	1
+ 123 005f 40       		.byte	64
+ 124 0060 01       		.byte	1
+ 125 0061 41       		.byte	65
+ 126 0062 01       		.byte	1
+ 127 0063 40       		.byte	64
+ 128 0064 05       		.byte	5
+ 129 0065 42       		.byte	66
+ 130 0066 01       		.byte	1
+ 131 0067 40       		.byte	64
+ 132 0068 01       		.byte	1
+ 133 0069 43       		.byte	67
+ 134 006a 01       		.byte	1
+ 135 006b 40       		.byte	64
+ 136 006c 02       		.byte	2
+ 137 006d 44       		.byte	68
+ 138 006e 01       		.byte	1
+ 139 006f 40       		.byte	64
+ 140 0070 05       		.byte	5
+ 141 0071 45       		.byte	69
+ 142 0072 01       		.byte	1
+ 143 0073 40       		.byte	64
+ 144 0074 01       		.byte	1
+ 145 0075 46       		.byte	70
+ 146 0076 01       		.byte	1
+ 147 0077 40       		.byte	64
+ 148 0078 01       		.byte	1
+ 149 0079 47       		.byte	71
+ 150 007a 01       		.byte	1
+ 151 007b 40       		.byte	64
+ 152 007c 05       		.byte	5
+ 153 007d 48       		.byte	72
+ 154 007e 01       		.byte	1
+ 155 007f 40       		.byte	64
+ 156 0080 15       		.byte	21
+ 157 0081 49       		.byte	73
+ 158 0082 01       		.byte	1
+ 159 0083 40       		.byte	64
+ 160 0084 11       		.byte	17
+ 161 0085 4C       		.byte	76
+ 162 0086 01       		.byte	1
+ 163 0087 40       		.byte	64
+ 164 0088 11       		.byte	17
+ 165 0089 4D       		.byte	77
+ 166 008a 01       		.byte	1
+ 167 008b 40       		.byte	64
+ 168 008c 07       		.byte	7
+ 169 008d 50       		.byte	80
+ 170 008e 01       		.byte	1
+ 171 008f 40       		.byte	64
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 4
+
+
+ 172 0090 02       		.byte	2
+ 173 0091 51       		.byte	81
+ 174 0092 01       		.byte	1
+ 175 0093 40       		.byte	64
+ 176 0094 08       		.byte	8
+ 177 0095 40       		.byte	64
+ 178 0096 09       		.byte	9
+ 179 0097 60       		.byte	96
+ 180 0098 0C       		.byte	12
+ 181 0099 60       		.byte	96
+ 182 009a 18       		.byte	24
+ 183 009b 60       		.byte	96
+ 184 009c 19       		.byte	25
+ 185 009d 20       		.byte	32
+ 186 009e 24       		.byte	36
+ 187 009f 0F       		.byte	15
+ 188 00a0 2F       		.byte	47
+ 189 00a1 04       		.byte	4
+ 190 00a2 34       		.byte	52
+ 191 00a3 08       		.byte	8
+ 192 00a4 88       		.byte	-120
+ 193 00a5 72       		.byte	114
+ 194 00a6 89       		.byte	-119
+ 195 00a7 0F       		.byte	15
+ 196 00a8 8E       		.byte	-114
+ 197 00a9 0F       		.byte	15
+ 198 00aa 85       		.byte	-123
+ 199 00ab 0F       		.byte	15
+ 200 00ac 8B       		.byte	-117
+ 201 00ad 38       		.byte	56
+ 202 00ae E6       		.byte	-26
+ 203 00af 01       		.byte	1
+ 204 00b0 98       		.byte	-104
+ 205 00b1 80       		.byte	-128
+ 206 00b2 A1       		.byte	-95
+ 207 00b3 01       		.byte	1
+ 208 00b4 A9       		.byte	-87
+ 209 00b5 01       		.byte	1
+ 210 00b6 AC       		.byte	-84
+ 211 00b7 80       		.byte	-128
+ 212 00b8 EE       		.byte	-18
+ 213 00b9 03       		.byte	3
+ 214 00ba 85       		.byte	-123
+ 215 00bb 01       		.byte	1
+ 216 00bc 89       		.byte	-119
+ 217 00bd 01       		.byte	1
+ 218 00be 9D       		.byte	-99
+ 219 00bf 01       		.byte	1
+ 220 00c0 A7       		.byte	-89
+ 221 00c1 02       		.byte	2
+ 222 00c2 A9       		.byte	-87
+ 223 00c3 01       		.byte	1
+ 224 00c4 AD       		.byte	-83
+ 225 00c5 01       		.byte	1
+ 226 00c6 B5       		.byte	-75
+ 227 00c7 02       		.byte	2
+ 228 00c8 B7       		.byte	-73
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 5
+
+
+ 229 00c9 01       		.byte	1
+ 230 00ca B9       		.byte	-71
+ 231 00cb 80       		.byte	-128
+ 232 00cc BF       		.byte	-65
+ 233 00cd 40       		.byte	64
+ 234 00ce D9       		.byte	-39
+ 235 00cf 04       		.byte	4
+ 236 00d0 DC       		.byte	-36
+ 237 00d1 30       		.byte	48
+ 238 00d2 DF       		.byte	-33
+ 239 00d3 01       		.byte	1
+ 240 00d4 00       		.byte	0
+ 241 00d5 08       		.byte	8
+ 242 00d6 01       		.byte	1
+ 243 00d7 02       		.byte	2
+ 244 00d8 02       		.byte	2
+ 245 00d9 01       		.byte	1
+ 246 00da 03       		.byte	3
+ 247 00db 08       		.byte	8
+ 248 00dc 09       		.byte	9
+ 249 00dd 51       		.byte	81
+ 250 00de 0B       		.byte	11
+ 251 00df 20       		.byte	32
+ 252 00e0 10       		.byte	16
+ 253 00e1 A0       		.byte	-96
+ 254 00e2 13       		.byte	19
+ 255 00e3 60       		.byte	96
+ 256 00e4 19       		.byte	25
+ 257 00e5 20       		.byte	32
+ 258 00e6 20       		.byte	32
+ 259 00e7 18       		.byte	24
+ 260 00e8 21       		.byte	33
+ 261 00e9 20       		.byte	32
+ 262 00ea 25       		.byte	37
+ 263 00eb 80       		.byte	-128
+ 264 00ec 27       		.byte	39
+ 265 00ed 04       		.byte	4
+ 266 00ee 29       		.byte	41
+ 267 00ef 82       		.byte	-126
+ 268 00f0 2A       		.byte	42
+ 269 00f1 08       		.byte	8
+ 270 00f2 2B       		.byte	43
+ 271 00f3 08       		.byte	8
+ 272 00f4 2D       		.byte	45
+ 273 00f5 80       		.byte	-128
+ 274 00f6 2F       		.byte	47
+ 275 00f7 28       		.byte	40
+ 276 00f8 31       		.byte	49
+ 277 00f9 28       		.byte	40
+ 278 00fa 32       		.byte	50
+ 279 00fb 80       		.byte	-128
+ 280 00fc 36       		.byte	54
+ 281 00fd 40       		.byte	64
+ 282 00fe 38       		.byte	56
+ 283 00ff 90       		.byte	-112
+ 284 0100 39       		.byte	57
+ 285 0101 04       		.byte	4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 6
+
+
+ 286 0102 3C       		.byte	60
+ 287 0103 08       		.byte	8
+ 288 0104 3D       		.byte	61
+ 289 0105 20       		.byte	32
+ 290 0106 41       		.byte	65
+ 291 0107 01       		.byte	1
+ 292 0108 42       		.byte	66
+ 293 0109 02       		.byte	2
+ 294 010a 49       		.byte	73
+ 295 010b 04       		.byte	4
+ 296 010c 52       		.byte	82
+ 297 010d 08       		.byte	8
+ 298 010e 58       		.byte	88
+ 299 010f 82       		.byte	-126
+ 300 0110 59       		.byte	89
+ 301 0111 08       		.byte	8
+ 302 0112 5A       		.byte	90
+ 303 0113 20       		.byte	32
+ 304 0114 60       		.byte	96
+ 305 0115 44       		.byte	68
+ 306 0116 61       		.byte	97
+ 307 0117 80       		.byte	-128
+ 308 0118 68       		.byte	104
+ 309 0119 10       		.byte	16
+ 310 011a 69       		.byte	105
+ 311 011b 10       		.byte	16
+ 312 011c 70       		.byte	112
+ 313 011d B0       		.byte	-80
+ 314 011e 73       		.byte	115
+ 315 011f 60       		.byte	96
+ 316 0120 80       		.byte	-128
+ 317 0121 40       		.byte	64
+ 318 0122 81       		.byte	-127
+ 319 0123 04       		.byte	4
+ 320 0124 85       		.byte	-123
+ 321 0125 48       		.byte	72
+ 322 0126 86       		.byte	-122
+ 323 0127 08       		.byte	8
+ 324 0128 8A       		.byte	-118
+ 325 0129 48       		.byte	72
+ 326 012a 8B       		.byte	-117
+ 327 012b 10       		.byte	16
+ 328 012c 8C       		.byte	-116
+ 329 012d 50       		.byte	80
+ 330 012e 8D       		.byte	-115
+ 331 012f 10       		.byte	16
+ 332 0130 8E       		.byte	-114
+ 333 0131 02       		.byte	2
+ 334 0132 91       		.byte	-111
+ 335 0133 04       		.byte	4
+ 336 0134 98       		.byte	-104
+ 337 0135 80       		.byte	-128
+ 338 0136 99       		.byte	-103
+ 339 0137 02       		.byte	2
+ 340 0138 A1       		.byte	-95
+ 341 0139 01       		.byte	1
+ 342 013a A9       		.byte	-87
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 7
+
+
+ 343 013b 02       		.byte	2
+ 344 013c AD       		.byte	-83
+ 345 013d 04       		.byte	4
+ 346 013e C0       		.byte	-64
+ 347 013f 0F       		.byte	15
+ 348 0140 C2       		.byte	-62
+ 349 0141 0F       		.byte	15
+ 350 0142 C4       		.byte	-60
+ 351 0143 0F       		.byte	15
+ 352 0144 CA       		.byte	-54
+ 353 0145 7F       		.byte	127
+ 354 0146 CC       		.byte	-52
+ 355 0147 1E       		.byte	30
+ 356 0148 CE       		.byte	-50
+ 357 0149 6E       		.byte	110
+ 358 014a D0       		.byte	-48
+ 359 014b 09       		.byte	9
+ 360 014c D6       		.byte	-42
+ 361 014d 0F       		.byte	15
+ 362 014e D8       		.byte	-40
+ 363 014f 0D       		.byte	13
+ 364 0150 E0       		.byte	-32
+ 365 0151 08       		.byte	8
+ 366 0152 E2       		.byte	-30
+ 367 0153 02       		.byte	2
+ 368 0154 E4       		.byte	-28
+ 369 0155 01       		.byte	1
+ 370 0156 EE       		.byte	-18
+ 371 0157 06       		.byte	6
+ 372 0158 94       		.byte	-108
+ 373 0159 04       		.byte	4
+ 374 015a 96       		.byte	-106
+ 375 015b 20       		.byte	32
+ 376 015c 99       		.byte	-103
+ 377 015d 02       		.byte	2
+ 378 015e 9B       		.byte	-101
+ 379 015f 04       		.byte	4
+ 380 0160 A7       		.byte	-89
+ 381 0161 20       		.byte	32
+ 382 0162 A9       		.byte	-87
+ 383 0163 A0       		.byte	-96
+ 384 0164 AA       		.byte	-86
+ 385 0165 01       		.byte	1
+ 386 0166 AC       		.byte	-84
+ 387 0167 10       		.byte	16
+ 388 0168 AD       		.byte	-83
+ 389 0169 09       		.byte	9
+ 390 016a AF       		.byte	-81
+ 391 016b 20       		.byte	32
+ 392 016c B0       		.byte	-80
+ 393 016d 80       		.byte	-128
+ 394 016e B1       		.byte	-79
+ 395 016f 10       		.byte	16
+ 396 0170 B3       		.byte	-77
+ 397 0171 08       		.byte	8
+ 398 0172 B4       		.byte	-76
+ 399 0173 12       		.byte	18
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 8
+
+
+ 400 0174 B5       		.byte	-75
+ 401 0175 20       		.byte	32
+ 402 0176 B6       		.byte	-74
+ 403 0177 80       		.byte	-128
+ 404 0178 E8       		.byte	-24
+ 405 0179 0A       		.byte	10
+ 406 017a EA       		.byte	-22
+ 407 017b 04       		.byte	4
+ 408 017c EC       		.byte	-20
+ 409 017d 01       		.byte	1
+ 410 017e EE       		.byte	-18
+ 411 017f 0A       		.byte	10
+ 412 0180 04       		.byte	4
+ 413 0181 07       		.byte	7
+ 414 0182 05       		.byte	5
+ 415 0183 20       		.byte	32
+ 416 0184 07       		.byte	7
+ 417 0185 04       		.byte	4
+ 418 0186 0B       		.byte	11
+ 419 0187 40       		.byte	64
+ 420 0188 0C       		.byte	12
+ 421 0189 01       		.byte	1
+ 422 018a 0D       		.byte	13
+ 423 018b 08       		.byte	8
+ 424 018c 0E       		.byte	14
+ 425 018d 02       		.byte	2
+ 426 018e 0F       		.byte	15
+ 427 018f 10       		.byte	16
+ 428 0190 11       		.byte	17
+ 429 0191 20       		.byte	32
+ 430 0192 13       		.byte	19
+ 431 0193 02       		.byte	2
+ 432 0194 17       		.byte	23
+ 433 0195 28       		.byte	40
+ 434 0196 1B       		.byte	27
+ 435 0197 01       		.byte	1
+ 436 0198 1C       		.byte	28
+ 437 0199 02       		.byte	2
+ 438 019a 1E       		.byte	30
+ 439 019b 01       		.byte	1
+ 440 019c 1F       		.byte	31
+ 441 019d 30       		.byte	48
+ 442 019e 27       		.byte	39
+ 443 019f 10       		.byte	16
+ 444 01a0 28       		.byte	40
+ 445 01a1 07       		.byte	7
+ 446 01a2 29       		.byte	41
+ 447 01a3 7E       		.byte	126
+ 448 01a4 2C       		.byte	44
+ 449 01a5 04       		.byte	4
+ 450 01a6 2D       		.byte	45
+ 451 01a7 1E       		.byte	30
+ 452 01a8 34       		.byte	52
+ 453 01a9 04       		.byte	4
+ 454 01aa 35       		.byte	53
+ 455 01ab 01       		.byte	1
+ 456 01ac 36       		.byte	54
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 9
+
+
+ 457 01ad 03       		.byte	3
+ 458 01ae 37       		.byte	55
+ 459 01af 7E       		.byte	126
+ 460 01b0 39       		.byte	57
+ 461 01b1 80       		.byte	-128
+ 462 01b2 56       		.byte	86
+ 463 01b3 02       		.byte	2
+ 464 01b4 57       		.byte	87
+ 465 01b5 11       		.byte	17
+ 466 01b6 58       		.byte	88
+ 467 01b7 04       		.byte	4
+ 468 01b8 59       		.byte	89
+ 469 01b9 04       		.byte	4
+ 470 01ba 5B       		.byte	91
+ 471 01bb 04       		.byte	4
+ 472 01bc 5C       		.byte	92
+ 473 01bd 02       		.byte	2
+ 474 01be 5D       		.byte	93
+ 475 01bf 20       		.byte	32
+ 476 01c0 5F       		.byte	95
+ 477 01c1 01       		.byte	1
+ 478 01c2 89       		.byte	-119
+ 479 01c3 01       		.byte	1
+ 480 01c4 8A       		.byte	-118
+ 481 01c5 03       		.byte	3
+ 482 01c6 8C       		.byte	-116
+ 483 01c7 30       		.byte	48
+ 484 01c8 8E       		.byte	-114
+ 485 01c9 0C       		.byte	12
+ 486 01ca 90       		.byte	-112
+ 487 01cb 10       		.byte	16
+ 488 01cc 94       		.byte	-108
+ 489 01cd 09       		.byte	9
+ 490 01ce 96       		.byte	-106
+ 491 01cf 10       		.byte	16
+ 492 01d0 98       		.byte	-104
+ 493 01d1 14       		.byte	20
+ 494 01d2 9C       		.byte	-100
+ 495 01d3 1C       		.byte	28
+ 496 01d4 9E       		.byte	-98
+ 497 01d5 22       		.byte	34
+ 498 01d6 A6       		.byte	-90
+ 499 01d7 20       		.byte	32
+ 500 01d8 A8       		.byte	-88
+ 501 01d9 2C       		.byte	44
+ 502 01da AA       		.byte	-86
+ 503 01db 11       		.byte	17
+ 504 01dc AE       		.byte	-82
+ 505 01dd 20       		.byte	32
+ 506 01de B0       		.byte	-80
+ 507 01df 20       		.byte	32
+ 508 01e0 B2       		.byte	-78
+ 509 01e1 1F       		.byte	31
+ 510 01e2 B3       		.byte	-77
+ 511 01e3 01       		.byte	1
+ 512 01e4 BE       		.byte	-66
+ 513 01e5 01       		.byte	1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 10
+
+
+ 514 01e6 BF       		.byte	-65
+ 515 01e7 04       		.byte	4
+ 516 01e8 C0       		.byte	-64
+ 517 01e9 45       		.byte	69
+ 518 01ea C1       		.byte	-63
+ 519 01eb 06       		.byte	6
+ 520 01ec C5       		.byte	-59
+ 521 01ed EC       		.byte	-20
+ 522 01ee C6       		.byte	-58
+ 523 01ef E0       		.byte	-32
+ 524 01f0 C7       		.byte	-57
+ 525 01f1 0B       		.byte	11
+ 526 01f2 C8       		.byte	-56
+ 527 01f3 1B       		.byte	27
+ 528 01f4 C9       		.byte	-55
+ 529 01f5 FF       		.byte	-1
+ 530 01f6 CA       		.byte	-54
+ 531 01f7 FF       		.byte	-1
+ 532 01f8 CB       		.byte	-53
+ 533 01f9 FF       		.byte	-1
+ 534 01fa CE       		.byte	-50
+ 535 01fb F0       		.byte	-16
+ 536 01fc CF       		.byte	-49
+ 537 01fd 44       		.byte	68
+ 538 01fe D0       		.byte	-48
+ 539 01ff 0C       		.byte	12
+ 540 0200 D4       		.byte	-44
+ 541 0201 01       		.byte	1
+ 542 0202 D8       		.byte	-40
+ 543 0203 04       		.byte	4
+ 544 0204 D9       		.byte	-39
+ 545 0205 04       		.byte	4
+ 546 0206 DA       		.byte	-38
+ 547 0207 04       		.byte	4
+ 548 0208 DB       		.byte	-37
+ 549 0209 04       		.byte	4
+ 550 020a DC       		.byte	-36
+ 551 020b 02       		.byte	2
+ 552 020c DD       		.byte	-35
+ 553 020d 22       		.byte	34
+ 554 020e DF       		.byte	-33
+ 555 020f 01       		.byte	1
+ 556 0210 E6       		.byte	-26
+ 557 0211 C0       		.byte	-64
+ 558 0212 EA       		.byte	-22
+ 559 0213 40       		.byte	64
+ 560 0214 EB       		.byte	-21
+ 561 0215 02       		.byte	2
+ 562 0216 00       		.byte	0
+ 563 0217 40       		.byte	64
+ 564 0218 02       		.byte	2
+ 565 0219 04       		.byte	4
+ 566 021a 03       		.byte	3
+ 567 021b 08       		.byte	8
+ 568 021c 04       		.byte	4
+ 569 021d 08       		.byte	8
+ 570 021e 06       		.byte	6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 11
+
+
+ 571 021f 02       		.byte	2
+ 572 0220 0A       		.byte	10
+ 573 0221 A2       		.byte	-94
+ 574 0222 0B       		.byte	11
+ 575 0223 08       		.byte	8
+ 576 0224 0E       		.byte	14
+ 577 0225 01       		.byte	1
+ 578 0226 10       		.byte	16
+ 579 0227 12       		.byte	18
+ 580 0228 12       		.byte	18
+ 581 0229 28       		.byte	40
+ 582 022a 15       		.byte	21
+ 583 022b 40       		.byte	64
+ 584 022c 17       		.byte	23
+ 585 022d 10       		.byte	16
+ 586 022e 1A       		.byte	26
+ 587 022f 40       		.byte	64
+ 588 0230 1B       		.byte	27
+ 589 0231 08       		.byte	8
+ 590 0232 1C       		.byte	28
+ 591 0233 08       		.byte	8
+ 592 0234 1E       		.byte	30
+ 593 0235 01       		.byte	1
+ 594 0236 22       		.byte	34
+ 595 0237 04       		.byte	4
+ 596 0238 25       		.byte	37
+ 597 0239 10       		.byte	16
+ 598 023a 27       		.byte	39
+ 599 023b 01       		.byte	1
+ 600 023c 2C       		.byte	44
+ 601 023d 20       		.byte	32
+ 602 023e 2D       		.byte	45
+ 603 023f 80       		.byte	-128
+ 604 0240 2E       		.byte	46
+ 605 0241 10       		.byte	16
+ 606 0242 34       		.byte	52
+ 607 0243 42       		.byte	66
+ 608 0244 35       		.byte	53
+ 609 0245 28       		.byte	40
+ 610 0246 38       		.byte	56
+ 611 0247 20       		.byte	32
+ 612 0248 3C       		.byte	60
+ 613 0249 20       		.byte	32
+ 614 024a 3D       		.byte	61
+ 615 024b 04       		.byte	4
+ 616 024c 3F       		.byte	63
+ 617 024d 40       		.byte	64
+ 618 024e 40       		.byte	64
+ 619 024f 40       		.byte	64
+ 620 0250 46       		.byte	70
+ 621 0251 01       		.byte	1
+ 622 0252 47       		.byte	71
+ 623 0253 40       		.byte	64
+ 624 0254 48       		.byte	72
+ 625 0255 02       		.byte	2
+ 626 0256 49       		.byte	73
+ 627 0257 01       		.byte	1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 12
+
+
+ 628 0258 4A       		.byte	74
+ 629 0259 28       		.byte	40
+ 630 025a 50       		.byte	80
+ 631 025b 10       		.byte	16
+ 632 025c 53       		.byte	83
+ 633 025d 04       		.byte	4
+ 634 025e 58       		.byte	88
+ 635 025f 10       		.byte	16
+ 636 0260 59       		.byte	89
+ 637 0261 01       		.byte	1
+ 638 0262 5A       		.byte	90
+ 639 0263 48       		.byte	72
+ 640 0264 5E       		.byte	94
+ 641 0265 20       		.byte	32
+ 642 0266 6C       		.byte	108
+ 643 0267 04       		.byte	4
+ 644 0268 6D       		.byte	109
+ 645 0269 50       		.byte	80
+ 646 026a 6E       		.byte	110
+ 647 026b 08       		.byte	8
+ 648 026c 6F       		.byte	111
+ 649 026d 10       		.byte	16
+ 650 026e 76       		.byte	118
+ 651 026f 09       		.byte	9
+ 652 0270 77       		.byte	119
+ 653 0271 20       		.byte	32
+ 654 0272 88       		.byte	-120
+ 655 0273 84       		.byte	-124
+ 656 0274 91       		.byte	-111
+ 657 0275 04       		.byte	4
+ 658 0276 92       		.byte	-110
+ 659 0277 10       		.byte	16
+ 660 0278 93       		.byte	-109
+ 661 0279 40       		.byte	64
+ 662 027a 94       		.byte	-108
+ 663 027b 04       		.byte	4
+ 664 027c 97       		.byte	-105
+ 665 027d 10       		.byte	16
+ 666 027e 98       		.byte	-104
+ 667 027f 46       		.byte	70
+ 668 0280 99       		.byte	-103
+ 669 0281 88       		.byte	-120
+ 670 0282 9D       		.byte	-99
+ 671 0283 20       		.byte	32
+ 672 0284 9F       		.byte	-97
+ 673 0285 01       		.byte	1
+ 674 0286 A0       		.byte	-96
+ 675 0287 30       		.byte	48
+ 676 0288 A6       		.byte	-90
+ 677 0289 02       		.byte	2
+ 678 028a A9       		.byte	-87
+ 679 028b 44       		.byte	68
+ 680 028c AA       		.byte	-86
+ 681 028d 10       		.byte	16
+ 682 028e AB       		.byte	-85
+ 683 028f 10       		.byte	16
+ 684 0290 AC       		.byte	-84
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 13
+
+
+ 685 0291 80       		.byte	-128
+ 686 0292 AE       		.byte	-82
+ 687 0293 05       		.byte	5
+ 688 0294 AF       		.byte	-81
+ 689 0295 04       		.byte	4
+ 690 0296 B0       		.byte	-80
+ 691 0297 20       		.byte	32
+ 692 0298 B1       		.byte	-79
+ 693 0299 01       		.byte	1
+ 694 029a B2       		.byte	-78
+ 695 029b 01       		.byte	1
+ 696 029c B4       		.byte	-76
+ 697 029d 11       		.byte	17
+ 698 029e B7       		.byte	-73
+ 699 029f 08       		.byte	8
+ 700 02a0 C0       		.byte	-64
+ 701 02a1 A3       		.byte	-93
+ 702 02a2 C2       		.byte	-62
+ 703 02a3 8F       		.byte	-113
+ 704 02a4 C4       		.byte	-60
+ 705 02a5 C7       		.byte	-57
+ 706 02a6 CA       		.byte	-54
+ 707 02a7 70       		.byte	112
+ 708 02a8 CC       		.byte	-52
+ 709 02a9 F0       		.byte	-16
+ 710 02aa CE       		.byte	-50
+ 711 02ab 74       		.byte	116
+ 712 02ac D0       		.byte	-48
+ 713 02ad 01       		.byte	1
+ 714 02ae D2       		.byte	-46
+ 715 02af 0C       		.byte	12
+ 716 02b0 D6       		.byte	-42
+ 717 02b1 2F       		.byte	47
+ 718 02b2 E8       		.byte	-24
+ 719 02b3 80       		.byte	-128
+ 720 02b4 EA       		.byte	-22
+ 721 02b5 60       		.byte	96
+ 722 02b6 EC       		.byte	-20
+ 723 02b7 C0       		.byte	-64
+ 724 02b8 02       		.byte	2
+ 725 02b9 01       		.byte	1
+ 726 02ba 04       		.byte	4
+ 727 02bb 1D       		.byte	29
+ 728 02bc 0B       		.byte	11
+ 729 02bd 02       		.byte	2
+ 730 02be 0C       		.byte	12
+ 731 02bf 02       		.byte	2
+ 732 02c0 0D       		.byte	13
+ 733 02c1 08       		.byte	8
+ 734 02c2 0F       		.byte	15
+ 735 02c3 05       		.byte	5
+ 736 02c4 10       		.byte	16
+ 737 02c5 1D       		.byte	29
+ 738 02c6 14       		.byte	20
+ 739 02c7 04       		.byte	4
+ 740 02c8 15       		.byte	21
+ 741 02c9 0F       		.byte	15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 14
+
+
+ 742 02ca 16       		.byte	22
+ 743 02cb 20       		.byte	32
+ 744 02cc 18       		.byte	24
+ 745 02cd 04       		.byte	4
+ 746 02ce 19       		.byte	25
+ 747 02cf 01       		.byte	1
+ 748 02d0 1A       		.byte	26
+ 749 02d1 38       		.byte	56
+ 750 02d2 1B       		.byte	27
+ 751 02d3 04       		.byte	4
+ 752 02d4 1C       		.byte	28
+ 753 02d5 19       		.byte	25
+ 754 02d6 1D       		.byte	29
+ 755 02d7 01       		.byte	1
+ 756 02d8 1E       		.byte	30
+ 757 02d9 04       		.byte	4
+ 758 02da 1F       		.byte	31
+ 759 02db 02       		.byte	2
+ 760 02dc 21       		.byte	33
+ 761 02dd 01       		.byte	1
+ 762 02de 23       		.byte	35
+ 763 02df 02       		.byte	2
+ 764 02e0 24       		.byte	36
+ 765 02e1 0D       		.byte	13
+ 766 02e2 26       		.byte	38
+ 767 02e3 10       		.byte	16
+ 768 02e4 27       		.byte	39
+ 769 02e5 10       		.byte	16
+ 770 02e6 29       		.byte	41
+ 771 02e7 06       		.byte	6
+ 772 02e8 2C       		.byte	44
+ 773 02e9 09       		.byte	9
+ 774 02ea 2D       		.byte	45
+ 775 02eb 05       		.byte	5
+ 776 02ec 2E       		.byte	46
+ 777 02ed 14       		.byte	20
+ 778 02ee 2F       		.byte	47
+ 779 02ef 0A       		.byte	10
+ 780 02f0 31       		.byte	49
+ 781 02f1 1F       		.byte	31
+ 782 02f2 34       		.byte	52
+ 783 02f3 3C       		.byte	60
+ 784 02f4 36       		.byte	54
+ 785 02f5 03       		.byte	3
+ 786 02f6 38       		.byte	56
+ 787 02f7 80       		.byte	-128
+ 788 02f8 3A       		.byte	58
+ 789 02f9 20       		.byte	32
+ 790 02fa 3E       		.byte	62
+ 791 02fb 40       		.byte	64
+ 792 02fc 58       		.byte	88
+ 793 02fd 04       		.byte	4
+ 794 02fe 59       		.byte	89
+ 795 02ff 04       		.byte	4
+ 796 0300 5F       		.byte	95
+ 797 0301 01       		.byte	1
+ 798 0302 82       		.byte	-126
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 15
+
+
+ 799 0303 08       		.byte	8
+ 800 0304 83       		.byte	-125
+ 801 0305 02       		.byte	2
+ 802 0306 84       		.byte	-124
+ 803 0307 0F       		.byte	15
+ 804 0308 85       		.byte	-123
+ 805 0309 01       		.byte	1
+ 806 030a 88       		.byte	-120
+ 807 030b 90       		.byte	-112
+ 808 030c 89       		.byte	-119
+ 809 030d E2       		.byte	-30
+ 810 030e 8E       		.byte	-114
+ 811 030f 0F       		.byte	15
+ 812 0310 8F       		.byte	-113
+ 813 0311 FF       		.byte	-1
+ 814 0312 90       		.byte	-112
+ 815 0313 0F       		.byte	15
+ 816 0314 91       		.byte	-111
+ 817 0315 01       		.byte	1
+ 818 0316 95       		.byte	-107
+ 819 0317 40       		.byte	64
+ 820 0318 96       		.byte	-106
+ 821 0319 0F       		.byte	15
+ 822 031a 97       		.byte	-105
+ 823 031b 1D       		.byte	29
+ 824 031c 98       		.byte	-104
+ 825 031d 20       		.byte	32
+ 826 031e 9A       		.byte	-102
+ 827 031f 41       		.byte	65
+ 828 0320 9B       		.byte	-101
+ 829 0321 08       		.byte	8
+ 830 0322 9C       		.byte	-100
+ 831 0323 80       		.byte	-128
+ 832 0324 9D       		.byte	-99
+ 833 0325 92       		.byte	-110
+ 834 0326 9F       		.byte	-97
+ 835 0327 60       		.byte	96
+ 836 0328 A1       		.byte	-95
+ 837 0329 0D       		.byte	13
+ 838 032a A2       		.byte	-94
+ 839 032b 08       		.byte	8
+ 840 032c A5       		.byte	-91
+ 841 032d 3D       		.byte	61
+ 842 032e A6       		.byte	-90
+ 843 032f 04       		.byte	4
+ 844 0330 A7       		.byte	-89
+ 845 0331 C2       		.byte	-62
+ 846 0332 A8       		.byte	-88
+ 847 0333 20       		.byte	32
+ 848 0334 A9       		.byte	-87
+ 849 0335 5D       		.byte	93
+ 850 0336 AA       		.byte	-86
+ 851 0337 42       		.byte	66
+ 852 0338 AB       		.byte	-85
+ 853 0339 A2       		.byte	-94
+ 854 033a AC       		.byte	-84
+ 855 033b 90       		.byte	-112
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 16
+
+
+ 856 033c AD       		.byte	-83
+ 857 033d 04       		.byte	4
+ 858 033e AF       		.byte	-81
+ 859 033f E0       		.byte	-32
+ 860 0340 B0       		.byte	-80
+ 861 0341 80       		.byte	-128
+ 862 0342 B2       		.byte	-78
+ 863 0343 0F       		.byte	15
+ 864 0344 B4       		.byte	-76
+ 865 0345 10       		.byte	16
+ 866 0346 B6       		.byte	-74
+ 867 0347 70       		.byte	112
+ 868 0348 B7       		.byte	-73
+ 869 0349 FF       		.byte	-1
+ 870 034a B8       		.byte	-72
+ 871 034b A2       		.byte	-94
+ 872 034c BE       		.byte	-66
+ 873 034d 54       		.byte	84
+ 874 034e BF       		.byte	-65
+ 875 034f 40       		.byte	64
+ 876 0350 D8       		.byte	-40
+ 877 0351 04       		.byte	4
+ 878 0352 D9       		.byte	-39
+ 879 0353 04       		.byte	4
+ 880 0354 DF       		.byte	-33
+ 881 0355 01       		.byte	1
+ 882 0356 01       		.byte	1
+ 883 0357 04       		.byte	4
+ 884 0358 02       		.byte	2
+ 885 0359 02       		.byte	2
+ 886 035a 03       		.byte	3
+ 887 035b 90       		.byte	-112
+ 888 035c 04       		.byte	4
+ 889 035d 04       		.byte	4
+ 890 035e 06       		.byte	6
+ 891 035f 88       		.byte	-120
+ 892 0360 07       		.byte	7
+ 893 0361 81       		.byte	-127
+ 894 0362 08       		.byte	8
+ 895 0363 42       		.byte	66
+ 896 0364 0A       		.byte	10
+ 897 0365 18       		.byte	24
+ 898 0366 0C       		.byte	12
+ 899 0367 10       		.byte	16
+ 900 0368 0D       		.byte	13
+ 901 0369 40       		.byte	64
+ 902 036a 0E       		.byte	14
+ 903 036b 48       		.byte	72
+ 904 036c 0F       		.byte	15
+ 905 036d 58       		.byte	88
+ 906 036e 13       		.byte	19
+ 907 036f 88       		.byte	-120
+ 908 0370 14       		.byte	20
+ 909 0371 44       		.byte	68
+ 910 0372 15       		.byte	21
+ 911 0373 12       		.byte	18
+ 912 0374 16       		.byte	22
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 17
+
+
+ 913 0375 02       		.byte	2
+ 914 0376 17       		.byte	23
+ 915 0377 18       		.byte	24
+ 916 0378 1A       		.byte	26
+ 917 0379 0A       		.byte	10
+ 918 037a 1C       		.byte	28
+ 919 037b A0       		.byte	-96
+ 920 037c 1E       		.byte	30
+ 921 037d 62       		.byte	98
+ 922 037e 1F       		.byte	31
+ 923 037f 20       		.byte	32
+ 924 0380 23       		.byte	35
+ 925 0381 80       		.byte	-128
+ 926 0382 24       		.byte	36
+ 927 0383 02       		.byte	2
+ 928 0384 28       		.byte	40
+ 929 0385 40       		.byte	64
+ 930 0386 29       		.byte	41
+ 931 0387 04       		.byte	4
+ 932 0388 2A       		.byte	42
+ 933 0389 80       		.byte	-128
+ 934 038a 2B       		.byte	43
+ 935 038b 04       		.byte	4
+ 936 038c 2C       		.byte	44
+ 937 038d 10       		.byte	16
+ 938 038e 2D       		.byte	45
+ 939 038f 10       		.byte	16
+ 940 0390 2E       		.byte	46
+ 941 0391 80       		.byte	-128
+ 942 0392 2F       		.byte	47
+ 943 0393 80       		.byte	-128
+ 944 0394 33       		.byte	51
+ 945 0395 98       		.byte	-104
+ 946 0396 34       		.byte	52
+ 947 0397 41       		.byte	65
+ 948 0398 35       		.byte	53
+ 949 0399 09       		.byte	9
+ 950 039a 36       		.byte	54
+ 951 039b 20       		.byte	32
+ 952 039c 37       		.byte	55
+ 953 039d 08       		.byte	8
+ 954 039e 38       		.byte	56
+ 955 039f 20       		.byte	32
+ 956 03a0 3B       		.byte	59
+ 957 03a1 40       		.byte	64
+ 958 03a2 3D       		.byte	61
+ 959 03a3 01       		.byte	1
+ 960 03a4 3E       		.byte	62
+ 961 03a5 51       		.byte	81
+ 962 03a6 3F       		.byte	63
+ 963 03a7 04       		.byte	4
+ 964 03a8 79       		.byte	121
+ 965 03a9 40       		.byte	64
+ 966 03aa 7A       		.byte	122
+ 967 03ab 01       		.byte	1
+ 968 03ac 82       		.byte	-126
+ 969 03ad 08       		.byte	8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 18
+
+
+ 970 03ae 84       		.byte	-124
+ 971 03af 40       		.byte	64
+ 972 03b0 85       		.byte	-123
+ 973 03b1 80       		.byte	-128
+ 974 03b2 86       		.byte	-122
+ 975 03b3 12       		.byte	18
+ 976 03b4 88       		.byte	-120
+ 977 03b5 12       		.byte	18
+ 978 03b6 8C       		.byte	-116
+ 979 03b7 20       		.byte	32
+ 980 03b8 8D       		.byte	-115
+ 981 03b9 01       		.byte	1
+ 982 03ba 8F       		.byte	-113
+ 983 03bb A0       		.byte	-96
+ 984 03bc 91       		.byte	-111
+ 985 03bd 02       		.byte	2
+ 986 03be 92       		.byte	-110
+ 987 03bf 10       		.byte	16
+ 988 03c0 95       		.byte	-107
+ 989 03c1 C1       		.byte	-63
+ 990 03c2 96       		.byte	-106
+ 991 03c3 40       		.byte	64
+ 992 03c4 97       		.byte	-105
+ 993 03c5 04       		.byte	4
+ 994 03c6 9B       		.byte	-101
+ 995 03c7 10       		.byte	16
+ 996 03c8 9C       		.byte	-100
+ 997 03c9 31       		.byte	49
+ 998 03ca 9D       		.byte	-99
+ 999 03cb 20       		.byte	32
+ 1000 03cc 9F       		.byte	-97
+ 1001 03cd 08       		.byte	8
+ 1002 03ce A2       		.byte	-94
+ 1003 03cf 24       		.byte	36
+ 1004 03d0 A3       		.byte	-93
+ 1005 03d1 88       		.byte	-120
+ 1006 03d2 A4       		.byte	-92
+ 1007 03d3 A0       		.byte	-96
+ 1008 03d4 A8       		.byte	-88
+ 1009 03d5 01       		.byte	1
+ 1010 03d6 AA       		.byte	-86
+ 1011 03d7 10       		.byte	16
+ 1012 03d8 AE       		.byte	-82
+ 1013 03d9 40       		.byte	64
+ 1014 03da C0       		.byte	-64
+ 1015 03db FD       		.byte	-3
+ 1016 03dc C2       		.byte	-62
+ 1017 03dd FF       		.byte	-1
+ 1018 03de C4       		.byte	-60
+ 1019 03df F5       		.byte	-11
+ 1020 03e0 CA       		.byte	-54
+ 1021 03e1 FF       		.byte	-1
+ 1022 03e2 CC       		.byte	-52
+ 1023 03e3 FE       		.byte	-2
+ 1024 03e4 CE       		.byte	-50
+ 1025 03e5 FC       		.byte	-4
+ 1026 03e6 E2       		.byte	-30
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 19
+
+
+ 1027 03e7 60       		.byte	96
+ 1028 03e8 E4       		.byte	-28
+ 1029 03e9 40       		.byte	64
+ 1030 03ea E6       		.byte	-26
+ 1031 03eb 10       		.byte	16
+ 1032 03ec 81       		.byte	-127
+ 1033 03ed 46       		.byte	70
+ 1034 03ee 83       		.byte	-125
+ 1035 03ef A9       		.byte	-87
+ 1036 03f0 8D       		.byte	-115
+ 1037 03f1 80       		.byte	-128
+ 1038 03f2 8F       		.byte	-113
+ 1039 03f3 56       		.byte	86
+ 1040 03f4 91       		.byte	-111
+ 1041 03f5 40       		.byte	64
+ 1042 03f6 93       		.byte	-109
+ 1043 03f7 13       		.byte	19
+ 1044 03f8 95       		.byte	-107
+ 1045 03f9 33       		.byte	51
+ 1046 03fa 97       		.byte	-105
+ 1047 03fb 0C       		.byte	12
+ 1048 03fc 98       		.byte	-104
+ 1049 03fd 02       		.byte	2
+ 1050 03fe 99       		.byte	-103
+ 1051 03ff 2A       		.byte	42
+ 1052 0400 9B       		.byte	-101
+ 1053 0401 54       		.byte	84
+ 1054 0402 9F       		.byte	-97
+ 1055 0403 01       		.byte	1
+ 1056 0404 A5       		.byte	-91
+ 1057 0405 0E       		.byte	14
+ 1058 0406 A7       		.byte	-89
+ 1059 0407 30       		.byte	48
+ 1060 0408 A8       		.byte	-88
+ 1061 0409 01       		.byte	1
+ 1062 040a A9       		.byte	-87
+ 1063 040b FF       		.byte	-1
+ 1064 040c B1       		.byte	-79
+ 1065 040d FF       		.byte	-1
+ 1066 040e B2       		.byte	-78
+ 1067 040f 02       		.byte	2
+ 1068 0410 B4       		.byte	-76
+ 1069 0411 01       		.byte	1
+ 1070 0412 BE       		.byte	-66
+ 1071 0413 10       		.byte	16
+ 1072 0414 C0       		.byte	-64
+ 1073 0415 26       		.byte	38
+ 1074 0416 C2       		.byte	-62
+ 1075 0417 05       		.byte	5
+ 1076 0418 C5       		.byte	-59
+ 1077 0419 EC       		.byte	-20
+ 1078 041a C6       		.byte	-58
+ 1079 041b 20       		.byte	32
+ 1080 041c C8       		.byte	-56
+ 1081 041d 0B       		.byte	11
+ 1082 041e C9       		.byte	-55
+ 1083 041f FF       		.byte	-1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 20
+
+
+ 1084 0420 CA       		.byte	-54
+ 1085 0421 FF       		.byte	-1
+ 1086 0422 CB       		.byte	-53
+ 1087 0423 FF       		.byte	-1
+ 1088 0424 CD       		.byte	-51
+ 1089 0425 83       		.byte	-125
+ 1090 0426 CE       		.byte	-50
+ 1091 0427 03       		.byte	3
+ 1092 0428 CF       		.byte	-49
+ 1093 0429 01       		.byte	1
+ 1094 042a D0       		.byte	-48
+ 1095 042b 18       		.byte	24
+ 1096 042c D8       		.byte	-40
+ 1097 042d 04       		.byte	4
+ 1098 042e D9       		.byte	-39
+ 1099 042f 04       		.byte	4
+ 1100 0430 DA       		.byte	-38
+ 1101 0431 04       		.byte	4
+ 1102 0432 DD       		.byte	-35
+ 1103 0433 01       		.byte	1
+ 1104 0434 DF       		.byte	-33
+ 1105 0435 01       		.byte	1
+ 1106 0436 E0       		.byte	-32
+ 1107 0437 40       		.byte	64
+ 1108 0438 E2       		.byte	-30
+ 1109 0439 40       		.byte	64
+ 1110 043a E4       		.byte	-28
+ 1111 043b 40       		.byte	64
+ 1112 043c E5       		.byte	-27
+ 1113 043d 40       		.byte	64
+ 1114 043e E6       		.byte	-26
+ 1115 043f 80       		.byte	-128
+ 1116 0440 E8       		.byte	-24
+ 1117 0441 80       		.byte	-128
+ 1118 0442 EA       		.byte	-22
+ 1119 0443 80       		.byte	-128
+ 1120 0444 EC       		.byte	-20
+ 1121 0445 80       		.byte	-128
+ 1122 0446 EE       		.byte	-18
+ 1123 0447 80       		.byte	-128
+ 1124 0448 04       		.byte	4
+ 1125 0449 42       		.byte	66
+ 1126 044a 05       		.byte	5
+ 1127 044b 18       		.byte	24
+ 1128 044c 08       		.byte	8
+ 1129 044d 20       		.byte	32
+ 1130 044e 0C       		.byte	12
+ 1131 044f C1       		.byte	-63
+ 1132 0450 0E       		.byte	14
+ 1133 0451 20       		.byte	32
+ 1134 0452 0F       		.byte	15
+ 1135 0453 14       		.byte	20
+ 1136 0454 10       		.byte	16
+ 1137 0455 08       		.byte	8
+ 1138 0456 15       		.byte	21
+ 1139 0457 02       		.byte	2
+ 1140 0458 16       		.byte	22
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 21
+
+
+ 1141 0459 02       		.byte	2
+ 1142 045a 17       		.byte	23
+ 1143 045b 18       		.byte	24
+ 1144 045c 18       		.byte	24
+ 1145 045d 08       		.byte	8
+ 1146 045e 1A       		.byte	26
+ 1147 045f 30       		.byte	48
+ 1148 0460 1B       		.byte	27
+ 1149 0461 28       		.byte	40
+ 1150 0462 1D       		.byte	29
+ 1151 0463 42       		.byte	66
+ 1152 0464 21       		.byte	33
+ 1153 0465 01       		.byte	1
+ 1154 0466 26       		.byte	38
+ 1155 0467 48       		.byte	72
+ 1156 0468 27       		.byte	39
+ 1157 0469 11       		.byte	17
+ 1158 046a 28       		.byte	40
+ 1159 046b 10       		.byte	16
+ 1160 046c 2B       		.byte	43
+ 1161 046d 08       		.byte	8
+ 1162 046e 2C       		.byte	44
+ 1163 046f 22       		.byte	34
+ 1164 0470 2D       		.byte	45
+ 1165 0471 08       		.byte	8
+ 1166 0472 2E       		.byte	46
+ 1167 0473 02       		.byte	2
+ 1168 0474 2F       		.byte	47
+ 1169 0475 88       		.byte	-120
+ 1170 0476 30       		.byte	48
+ 1171 0477 22       		.byte	34
+ 1172 0478 32       		.byte	50
+ 1173 0479 08       		.byte	8
+ 1174 047a 33       		.byte	51
+ 1175 047b 80       		.byte	-128
+ 1176 047c 34       		.byte	52
+ 1177 047d 51       		.byte	81
+ 1178 047e 35       		.byte	53
+ 1179 047f 10       		.byte	16
+ 1180 0480 36       		.byte	54
+ 1181 0481 08       		.byte	8
+ 1182 0482 38       		.byte	56
+ 1183 0483 40       		.byte	64
+ 1184 0484 39       		.byte	57
+ 1185 0485 02       		.byte	2
+ 1186 0486 3B       		.byte	59
+ 1187 0487 01       		.byte	1
+ 1188 0488 3C       		.byte	60
+ 1189 0489 40       		.byte	64
+ 1190 048a 3E       		.byte	62
+ 1191 048b 40       		.byte	64
+ 1192 048c 3F       		.byte	63
+ 1193 048d 15       		.byte	21
+ 1194 048e 43       		.byte	67
+ 1195 048f 20       		.byte	32
+ 1196 0490 45       		.byte	69
+ 1197 0491 20       		.byte	32
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 22
+
+
+ 1198 0492 49       		.byte	73
+ 1199 0493 85       		.byte	-123
+ 1200 0494 4B       		.byte	75
+ 1201 0495 20       		.byte	32
+ 1202 0496 4C       		.byte	76
+ 1203 0497 04       		.byte	4
+ 1204 0498 4D       		.byte	77
+ 1205 0499 80       		.byte	-128
+ 1206 049a 51       		.byte	81
+ 1207 049b 20       		.byte	32
+ 1208 049c 53       		.byte	83
+ 1209 049d 10       		.byte	16
+ 1210 049e 88       		.byte	-120
+ 1211 049f 0A       		.byte	10
+ 1212 04a0 8B       		.byte	-117
+ 1213 04a1 08       		.byte	8
+ 1214 04a2 95       		.byte	-107
+ 1215 04a3 C1       		.byte	-63
+ 1216 04a4 96       		.byte	-106
+ 1217 04a5 10       		.byte	16
+ 1218 04a6 97       		.byte	-105
+ 1219 04a7 01       		.byte	1
+ 1220 04a8 99       		.byte	-103
+ 1221 04a9 80       		.byte	-128
+ 1222 04aa 9D       		.byte	-99
+ 1223 04ab 6D       		.byte	109
+ 1224 04ac 9F       		.byte	-97
+ 1225 04ad 19       		.byte	25
+ 1226 04ae A2       		.byte	-94
+ 1227 04af 34       		.byte	52
+ 1228 04b0 A3       		.byte	-93
+ 1229 04b1 80       		.byte	-128
+ 1230 04b2 A4       		.byte	-92
+ 1231 04b3 08       		.byte	8
+ 1232 04b4 A5       		.byte	-91
+ 1233 04b5 22       		.byte	34
+ 1234 04b6 AA       		.byte	-86
+ 1235 04b7 20       		.byte	32
+ 1236 04b8 AF       		.byte	-81
+ 1237 04b9 40       		.byte	64
+ 1238 04ba C0       		.byte	-64
+ 1239 04bb F0       		.byte	-16
+ 1240 04bc C2       		.byte	-62
+ 1241 04bd F2       		.byte	-14
+ 1242 04be C4       		.byte	-60
+ 1243 04bf F2       		.byte	-14
+ 1244 04c0 CA       		.byte	-54
+ 1245 04c1 F6       		.byte	-10
+ 1246 04c2 CC       		.byte	-52
+ 1247 04c3 FF       		.byte	-1
+ 1248 04c4 CE       		.byte	-50
+ 1249 04c5 F9       		.byte	-7
+ 1250 04c6 D0       		.byte	-48
+ 1251 04c7 24       		.byte	36
+ 1252 04c8 D2       		.byte	-46
+ 1253 04c9 3C       		.byte	60
+ 1254 04ca 09       		.byte	9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 23
+
+
+ 1255 04cb 03       		.byte	3
+ 1256 04cc 0A       		.byte	10
+ 1257 04cd 04       		.byte	4
+ 1258 04ce 0E       		.byte	14
+ 1259 04cf 0D       		.byte	13
+ 1260 04d0 0F       		.byte	15
+ 1261 04d1 01       		.byte	1
+ 1262 04d2 15       		.byte	21
+ 1263 04d3 01       		.byte	1
+ 1264 04d4 1A       		.byte	26
+ 1265 04d5 08       		.byte	8
+ 1266 04d6 1B       		.byte	27
+ 1267 04d7 02       		.byte	2
+ 1268 04d8 28       		.byte	40
+ 1269 04d9 0D       		.byte	13
+ 1270 04da 29       		.byte	41
+ 1271 04db 01       		.byte	1
+ 1272 04dc 2A       		.byte	42
+ 1273 04dd 02       		.byte	2
+ 1274 04de 30       		.byte	48
+ 1275 04df 02       		.byte	2
+ 1276 04e0 32       		.byte	50
+ 1277 04e1 08       		.byte	8
+ 1278 04e2 34       		.byte	52
+ 1279 04e3 0C       		.byte	12
+ 1280 04e4 35       		.byte	53
+ 1281 04e5 01       		.byte	1
+ 1282 04e6 36       		.byte	54
+ 1283 04e7 01       		.byte	1
+ 1284 04e8 37       		.byte	55
+ 1285 04e9 02       		.byte	2
+ 1286 04ea 3A       		.byte	58
+ 1287 04eb 28       		.byte	40
+ 1288 04ec 3E       		.byte	62
+ 1289 04ed 40       		.byte	64
+ 1290 04ee 3F       		.byte	63
+ 1291 04ef 40       		.byte	64
+ 1292 04f0 54       		.byte	84
+ 1293 04f1 03       		.byte	3
+ 1294 04f2 56       		.byte	86
+ 1295 04f3 04       		.byte	4
+ 1296 04f4 58       		.byte	88
+ 1297 04f5 04       		.byte	4
+ 1298 04f6 59       		.byte	89
+ 1299 04f7 04       		.byte	4
+ 1300 04f8 5B       		.byte	91
+ 1301 04f9 04       		.byte	4
+ 1302 04fa 5C       		.byte	92
+ 1303 04fb 11       		.byte	17
+ 1304 04fc 5D       		.byte	93
+ 1305 04fd 10       		.byte	16
+ 1306 04fe 5F       		.byte	95
+ 1307 04ff 01       		.byte	1
+ 1308 0500 80       		.byte	-128
+ 1309 0501 01       		.byte	1
+ 1310 0502 83       		.byte	-125
+ 1311 0503 02       		.byte	2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 24
+
+
+ 1312 0504 84       		.byte	-124
+ 1313 0505 22       		.byte	34
+ 1314 0506 86       		.byte	-122
+ 1315 0507 18       		.byte	24
+ 1316 0508 88       		.byte	-120
+ 1317 0509 1C       		.byte	28
+ 1318 050a 8A       		.byte	-118
+ 1319 050b 22       		.byte	34
+ 1320 050c 8B       		.byte	-117
+ 1321 050d 04       		.byte	4
+ 1322 050e 8E       		.byte	-114
+ 1323 050f 40       		.byte	64
+ 1324 0510 8F       		.byte	-113
+ 1325 0511 01       		.byte	1
+ 1326 0512 90       		.byte	-112
+ 1327 0513 01       		.byte	1
+ 1328 0514 91       		.byte	-111
+ 1329 0515 07       		.byte	7
+ 1330 0516 92       		.byte	-110
+ 1331 0517 1E       		.byte	30
+ 1332 0518 94       		.byte	-108
+ 1333 0519 06       		.byte	6
+ 1334 051a 97       		.byte	-105
+ 1335 051b 02       		.byte	2
+ 1336 051c 98       		.byte	-104
+ 1337 051d 04       		.byte	4
+ 1338 051e 99       		.byte	-103
+ 1339 051f 02       		.byte	2
+ 1340 0520 9C       		.byte	-100
+ 1341 0521 32       		.byte	50
+ 1342 0522 9E       		.byte	-98
+ 1343 0523 08       		.byte	8
+ 1344 0524 A0       		.byte	-96
+ 1345 0525 22       		.byte	34
+ 1346 0526 A4       		.byte	-92
+ 1347 0527 2A       		.byte	42
+ 1348 0528 A5       		.byte	-91
+ 1349 0529 02       		.byte	2
+ 1350 052a A6       		.byte	-90
+ 1351 052b 10       		.byte	16
+ 1352 052c A8       		.byte	-88
+ 1353 052d 18       		.byte	24
+ 1354 052e A9       		.byte	-87
+ 1355 052f 07       		.byte	7
+ 1356 0530 AA       		.byte	-86
+ 1357 0531 06       		.byte	6
+ 1358 0532 AC       		.byte	-84
+ 1359 0533 3F       		.byte	63
+ 1360 0534 B4       		.byte	-76
+ 1361 0535 60       		.byte	96
+ 1362 0536 B5       		.byte	-75
+ 1363 0537 04       		.byte	4
+ 1364 0538 B6       		.byte	-74
+ 1365 0539 1F       		.byte	31
+ 1366 053a B7       		.byte	-73
+ 1367 053b 03       		.byte	3
+ 1368 053c B8       		.byte	-72
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 25
+
+
+ 1369 053d 80       		.byte	-128
+ 1370 053e C0       		.byte	-64
+ 1371 053f 45       		.byte	69
+ 1372 0540 C4       		.byte	-60
+ 1373 0541 06       		.byte	6
+ 1374 0542 C6       		.byte	-58
+ 1375 0543 BD       		.byte	-67
+ 1376 0544 C8       		.byte	-56
+ 1377 0545 0C       		.byte	12
+ 1378 0546 C9       		.byte	-55
+ 1379 0547 FF       		.byte	-1
+ 1380 0548 CA       		.byte	-54
+ 1381 0549 7F       		.byte	127
+ 1382 054a CB       		.byte	-53
+ 1383 054b FF       		.byte	-1
+ 1384 054c CC       		.byte	-52
+ 1385 054d 42       		.byte	66
+ 1386 054e CD       		.byte	-51
+ 1387 054f A0       		.byte	-96
+ 1388 0550 CE       		.byte	-50
+ 1389 0551 70       		.byte	112
+ 1390 0552 D0       		.byte	-48
+ 1391 0553 0C       		.byte	12
+ 1392 0554 D8       		.byte	-40
+ 1393 0555 04       		.byte	4
+ 1394 0556 D9       		.byte	-39
+ 1395 0557 04       		.byte	4
+ 1396 0558 DA       		.byte	-38
+ 1397 0559 04       		.byte	4
+ 1398 055a DF       		.byte	-33
+ 1399 055b 01       		.byte	1
+ 1400 055c E1       		.byte	-31
+ 1401 055d 09       		.byte	9
+ 1402 055e E2       		.byte	-30
+ 1403 055f 40       		.byte	64
+ 1404 0560 E3       		.byte	-29
+ 1405 0561 09       		.byte	9
+ 1406 0562 E4       		.byte	-28
+ 1407 0563 30       		.byte	48
+ 1408 0564 E5       		.byte	-27
+ 1409 0565 09       		.byte	9
+ 1410 0566 00       		.byte	0
+ 1411 0567 40       		.byte	64
+ 1412 0568 03       		.byte	3
+ 1413 0569 08       		.byte	8
+ 1414 056a 04       		.byte	4
+ 1415 056b 01       		.byte	1
+ 1416 056c 05       		.byte	5
+ 1417 056d 58       		.byte	88
+ 1418 056e 0A       		.byte	10
+ 1419 056f 08       		.byte	8
+ 1420 0570 0C       		.byte	12
+ 1421 0571 20       		.byte	32
+ 1422 0572 0D       		.byte	13
+ 1423 0573 02       		.byte	2
+ 1424 0574 0E       		.byte	14
+ 1425 0575 20       		.byte	32
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 26
+
+
+ 1426 0576 0F       		.byte	15
+ 1427 0577 01       		.byte	1
+ 1428 0578 10       		.byte	16
+ 1429 0579 08       		.byte	8
+ 1430 057a 11       		.byte	17
+ 1431 057b 10       		.byte	16
+ 1432 057c 15       		.byte	21
+ 1433 057d 81       		.byte	-127
+ 1434 057e 17       		.byte	23
+ 1435 057f 18       		.byte	24
+ 1436 0580 18       		.byte	24
+ 1437 0581 40       		.byte	64
+ 1438 0582 19       		.byte	25
+ 1439 0583 80       		.byte	-128
+ 1440 0584 1A       		.byte	26
+ 1441 0585 08       		.byte	8
+ 1442 0586 1B       		.byte	27
+ 1443 0587 08       		.byte	8
+ 1444 0588 1C       		.byte	28
+ 1445 0589 01       		.byte	1
+ 1446 058a 1D       		.byte	29
+ 1447 058b 10       		.byte	16
+ 1448 058c 1E       		.byte	30
+ 1449 058d 08       		.byte	8
+ 1450 058e 1F       		.byte	31
+ 1451 058f 10       		.byte	16
+ 1452 0590 22       		.byte	34
+ 1453 0591 50       		.byte	80
+ 1454 0592 25       		.byte	37
+ 1455 0593 50       		.byte	80
+ 1456 0594 26       		.byte	38
+ 1457 0595 30       		.byte	48
+ 1458 0596 2B       		.byte	43
+ 1459 0597 08       		.byte	8
+ 1460 0598 2E       		.byte	46
+ 1461 0599 10       		.byte	16
+ 1462 059a 2F       		.byte	47
+ 1463 059b 10       		.byte	16
+ 1464 059c 31       		.byte	49
+ 1465 059d 20       		.byte	32
+ 1466 059e 32       		.byte	50
+ 1467 059f 04       		.byte	4
+ 1468 05a0 37       		.byte	55
+ 1469 05a1 19       		.byte	25
+ 1470 05a2 38       		.byte	56
+ 1471 05a3 40       		.byte	64
+ 1472 05a4 39       		.byte	57
+ 1473 05a5 10       		.byte	16
+ 1474 05a6 3D       		.byte	61
+ 1475 05a7 A0       		.byte	-96
+ 1476 05a8 3F       		.byte	63
+ 1477 05a9 41       		.byte	65
+ 1478 05aa 47       		.byte	71
+ 1479 05ab 01       		.byte	1
+ 1480 05ac 4D       		.byte	77
+ 1481 05ad 60       		.byte	96
+ 1482 05ae 54       		.byte	84
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 27
+
+
+ 1483 05af 20       		.byte	32
+ 1484 05b0 57       		.byte	87
+ 1485 05b1 80       		.byte	-128
+ 1486 05b2 59       		.byte	89
+ 1487 05b3 05       		.byte	5
+ 1488 05b4 5A       		.byte	90
+ 1489 05b5 A0       		.byte	-96
+ 1490 05b6 60       		.byte	96
+ 1491 05b7 80       		.byte	-128
+ 1492 05b8 80       		.byte	-128
+ 1493 05b9 80       		.byte	-128
+ 1494 05ba 8C       		.byte	-116
+ 1495 05bb 01       		.byte	1
+ 1496 05bc C0       		.byte	-64
+ 1497 05bd F3       		.byte	-13
+ 1498 05be C2       		.byte	-62
+ 1499 05bf F2       		.byte	-14
+ 1500 05c0 C4       		.byte	-60
+ 1501 05c1 F2       		.byte	-14
+ 1502 05c2 CA       		.byte	-54
+ 1503 05c3 64       		.byte	100
+ 1504 05c4 CC       		.byte	-52
+ 1505 05c5 E6       		.byte	-26
+ 1506 05c6 CE       		.byte	-50
+ 1507 05c7 BC       		.byte	-68
+ 1508 05c8 D0       		.byte	-48
+ 1509 05c9 80       		.byte	-128
+ 1510 05ca D2       		.byte	-46
+ 1511 05cb 30       		.byte	48
+ 1512 05cc D6       		.byte	-42
+ 1513 05cd 0F       		.byte	15
+ 1514 05ce D8       		.byte	-40
+ 1515 05cf 01       		.byte	1
+ 1516 05d0 00       		.byte	0
+ 1517 05d1 01       		.byte	1
+ 1518 05d2 02       		.byte	2
+ 1519 05d3 04       		.byte	4
+ 1520 05d4 0A       		.byte	10
+ 1521 05d5 03       		.byte	3
+ 1522 05d6 0B       		.byte	11
+ 1523 05d7 02       		.byte	2
+ 1524 05d8 0E       		.byte	14
+ 1525 05d9 03       		.byte	3
+ 1526 05da 0F       		.byte	15
+ 1527 05db 01       		.byte	1
+ 1528 05dc 10       		.byte	16
+ 1529 05dd 01       		.byte	1
+ 1530 05de 12       		.byte	18
+ 1531 05df 06       		.byte	6
+ 1532 05e0 16       		.byte	22
+ 1533 05e1 10       		.byte	16
+ 1534 05e2 1B       		.byte	27
+ 1535 05e3 02       		.byte	2
+ 1536 05e4 1C       		.byte	28
+ 1537 05e5 02       		.byte	2
+ 1538 05e6 1E       		.byte	30
+ 1539 05e7 01       		.byte	1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 28
+
+
+ 1540 05e8 23       		.byte	35
+ 1541 05e9 02       		.byte	2
+ 1542 05ea 24       		.byte	36
+ 1543 05eb 01       		.byte	1
+ 1544 05ec 26       		.byte	38
+ 1545 05ed 22       		.byte	34
+ 1546 05ee 2A       		.byte	42
+ 1547 05ef 0B       		.byte	11
+ 1548 05f0 2B       		.byte	43
+ 1549 05f1 02       		.byte	2
+ 1550 05f2 2D       		.byte	45
+ 1551 05f3 02       		.byte	2
+ 1552 05f4 2E       		.byte	46
+ 1553 05f5 10       		.byte	16
+ 1554 05f6 30       		.byte	48
+ 1555 05f7 07       		.byte	7
+ 1556 05f8 31       		.byte	49
+ 1557 05f9 01       		.byte	1
+ 1558 05fa 32       		.byte	50
+ 1559 05fb 08       		.byte	8
+ 1560 05fc 33       		.byte	51
+ 1561 05fd 02       		.byte	2
+ 1562 05fe 34       		.byte	52
+ 1563 05ff 10       		.byte	16
+ 1564 0600 36       		.byte	54
+ 1565 0601 20       		.byte	32
+ 1566 0602 3A       		.byte	58
+ 1567 0603 02       		.byte	2
+ 1568 0604 3E       		.byte	62
+ 1569 0605 10       		.byte	16
+ 1570 0606 3F       		.byte	63
+ 1571 0607 04       		.byte	4
+ 1572 0608 40       		.byte	64
+ 1573 0609 01       		.byte	1
+ 1574 060a 45       		.byte	69
+ 1575 060b 04       		.byte	4
+ 1576 060c 49       		.byte	73
+ 1577 060d FF       		.byte	-1
+ 1578 060e 4A       		.byte	74
+ 1579 060f 07       		.byte	7
+ 1580 0610 4B       		.byte	75
+ 1581 0611 FF       		.byte	-1
+ 1582 0612 4C       		.byte	76
+ 1583 0613 40       		.byte	64
+ 1584 0614 4D       		.byte	77
+ 1585 0615 20       		.byte	32
+ 1586 0616 4E       		.byte	78
+ 1587 0617 F0       		.byte	-16
+ 1588 0618 4F       		.byte	79
+ 1589 0619 05       		.byte	5
+ 1590 061a 50       		.byte	80
+ 1591 061b 08       		.byte	8
+ 1592 061c 52       		.byte	82
+ 1593 061d 80       		.byte	-128
+ 1594 061e 58       		.byte	88
+ 1595 061f 04       		.byte	4
+ 1596 0620 59       		.byte	89
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 29
+
+
+ 1597 0621 04       		.byte	4
+ 1598 0622 5A       		.byte	90
+ 1599 0623 04       		.byte	4
+ 1600 0624 5B       		.byte	91
+ 1601 0625 04       		.byte	4
+ 1602 0626 5C       		.byte	92
+ 1603 0627 30       		.byte	48
+ 1604 0628 5D       		.byte	93
+ 1605 0629 32       		.byte	50
+ 1606 062a 5F       		.byte	95
+ 1607 062b 01       		.byte	1
+ 1608 062c 60       		.byte	96
+ 1609 062d 40       		.byte	64
+ 1610 062e 61       		.byte	97
+ 1611 062f A8       		.byte	-88
+ 1612 0630 62       		.byte	98
+ 1613 0631 40       		.byte	64
+ 1614 0632 63       		.byte	99
+ 1615 0633 20       		.byte	32
+ 1616 0634 80       		.byte	-128
+ 1617 0635 01       		.byte	1
+ 1618 0636 83       		.byte	-125
+ 1619 0637 02       		.byte	2
+ 1620 0638 92       		.byte	-110
+ 1621 0639 04       		.byte	4
+ 1622 063a 93       		.byte	-109
+ 1623 063b 01       		.byte	1
+ 1624 063c 96       		.byte	-106
+ 1625 063d 02       		.byte	2
+ 1626 063e 9E       		.byte	-98
+ 1627 063f 05       		.byte	5
+ 1628 0640 A4       		.byte	-92
+ 1629 0641 02       		.byte	2
+ 1630 0642 A7       		.byte	-89
+ 1631 0643 01       		.byte	1
+ 1632 0644 B0       		.byte	-80
+ 1633 0645 01       		.byte	1
+ 1634 0646 B1       		.byte	-79
+ 1635 0647 02       		.byte	2
+ 1636 0648 B2       		.byte	-78
+ 1637 0649 02       		.byte	2
+ 1638 064a B4       		.byte	-76
+ 1639 064b 04       		.byte	4
+ 1640 064c B7       		.byte	-73
+ 1641 064d 01       		.byte	1
+ 1642 064e C0       		.byte	-64
+ 1643 064f 50       		.byte	80
+ 1644 0650 C1       		.byte	-63
+ 1645 0651 03       		.byte	3
+ 1646 0652 C5       		.byte	-59
+ 1647 0653 D0       		.byte	-48
+ 1648 0654 C6       		.byte	-58
+ 1649 0655 50       		.byte	80
+ 1650 0656 C7       		.byte	-57
+ 1651 0657 12       		.byte	18
+ 1652 0658 C8       		.byte	-56
+ 1653 0659 3A       		.byte	58
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 30
+
+
+ 1654 065a C9       		.byte	-55
+ 1655 065b FF       		.byte	-1
+ 1656 065c CA       		.byte	-54
+ 1657 065d FF       		.byte	-1
+ 1658 065e CB       		.byte	-53
+ 1659 065f FF       		.byte	-1
+ 1660 0660 CD       		.byte	-51
+ 1661 0661 A0       		.byte	-96
+ 1662 0662 CF       		.byte	-49
+ 1663 0663 04       		.byte	4
+ 1664 0664 D0       		.byte	-48
+ 1665 0665 18       		.byte	24
+ 1666 0666 D4       		.byte	-44
+ 1667 0667 07       		.byte	7
+ 1668 0668 D8       		.byte	-40
+ 1669 0669 04       		.byte	4
+ 1670 066a D9       		.byte	-39
+ 1671 066b 04       		.byte	4
+ 1672 066c DA       		.byte	-38
+ 1673 066d 04       		.byte	4
+ 1674 066e DB       		.byte	-37
+ 1675 066f 04       		.byte	4
+ 1676 0670 DC       		.byte	-36
+ 1677 0671 33       		.byte	51
+ 1678 0672 DD       		.byte	-35
+ 1679 0673 33       		.byte	51
+ 1680 0674 DF       		.byte	-33
+ 1681 0675 01       		.byte	1
+ 1682 0676 E0       		.byte	-32
+ 1683 0677 40       		.byte	64
+ 1684 0678 E2       		.byte	-30
+ 1685 0679 C0       		.byte	-64
+ 1686 067a E4       		.byte	-28
+ 1687 067b 40       		.byte	64
+ 1688 067c E5       		.byte	-27
+ 1689 067d 40       		.byte	64
+ 1690 067e E6       		.byte	-26
+ 1691 067f C0       		.byte	-64
+ 1692 0680 E8       		.byte	-24
+ 1693 0681 C0       		.byte	-64
+ 1694 0682 EA       		.byte	-22
+ 1695 0683 C0       		.byte	-64
+ 1696 0684 EC       		.byte	-20
+ 1697 0685 C0       		.byte	-64
+ 1698 0686 EE       		.byte	-18
+ 1699 0687 C0       		.byte	-64
+ 1700 0688 01       		.byte	1
+ 1701 0689 02       		.byte	2
+ 1702 068a 02       		.byte	2
+ 1703 068b 01       		.byte	1
+ 1704 068c 03       		.byte	3
+ 1705 068d 08       		.byte	8
+ 1706 068e 07       		.byte	7
+ 1707 068f 40       		.byte	64
+ 1708 0690 09       		.byte	9
+ 1709 0691 04       		.byte	4
+ 1710 0692 0A       		.byte	10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 31
+
+
+ 1711 0693 41       		.byte	65
+ 1712 0694 0D       		.byte	13
+ 1713 0695 01       		.byte	1
+ 1714 0696 0F       		.byte	15
+ 1715 0697 22       		.byte	34
+ 1716 0698 10       		.byte	16
+ 1717 0699 20       		.byte	32
+ 1718 069a 11       		.byte	17
+ 1719 069b 10       		.byte	16
+ 1720 069c 12       		.byte	18
+ 1721 069d 02       		.byte	2
+ 1722 069e 17       		.byte	23
+ 1723 069f 04       		.byte	4
+ 1724 06a0 19       		.byte	25
+ 1725 06a1 40       		.byte	64
+ 1726 06a2 1A       		.byte	26
+ 1727 06a3 45       		.byte	69
+ 1728 06a4 1B       		.byte	27
+ 1729 06a5 08       		.byte	8
+ 1730 06a6 1E       		.byte	30
+ 1731 06a7 A0       		.byte	-96
+ 1732 06a8 1F       		.byte	31
+ 1733 06a9 10       		.byte	16
+ 1734 06aa 21       		.byte	33
+ 1735 06ab 05       		.byte	5
+ 1736 06ac 22       		.byte	34
+ 1737 06ad 02       		.byte	2
+ 1738 06ae 25       		.byte	37
+ 1739 06af 40       		.byte	64
+ 1740 06b0 27       		.byte	39
+ 1741 06b1 40       		.byte	64
+ 1742 06b2 29       		.byte	41
+ 1743 06b3 40       		.byte	64
+ 1744 06b4 2A       		.byte	42
+ 1745 06b5 01       		.byte	1
+ 1746 06b6 2B       		.byte	43
+ 1747 06b7 08       		.byte	8
+ 1748 06b8 2F       		.byte	47
+ 1749 06b9 20       		.byte	32
+ 1750 06ba 30       		.byte	48
+ 1751 06bb 20       		.byte	32
+ 1752 06bc 36       		.byte	54
+ 1753 06bd 02       		.byte	2
+ 1754 06be 38       		.byte	56
+ 1755 06bf 04       		.byte	4
+ 1756 06c0 39       		.byte	57
+ 1757 06c1 18       		.byte	24
+ 1758 06c2 3A       		.byte	58
+ 1759 06c3 20       		.byte	32
+ 1760 06c4 3B       		.byte	59
+ 1761 06c5 40       		.byte	64
+ 1762 06c6 3F       		.byte	63
+ 1763 06c7 02       		.byte	2
+ 1764 06c8 40       		.byte	64
+ 1765 06c9 02       		.byte	2
+ 1766 06ca 45       		.byte	69
+ 1767 06cb 04       		.byte	4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 32
+
+
+ 1768 06cc 49       		.byte	73
+ 1769 06cd 04       		.byte	4
+ 1770 06ce 4D       		.byte	77
+ 1771 06cf 01       		.byte	1
+ 1772 06d0 4E       		.byte	78
+ 1773 06d1 02       		.byte	2
+ 1774 06d2 50       		.byte	80
+ 1775 06d3 40       		.byte	64
+ 1776 06d4 55       		.byte	85
+ 1777 06d5 04       		.byte	4
+ 1778 06d6 57       		.byte	87
+ 1779 06d7 31       		.byte	49
+ 1780 06d8 5D       		.byte	93
+ 1781 06d9 01       		.byte	1
+ 1782 06da 5E       		.byte	94
+ 1783 06db A4       		.byte	-92
+ 1784 06dc 73       		.byte	115
+ 1785 06dd 40       		.byte	64
+ 1786 06de 80       		.byte	-128
+ 1787 06df 40       		.byte	64
+ 1788 06e0 87       		.byte	-121
+ 1789 06e1 10       		.byte	16
+ 1790 06e2 88       		.byte	-120
+ 1791 06e3 02       		.byte	2
+ 1792 06e4 89       		.byte	-119
+ 1793 06e5 40       		.byte	64
+ 1794 06e6 8D       		.byte	-115
+ 1795 06e7 04       		.byte	4
+ 1796 06e8 94       		.byte	-108
+ 1797 06e9 04       		.byte	4
+ 1798 06ea 99       		.byte	-103
+ 1799 06eb 02       		.byte	2
+ 1800 06ec 9A       		.byte	-102
+ 1801 06ed 21       		.byte	33
+ 1802 06ee 9B       		.byte	-101
+ 1803 06ef 04       		.byte	4
+ 1804 06f0 A0       		.byte	-96
+ 1805 06f1 20       		.byte	32
+ 1806 06f2 A7       		.byte	-89
+ 1807 06f3 20       		.byte	32
+ 1808 06f4 AA       		.byte	-86
+ 1809 06f5 01       		.byte	1
+ 1810 06f6 AE       		.byte	-82
+ 1811 06f7 20       		.byte	32
+ 1812 06f8 C0       		.byte	-64
+ 1813 06f9 1B       		.byte	27
+ 1814 06fa C2       		.byte	-62
+ 1815 06fb BD       		.byte	-67
+ 1816 06fc C4       		.byte	-60
+ 1817 06fd 27       		.byte	39
+ 1818 06fe CA       		.byte	-54
+ 1819 06ff 4D       		.byte	77
+ 1820 0700 CC       		.byte	-52
+ 1821 0701 84       		.byte	-124
+ 1822 0702 CE       		.byte	-50
+ 1823 0703 8C       		.byte	-116
+ 1824 0704 D0       		.byte	-48
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 33
+
+
+ 1825 0705 48       		.byte	72
+ 1826 0706 D2       		.byte	-46
+ 1827 0707 10       		.byte	16
+ 1828 0708 D6       		.byte	-42
+ 1829 0709 F0       		.byte	-16
+ 1830 070a E0       		.byte	-32
+ 1831 070b 01       		.byte	1
+ 1832 070c E6       		.byte	-26
+ 1833 070d 30       		.byte	48
+ 1834 070e E8       		.byte	-24
+ 1835 070f 10       		.byte	16
+ 1836 0710 EA       		.byte	-22
+ 1837 0711 0D       		.byte	13
+ 1838 0712 85       		.byte	-123
+ 1839 0713 02       		.byte	2
+ 1840 0714 8E       		.byte	-114
+ 1841 0715 10       		.byte	16
+ 1842 0716 94       		.byte	-108
+ 1843 0717 04       		.byte	4
+ 1844 0718 96       		.byte	-106
+ 1845 0719 20       		.byte	32
+ 1846 071a 99       		.byte	-103
+ 1847 071b 02       		.byte	2
+ 1848 071c 9B       		.byte	-101
+ 1849 071d 04       		.byte	4
+ 1850 071e A0       		.byte	-96
+ 1851 071f 20       		.byte	32
+ 1852 0720 A7       		.byte	-89
+ 1853 0721 20       		.byte	32
+ 1854 0722 A8       		.byte	-88
+ 1855 0723 20       		.byte	32
+ 1856 0724 E2       		.byte	-30
+ 1857 0725 01       		.byte	1
+ 1858 0726 E4       		.byte	-28
+ 1859 0727 09       		.byte	9
+ 1860 0728 EA       		.byte	-22
+ 1861 0729 01       		.byte	1
+ 1862 072a 00       		.byte	0
+ 1863 072b 08       		.byte	8
+ 1864 072c 03       		.byte	3
+ 1865 072d 40       		.byte	64
+ 1866 072e 04       		.byte	4
+ 1867 072f 33       		.byte	51
+ 1868 0730 05       		.byte	5
+ 1869 0731 08       		.byte	8
+ 1870 0732 06       		.byte	6
+ 1871 0733 0C       		.byte	12
+ 1872 0734 08       		.byte	8
+ 1873 0735 0C       		.byte	12
+ 1874 0736 0A       		.byte	10
+ 1875 0737 33       		.byte	51
+ 1876 0738 0B       		.byte	11
+ 1877 0739 04       		.byte	4
+ 1878 073a 0C       		.byte	12
+ 1879 073b 01       		.byte	1
+ 1880 073c 0F       		.byte	15
+ 1881 073d 23       		.byte	35
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 34
+
+
+ 1882 073e 10       		.byte	16
+ 1883 073f 0F       		.byte	15
+ 1884 0740 12       		.byte	18
+ 1885 0741 30       		.byte	48
+ 1886 0742 13       		.byte	19
+ 1887 0743 40       		.byte	64
+ 1888 0744 15       		.byte	21
+ 1889 0745 3C       		.byte	60
+ 1890 0746 17       		.byte	23
+ 1891 0747 02       		.byte	2
+ 1892 0748 18       		.byte	24
+ 1893 0749 3F       		.byte	63
+ 1894 074a 19       		.byte	25
+ 1895 074b 18       		.byte	24
+ 1896 074c 1C       		.byte	28
+ 1897 074d 02       		.byte	2
+ 1898 074e 1D       		.byte	29
+ 1899 074f 10       		.byte	16
+ 1900 0750 20       		.byte	32
+ 1901 0751 03       		.byte	3
+ 1902 0752 21       		.byte	33
+ 1903 0753 04       		.byte	4
+ 1904 0754 24       		.byte	36
+ 1905 0755 04       		.byte	4
+ 1906 0756 25       		.byte	37
+ 1907 0757 3F       		.byte	63
+ 1908 0758 28       		.byte	40
+ 1909 0759 0C       		.byte	12
+ 1910 075a 29       		.byte	41
+ 1911 075b 27       		.byte	39
+ 1912 075c 2B       		.byte	43
+ 1913 075d 18       		.byte	24
+ 1914 075e 2D       		.byte	45
+ 1915 075f 1C       		.byte	28
+ 1916 0760 2E       		.byte	46
+ 1917 0761 23       		.byte	35
+ 1918 0762 2F       		.byte	47
+ 1919 0763 21       		.byte	33
+ 1920 0764 30       		.byte	48
+ 1921 0765 2C       		.byte	44
+ 1922 0766 31       		.byte	49
+ 1923 0767 38       		.byte	56
+ 1924 0768 32       		.byte	50
+ 1925 0769 0F       		.byte	15
+ 1926 076a 33       		.byte	51
+ 1927 076b 1F       		.byte	31
+ 1928 076c 35       		.byte	53
+ 1929 076d 40       		.byte	64
+ 1930 076e 36       		.byte	54
+ 1931 076f 10       		.byte	16
+ 1932 0770 38       		.byte	56
+ 1933 0771 80       		.byte	-128
+ 1934 0772 3A       		.byte	58
+ 1935 0773 2A       		.byte	42
+ 1936 0774 3B       		.byte	59
+ 1937 0775 08       		.byte	8
+ 1938 0776 3F       		.byte	63
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 35
+
+
+ 1939 0777 10       		.byte	16
+ 1940 0778 58       		.byte	88
+ 1941 0779 04       		.byte	4
+ 1942 077a 59       		.byte	89
+ 1943 077b 04       		.byte	4
+ 1944 077c 5C       		.byte	92
+ 1945 077d 22       		.byte	34
+ 1946 077e 5F       		.byte	95
+ 1947 077f 01       		.byte	1
+ 1948 0780 80       		.byte	-128
+ 1949 0781 02       		.byte	2
+ 1950 0782 82       		.byte	-126
+ 1951 0783 0C       		.byte	12
+ 1952 0784 84       		.byte	-124
+ 1953 0785 06       		.byte	6
+ 1954 0786 87       		.byte	-121
+ 1955 0787 01       		.byte	1
+ 1956 0788 8C       		.byte	-116
+ 1957 0789 04       		.byte	4
+ 1958 078a 8E       		.byte	-114
+ 1959 078b 12       		.byte	18
+ 1960 078c 91       		.byte	-111
+ 1961 078d 02       		.byte	2
+ 1962 078e 92       		.byte	-110
+ 1963 078f 06       		.byte	6
+ 1964 0790 93       		.byte	-109
+ 1965 0791 04       		.byte	4
+ 1966 0792 96       		.byte	-106
+ 1967 0793 06       		.byte	6
+ 1968 0794 98       		.byte	-104
+ 1969 0795 02       		.byte	2
+ 1970 0796 9A       		.byte	-102
+ 1971 0797 08       		.byte	8
+ 1972 0798 A0       		.byte	-96
+ 1973 0799 06       		.byte	6
+ 1974 079a A5       		.byte	-91
+ 1975 079b 02       		.byte	2
+ 1976 079c A6       		.byte	-90
+ 1977 079d 06       		.byte	6
+ 1978 079e A7       		.byte	-89
+ 1979 079f 0C       		.byte	12
+ 1980 07a0 A8       		.byte	-88
+ 1981 07a1 01       		.byte	1
+ 1982 07a2 AE       		.byte	-82
+ 1983 07a3 06       		.byte	6
+ 1984 07a4 B0       		.byte	-80
+ 1985 07a5 0E       		.byte	14
+ 1986 07a6 B1       		.byte	-79
+ 1987 07a7 06       		.byte	6
+ 1988 07a8 B2       		.byte	-78
+ 1989 07a9 01       		.byte	1
+ 1990 07aa B3       		.byte	-77
+ 1991 07ab 01       		.byte	1
+ 1992 07ac B4       		.byte	-76
+ 1993 07ad 10       		.byte	16
+ 1994 07ae B5       		.byte	-75
+ 1995 07af 08       		.byte	8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 36
+
+
+ 1996 07b0 BA       		.byte	-70
+ 1997 07b1 02       		.byte	2
+ 1998 07b2 BE       		.byte	-66
+ 1999 07b3 04       		.byte	4
+ 2000 07b4 D8       		.byte	-40
+ 2001 07b5 04       		.byte	4
+ 2002 07b6 D9       		.byte	-39
+ 2003 07b7 04       		.byte	4
+ 2004 07b8 DF       		.byte	-33
+ 2005 07b9 01       		.byte	1
+ 2006 07ba 00       		.byte	0
+ 2007 07bb 80       		.byte	-128
+ 2008 07bc 01       		.byte	1
+ 2009 07bd 0A       		.byte	10
+ 2010 07be 04       		.byte	4
+ 2011 07bf 20       		.byte	32
+ 2012 07c0 05       		.byte	5
+ 2013 07c1 04       		.byte	4
+ 2014 07c2 06       		.byte	6
+ 2015 07c3 22       		.byte	34
+ 2016 07c4 07       		.byte	7
+ 2017 07c5 44       		.byte	68
+ 2018 07c6 08       		.byte	8
+ 2019 07c7 06       		.byte	6
+ 2020 07c8 0B       		.byte	11
+ 2021 07c9 08       		.byte	8
+ 2022 07ca 0D       		.byte	13
+ 2023 07cb 02       		.byte	2
+ 2024 07cc 0E       		.byte	14
+ 2025 07cd 05       		.byte	5
+ 2026 07ce 10       		.byte	16
+ 2027 07cf 60       		.byte	96
+ 2028 07d0 12       		.byte	18
+ 2029 07d1 04       		.byte	4
+ 2030 07d2 13       		.byte	19
+ 2031 07d3 40       		.byte	64
+ 2032 07d4 15       		.byte	21
+ 2033 07d5 44       		.byte	68
+ 2034 07d6 16       		.byte	22
+ 2035 07d7 40       		.byte	64
+ 2036 07d8 17       		.byte	23
+ 2037 07d9 20       		.byte	32
+ 2038 07da 19       		.byte	25
+ 2039 07db 22       		.byte	34
+ 2040 07dc 1B       		.byte	27
+ 2041 07dd 04       		.byte	4
+ 2042 07de 1D       		.byte	29
+ 2043 07df 06       		.byte	6
+ 2044 07e0 1E       		.byte	30
+ 2045 07e1 06       		.byte	6
+ 2046 07e2 1F       		.byte	31
+ 2047 07e3 21       		.byte	33
+ 2048 07e4 20       		.byte	32
+ 2049 07e5 04       		.byte	4
+ 2050 07e6 22       		.byte	34
+ 2051 07e7 02       		.byte	2
+ 2052 07e8 23       		.byte	35
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 37
+
+
+ 2053 07e9 10       		.byte	16
+ 2054 07ea 24       		.byte	36
+ 2055 07eb 20       		.byte	32
+ 2056 07ec 25       		.byte	37
+ 2057 07ed 15       		.byte	21
+ 2058 07ee 28       		.byte	40
+ 2059 07ef 20       		.byte	32
+ 2060 07f0 2E       		.byte	46
+ 2061 07f1 22       		.byte	34
+ 2062 07f2 2F       		.byte	47
+ 2063 07f3 21       		.byte	33
+ 2064 07f4 33       		.byte	51
+ 2065 07f5 01       		.byte	1
+ 2066 07f6 36       		.byte	54
+ 2067 07f7 01       		.byte	1
+ 2068 07f8 37       		.byte	55
+ 2069 07f9 64       		.byte	100
+ 2070 07fa 38       		.byte	56
+ 2071 07fb 04       		.byte	4
+ 2072 07fc 3C       		.byte	60
+ 2073 07fd 20       		.byte	32
+ 2074 07fe 3D       		.byte	61
+ 2075 07ff 44       		.byte	68
+ 2076 0800 3E       		.byte	62
+ 2077 0801 48       		.byte	72
+ 2078 0802 3F       		.byte	63
+ 2079 0803 02       		.byte	2
+ 2080 0804 40       		.byte	64
+ 2081 0805 80       		.byte	-128
+ 2082 0806 42       		.byte	66
+ 2083 0807 40       		.byte	64
+ 2084 0808 87       		.byte	-121
+ 2085 0809 05       		.byte	5
+ 2086 080a 8D       		.byte	-115
+ 2087 080b 02       		.byte	2
+ 2088 080c 91       		.byte	-111
+ 2089 080d 10       		.byte	16
+ 2090 080e 92       		.byte	-110
+ 2091 080f 01       		.byte	1
+ 2092 0810 93       		.byte	-109
+ 2093 0811 40       		.byte	64
+ 2094 0812 94       		.byte	-108
+ 2095 0813 44       		.byte	68
+ 2096 0814 96       		.byte	-106
+ 2097 0815 A2       		.byte	-94
+ 2098 0816 97       		.byte	-105
+ 2099 0817 10       		.byte	16
+ 2100 0818 98       		.byte	-104
+ 2101 0819 C6       		.byte	-58
+ 2102 081a 99       		.byte	-103
+ 2103 081b 08       		.byte	8
+ 2104 081c 9A       		.byte	-102
+ 2105 081d 0C       		.byte	12
+ 2106 081e 9B       		.byte	-101
+ 2107 081f 61       		.byte	97
+ 2108 0820 9D       		.byte	-99
+ 2109 0821 20       		.byte	32
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 38
+
+
+ 2110 0822 9E       		.byte	-98
+ 2111 0823 02       		.byte	2
+ 2112 0824 A0       		.byte	-96
+ 2113 0825 20       		.byte	32
+ 2114 0826 A2       		.byte	-94
+ 2115 0827 24       		.byte	36
+ 2116 0828 A4       		.byte	-92
+ 2117 0829 02       		.byte	2
+ 2118 082a A6       		.byte	-90
+ 2119 082b 1A       		.byte	26
+ 2120 082c A9       		.byte	-87
+ 2121 082d 10       		.byte	16
+ 2122 082e C0       		.byte	-64
+ 2123 082f FD       		.byte	-3
+ 2124 0830 C2       		.byte	-62
+ 2125 0831 DE       		.byte	-34
+ 2126 0832 C4       		.byte	-60
+ 2127 0833 FF       		.byte	-1
+ 2128 0834 CA       		.byte	-54
+ 2129 0835 F2       		.byte	-14
+ 2130 0836 CC       		.byte	-52
+ 2131 0837 F1       		.byte	-15
+ 2132 0838 CE       		.byte	-50
+ 2133 0839 F2       		.byte	-14
+ 2134 083a E0       		.byte	-32
+ 2135 083b 02       		.byte	2
+ 2136 083c E2       		.byte	-30
+ 2137 083d 41       		.byte	65
+ 2138 083e E4       		.byte	-28
+ 2139 083f 01       		.byte	1
+ 2140 0840 07       		.byte	7
+ 2141 0841 08       		.byte	8
+ 2142 0842 0C       		.byte	12
+ 2143 0843 73       		.byte	115
+ 2144 0844 0D       		.byte	13
+ 2145 0845 01       		.byte	1
+ 2146 0846 0E       		.byte	14
+ 2147 0847 0C       		.byte	12
+ 2148 0848 0F       		.byte	15
+ 2149 0849 16       		.byte	22
+ 2150 084a 11       		.byte	17
+ 2151 084b 1C       		.byte	28
+ 2152 084c 13       		.byte	19
+ 2153 084d 03       		.byte	3
+ 2154 084e 15       		.byte	21
+ 2155 084f 01       		.byte	1
+ 2156 0850 16       		.byte	22
+ 2157 0851 08       		.byte	8
+ 2158 0852 17       		.byte	23
+ 2159 0853 0E       		.byte	14
+ 2160 0854 1B       		.byte	27
+ 2161 0855 1C       		.byte	28
+ 2162 0856 1C       		.byte	28
+ 2163 0857 2A       		.byte	42
+ 2164 0858 1E       		.byte	30
+ 2165 0859 44       		.byte	68
+ 2166 085a 24       		.byte	36
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 39
+
+
+ 2167 085b 03       		.byte	3
+ 2168 085c 26       		.byte	38
+ 2169 085d 04       		.byte	4
+ 2170 085e 28       		.byte	40
+ 2171 085f 73       		.byte	115
+ 2172 0860 2A       		.byte	42
+ 2173 0861 04       		.byte	4
+ 2174 0862 2C       		.byte	44
+ 2175 0863 80       		.byte	-128
+ 2176 0864 2E       		.byte	46
+ 2177 0865 15       		.byte	21
+ 2178 0866 2F       		.byte	47
+ 2179 0867 03       		.byte	3
+ 2180 0868 30       		.byte	48
+ 2181 0869 0F       		.byte	15
+ 2182 086a 31       		.byte	49
+ 2183 086b 0F       		.byte	15
+ 2184 086c 32       		.byte	50
+ 2185 086d C0       		.byte	-64
+ 2186 086e 33       		.byte	51
+ 2187 086f 1A       		.byte	26
+ 2188 0870 34       		.byte	52
+ 2189 0871 30       		.byte	48
+ 2190 0872 38       		.byte	56
+ 2191 0873 28       		.byte	40
+ 2192 0874 3A       		.byte	58
+ 2193 0875 02       		.byte	2
+ 2194 0876 3B       		.byte	59
+ 2195 0877 0A       		.byte	10
+ 2196 0878 3E       		.byte	62
+ 2197 0879 10       		.byte	16
+ 2198 087a 58       		.byte	88
+ 2199 087b 04       		.byte	4
+ 2200 087c 59       		.byte	89
+ 2201 087d 04       		.byte	4
+ 2202 087e 5C       		.byte	92
+ 2203 087f 22       		.byte	34
+ 2204 0880 5F       		.byte	95
+ 2205 0881 01       		.byte	1
+ 2206 0882 80       		.byte	-128
+ 2207 0883 C1       		.byte	-63
+ 2208 0884 82       		.byte	-126
+ 2209 0885 0E       		.byte	14
+ 2210 0886 83       		.byte	-125
+ 2211 0887 02       		.byte	2
+ 2212 0888 84       		.byte	-124
+ 2213 0889 C0       		.byte	-64
+ 2214 088a 85       		.byte	-123
+ 2215 088b 01       		.byte	1
+ 2216 088c 8A       		.byte	-118
+ 2217 088d C0       		.byte	-64
+ 2218 088e 8E       		.byte	-114
+ 2219 088f C0       		.byte	-64
+ 2220 0890 8F       		.byte	-113
+ 2221 0891 02       		.byte	2
+ 2222 0892 94       		.byte	-108
+ 2223 0893 C0       		.byte	-64
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 40
+
+
+ 2224 0894 95       		.byte	-107
+ 2225 0895 01       		.byte	1
+ 2226 0896 98       		.byte	-104
+ 2227 0897 07       		.byte	7
+ 2228 0898 9C       		.byte	-100
+ 2229 0899 84       		.byte	-124
+ 2230 089a 9E       		.byte	-98
+ 2231 089b 11       		.byte	17
+ 2232 089c A2       		.byte	-94
+ 2233 089d C0       		.byte	-64
+ 2234 089e A5       		.byte	-91
+ 2235 089f 01       		.byte	1
+ 2236 08a0 A8       		.byte	-88
+ 2237 08a1 07       		.byte	7
+ 2238 08a2 AC       		.byte	-84
+ 2239 08a3 42       		.byte	66
+ 2240 08a4 AD       		.byte	-83
+ 2241 08a5 01       		.byte	1
+ 2242 08a6 AE       		.byte	-82
+ 2243 08a7 31       		.byte	49
+ 2244 08a8 B0       		.byte	-80
+ 2245 08a9 07       		.byte	7
+ 2246 08aa B2       		.byte	-78
+ 2247 08ab 20       		.byte	32
+ 2248 08ac B4       		.byte	-76
+ 2249 08ad C0       		.byte	-64
+ 2250 08ae B5       		.byte	-75
+ 2251 08af 01       		.byte	1
+ 2252 08b0 B6       		.byte	-74
+ 2253 08b1 18       		.byte	24
+ 2254 08b2 B7       		.byte	-73
+ 2255 08b3 02       		.byte	2
+ 2256 08b4 BE       		.byte	-66
+ 2257 08b5 40       		.byte	64
+ 2258 08b6 BF       		.byte	-65
+ 2259 08b7 50       		.byte	80
+ 2260 08b8 C0       		.byte	-64
+ 2261 08b9 25       		.byte	37
+ 2262 08ba C1       		.byte	-63
+ 2263 08bb 06       		.byte	6
+ 2264 08bc C2       		.byte	-62
+ 2265 08bd 04       		.byte	4
+ 2266 08be C4       		.byte	-60
+ 2267 08bf 01       		.byte	1
+ 2268 08c0 C5       		.byte	-59
+ 2269 08c1 E0       		.byte	-32
+ 2270 08c2 C6       		.byte	-58
+ 2271 08c3 0C       		.byte	12
+ 2272 08c4 C8       		.byte	-56
+ 2273 08c5 06       		.byte	6
+ 2274 08c6 C9       		.byte	-55
+ 2275 08c7 FF       		.byte	-1
+ 2276 08c8 CA       		.byte	-54
+ 2277 08c9 FF       		.byte	-1
+ 2278 08ca CB       		.byte	-53
+ 2279 08cb FF       		.byte	-1
+ 2280 08cc CC       		.byte	-52
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 41
+
+
+ 2281 08cd 62       		.byte	98
+ 2282 08ce CD       		.byte	-51
+ 2283 08cf A0       		.byte	-96
+ 2284 08d0 CE       		.byte	-50
+ 2285 08d1 F0       		.byte	-16
+ 2286 08d2 CF       		.byte	-49
+ 2287 08d3 41       		.byte	65
+ 2288 08d4 D0       		.byte	-48
+ 2289 08d5 0C       		.byte	12
+ 2290 08d6 D4       		.byte	-44
+ 2291 08d7 18       		.byte	24
+ 2292 08d8 D8       		.byte	-40
+ 2293 08d9 04       		.byte	4
+ 2294 08da D9       		.byte	-39
+ 2295 08db 04       		.byte	4
+ 2296 08dc DA       		.byte	-38
+ 2297 08dd 04       		.byte	4
+ 2298 08de DB       		.byte	-37
+ 2299 08df 04       		.byte	4
+ 2300 08e0 DC       		.byte	-36
+ 2301 08e1 02       		.byte	2
+ 2302 08e2 DD       		.byte	-35
+ 2303 08e3 22       		.byte	34
+ 2304 08e4 DF       		.byte	-33
+ 2305 08e5 01       		.byte	1
+ 2306 08e6 E6       		.byte	-26
+ 2307 08e7 40       		.byte	64
+ 2308 08e8 E7       		.byte	-25
+ 2309 08e9 02       		.byte	2
+ 2310 08ea E9       		.byte	-23
+ 2311 08eb 10       		.byte	16
+ 2312 08ec EA       		.byte	-22
+ 2313 08ed 30       		.byte	48
+ 2314 08ee EB       		.byte	-21
+ 2315 08ef 10       		.byte	16
+ 2316 08f0 ED       		.byte	-19
+ 2317 08f1 10       		.byte	16
+ 2318 08f2 EE       		.byte	-18
+ 2319 08f3 10       		.byte	16
+ 2320 08f4 EF       		.byte	-17
+ 2321 08f5 12       		.byte	18
+ 2322 08f6 00       		.byte	0
+ 2323 08f7 40       		.byte	64
+ 2324 08f8 05       		.byte	5
+ 2325 08f9 85       		.byte	-123
+ 2326 08fa 06       		.byte	6
+ 2327 08fb 48       		.byte	72
+ 2328 08fc 0A       		.byte	10
+ 2329 08fd 22       		.byte	34
+ 2330 08fe 0E       		.byte	14
+ 2331 08ff 09       		.byte	9
+ 2332 0900 0F       		.byte	15
+ 2333 0901 20       		.byte	32
+ 2334 0902 10       		.byte	16
+ 2335 0903 03       		.byte	3
+ 2336 0904 12       		.byte	18
+ 2337 0905 2A       		.byte	42
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 42
+
+
+ 2338 0906 14       		.byte	20
+ 2339 0907 80       		.byte	-128
+ 2340 0908 15       		.byte	21
+ 2341 0909 10       		.byte	16
+ 2342 090a 16       		.byte	22
+ 2343 090b 02       		.byte	2
+ 2344 090c 18       		.byte	24
+ 2345 090d 40       		.byte	64
+ 2346 090e 19       		.byte	25
+ 2347 090f 20       		.byte	32
+ 2348 0910 1A       		.byte	26
+ 2349 0911 20       		.byte	32
+ 2350 0912 1C       		.byte	28
+ 2351 0913 20       		.byte	32
+ 2352 0914 1D       		.byte	29
+ 2353 0915 91       		.byte	-111
+ 2354 0916 22       		.byte	34
+ 2355 0917 09       		.byte	9
+ 2356 0918 26       		.byte	38
+ 2357 0919 10       		.byte	16
+ 2358 091a 27       		.byte	39
+ 2359 091b 01       		.byte	1
+ 2360 091c 28       		.byte	40
+ 2361 091d 01       		.byte	1
+ 2362 091e 2D       		.byte	45
+ 2363 091f 80       		.byte	-128
+ 2364 0920 2F       		.byte	47
+ 2365 0921 21       		.byte	33
+ 2366 0922 32       		.byte	50
+ 2367 0923 19       		.byte	25
+ 2368 0924 34       		.byte	52
+ 2369 0925 04       		.byte	4
+ 2370 0926 35       		.byte	53
+ 2371 0927 04       		.byte	4
+ 2372 0928 38       		.byte	56
+ 2373 0929 48       		.byte	72
+ 2374 092a 3D       		.byte	61
+ 2375 092b 0A       		.byte	10
+ 2376 092c 3E       		.byte	62
+ 2377 092d 08       		.byte	8
+ 2378 092e 3F       		.byte	63
+ 2379 092f 80       		.byte	-128
+ 2380 0930 42       		.byte	66
+ 2381 0931 80       		.byte	-128
+ 2382 0932 43       		.byte	67
+ 2383 0933 01       		.byte	1
+ 2384 0934 44       		.byte	68
+ 2385 0935 04       		.byte	4
+ 2386 0936 45       		.byte	69
+ 2387 0937 81       		.byte	-127
+ 2388 0938 4F       		.byte	79
+ 2389 0939 62       		.byte	98
+ 2390 093a 57       		.byte	87
+ 2391 093b 40       		.byte	64
+ 2392 093c 5C       		.byte	92
+ 2393 093d 80       		.byte	-128
+ 2394 093e 5D       		.byte	93
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 43
+
+
+ 2395 093f 02       		.byte	2
+ 2396 0940 5F       		.byte	95
+ 2397 0941 40       		.byte	64
+ 2398 0942 66       		.byte	102
+ 2399 0943 80       		.byte	-128
+ 2400 0944 67       		.byte	103
+ 2401 0945 08       		.byte	8
+ 2402 0946 7B       		.byte	123
+ 2403 0947 30       		.byte	48
+ 2404 0948 7D       		.byte	125
+ 2405 0949 20       		.byte	32
+ 2406 094a 7F       		.byte	127
+ 2407 094b 04       		.byte	4
+ 2408 094c 81       		.byte	-127
+ 2409 094d 12       		.byte	18
+ 2410 094e 82       		.byte	-126
+ 2411 094f 02       		.byte	2
+ 2412 0950 89       		.byte	-119
+ 2413 0951 20       		.byte	32
+ 2414 0952 8A       		.byte	-118
+ 2415 0953 02       		.byte	2
+ 2416 0954 8C       		.byte	-116
+ 2417 0955 04       		.byte	4
+ 2418 0956 8E       		.byte	-114
+ 2419 0957 40       		.byte	64
+ 2420 0958 8F       		.byte	-113
+ 2421 0959 04       		.byte	4
+ 2422 095a 91       		.byte	-111
+ 2423 095b 10       		.byte	16
+ 2424 095c 92       		.byte	-110
+ 2425 095d 01       		.byte	1
+ 2426 095e 93       		.byte	-109
+ 2427 095f 02       		.byte	2
+ 2428 0960 94       		.byte	-108
+ 2429 0961 40       		.byte	64
+ 2430 0962 96       		.byte	-106
+ 2431 0963 A2       		.byte	-94
+ 2432 0964 98       		.byte	-104
+ 2433 0965 80       		.byte	-128
+ 2434 0966 99       		.byte	-103
+ 2435 0967 04       		.byte	4
+ 2436 0968 9E       		.byte	-98
+ 2437 0969 42       		.byte	66
+ 2438 096a A1       		.byte	-95
+ 2439 096b 15       		.byte	21
+ 2440 096c A2       		.byte	-94
+ 2441 096d 24       		.byte	36
+ 2442 096e A3       		.byte	-93
+ 2443 096f 24       		.byte	36
+ 2444 0970 A4       		.byte	-92
+ 2445 0971 12       		.byte	18
+ 2446 0972 A6       		.byte	-90
+ 2447 0973 18       		.byte	24
+ 2448 0974 A7       		.byte	-89
+ 2449 0975 01       		.byte	1
+ 2450 0976 A8       		.byte	-88
+ 2451 0977 04       		.byte	4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 44
+
+
+ 2452 0978 AF       		.byte	-81
+ 2453 0979 10       		.byte	16
+ 2454 097a B0       		.byte	-80
+ 2455 097b 60       		.byte	96
+ 2456 097c C0       		.byte	-64
+ 2457 097d F1       		.byte	-15
+ 2458 097e C2       		.byte	-62
+ 2459 097f E5       		.byte	-27
+ 2460 0980 C4       		.byte	-60
+ 2461 0981 D7       		.byte	-41
+ 2462 0982 CA       		.byte	-54
+ 2463 0983 58       		.byte	88
+ 2464 0984 CC       		.byte	-52
+ 2465 0985 47       		.byte	71
+ 2466 0986 CE       		.byte	-50
+ 2467 0987 DA       		.byte	-38
+ 2468 0988 D0       		.byte	-48
+ 2469 0989 B0       		.byte	-80
+ 2470 098a D2       		.byte	-46
+ 2471 098b 30       		.byte	48
+ 2472 098c D6       		.byte	-42
+ 2473 098d 80       		.byte	-128
+ 2474 098e D8       		.byte	-40
+ 2475 098f 30       		.byte	48
+ 2476 0990 E0       		.byte	-32
+ 2477 0991 10       		.byte	16
+ 2478 0992 E2       		.byte	-30
+ 2479 0993 20       		.byte	32
+ 2480 0994 E6       		.byte	-26
+ 2481 0995 10       		.byte	16
+ 2482 0996 E8       		.byte	-24
+ 2483 0997 10       		.byte	16
+ 2484 0998 EA       		.byte	-22
+ 2485 0999 01       		.byte	1
+ 2486 099a 33       		.byte	51
+ 2487 099b 80       		.byte	-128
+ 2488 099c 35       		.byte	53
+ 2489 099d 20       		.byte	32
+ 2490 099e 81       		.byte	-127
+ 2491 099f 20       		.byte	32
+ 2492 09a0 CC       		.byte	-52
+ 2493 09a1 30       		.byte	48
+ 2494 09a2 E6       		.byte	-26
+ 2495 09a3 80       		.byte	-128
+ 2496 09a4 A7       		.byte	-89
+ 2497 09a5 80       		.byte	-128
+ 2498 09a6 3E       		.byte	62
+ 2499 09a7 10       		.byte	16
+ 2500 09a8 83       		.byte	-125
+ 2501 09a9 80       		.byte	-128
+ 2502 09aa A7       		.byte	-89
+ 2503 09ab 80       		.byte	-128
+ 2504 09ac CE       		.byte	-50
+ 2505 09ad 20       		.byte	32
+ 2506 09ae E6       		.byte	-26
+ 2507 09af 20       		.byte	32
+ 2508 09b0 96       		.byte	-106
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 45
+
+
+ 2509 09b1 10       		.byte	16
+ 2510 09b2 8D       		.byte	-115
+ 2511 09b3 02       		.byte	2
+ 2512 09b4 E4       		.byte	-28
+ 2513 09b5 08       		.byte	8
+ 2514 09b6 02       		.byte	2
+ 2515 09b7 10       		.byte	16
+ 2516 09b8 8A       		.byte	-118
+ 2517 09b9 10       		.byte	16
+ 2518 09ba A1       		.byte	-95
+ 2519 09bb 02       		.byte	2
+ 2520 09bc C0       		.byte	-64
+ 2521 09bd 08       		.byte	8
+ 2522 09be E6       		.byte	-26
+ 2523 09bf 04       		.byte	4
+ 2524 09c0 A1       		.byte	-95
+ 2525 09c1 02       		.byte	2
+ 2526 09c2 A1       		.byte	-95
+ 2527 09c3 02       		.byte	2
+ 2528 09c4 80       		.byte	-128
+ 2529 09c5 08       		.byte	8
+ 2530 09c6 81       		.byte	-127
+ 2531 09c7 01       		.byte	1
+ 2532 09c8 96       		.byte	-106
+ 2533 09c9 10       		.byte	16
+ 2534 09ca E2       		.byte	-30
+ 2535 09cb 80       		.byte	-128
+ 2536 09cc E4       		.byte	-28
+ 2537 09cd 80       		.byte	-128
+ 2538 09ce 11       		.byte	17
+ 2539 09cf 02       		.byte	2
+ 2540 09d0 14       		.byte	20
+ 2541 09d1 80       		.byte	-128
+ 2542 09d2 64       		.byte	100
+ 2543 09d3 10       		.byte	16
+ 2544 09d4 66       		.byte	102
+ 2545 09d5 80       		.byte	-128
+ 2546 09d6 70       		.byte	112
+ 2547 09d7 08       		.byte	8
+ 2548 09d8 77       		.byte	119
+ 2549 09d9 20       		.byte	32
+ 2550 09da 84       		.byte	-124
+ 2551 09db 10       		.byte	16
+ 2552 09dc 8A       		.byte	-118
+ 2553 09dd 80       		.byte	-128
+ 2554 09de 8F       		.byte	-113
+ 2555 09df 20       		.byte	32
+ 2556 09e0 9C       		.byte	-100
+ 2557 09e1 80       		.byte	-128
+ 2558 09e2 A0       		.byte	-96
+ 2559 09e3 08       		.byte	8
+ 2560 09e4 A5       		.byte	-91
+ 2561 09e5 01       		.byte	1
+ 2562 09e6 AA       		.byte	-86
+ 2563 09e7 10       		.byte	16
+ 2564 09e8 B4       		.byte	-76
+ 2565 09e9 80       		.byte	-128
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 46
+
+
+ 2566 09ea C4       		.byte	-60
+ 2567 09eb 30       		.byte	48
+ 2568 09ec D6       		.byte	-42
+ 2569 09ed 80       		.byte	-128
+ 2570 09ee D8       		.byte	-40
+ 2571 09ef 80       		.byte	-128
+ 2572 09f0 DC       		.byte	-36
+ 2573 09f1 80       		.byte	-128
+ 2574 09f2 DE       		.byte	-34
+ 2575 09f3 20       		.byte	32
+ 2576 09f4 E6       		.byte	-26
+ 2577 09f5 40       		.byte	64
+ 2578 09f6 EA       		.byte	-22
+ 2579 09f7 80       		.byte	-128
+ 2580 09f8 08       		.byte	8
+ 2581 09f9 40       		.byte	64
+ 2582 09fa 0C       		.byte	12
+ 2583 09fb 01       		.byte	1
+ 2584 09fc 10       		.byte	16
+ 2585 09fd 20       		.byte	32
+ 2586 09fe 13       		.byte	19
+ 2587 09ff 20       		.byte	32
+ 2588 0a00 17       		.byte	23
+ 2589 0a01 04       		.byte	4
+ 2590 0a02 61       		.byte	97
+ 2591 0a03 02       		.byte	2
+ 2592 0a04 66       		.byte	102
+ 2593 0a05 10       		.byte	16
+ 2594 0a06 7B       		.byte	123
+ 2595 0a07 08       		.byte	8
+ 2596 0a08 7C       		.byte	124
+ 2597 0a09 10       		.byte	16
+ 2598 0a0a 80       		.byte	-128
+ 2599 0a0b 20       		.byte	32
+ 2600 0a0c 83       		.byte	-125
+ 2601 0a0d 08       		.byte	8
+ 2602 0a0e 86       		.byte	-122
+ 2603 0a0f 10       		.byte	16
+ 2604 0a10 A1       		.byte	-95
+ 2605 0a11 02       		.byte	2
+ 2606 0a12 C2       		.byte	-62
+ 2607 0a13 06       		.byte	6
+ 2608 0a14 C4       		.byte	-60
+ 2609 0a15 0E       		.byte	14
+ 2610 0a16 D8       		.byte	-40
+ 2611 0a17 03       		.byte	3
+ 2612 0a18 DE       		.byte	-34
+ 2613 0a19 03       		.byte	3
+ 2614 0a1a 10       		.byte	16
+ 2615 0a1b 40       		.byte	64
+ 2616 0a1c 7C       		.byte	124
+ 2617 0a1d 40       		.byte	64
+ 2618 0a1e 88       		.byte	-120
+ 2619 0a1f 40       		.byte	64
+ 2620 0a20 8C       		.byte	-116
+ 2621 0a21 40       		.byte	64
+ 2622 0a22 8F       		.byte	-113
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 47
+
+
+ 2623 0a23 04       		.byte	4
+ 2624 0a24 9B       		.byte	-101
+ 2625 0a25 04       		.byte	4
+ 2626 0a26 AB       		.byte	-85
+ 2627 0a27 20       		.byte	32
+ 2628 0a28 B0       		.byte	-80
+ 2629 0a29 41       		.byte	65
+ 2630 0a2a B4       		.byte	-76
+ 2631 0a2b 10       		.byte	16
+ 2632 0a2c C4       		.byte	-60
+ 2633 0a2d 08       		.byte	8
+ 2634 0a2e DE       		.byte	-34
+ 2635 0a2f 04       		.byte	4
+ 2636 0a30 E0       		.byte	-32
+ 2637 0a31 02       		.byte	2
+ 2638 0a32 E2       		.byte	-30
+ 2639 0a33 01       		.byte	1
+ 2640 0a34 E6       		.byte	-26
+ 2641 0a35 08       		.byte	8
+ 2642 0a36 E8       		.byte	-24
+ 2643 0a37 08       		.byte	8
+ 2644 0a38 EA       		.byte	-22
+ 2645 0a39 01       		.byte	1
+ 2646 0a3a EE       		.byte	-18
+ 2647 0a3b 04       		.byte	4
+ 2648 0a3c 00       		.byte	0
+ 2649 0a3d 0F       		.byte	15
+ 2650 0a3e 0A       		.byte	10
+ 2651 0a3f 09       		.byte	9
+ 2652 0a40 0C       		.byte	12
+ 2653 0a41 05       		.byte	5
+ 2654 0a42 0E       		.byte	14
+ 2655 0a43 03       		.byte	3
+ 2656 0a44 10       		.byte	16
+ 2657 0a45 0D       		.byte	13
+ 2658 0a46 1A       		.byte	26
+ 2659 0a47 0D       		.byte	13
+ 2660 0a48 1C       		.byte	28
+ 2661 0a49 05       		.byte	5
+ 2662 0a4a 00       		.byte	0
+ 2663 0a4b 0F       		.byte	15
+ 2664 0a4c 03       		.byte	3
+ 2665 0a4d C0       		.byte	-64
+ 2666 0a4e 00       		.byte	0
+ 2667 0a4f 00       		.byte	0
+ 2668 0a50 82       		.byte	-126
+ 2669 0a51 80       		.byte	-128
+ 2670 0a52 00       		.byte	0
+ 2671 0a53 00       		.byte	0
+ 2672 0a54 43       		.byte	67
+ 2673 0a55 00       		.byte	0
+ 2674 0a56 00       		.byte	0
+ 2675 0a57 00       		.byte	0
+ 2676 0a58 FF       		.byte	-1
+ 2677 0a59 00       		.byte	0
+ 2678 0a5a 00       		.byte	0
+ 2679 0a5b 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 48
+
+
+ 2680 0a5c 4D       		.byte	77
+ 2681 0a5d 01       		.byte	1
+ 2682 0a5e 92       		.byte	-110
+ 2683 0a5f 02       		.byte	2
+ 2684 0a60 CC       		.byte	-52
+ 2685 0a61 01       		.byte	1
+ 2686 0a62 13       		.byte	19
+ 2687 0a63 0E       		.byte	14
+ 2688 0a64 A9       		.byte	-87
+ 2689 0a65 04       		.byte	4
+ 2690 0a66 54       		.byte	84
+ 2691 0a67 01       		.byte	1
+ 2692 0a68 02       		.byte	2
+ 2693 0a69 00       		.byte	0
+ 2694 0a6a 00       		.byte	0
+ 2695 0a6b 00       		.byte	0
+ 2696 0a6c 1A       		.byte	26
+ 2697 0a6d 00       		.byte	0
+ 2698 0a6e 60       		.byte	96
+ 2699 0a6f 10       		.byte	16
+ 2700 0a70 A5       		.byte	-91
+ 2701 0a71 05       		.byte	5
+ 2702 0a72 4A       		.byte	74
+ 2703 0a73 30       		.byte	48
+ 2704 0a74 00       		.byte	0
+ 2705 0a75 00       		.byte	0
+ 2706 0a76 B5       		.byte	-75
+ 2707 0a77 40       		.byte	64
+ 2708 0a78 00       		.byte	0
+ 2709 0a79 01       		.byte	1
+ 2710 0a7a 04       		.byte	4
+ 2711 0a7b 28       		.byte	40
+ 2712 0a7c 04       		.byte	4
+ 2713 0a7d 05       		.byte	5
+ 2714 0a7e 00       		.byte	0
+ 2715 0a7f 10       		.byte	16
+ 2716 0a80 00       		.byte	0
+ 2717 0a81 04       		.byte	4
+ 2718 0a82 02       		.byte	2
+ 2719 0a83 01       		.byte	1
+ 2720 0a84 00       		.byte	0
+ 2721 0a85 05       		.byte	5
+ 2722 0a86 01       		.byte	1
+ 2723 0a87 10       		.byte	16
+ 2724 0a88 00       		.byte	0
+ 2725 0a89 00       		.byte	0
+ 2726 0a8a 00       		.byte	0
+ 2727 0a8b 0F       		.byte	15
+ 2728 0a8c FF       		.byte	-1
+ 2729 0a8d 70       		.byte	112
+ 2730 0a8e 00       		.byte	0
+ 2731 0a8f 00       		.byte	0
+ 2732 0a90 00       		.byte	0
+ 2733 0a91 00       		.byte	0
+ 2734 0a92 00       		.byte	0
+ 2735 0a93 28       		.byte	40
+ 2736 0a94 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 49
+
+
+ 2737 0a95 00       		.byte	0
+ 2738 0a96 10       		.byte	16
+ 2739 0a97 00       		.byte	0
+ 2740 0a98 14       		.byte	20
+ 2741 0a99 00       		.byte	0
+ 2742 0a9a 00       		.byte	0
+ 2743 0a9b 00       		.byte	0
+ 2744 0a9c 00       		.byte	0
+ 2745 0a9d 02       		.byte	2
+ 2746 0a9e 00       		.byte	0
+ 2747 0a9f 05       		.byte	5
+ 2748 0aa0 11       		.byte	17
+ 2749 0aa1 FF       		.byte	-1
+ 2750 0aa2 FF       		.byte	-1
+ 2751 0aa3 FF       		.byte	-1
+ 2752 0aa4 42       		.byte	66
+ 2753 0aa5 A0       		.byte	-96
+ 2754 0aa6 70       		.byte	112
+ 2755 0aa7 00       		.byte	0
+ 2756 0aa8 08       		.byte	8
+ 2757 0aa9 10       		.byte	16
+ 2758 0aaa F6       		.byte	-10
+ 2759 0aab 00       		.byte	0
+ 2760 0aac 20       		.byte	32
+ 2761 0aad 00       		.byte	0
+ 2762 0aae 04       		.byte	4
+ 2763 0aaf 00       		.byte	0
+ 2764 0ab0 04       		.byte	4
+ 2765 0ab1 04       		.byte	4
+ 2766 0ab2 04       		.byte	4
+ 2767 0ab3 04       		.byte	4
+ 2768 0ab4 00       		.byte	0
+ 2769 0ab5 00       		.byte	0
+ 2770 0ab6 00       		.byte	0
+ 2771 0ab7 01       		.byte	1
+ 2772 0ab8 00       		.byte	0
+ 2773 0ab9 48       		.byte	72
+ 2774 0aba 40       		.byte	64
+ 2775 0abb 48       		.byte	72
+ 2776 0abc 80       		.byte	-128
+ 2777 0abd 48       		.byte	72
+ 2778 0abe 80       		.byte	-128
+ 2779 0abf 48       		.byte	72
+ 2780 0ac0 00       		.byte	0
+ 2781 0ac1 00       		.byte	0
+ 2782 0ac2 00       		.byte	0
+ 2783 0ac3 00       		.byte	0
+ 2784 0ac4 00       		.byte	0
+ 2785 0ac5 00       		.byte	0
+ 2786 0ac6 00       		.byte	0
+ 2787 0ac7 00       		.byte	0
+ 2788 0ac8 00       		.byte	0
+ 2789 0ac9 00       		.byte	0
+ 2790 0aca 00       		.byte	0
+ 2791 0acb 00       		.byte	0
+ 2792 0acc 00       		.byte	0
+ 2793 0acd 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 50
+
+
+ 2794 0ace 00       		.byte	0
+ 2795 0acf 00       		.byte	0
+ 2796 0ad0 00       		.byte	0
+ 2797 0ad1 00       		.byte	0
+ 2798 0ad2 00       		.byte	0
+ 2799 0ad3 00       		.byte	0
+ 2800 0ad4 00       		.byte	0
+ 2801 0ad5 00       		.byte	0
+ 2802 0ad6 00       		.byte	0
+ 2803 0ad7 00       		.byte	0
+ 2804 0ad8 FF       		.byte	-1
+ 2805 0ad9 40       		.byte	64
+ 2806 0ada 00       		.byte	0
+ 2807 0adb 0B       		.byte	11
+ 2808 0adc 22       		.byte	34
+ 2809 0add 01       		.byte	1
+ 2810 0ade 05       		.byte	5
+ 2811 0adf 00       		.byte	0
+ 2812 0ae0 05       		.byte	5
+ 2813 0ae1 03       		.byte	3
+ 2814 0ae2 78       		.byte	120
+ 2815 0ae3 00       		.byte	0
+ 2816 0ae4 C0       		.byte	-64
+ 2817 0ae5 90       		.byte	-112
+ 2818 0ae6 07       		.byte	7
+ 2819 0ae7 0B       		.byte	11
+ 2820 0ae8 01       		.byte	1
+ 2821 0ae9 01       		.byte	1
+ 2822 0aea 00       		.byte	0
+ 2823 0aeb 00       		.byte	0
+ 2824 0aec 03       		.byte	3
+ 2825 0aed 40       		.byte	64
+ 2826 0aee 00       		.byte	0
+ 2827 0aef 14       		.byte	20
+ 2828 0af0 01       		.byte	1
+ 2829 0af1 4F       		.byte	79
+ 2830 0af2 00       		.byte	0
+ 2831 0af3 00       		.byte	0
+ 2832 0af4 01       		.byte	1
+ 2833 0af5 00       		.byte	0
+ 2834 0af6 00       		.byte	0
+ 2835 0af7 01       		.byte	1
+ 2836 0af8 10       		.byte	16
+ 2837 0af9 03       		.byte	3
+ 2838 0afa 07       		.byte	7
+ 2839 0afb 20       		.byte	32
+ 2840 0afc 08       		.byte	8
+ 2841 0afd 42       		.byte	66
+ 2842 0afe 07       		.byte	7
+ 2843 0aff 09       		.byte	9
+ 2844 0b00 3A       		.byte	58
+ 2845 0b01 1F       		.byte	31
+ 2846 0b02 04       		.byte	4
+ 2847 0b03 00       		.byte	0
+ 2848 0b04 03       		.byte	3
+ 2849 0b05 48       		.byte	72
+ 2850 0b06 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 51
+
+
+ 2851 0b07 02       		.byte	2
+ 2852 0b08 80       		.byte	-128
+ 2853 0b09 00       		.byte	0
+ 2854 0b0a 00       		.byte	0
+ 2855 0b0b 1F       		.byte	31
+ 2856 0b0c 00       		.byte	0
+ 2857 0b0d 00       		.byte	0
+ 2858 0b0e 7F       		.byte	127
+ 2859 0b0f E0       		.byte	-32
+ 2860 0b10 02       		.byte	2
+ 2861 0b11 80       		.byte	-128
+ 2862 0b12 00       		.byte	0
+ 2863 0b13 00       		.byte	0
+ 2864 0b14 00       		.byte	0
+ 2865 0b15 00       		.byte	0
+ 2866 0b16 40       		.byte	64
+ 2867 0b17 40       		.byte	64
+ 2868 0b18 62       		.byte	98
+ 2869 0b19 00       		.byte	0
+ 2870 0b1a 05       		.byte	5
+ 2871 0b1b 00       		.byte	0
+ 2872 0b1c 00       		.byte	0
+ 2873 0b1d 00       		.byte	0
+ 2874 0b1e 00       		.byte	0
+ 2875 0b1f 00       		.byte	0
+ 2876 0b20 00       		.byte	0
+ 2877 0b21 FF       		.byte	-1
+ 2878 0b22 FF       		.byte	-1
+ 2879 0b23 FF       		.byte	-1
+ 2880 0b24 00       		.byte	0
+ 2881 0b25 00       		.byte	0
+ 2882 0b26 00       		.byte	0
+ 2883 0b27 01       		.byte	1
+ 2884 0b28 18       		.byte	24
+ 2885 0b29 00       		.byte	0
+ 2886 0b2a 00       		.byte	0
+ 2887 0b2b 00       		.byte	0
+ 2888 0b2c 00       		.byte	0
+ 2889 0b2d 00       		.byte	0
+ 2890 0b2e 00       		.byte	0
+ 2891 0b2f 00       		.byte	0
+ 2892 0b30 04       		.byte	4
+ 2893 0b31 04       		.byte	4
+ 2894 0b32 04       		.byte	4
+ 2895 0b33 00       		.byte	0
+ 2896 0b34 00       		.byte	0
+ 2897 0b35 01       		.byte	1
+ 2898 0b36 00       		.byte	0
+ 2899 0b37 01       		.byte	1
+ 2900 0b38 40       		.byte	64
+ 2901 0b39 00       		.byte	0
+ 2902 0b3a 40       		.byte	64
+ 2903 0b3b 00       		.byte	0
+ 2904 0b3c 40       		.byte	64
+ 2905 0b3d 40       		.byte	64
+ 2906 0b3e 80       		.byte	-128
+ 2907 0b3f 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 52
+
+
+ 2908 0b40 80       		.byte	-128
+ 2909 0b41 00       		.byte	0
+ 2910 0b42 80       		.byte	-128
+ 2911 0b43 00       		.byte	0
+ 2912 0b44 80       		.byte	-128
+ 2913 0b45 00       		.byte	0
+ 2914 0b46 80       		.byte	-128
+ 2915 0b47 00       		.byte	0
+ 2916 0b48 00       		.byte	0
+ 2917 0b49 00       		.byte	0
+ 2918 0b4a 00       		.byte	0
+ 2919 0b4b 00       		.byte	0
+ 2920 0b4c 00       		.byte	0
+ 2921 0b4d 00       		.byte	0
+ 2922 0b4e 00       		.byte	0
+ 2923 0b4f 00       		.byte	0
+ 2924 0b50 00       		.byte	0
+ 2925 0b51 00       		.byte	0
+ 2926 0b52 00       		.byte	0
+ 2927 0b53 00       		.byte	0
+ 2928 0b54 00       		.byte	0
+ 2929 0b55 00       		.byte	0
+ 2930 0b56 00       		.byte	0
+ 2931 0b57 00       		.byte	0
+ 2932 0b58 00       		.byte	0
+ 2933 0b59 81       		.byte	-127
+ 2934 0b5a 81       		.byte	-127
+ 2935 0b5b 00       		.byte	0
+ 2936 0b5c 00       		.byte	0
+ 2937 0b5d 00       		.byte	0
+ 2938 0b5e 00       		.byte	0
+ 2939 0b5f 00       		.byte	0
+ 2940 0b60 83       		.byte	-125
+ 2941 0b61 00       		.byte	0
+ 2942 0b62 40       		.byte	64
+ 2943 0b63 80       		.byte	-128
+ 2944 0b64 83       		.byte	-125
+ 2945 0b65 00       		.byte	0
+ 2946 0b66 83       		.byte	-125
+ 2947 0b67 00       		.byte	0
+ 2948 0b68 00       		.byte	0
+ 2949 0b69 00       		.byte	0
+ 2950 0b6a 00       		.byte	0
+ 2951 0b6b 00       		.byte	0
+ 2952 0b6c 00       		.byte	0
+ 2953 0b6d 20       		.byte	32
+ 2954 0b6e 20       		.byte	32
+ 2955 0b6f 00       		.byte	0
+ 2956 0b70 00       		.byte	0
+ 2957 0b71 00       		.byte	0
+ 2958 0b72 00       		.byte	0
+ 2959 0b73 00       		.byte	0
+ 2960 0b74 60       		.byte	96
+ 2961 0b75 00       		.byte	0
+ 2962 0b76 00       		.byte	0
+ 2963 0b77 00       		.byte	0
+ 2964 0b78 60       		.byte	96
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 53
+
+
+ 2965 0b79 00       		.byte	0
+ 2966 0b7a 60       		.byte	96
+ 2967 0b7b 00       		.byte	0
+ 2968 0b7c 00       		.byte	0
+ 2969 0b7d 00       		.byte	0
+ 2970 0b7e 00       		.byte	0
+ 2971 0b7f 00       		.byte	0
+ 2972 0b80 01       		.byte	1
+ 2973 0b81 00       		.byte	0
+ 2974 0b82 00       		.byte	0
+ 2975 0b83 00       		.byte	0
+ 2976 0b84 00       		.byte	0
+ 2977 0b85 00       		.byte	0
+ 2978 0b86 00       		.byte	0
+ 2979 0b87 00       		.byte	0
+ 2980 0b88 00       		.byte	0
+ 2981 0b89 60       		.byte	96
+ 2982 0b8a 60       		.byte	96
+ 2983 0b8b 00       		.byte	0
+ 2984 0b8c 60       		.byte	96
+ 2985 0b8d 00       		.byte	0
+ 2986 0b8e 00       		.byte	0
+ 2987 0b8f 00       		.byte	0
+ 2988              		.section	.cywolatch,"a",%progbits
+ 2989              		.align	2
+ 2990              		.type	cy_meta_wonvl, %object
+ 2991              		.size	cy_meta_wonvl, 4
+ 2992              	cy_meta_wonvl:
+ 2993 0000 BC       		.byte	-68
+ 2994 0001 90       		.byte	-112
+ 2995 0002 AC       		.byte	-84
+ 2996 0003 AF       		.byte	-81
+ 2997              		.section	.cycustnvl,"a",%progbits
+ 2998              		.align	2
+ 2999              		.type	cy_meta_custnvl, %object
+ 3000              		.size	cy_meta_custnvl, 4
+ 3001              	cy_meta_custnvl:
+ 3002 0000 00       		.byte	0
+ 3003 0001 00       		.byte	0
+ 3004 0002 40       		.byte	64
+ 3005 0003 05       		.byte	5
+ 3006              		.section	.cymeta,"a",%progbits
+ 3007              		.align	2
+ 3008              		.type	cy_metadata, %object
+ 3009              		.size	cy_metadata, 12
+ 3010              	cy_metadata:
+ 3011 0000 00       		.byte	0
+ 3012 0001 01       		.byte	1
+ 3013 0002 2E       		.byte	46
+ 3014 0003 16       		.byte	22
+ 3015 0004 10       		.byte	16
+ 3016 0005 69       		.byte	105
+ 3017 0006 00       		.byte	0
+ 3018 0007 01       		.byte	1
+ 3019 0008 00       		.byte	0
+ 3020 0009 00       		.byte	0
+ 3021 000a 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 54
+
+
+ 3022 000b 00       		.byte	0
+ 3023              		.section	.cyflashprotect,"a",%progbits
+ 3024              		.align	2
+ 3025              		.type	cy_meta_flashprotect, %object
+ 3026              		.size	cy_meta_flashprotect, 256
+ 3027              	cy_meta_flashprotect:
+ 3028 0000 00000000 		.space	256
+ 3028      00000000 
+ 3028      00000000 
+ 3028      00000000 
+ 3028      00000000 
+ 3029              		.text
+ 3030              	.Letext0:
+ 3031              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
+ 3032              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 3033              		.section	.debug_info,"",%progbits
+ 3034              	.Ldebug_info0:
+ 3035 0000 3B010000 		.4byte	0x13b
+ 3036 0004 0400     		.2byte	0x4
+ 3037 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 3038 000a 04       		.byte	0x4
+ 3039 000b 01       		.uleb128 0x1
+ 3040 000c D5000000 		.4byte	.LASF18
+ 3041 0010 01       		.byte	0x1
+ 3042 0011 00000000 		.4byte	.LASF19
+ 3043 0015 6B000000 		.4byte	.LASF20
+ 3044 0019 00000000 		.4byte	.Ldebug_line0
+ 3045 001d 02       		.uleb128 0x2
+ 3046 001e 01       		.byte	0x1
+ 3047 001f 06       		.byte	0x6
+ 3048 0020 DF010000 		.4byte	.LASF0
+ 3049 0024 02       		.uleb128 0x2
+ 3050 0025 01       		.byte	0x1
+ 3051 0026 08       		.byte	0x8
+ 3052 0027 38000000 		.4byte	.LASF1
+ 3053 002b 02       		.uleb128 0x2
+ 3054 002c 02       		.byte	0x2
+ 3055 002d 05       		.byte	0x5
+ 3056 002e C6010000 		.4byte	.LASF2
+ 3057 0032 02       		.uleb128 0x2
+ 3058 0033 02       		.byte	0x2
+ 3059 0034 07       		.byte	0x7
+ 3060 0035 58000000 		.4byte	.LASF3
+ 3061 0039 02       		.uleb128 0x2
+ 3062 003a 04       		.byte	0x4
+ 3063 003b 05       		.byte	0x5
+ 3064 003c D6010000 		.4byte	.LASF4
+ 3065 0040 02       		.uleb128 0x2
+ 3066 0041 04       		.byte	0x4
+ 3067 0042 07       		.byte	0x7
+ 3068 0043 46000000 		.4byte	.LASF5
+ 3069 0047 02       		.uleb128 0x2
+ 3070 0048 08       		.byte	0x8
+ 3071 0049 05       		.byte	0x5
+ 3072 004a B3010000 		.4byte	.LASF6
+ 3073 004e 02       		.uleb128 0x2
+ 3074 004f 08       		.byte	0x8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 55
+
+
+ 3075 0050 07       		.byte	0x7
+ 3076 0051 70010000 		.4byte	.LASF7
+ 3077 0055 03       		.uleb128 0x3
+ 3078 0056 04       		.byte	0x4
+ 3079 0057 05       		.byte	0x5
+ 3080 0058 696E7400 		.ascii	"int\000"
+ 3081 005c 02       		.uleb128 0x2
+ 3082 005d 04       		.byte	0x4
+ 3083 005e 07       		.byte	0x7
+ 3084 005f 63010000 		.4byte	.LASF8
+ 3085 0063 04       		.uleb128 0x4
+ 3086 0064 D0010000 		.4byte	.LASF21
+ 3087 0068 02       		.byte	0x2
+ 3088 0069 3801     		.2byte	0x138
+ 3089 006b 24000000 		.4byte	0x24
+ 3090 006f 02       		.uleb128 0x2
+ 3091 0070 04       		.byte	0x4
+ 3092 0071 04       		.byte	0x4
+ 3093 0072 32000000 		.4byte	.LASF9
+ 3094 0076 02       		.uleb128 0x2
+ 3095 0077 08       		.byte	0x8
+ 3096 0078 04       		.byte	0x4
+ 3097 0079 AC000000 		.4byte	.LASF10
+ 3098 007d 02       		.uleb128 0x2
+ 3099 007e 01       		.byte	0x1
+ 3100 007f 08       		.byte	0x8
+ 3101 0080 C1010000 		.4byte	.LASF11
+ 3102 0084 05       		.uleb128 0x5
+ 3103 0085 63000000 		.4byte	0x63
+ 3104 0089 95000000 		.4byte	0x95
+ 3105 008d 06       		.uleb128 0x6
+ 3106 008e 95000000 		.4byte	0x95
+ 3107 0092 8F0B     		.2byte	0xb8f
+ 3108 0094 00       		.byte	0
+ 3109 0095 02       		.uleb128 0x2
+ 3110 0096 04       		.byte	0x4
+ 3111 0097 07       		.byte	0x7
+ 3112 0098 AA010000 		.4byte	.LASF12
+ 3113 009c 07       		.uleb128 0x7
+ 3114 009d C3000000 		.4byte	.LASF13
+ 3115 00a1 01       		.byte	0x1
+ 3116 00a2 1F       		.byte	0x1f
+ 3117 00a3 AD000000 		.4byte	0xad
+ 3118 00a7 05       		.uleb128 0x5
+ 3119 00a8 03       		.byte	0x3
+ 3120 00a9 00000000 		.4byte	cy_meta_configecc
+ 3121 00ad 08       		.uleb128 0x8
+ 3122 00ae 84000000 		.4byte	0x84
+ 3123 00b2 05       		.uleb128 0x5
+ 3124 00b3 63000000 		.4byte	0x63
+ 3125 00b7 C2000000 		.4byte	0xc2
+ 3126 00bb 09       		.uleb128 0x9
+ 3127 00bc 95000000 		.4byte	0x95
+ 3128 00c0 03       		.byte	0x3
+ 3129 00c1 00       		.byte	0
+ 3130 00c2 0A       		.uleb128 0xa
+ 3131 00c3 B3000000 		.4byte	.LASF14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 56
+
+
+ 3132 00c7 01       		.byte	0x1
+ 3133 00c8 9E01     		.2byte	0x19e
+ 3134 00ca D4000000 		.4byte	0xd4
+ 3135 00ce 05       		.uleb128 0x5
+ 3136 00cf 03       		.byte	0x3
+ 3137 00d0 00000000 		.4byte	cy_meta_custnvl
+ 3138 00d4 08       		.uleb128 0x8
+ 3139 00d5 B2000000 		.4byte	0xb2
+ 3140 00d9 0A       		.uleb128 0xa
+ 3141 00da 9C010000 		.4byte	.LASF15
+ 3142 00de 01       		.byte	0x1
+ 3143 00df AC01     		.2byte	0x1ac
+ 3144 00e1 EB000000 		.4byte	0xeb
+ 3145 00e5 05       		.uleb128 0x5
+ 3146 00e6 03       		.byte	0x3
+ 3147 00e7 00000000 		.4byte	cy_meta_wonvl
+ 3148 00eb 08       		.uleb128 0x8
+ 3149 00ec B2000000 		.4byte	0xb2
+ 3150 00f0 05       		.uleb128 0x5
+ 3151 00f1 63000000 		.4byte	0x63
+ 3152 00f5 00010000 		.4byte	0x100
+ 3153 00f9 09       		.uleb128 0x9
+ 3154 00fa 95000000 		.4byte	0x95
+ 3155 00fe FF       		.byte	0xff
+ 3156 00ff 00       		.byte	0
+ 3157 0100 0A       		.uleb128 0xa
+ 3158 0101 87010000 		.4byte	.LASF16
+ 3159 0105 01       		.byte	0x1
+ 3160 0106 BA01     		.2byte	0x1ba
+ 3161 0108 12010000 		.4byte	0x112
+ 3162 010c 05       		.uleb128 0x5
+ 3163 010d 03       		.byte	0x3
+ 3164 010e 00000000 		.4byte	cy_meta_flashprotect
+ 3165 0112 08       		.uleb128 0x8
+ 3166 0113 F0000000 		.4byte	0xf0
+ 3167 0117 05       		.uleb128 0x5
+ 3168 0118 63000000 		.4byte	0x63
+ 3169 011c 27010000 		.4byte	0x127
+ 3170 0120 09       		.uleb128 0x9
+ 3171 0121 95000000 		.4byte	0x95
+ 3172 0125 0B       		.byte	0xb
+ 3173 0126 00       		.byte	0
+ 3174 0127 0A       		.uleb128 0xa
+ 3175 0128 26000000 		.4byte	.LASF17
+ 3176 012c 01       		.byte	0x1
+ 3177 012d E701     		.2byte	0x1e7
+ 3178 012f 39010000 		.4byte	0x139
+ 3179 0133 05       		.uleb128 0x5
+ 3180 0134 03       		.byte	0x3
+ 3181 0135 00000000 		.4byte	cy_metadata
+ 3182 0139 08       		.uleb128 0x8
+ 3183 013a 17010000 		.4byte	0x117
+ 3184 013e 00       		.byte	0
+ 3185              		.section	.debug_abbrev,"",%progbits
+ 3186              	.Ldebug_abbrev0:
+ 3187 0000 01       		.uleb128 0x1
+ 3188 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 57
+
+
+ 3189 0002 01       		.byte	0x1
+ 3190 0003 25       		.uleb128 0x25
+ 3191 0004 0E       		.uleb128 0xe
+ 3192 0005 13       		.uleb128 0x13
+ 3193 0006 0B       		.uleb128 0xb
+ 3194 0007 03       		.uleb128 0x3
+ 3195 0008 0E       		.uleb128 0xe
+ 3196 0009 1B       		.uleb128 0x1b
+ 3197 000a 0E       		.uleb128 0xe
+ 3198 000b 10       		.uleb128 0x10
+ 3199 000c 17       		.uleb128 0x17
+ 3200 000d 00       		.byte	0
+ 3201 000e 00       		.byte	0
+ 3202 000f 02       		.uleb128 0x2
+ 3203 0010 24       		.uleb128 0x24
+ 3204 0011 00       		.byte	0
+ 3205 0012 0B       		.uleb128 0xb
+ 3206 0013 0B       		.uleb128 0xb
+ 3207 0014 3E       		.uleb128 0x3e
+ 3208 0015 0B       		.uleb128 0xb
+ 3209 0016 03       		.uleb128 0x3
+ 3210 0017 0E       		.uleb128 0xe
+ 3211 0018 00       		.byte	0
+ 3212 0019 00       		.byte	0
+ 3213 001a 03       		.uleb128 0x3
+ 3214 001b 24       		.uleb128 0x24
+ 3215 001c 00       		.byte	0
+ 3216 001d 0B       		.uleb128 0xb
+ 3217 001e 0B       		.uleb128 0xb
+ 3218 001f 3E       		.uleb128 0x3e
+ 3219 0020 0B       		.uleb128 0xb
+ 3220 0021 03       		.uleb128 0x3
+ 3221 0022 08       		.uleb128 0x8
+ 3222 0023 00       		.byte	0
+ 3223 0024 00       		.byte	0
+ 3224 0025 04       		.uleb128 0x4
+ 3225 0026 16       		.uleb128 0x16
+ 3226 0027 00       		.byte	0
+ 3227 0028 03       		.uleb128 0x3
+ 3228 0029 0E       		.uleb128 0xe
+ 3229 002a 3A       		.uleb128 0x3a
+ 3230 002b 0B       		.uleb128 0xb
+ 3231 002c 3B       		.uleb128 0x3b
+ 3232 002d 05       		.uleb128 0x5
+ 3233 002e 49       		.uleb128 0x49
+ 3234 002f 13       		.uleb128 0x13
+ 3235 0030 00       		.byte	0
+ 3236 0031 00       		.byte	0
+ 3237 0032 05       		.uleb128 0x5
+ 3238 0033 01       		.uleb128 0x1
+ 3239 0034 01       		.byte	0x1
+ 3240 0035 49       		.uleb128 0x49
+ 3241 0036 13       		.uleb128 0x13
+ 3242 0037 01       		.uleb128 0x1
+ 3243 0038 13       		.uleb128 0x13
+ 3244 0039 00       		.byte	0
+ 3245 003a 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 58
+
+
+ 3246 003b 06       		.uleb128 0x6
+ 3247 003c 21       		.uleb128 0x21
+ 3248 003d 00       		.byte	0
+ 3249 003e 49       		.uleb128 0x49
+ 3250 003f 13       		.uleb128 0x13
+ 3251 0040 2F       		.uleb128 0x2f
+ 3252 0041 05       		.uleb128 0x5
+ 3253 0042 00       		.byte	0
+ 3254 0043 00       		.byte	0
+ 3255 0044 07       		.uleb128 0x7
+ 3256 0045 34       		.uleb128 0x34
+ 3257 0046 00       		.byte	0
+ 3258 0047 03       		.uleb128 0x3
+ 3259 0048 0E       		.uleb128 0xe
+ 3260 0049 3A       		.uleb128 0x3a
+ 3261 004a 0B       		.uleb128 0xb
+ 3262 004b 3B       		.uleb128 0x3b
+ 3263 004c 0B       		.uleb128 0xb
+ 3264 004d 49       		.uleb128 0x49
+ 3265 004e 13       		.uleb128 0x13
+ 3266 004f 3F       		.uleb128 0x3f
+ 3267 0050 19       		.uleb128 0x19
+ 3268 0051 02       		.uleb128 0x2
+ 3269 0052 18       		.uleb128 0x18
+ 3270 0053 00       		.byte	0
+ 3271 0054 00       		.byte	0
+ 3272 0055 08       		.uleb128 0x8
+ 3273 0056 26       		.uleb128 0x26
+ 3274 0057 00       		.byte	0
+ 3275 0058 49       		.uleb128 0x49
+ 3276 0059 13       		.uleb128 0x13
+ 3277 005a 00       		.byte	0
+ 3278 005b 00       		.byte	0
+ 3279 005c 09       		.uleb128 0x9
+ 3280 005d 21       		.uleb128 0x21
+ 3281 005e 00       		.byte	0
+ 3282 005f 49       		.uleb128 0x49
+ 3283 0060 13       		.uleb128 0x13
+ 3284 0061 2F       		.uleb128 0x2f
+ 3285 0062 0B       		.uleb128 0xb
+ 3286 0063 00       		.byte	0
+ 3287 0064 00       		.byte	0
+ 3288 0065 0A       		.uleb128 0xa
+ 3289 0066 34       		.uleb128 0x34
+ 3290 0067 00       		.byte	0
+ 3291 0068 03       		.uleb128 0x3
+ 3292 0069 0E       		.uleb128 0xe
+ 3293 006a 3A       		.uleb128 0x3a
+ 3294 006b 0B       		.uleb128 0xb
+ 3295 006c 3B       		.uleb128 0x3b
+ 3296 006d 05       		.uleb128 0x5
+ 3297 006e 49       		.uleb128 0x49
+ 3298 006f 13       		.uleb128 0x13
+ 3299 0070 3F       		.uleb128 0x3f
+ 3300 0071 19       		.uleb128 0x19
+ 3301 0072 02       		.uleb128 0x2
+ 3302 0073 18       		.uleb128 0x18
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 59
+
+
+ 3303 0074 00       		.byte	0
+ 3304 0075 00       		.byte	0
+ 3305 0076 00       		.byte	0
+ 3306              		.section	.debug_aranges,"",%progbits
+ 3307 0000 14000000 		.4byte	0x14
+ 3308 0004 0200     		.2byte	0x2
+ 3309 0006 00000000 		.4byte	.Ldebug_info0
+ 3310 000a 04       		.byte	0x4
+ 3311 000b 00       		.byte	0
+ 3312 000c 0000     		.2byte	0
+ 3313 000e 0000     		.2byte	0
+ 3314 0010 00000000 		.4byte	0
+ 3315 0014 00000000 		.4byte	0
+ 3316              		.section	.debug_line,"",%progbits
+ 3317              	.Ldebug_line0:
+ 3318 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 3318      02004900 
+ 3318      00000201 
+ 3318      FB0E0D00 
+ 3318      01010101 
+ 3319              	.LASF19:
+ 3320 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
+ 3320      6E657261 
+ 3320      7465645F 
+ 3320      536F7572 
+ 3320      63655C50 
+ 3321              	.LASF17:
+ 3322 0026 63795F6D 		.ascii	"cy_metadata\000"
+ 3322      65746164 
+ 3322      61746100 
+ 3323              	.LASF9:
+ 3324 0032 666C6F61 		.ascii	"float\000"
+ 3324      7400
+ 3325              	.LASF1:
+ 3326 0038 756E7369 		.ascii	"unsigned char\000"
+ 3326      676E6564 
+ 3326      20636861 
+ 3326      7200
+ 3327              	.LASF5:
+ 3328 0046 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3328      20756E73 
+ 3328      69676E65 
+ 3328      6420696E 
+ 3328      7400
+ 3329              	.LASF3:
+ 3330 0058 73686F72 		.ascii	"short unsigned int\000"
+ 3330      7420756E 
+ 3330      7369676E 
+ 3330      65642069 
+ 3330      6E7400
+ 3331              	.LASF20:
+ 3332 006b 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 3332      73657273 
+ 3332      5C647566 
+ 3332      6D615C44 
+ 3332      65736B74 
+ 3333 0098 426F745F 		.ascii	"Bot_Lib_ultra.cydsn\000"
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 60
+
+
+ 3333      4C69625F 
+ 3333      756C7472 
+ 3333      612E6379 
+ 3333      64736E00 
+ 3334              	.LASF10:
+ 3335 00ac 646F7562 		.ascii	"double\000"
+ 3335      6C6500
+ 3336              	.LASF14:
+ 3337 00b3 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 3337      6574615F 
+ 3337      63757374 
+ 3337      6E766C00 
+ 3338              	.LASF13:
+ 3339 00c3 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 3339      6574615F 
+ 3339      636F6E66 
+ 3339      69676563 
+ 3339      6300
+ 3340              	.LASF18:
+ 3341 00d5 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3341      4320342E 
+ 3341      392E3320 
+ 3341      32303135 
+ 3341      30333033 
+ 3342 0108 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3342      20726576 
+ 3342      6973696F 
+ 3342      6E203232 
+ 3342      31323230 
+ 3343 013b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3343      66756E63 
+ 3343      74696F6E 
+ 3343      2D736563 
+ 3343      74696F6E 
+ 3344              	.LASF8:
+ 3345 0163 756E7369 		.ascii	"unsigned int\000"
+ 3345      676E6564 
+ 3345      20696E74 
+ 3345      00
+ 3346              	.LASF7:
+ 3347 0170 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3347      206C6F6E 
+ 3347      6720756E 
+ 3347      7369676E 
+ 3347      65642069 
+ 3348              	.LASF16:
+ 3349 0187 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 3349      6574615F 
+ 3349      666C6173 
+ 3349      6870726F 
+ 3349      74656374 
+ 3350              	.LASF15:
+ 3351 019c 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 3351      6574615F 
+ 3351      776F6E76 
+ 3351      6C00
+ 3352              	.LASF12:
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cckTLJlR.s 			page 61
+
+
+ 3353 01aa 73697A65 		.ascii	"sizetype\000"
+ 3353      74797065 
+ 3353      00
+ 3354              	.LASF6:
+ 3355 01b3 6C6F6E67 		.ascii	"long long int\000"
+ 3355      206C6F6E 
+ 3355      6720696E 
+ 3355      7400
+ 3356              	.LASF11:
+ 3357 01c1 63686172 		.ascii	"char\000"
+ 3357      00
+ 3358              	.LASF2:
+ 3359 01c6 73686F72 		.ascii	"short int\000"
+ 3359      7420696E 
+ 3359      7400
+ 3360              	.LASF21:
+ 3361 01d0 75696E74 		.ascii	"uint8\000"
+ 3361      3800
+ 3362              	.LASF4:
+ 3363 01d6 6C6F6E67 		.ascii	"long int\000"
+ 3363      20696E74 
+ 3363      00
+ 3364              	.LASF0:
+ 3365 01df 7369676E 		.ascii	"signed char\000"
+ 3365      65642063 
+ 3365      68617200 
+ 3366              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

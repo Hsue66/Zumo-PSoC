@@ -79,7 +79,7 @@ CY_ISR(ultra_isr_handler)
         i = Timer_ReadCounter();            // Read counter value of Timer
         distance = (float)i / 58;           // us / 58 = centimeters
         cent = 5 * (distance - 11) / 3;     // calibration for this Timer(650 kHz)
-        printf("i = %6d, distance = %4d                \r", i, (int)cent);
+        printf("i = %6d, distance = %4d                \r\n", i, (int)cent);
         Timer_WriteCounter(0xFFFF);         // Counter initialization
     }
     else {
