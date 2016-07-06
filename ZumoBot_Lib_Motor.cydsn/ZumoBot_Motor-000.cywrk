@@ -3,11 +3,11 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="3" name="ZumoBot_Motor-000" persistent="" platform="NOT_USED">
-<current_project name=".\ZumoBot_Motor.cyprj" />
+<current_project name=".\ZumoBot_Lib_Motor.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
-<v>.\ZumoBot_Motor.cyprj</v>
+<v>.\ZumoBot_Lib_Motor.cyprj</v>
 <v>..\ZumoBot_I2C.cydsn\ZumoBot_I2C.cyprj</v>
 </projects>
 <workspace_id v="96769843-aab4-46df-8a01-bfc0ada79b2c" />
