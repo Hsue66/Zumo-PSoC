@@ -1,0 +1,6 @@
+C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Reflectance.cydsn\ZumoBot_Reflectance.cyprj|6580caea-6c77-4e23-8147-d103895cd7b8
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|76069070-4241-4c9b-8e4f-8db0fca6c8ca
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|c4fdaaf2-2e2d-4f5f-9b47-154d79d194b7
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|ab2bef64-2284-438e-af53-bf87b5f7b437
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|65672191-747f-48b3-854e-749e9f0cb172
+C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_Reflectance.cydsn\ZumoBot_Lib_Reflectance.cyprj|19e866b3-20af-4738-97ef-5919d196660a
