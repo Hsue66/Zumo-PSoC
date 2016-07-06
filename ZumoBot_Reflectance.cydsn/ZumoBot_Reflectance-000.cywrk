@@ -3,14 +3,12 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="3" name="ZumoBot_Reflectance-000" persistent="" platform="NOT_USED">
-<current_project name="..\ZumoBot_Reflectance_Copy_01_Copy_01.cydsn\ZumoBot_Reflectance_Copy_01_Copy_01.cyprj" />
+<current_project name="..\ZumoBot_Lib_Reflectance.cydsn\ZumoBot_Lib_Reflectance.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
 <v>.\ZumoBot_Reflectance.cyprj</v>
-<v>..\ZumoBot_Reflectance_Copy_01.cydsn\ZumoBot_Reflectance_Copy_01.cyprj</v>
-<v>..\ZumoBot_Reflectance_02.cydsn\ZumoBot_Reflectance_02.cyprj</v>
-<v>..\ZumoBot_Reflectance_Copy_01_Copy_01.cydsn\ZumoBot_Reflectance_Copy_01_Copy_01.cyprj</v>
+<v>..\ZumoBot_Lib_Reflectance.cydsn\ZumoBot_Lib_Reflectance.cyprj</v>
 </projects>
 <workspace_id v="7f626147-cfd5-4cdc-93a4-20218a35c35b" />
 <WriteAppVersionLastSavedWith v="3.3.0.9604" />
