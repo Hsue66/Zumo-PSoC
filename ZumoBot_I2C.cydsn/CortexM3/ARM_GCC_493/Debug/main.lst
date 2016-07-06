@@ -1,0 +1,4655 @@
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.sensor_isr_handler,"ax",%progbits
+  19              		.align	2
+  20              		.global	sensor_isr_handler
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	sensor_isr_handler, %function
+  24              	sensor_isr_handler:
+  25              	.LFB67:
+  26              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <stdio.h>
+  14:.\main.c      **** 
+  15:.\main.c      **** #define Gyro_R 0xD5
+  16:.\main.c      **** #define Gyro_W 0xD4
+  17:.\main.c      **** #define Accel_R 0x3B
+  18:.\main.c      **** #define Accel_W 0x3A
+  19:.\main.c      **** 
+  20:.\main.c      **** int rread(void);
+  21:.\main.c      **** void reflectance_period();
+  22:.\main.c      **** void reflectance_digital();
+  23:.\main.c      **** void gyro_write();
+  24:.\main.c      **** void gyro_read();
+  25:.\main.c      **** void accel_read();
+  26:.\main.c      **** 
+  27:.\main.c      **** CY_ISR_PROTO(sensor_isr_handler);
+  28:.\main.c      **** 
+  29:.\main.c      **** volatile struct sensors_ {
+  30:.\main.c      ****     uint16_t ll;
+  31:.\main.c      ****     //uint16_t lc; // not used at the moment
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 2
+
+
+  32:.\main.c      ****     uint16_t lr;
+  33:.\main.c      ****     uint16_t rl;
+  34:.\main.c      ****     //uint16_t rc; // not used at the moment
+  35:.\main.c      ****     uint16_t rr;
+  36:.\main.c      **** } sensors;
+  37:.\main.c      **** 
+  38:.\main.c      **** volatile struct digital_sensor_value_ {         //digital value for recognizing black or white
+  39:.\main.c      ****     uint16_t ll;
+  40:.\main.c      ****     //uint16_t lc; // not used at the moment
+  41:.\main.c      ****     uint16_t lr;
+  42:.\main.c      ****     uint16_t rl;
+  43:.\main.c      ****     //uint16_t rc; // not used at the moment
+  44:.\main.c      ****     uint16_t rr;
+  45:.\main.c      **** } digital_sensor_value;
+  46:.\main.c      **** 
+  47:.\main.c      **** /* moving forward */
+  48:.\main.c      **** void motor_forward(uint8 speed,uint32 delay)
+  49:.\main.c      **** {
+  50:.\main.c      ****     PWM_WriteCompare1(speed); 
+  51:.\main.c      ****     PWM_WriteCompare2(speed); 
+  52:.\main.c      ****     CyDelay(delay);
+  53:.\main.c      **** }
+  54:.\main.c      **** 
+  55:.\main.c      **** /* moving left when l_speed < r_speed or moving right when l_speed > r_speed */
+  56:.\main.c      **** void motor_turn(uint8 l_speed, uint8 r_speed, uint32 delay)
+  57:.\main.c      **** {
+  58:.\main.c      ****     PWM_WriteCompare1(l_speed); 
+  59:.\main.c      ****     PWM_WriteCompare2(r_speed); 
+  60:.\main.c      ****     CyDelay(delay);
+  61:.\main.c      **** }
+  62:.\main.c      **** 
+  63:.\main.c      **** /* moving backward */
+  64:.\main.c      **** void motor_backward(uint8 speed,uint32 delay)
+  65:.\main.c      **** {
+  66:.\main.c      ****     MotorDirLeft_Write(1);
+  67:.\main.c      ****     MotorDirRight_Write(1);
+  68:.\main.c      ****     PWM_WriteCompare1(speed); 
+  69:.\main.c      ****     PWM_WriteCompare2(speed); 
+  70:.\main.c      ****     CyDelay(delay);
+  71:.\main.c      **** }
+  72:.\main.c      **** 
+  73:.\main.c      **** 
+  74:.\main.c      **** int main()
+  75:.\main.c      **** {
+  76:.\main.c      ****     sensor_isr_StartEx(sensor_isr_handler);
+  77:.\main.c      ****     
+  78:.\main.c      ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  79:.\main.c      **** 
+  80:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  81:.\main.c      ****     UART_Start();
+  82:.\main.c      ****     Timer_RL_Start();
+  83:.\main.c      ****     Timer_RR_Start();
+  84:.\main.c      ****     Timer_LL_Start();
+  85:.\main.c      ****     Timer_LR_Start();
+  86:.\main.c      ****     PWM_Start();
+  87:.\main.c      ****     
+  88:.\main.c      ****     I2C_Start();
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 3
+
+
+  89:.\main.c      ****     
+  90:.\main.c      ****     
+  91:.\main.c      ****     printf("Start\r\n");
+  92:.\main.c      ****     
+  93:.\main.c      ****     uint8_t g_buf[6];
+  94:.\main.c      ****     
+  95:.\main.c      ****     I2C_Start();
+  96:.\main.c      ****     
+  97:.\main.c      ****     IR_led_Write(1);
+  98:.\main.c      ****     for(;;)
+  99:.\main.c      ****     {
+ 100:.\main.c      ****        // gyro_write();
+ 101:.\main.c      ****        gyro_read();
+ 102:.\main.c      ****         /* 
+ 103:.\main.c      ****         I2C_MasterWriteBuf(Gyro_W, g_buf, 1, I2C_MODE_COMPLETE_XFER);
+ 104:.\main.c      **** 
+ 105:.\main.c      ****         while(0u==(I2C_MasterStatus()& I2C_MSTAT_WR_CMPLT));
+ 106:.\main.c      **** 
+ 107:.\main.c      ****         I2C_MasterReadBuf(Gyro_R, g_buf, 6, I2C_MODE_COMPLETE_XFER);
+ 108:.\main.c      **** 
+ 109:.\main.c      ****         while(0u==(I2C_MasterStatus()& I2C_MSTAT_RD_CMPLT));
+ 110:.\main.c      ****         //printf("%d %d %d %d %d %d\r\n", g_buf[0], g_buf[1], g_buf[2], g_buf[3], g_buf[4], g_buf[5
+ 111:.\main.c      ****         CyDelay(500);*/
+ 112:.\main.c      ****     }
+ 113:.\main.c      **** }
+ 114:.\main.c      **** 
+ 115:.\main.c      **** CY_ISR(sensor_isr_handler)
+ 116:.\main.c      **** {
+  27              		.loc 1 116 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  32              		.cfi_def_cfa_offset 24
+  33              		.cfi_offset 3, -24
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+ 117:.\main.c      ****     uint32_t statusRL = Timer_RL_ReadStatusRegister();
+  39              		.loc 1 117 0
+  40 0002 FFF7FEFF 		bl	Timer_RL_ReadStatusRegister
+  41              	.LVL0:
+  42 0006 0446     		mov	r4, r0
+  43              	.LVL1:
+ 118:.\main.c      ****     uint32_t statusRR = Timer_RR_ReadStatusRegister();
+  44              		.loc 1 118 0
+  45 0008 FFF7FEFF 		bl	Timer_RR_ReadStatusRegister
+  46              	.LVL2:
+  47 000c 0746     		mov	r7, r0
+  48              	.LVL3:
+ 119:.\main.c      ****     uint32_t statusLL = Timer_LL_ReadStatusRegister();
+  49              		.loc 1 119 0
+  50 000e FFF7FEFF 		bl	Timer_LL_ReadStatusRegister
+  51              	.LVL4:
+  52 0012 0646     		mov	r6, r0
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 4
+
+
+  53              	.LVL5:
+ 120:.\main.c      ****     uint32_t statusLR = Timer_LR_ReadStatusRegister();
+  54              		.loc 1 120 0
+  55 0014 FFF7FEFF 		bl	Timer_LR_ReadStatusRegister
+  56              	.LVL6:
+  57 0018 0546     		mov	r5, r0
+  58              	.LVL7:
+ 121:.\main.c      **** 
+ 122:.\main.c      ****     if(statusRL & Timer_RL_STATUS_CAPTURE) {
+  59              		.loc 1 122 0
+  60 001a 14F0400F 		tst	r4, #64
+  61 001e 09D0     		beq	.L2
+ 123:.\main.c      ****         sensors.rl = Timer_RL_ReadPeriod() - Timer_RL_ReadCapture();
+  62              		.loc 1 123 0
+  63 0020 FFF7FEFF 		bl	Timer_RL_ReadPeriod
+  64              	.LVL8:
+  65 0024 0446     		mov	r4, r0
+  66              	.LVL9:
+  67 0026 FFF7FEFF 		bl	Timer_RL_ReadCapture
+  68              	.LVL10:
+  69 002a 201A     		subs	r0, r4, r0
+  70 002c 80B2     		uxth	r0, r0
+  71 002e 314B     		ldr	r3, .L11
+  72 0030 9880     		strh	r0, [r3, #4]	@ movhi
+  73 0032 03E0     		b	.L3
+  74              	.LVL11:
+  75              	.L2:
+ 124:.\main.c      ****     }
+ 125:.\main.c      ****     else {
+ 126:.\main.c      ****         sensors.rl = Timer_RL_ReadPeriod();
+  76              		.loc 1 126 0
+  77 0034 FFF7FEFF 		bl	Timer_RL_ReadPeriod
+  78              	.LVL12:
+  79 0038 2E4B     		ldr	r3, .L11
+  80 003a 9880     		strh	r0, [r3, #4]	@ movhi
+  81              	.LVL13:
+  82              	.L3:
+ 127:.\main.c      ****     }
+ 128:.\main.c      ****     
+ 129:.\main.c      ****     if(statusRR & Timer_RR_STATUS_CAPTURE) {
+  83              		.loc 1 129 0
+  84 003c 17F0400F 		tst	r7, #64
+  85 0040 09D0     		beq	.L4
+ 130:.\main.c      ****         sensors.rr = Timer_RR_ReadPeriod() - Timer_RR_ReadCapture();
+  86              		.loc 1 130 0
+  87 0042 FFF7FEFF 		bl	Timer_RR_ReadPeriod
+  88              	.LVL14:
+  89 0046 0446     		mov	r4, r0
+  90 0048 FFF7FEFF 		bl	Timer_RR_ReadCapture
+  91              	.LVL15:
+  92 004c 201A     		subs	r0, r4, r0
+  93 004e 80B2     		uxth	r0, r0
+  94 0050 284B     		ldr	r3, .L11
+  95 0052 D880     		strh	r0, [r3, #6]	@ movhi
+  96 0054 03E0     		b	.L5
+  97              	.L4:
+ 131:.\main.c      ****     }
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 5
+
+
+ 132:.\main.c      ****     else {
+ 133:.\main.c      ****         sensors.rr = Timer_RR_ReadPeriod();
+  98              		.loc 1 133 0
+  99 0056 FFF7FEFF 		bl	Timer_RR_ReadPeriod
+ 100              	.LVL16:
+ 101 005a 264B     		ldr	r3, .L11
+ 102 005c D880     		strh	r0, [r3, #6]	@ movhi
+ 103              	.L5:
+ 134:.\main.c      ****     }
+ 135:.\main.c      ****     
+ 136:.\main.c      ****     if(statusLL & Timer_LL_STATUS_CAPTURE) {
+ 104              		.loc 1 136 0
+ 105 005e 16F0400F 		tst	r6, #64
+ 106 0062 09D0     		beq	.L6
+ 137:.\main.c      ****         sensors.ll = Timer_LL_ReadPeriod() - Timer_LL_ReadCapture();
+ 107              		.loc 1 137 0
+ 108 0064 FFF7FEFF 		bl	Timer_LL_ReadPeriod
+ 109              	.LVL17:
+ 110 0068 0446     		mov	r4, r0
+ 111 006a FFF7FEFF 		bl	Timer_LL_ReadCapture
+ 112              	.LVL18:
+ 113 006e 201A     		subs	r0, r4, r0
+ 114 0070 80B2     		uxth	r0, r0
+ 115 0072 204B     		ldr	r3, .L11
+ 116 0074 1880     		strh	r0, [r3]	@ movhi
+ 117 0076 03E0     		b	.L7
+ 118              	.L6:
+ 138:.\main.c      ****     }
+ 139:.\main.c      ****     else {
+ 140:.\main.c      ****         sensors.ll = Timer_LL_ReadPeriod();
+ 119              		.loc 1 140 0
+ 120 0078 FFF7FEFF 		bl	Timer_LL_ReadPeriod
+ 121              	.LVL19:
+ 122 007c 1D4B     		ldr	r3, .L11
+ 123 007e 1880     		strh	r0, [r3]	@ movhi
+ 124              	.L7:
+ 141:.\main.c      ****     }
+ 142:.\main.c      ****     
+ 143:.\main.c      ****     if(statusLR & Timer_LR_STATUS_CAPTURE) {
+ 125              		.loc 1 143 0
+ 126 0080 15F0400F 		tst	r5, #64
+ 127 0084 09D0     		beq	.L8
+ 144:.\main.c      ****         sensors.lr = Timer_LR_ReadPeriod() - Timer_LR_ReadCapture();
+ 128              		.loc 1 144 0
+ 129 0086 FFF7FEFF 		bl	Timer_LR_ReadPeriod
+ 130              	.LVL20:
+ 131 008a 0446     		mov	r4, r0
+ 132 008c FFF7FEFF 		bl	Timer_LR_ReadCapture
+ 133              	.LVL21:
+ 134 0090 201A     		subs	r0, r4, r0
+ 135 0092 80B2     		uxth	r0, r0
+ 136 0094 174B     		ldr	r3, .L11
+ 137 0096 5880     		strh	r0, [r3, #2]	@ movhi
+ 138 0098 03E0     		b	.L9
+ 139              	.L8:
+ 145:.\main.c      ****     }
+ 146:.\main.c      ****     else {
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 6
+
+
+ 147:.\main.c      ****         sensors.lr = Timer_LR_ReadPeriod();
+ 140              		.loc 1 147 0
+ 141 009a FFF7FEFF 		bl	Timer_LR_ReadPeriod
+ 142              	.LVL22:
+ 143 009e 154B     		ldr	r3, .L11
+ 144 00a0 5880     		strh	r0, [r3, #2]	@ movhi
+ 145              	.L9:
+ 148:.\main.c      ****     }
+ 149:.\main.c      ****     
+ 150:.\main.c      ****     RL_SetDriveMode(PIN_DM_STRONG);
+ 146              		.loc 1 150 0
+ 147 00a2 0C20     		movs	r0, #12
+ 148 00a4 FFF7FEFF 		bl	RL_SetDriveMode
+ 149              	.LVL23:
+ 151:.\main.c      ****     RL_Write(1);
+ 150              		.loc 1 151 0
+ 151 00a8 0120     		movs	r0, #1
+ 152 00aa FFF7FEFF 		bl	RL_Write
+ 153              	.LVL24:
+ 152:.\main.c      ****     RR_SetDriveMode(PIN_DM_STRONG);
+ 154              		.loc 1 152 0
+ 155 00ae 0C20     		movs	r0, #12
+ 156 00b0 FFF7FEFF 		bl	RR_SetDriveMode
+ 157              	.LVL25:
+ 153:.\main.c      ****     RR_Write(1);
+ 158              		.loc 1 153 0
+ 159 00b4 0120     		movs	r0, #1
+ 160 00b6 FFF7FEFF 		bl	RR_Write
+ 161              	.LVL26:
+ 154:.\main.c      ****     LL_SetDriveMode(PIN_DM_STRONG);
+ 162              		.loc 1 154 0
+ 163 00ba 0C20     		movs	r0, #12
+ 164 00bc FFF7FEFF 		bl	LL_SetDriveMode
+ 165              	.LVL27:
+ 155:.\main.c      ****     LL_Write(1);
+ 166              		.loc 1 155 0
+ 167 00c0 0120     		movs	r0, #1
+ 168 00c2 FFF7FEFF 		bl	LL_Write
+ 169              	.LVL28:
+ 156:.\main.c      ****     LR_SetDriveMode(PIN_DM_STRONG);
+ 170              		.loc 1 156 0
+ 171 00c6 0C20     		movs	r0, #12
+ 172 00c8 FFF7FEFF 		bl	LR_SetDriveMode
+ 173              	.LVL29:
+ 157:.\main.c      ****     LR_Write(1);
+ 174              		.loc 1 157 0
+ 175 00cc 0120     		movs	r0, #1
+ 176 00ce FFF7FEFF 		bl	LR_Write
+ 177              	.LVL30:
+ 158:.\main.c      ****     CyDelayUs(10);
+ 178              		.loc 1 158 0
+ 179 00d2 0A20     		movs	r0, #10
+ 180 00d4 FFF7FEFF 		bl	CyDelayUs
+ 181              	.LVL31:
+ 159:.\main.c      ****     RL_SetDriveMode(PIN_DM_DIG_HIZ);
+ 182              		.loc 1 159 0
+ 183 00d8 0220     		movs	r0, #2
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 7
+
+
+ 184 00da FFF7FEFF 		bl	RL_SetDriveMode
+ 185              	.LVL32:
+ 160:.\main.c      ****     RR_SetDriveMode(PIN_DM_DIG_HIZ);
+ 186              		.loc 1 160 0
+ 187 00de 0220     		movs	r0, #2
+ 188 00e0 FFF7FEFF 		bl	RR_SetDriveMode
+ 189              	.LVL33:
+ 161:.\main.c      ****     LL_SetDriveMode(PIN_DM_DIG_HIZ);
+ 190              		.loc 1 161 0
+ 191 00e4 0220     		movs	r0, #2
+ 192 00e6 FFF7FEFF 		bl	LL_SetDriveMode
+ 193              	.LVL34:
+ 162:.\main.c      ****     LR_SetDriveMode(PIN_DM_DIG_HIZ);
+ 194              		.loc 1 162 0
+ 195 00ea 0220     		movs	r0, #2
+ 196 00ec FFF7FEFF 		bl	LR_SetDriveMode
+ 197              	.LVL35:
+ 198 00f0 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 199              	.LVL36:
+ 200              	.L12:
+ 201 00f2 00BF     		.align	2
+ 202              	.L11:
+ 203 00f4 00000000 		.word	sensors
+ 204              		.cfi_endproc
+ 205              	.LFE67:
+ 206              		.size	sensor_isr_handler, .-sensor_isr_handler
+ 207              		.section	.text.motor_forward,"ax",%progbits
+ 208              		.align	2
+ 209              		.global	motor_forward
+ 210              		.thumb
+ 211              		.thumb_func
+ 212              		.type	motor_forward, %function
+ 213              	motor_forward:
+ 214              	.LFB63:
+  49:.\main.c      ****     PWM_WriteCompare1(speed); 
+ 215              		.loc 1 49 0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 0
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219              	.LVL37:
+ 220 0000 38B5     		push	{r3, r4, r5, lr}
+ 221              		.cfi_def_cfa_offset 16
+ 222              		.cfi_offset 3, -16
+ 223              		.cfi_offset 4, -12
+ 224              		.cfi_offset 5, -8
+ 225              		.cfi_offset 14, -4
+ 226 0002 0546     		mov	r5, r0
+ 227 0004 0C46     		mov	r4, r1
+  50:.\main.c      ****     PWM_WriteCompare2(speed); 
+ 228              		.loc 1 50 0
+ 229 0006 FFF7FEFF 		bl	PWM_WriteCompare1
+ 230              	.LVL38:
+  51:.\main.c      ****     CyDelay(delay);
+ 231              		.loc 1 51 0
+ 232 000a 2846     		mov	r0, r5
+ 233 000c FFF7FEFF 		bl	PWM_WriteCompare2
+ 234              	.LVL39:
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 8
+
+
+  52:.\main.c      **** }
+ 235              		.loc 1 52 0
+ 236 0010 2046     		mov	r0, r4
+ 237 0012 FFF7FEFF 		bl	CyDelay
+ 238              	.LVL40:
+ 239 0016 38BD     		pop	{r3, r4, r5, pc}
+ 240              		.cfi_endproc
+ 241              	.LFE63:
+ 242              		.size	motor_forward, .-motor_forward
+ 243              		.section	.text.motor_turn,"ax",%progbits
+ 244              		.align	2
+ 245              		.global	motor_turn
+ 246              		.thumb
+ 247              		.thumb_func
+ 248              		.type	motor_turn, %function
+ 249              	motor_turn:
+ 250              	.LFB64:
+  57:.\main.c      ****     PWM_WriteCompare1(l_speed); 
+ 251              		.loc 1 57 0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              	.LVL41:
+ 256 0000 38B5     		push	{r3, r4, r5, lr}
+ 257              		.cfi_def_cfa_offset 16
+ 258              		.cfi_offset 3, -16
+ 259              		.cfi_offset 4, -12
+ 260              		.cfi_offset 5, -8
+ 261              		.cfi_offset 14, -4
+ 262 0002 0D46     		mov	r5, r1
+ 263 0004 1446     		mov	r4, r2
+  58:.\main.c      ****     PWM_WriteCompare2(r_speed); 
+ 264              		.loc 1 58 0
+ 265 0006 FFF7FEFF 		bl	PWM_WriteCompare1
+ 266              	.LVL42:
+  59:.\main.c      ****     CyDelay(delay);
+ 267              		.loc 1 59 0
+ 268 000a 2846     		mov	r0, r5
+ 269 000c FFF7FEFF 		bl	PWM_WriteCompare2
+ 270              	.LVL43:
+  60:.\main.c      **** }
+ 271              		.loc 1 60 0
+ 272 0010 2046     		mov	r0, r4
+ 273 0012 FFF7FEFF 		bl	CyDelay
+ 274              	.LVL44:
+ 275 0016 38BD     		pop	{r3, r4, r5, pc}
+ 276              		.cfi_endproc
+ 277              	.LFE64:
+ 278              		.size	motor_turn, .-motor_turn
+ 279              		.section	.text.motor_backward,"ax",%progbits
+ 280              		.align	2
+ 281              		.global	motor_backward
+ 282              		.thumb
+ 283              		.thumb_func
+ 284              		.type	motor_backward, %function
+ 285              	motor_backward:
+ 286              	.LFB65:
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 9
+
+
+  65:.\main.c      ****     MotorDirLeft_Write(1);
+ 287              		.loc 1 65 0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              	.LVL45:
+ 292 0000 38B5     		push	{r3, r4, r5, lr}
+ 293              		.cfi_def_cfa_offset 16
+ 294              		.cfi_offset 3, -16
+ 295              		.cfi_offset 4, -12
+ 296              		.cfi_offset 5, -8
+ 297              		.cfi_offset 14, -4
+ 298 0002 0446     		mov	r4, r0
+ 299 0004 0D46     		mov	r5, r1
+  66:.\main.c      ****     MotorDirRight_Write(1);
+ 300              		.loc 1 66 0
+ 301 0006 0120     		movs	r0, #1
+ 302              	.LVL46:
+ 303 0008 FFF7FEFF 		bl	MotorDirLeft_Write
+ 304              	.LVL47:
+  67:.\main.c      ****     PWM_WriteCompare1(speed); 
+ 305              		.loc 1 67 0
+ 306 000c 0120     		movs	r0, #1
+ 307 000e FFF7FEFF 		bl	MotorDirRight_Write
+ 308              	.LVL48:
+  68:.\main.c      ****     PWM_WriteCompare2(speed); 
+ 309              		.loc 1 68 0
+ 310 0012 2046     		mov	r0, r4
+ 311 0014 FFF7FEFF 		bl	PWM_WriteCompare1
+ 312              	.LVL49:
+  69:.\main.c      ****     CyDelay(delay);
+ 313              		.loc 1 69 0
+ 314 0018 2046     		mov	r0, r4
+ 315 001a FFF7FEFF 		bl	PWM_WriteCompare2
+ 316              	.LVL50:
+  70:.\main.c      **** }
+ 317              		.loc 1 70 0
+ 318 001e 2846     		mov	r0, r5
+ 319 0020 FFF7FEFF 		bl	CyDelay
+ 320              	.LVL51:
+ 321 0024 38BD     		pop	{r3, r4, r5, pc}
+ 322              		.cfi_endproc
+ 323              	.LFE65:
+ 324              		.size	motor_backward, .-motor_backward
+ 325 0026 00BF     		.section	.text.reflectance_period,"ax",%progbits
+ 326              		.align	2
+ 327              		.global	reflectance_period
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.type	reflectance_period, %function
+ 331              	reflectance_period:
+ 332              	.LFB68:
+ 163:.\main.c      ****         
+ 164:.\main.c      **** }
+ 165:.\main.c      **** 
+ 166:.\main.c      **** void reflectance_period()
+ 167:.\main.c      **** {
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 10
+
+
+ 333              		.loc 1 167 0
+ 334              		.cfi_startproc
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 337 0000 00B5     		push	{lr}
+ 338              		.cfi_def_cfa_offset 4
+ 339              		.cfi_offset 14, -4
+ 340 0002 83B0     		sub	sp, sp, #12
+ 341              		.cfi_def_cfa_offset 16
+ 168:.\main.c      ****      printf("%d %d %d %d \t", sensors.ll, sensors.lr, sensors.rl, sensors.rr); 
+ 342              		.loc 1 168 0
+ 343 0004 0748     		ldr	r0, .L21
+ 344 0006 0188     		ldrh	r1, [r0]
+ 345 0008 4288     		ldrh	r2, [r0, #2]
+ 346 000a 8388     		ldrh	r3, [r0, #4]
+ 347 000c C088     		ldrh	r0, [r0, #6]
+ 348 000e 80B2     		uxth	r0, r0
+ 349 0010 0090     		str	r0, [sp]
+ 350 0012 0548     		ldr	r0, .L21+4
+ 351 0014 89B2     		uxth	r1, r1
+ 352 0016 92B2     		uxth	r2, r2
+ 353 0018 9BB2     		uxth	r3, r3
+ 354 001a FFF7FEFF 		bl	printf
+ 355              	.LVL52:
+ 169:.\main.c      **** }
+ 356              		.loc 1 169 0
+ 357 001e 03B0     		add	sp, sp, #12
+ 358              		.cfi_def_cfa_offset 4
+ 359              		@ sp needed
+ 360 0020 5DF804FB 		ldr	pc, [sp], #4
+ 361              	.L22:
+ 362              		.align	2
+ 363              	.L21:
+ 364 0024 00000000 		.word	sensors
+ 365 0028 00000000 		.word	.LC1
+ 366              		.cfi_endproc
+ 367              	.LFE68:
+ 368              		.size	reflectance_period, .-reflectance_period
+ 369              		.section	.text.reflectance_digital,"ax",%progbits
+ 370              		.align	2
+ 371              		.global	reflectance_digital
+ 372              		.thumb
+ 373              		.thumb_func
+ 374              		.type	reflectance_digital, %function
+ 375              	reflectance_digital:
+ 376              	.LFB69:
+ 170:.\main.c      **** 
+ 171:.\main.c      **** void reflectance_digital()
+ 172:.\main.c      **** {
+ 377              		.loc 1 172 0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 0
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 381 0000 00B5     		push	{lr}
+ 382              		.cfi_def_cfa_offset 4
+ 383              		.cfi_offset 14, -4
+ 384 0002 83B0     		sub	sp, sp, #12
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 11
+
+
+ 385              		.cfi_def_cfa_offset 16
+ 173:.\main.c      ****     //if the results of reflectance_period function is over 10000, set digital_sensor_value to 0, w
+ 174:.\main.c      ****     if(sensors.ll > 10000)
+ 386              		.loc 1 174 0
+ 387 0004 234B     		ldr	r3, .L33
+ 388 0006 1B88     		ldrh	r3, [r3]
+ 389 0008 9BB2     		uxth	r3, r3
+ 390 000a 42F21072 		movw	r2, #10000
+ 391 000e 9342     		cmp	r3, r2
+ 392 0010 03D9     		bls	.L24
+ 175:.\main.c      ****         digital_sensor_value.ll  = 0;
+ 393              		.loc 1 175 0
+ 394 0012 0022     		movs	r2, #0
+ 395 0014 204B     		ldr	r3, .L33+4
+ 396 0016 1A80     		strh	r2, [r3]	@ movhi
+ 397 0018 02E0     		b	.L25
+ 398              	.L24:
+ 176:.\main.c      ****     else
+ 177:.\main.c      ****         digital_sensor_value.ll  = 1;
+ 399              		.loc 1 177 0
+ 400 001a 0122     		movs	r2, #1
+ 401 001c 1E4B     		ldr	r3, .L33+4
+ 402 001e 1A80     		strh	r2, [r3]	@ movhi
+ 403              	.L25:
+ 178:.\main.c      ****     if(sensors.lr > 10000)
+ 404              		.loc 1 178 0
+ 405 0020 1C4B     		ldr	r3, .L33
+ 406 0022 5B88     		ldrh	r3, [r3, #2]
+ 407 0024 9BB2     		uxth	r3, r3
+ 408 0026 42F21072 		movw	r2, #10000
+ 409 002a 9342     		cmp	r3, r2
+ 410 002c 03D9     		bls	.L26
+ 179:.\main.c      ****         digital_sensor_value.lr  = 0;
+ 411              		.loc 1 179 0
+ 412 002e 0022     		movs	r2, #0
+ 413 0030 194B     		ldr	r3, .L33+4
+ 414 0032 5A80     		strh	r2, [r3, #2]	@ movhi
+ 415 0034 02E0     		b	.L27
+ 416              	.L26:
+ 180:.\main.c      ****     else
+ 181:.\main.c      ****         digital_sensor_value.lr  = 1;
+ 417              		.loc 1 181 0
+ 418 0036 0122     		movs	r2, #1
+ 419 0038 174B     		ldr	r3, .L33+4
+ 420 003a 5A80     		strh	r2, [r3, #2]	@ movhi
+ 421              	.L27:
+ 182:.\main.c      ****     if(sensors.rl > 10000)
+ 422              		.loc 1 182 0
+ 423 003c 154B     		ldr	r3, .L33
+ 424 003e 9B88     		ldrh	r3, [r3, #4]
+ 425 0040 9BB2     		uxth	r3, r3
+ 426 0042 42F21072 		movw	r2, #10000
+ 427 0046 9342     		cmp	r3, r2
+ 428 0048 03D9     		bls	.L28
+ 183:.\main.c      ****         digital_sensor_value.rl  = 0;
+ 429              		.loc 1 183 0
+ 430 004a 0022     		movs	r2, #0
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 12
+
+
+ 431 004c 124B     		ldr	r3, .L33+4
+ 432 004e 9A80     		strh	r2, [r3, #4]	@ movhi
+ 433 0050 02E0     		b	.L29
+ 434              	.L28:
+ 184:.\main.c      ****     else
+ 185:.\main.c      ****         digital_sensor_value.rl  = 1;
+ 435              		.loc 1 185 0
+ 436 0052 0122     		movs	r2, #1
+ 437 0054 104B     		ldr	r3, .L33+4
+ 438 0056 9A80     		strh	r2, [r3, #4]	@ movhi
+ 439              	.L29:
+ 186:.\main.c      ****     if(sensors.rr > 10000)
+ 440              		.loc 1 186 0
+ 441 0058 0E4B     		ldr	r3, .L33
+ 442 005a DB88     		ldrh	r3, [r3, #6]
+ 443 005c 9BB2     		uxth	r3, r3
+ 444 005e 42F21072 		movw	r2, #10000
+ 445 0062 9342     		cmp	r3, r2
+ 446 0064 03D9     		bls	.L30
+ 187:.\main.c      ****         digital_sensor_value.rr  = 0;
+ 447              		.loc 1 187 0
+ 448 0066 0022     		movs	r2, #0
+ 449 0068 0B4B     		ldr	r3, .L33+4
+ 450 006a DA80     		strh	r2, [r3, #6]	@ movhi
+ 451 006c 02E0     		b	.L31
+ 452              	.L30:
+ 188:.\main.c      ****     else
+ 189:.\main.c      ****         digital_sensor_value.rr  = 1;
+ 453              		.loc 1 189 0
+ 454 006e 0122     		movs	r2, #1
+ 455 0070 094B     		ldr	r3, .L33+4
+ 456 0072 DA80     		strh	r2, [r3, #6]	@ movhi
+ 457              	.L31:
+ 190:.\main.c      ****         
+ 191:.\main.c      ****    //print out the results
+ 192:.\main.c      ****    printf("%d %d %d %d \t", digital_sensor_value.ll, digital_sensor_value.lr, digital_sensor_value.
+ 458              		.loc 1 192 0
+ 459 0074 0848     		ldr	r0, .L33+4
+ 460 0076 0188     		ldrh	r1, [r0]
+ 461 0078 4288     		ldrh	r2, [r0, #2]
+ 462 007a 8388     		ldrh	r3, [r0, #4]
+ 463 007c C088     		ldrh	r0, [r0, #6]
+ 464 007e 80B2     		uxth	r0, r0
+ 465 0080 0090     		str	r0, [sp]
+ 466 0082 0648     		ldr	r0, .L33+8
+ 467 0084 89B2     		uxth	r1, r1
+ 468 0086 92B2     		uxth	r2, r2
+ 469 0088 9BB2     		uxth	r3, r3
+ 470 008a FFF7FEFF 		bl	printf
+ 471              	.LVL53:
+ 193:.\main.c      **** }
+ 472              		.loc 1 193 0
+ 473 008e 03B0     		add	sp, sp, #12
+ 474              		.cfi_def_cfa_offset 4
+ 475              		@ sp needed
+ 476 0090 5DF804FB 		ldr	pc, [sp], #4
+ 477              	.L34:
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 13
+
+
+ 478              		.align	2
+ 479              	.L33:
+ 480 0094 00000000 		.word	sensors
+ 481 0098 00000000 		.word	digital_sensor_value
+ 482 009c 00000000 		.word	.LC1
+ 483              		.cfi_endproc
+ 484              	.LFE69:
+ 485              		.size	reflectance_digital, .-reflectance_digital
+ 486              		.section	.text.accel_read,"ax",%progbits
+ 487              		.align	2
+ 488              		.global	accel_read
+ 489              		.thumb
+ 490              		.thumb_func
+ 491              		.type	accel_read, %function
+ 492              	accel_read:
+ 493              	.LFB70:
+ 194:.\main.c      **** 
+ 195:.\main.c      **** void accel_read(void)
+ 196:.\main.c      **** {
+ 494              		.loc 1 196 0
+ 495              		.cfi_startproc
+ 496              		@ args = 0, pretend = 0, frame = 8
+ 497              		@ frame_needed = 0, uses_anonymous_args = 0
+ 498 0000 30B5     		push	{r4, r5, lr}
+ 499              		.cfi_def_cfa_offset 12
+ 500              		.cfi_offset 4, -12
+ 501              		.cfi_offset 5, -8
+ 502              		.cfi_offset 14, -4
+ 503 0002 87B0     		sub	sp, sp, #28
+ 504              		.cfi_def_cfa_offset 40
+ 197:.\main.c      ****     uint8_t a_status;
+ 198:.\main.c      ****     uint8_t a_buf[6];
+ 199:.\main.c      ****     // send conversion command
+ 200:.\main.c      ****     a_buf[0] = 0x00;
+ 505              		.loc 1 200 0
+ 506 0004 0025     		movs	r5, #0
+ 507 0006 06AC     		add	r4, sp, #24
+ 508 0008 04F8085D 		strb	r5, [r4, #-8]!
+ 201:.\main.c      ****     
+ 202:.\main.c      ****     I2C_MasterClearStatus();
+ 509              		.loc 1 202 0
+ 510 000c FFF7FEFF 		bl	I2C_MasterClearStatus
+ 511              	.LVL54:
+ 203:.\main.c      ****     a_status = I2C_MasterWriteBuf(Accel_W, a_buf, 1, I2C_MODE_COMPLETE_XFER);
+ 512              		.loc 1 203 0
+ 513 0010 3A20     		movs	r0, #58
+ 514 0012 2146     		mov	r1, r4
+ 515 0014 0122     		movs	r2, #1
+ 516 0016 2B46     		mov	r3, r5
+ 517 0018 FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 518              	.LVL55:
+ 519              	.L36:
+ 204:.\main.c      ****     while(((a_status = I2C_MasterStatus()) & I2C_MSTAT_WR_CMPLT) == 0);
+ 520              		.loc 1 204 0 discriminator 1
+ 521 001c FFF7FEFF 		bl	I2C_MasterStatus
+ 522              	.LVL56:
+ 523 0020 10F0020F 		tst	r0, #2
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 14
+
+
+ 524 0024 FAD0     		beq	.L36
+ 205:.\main.c      ****     // wait for conversion to complete
+ 206:.\main.c      ****     CyDelay(50); // todo: check if shorter wait would work
+ 525              		.loc 1 206 0
+ 526 0026 3220     		movs	r0, #50
+ 527              	.LVL57:
+ 528 0028 FFF7FEFF 		bl	CyDelay
+ 529              	.LVL58:
+ 207:.\main.c      ****     // read values
+ 208:.\main.c      ****     I2C_MasterClearStatus();
+ 530              		.loc 1 208 0
+ 531 002c FFF7FEFF 		bl	I2C_MasterClearStatus
+ 532              	.LVL59:
+ 209:.\main.c      ****     a_status = I2C_MasterReadBuf(Accel_R, a_buf, 6, I2C_MODE_COMPLETE_XFER);
+ 533              		.loc 1 209 0
+ 534 0030 3B20     		movs	r0, #59
+ 535 0032 04A9     		add	r1, sp, #16
+ 536 0034 0622     		movs	r2, #6
+ 537 0036 0023     		movs	r3, #0
+ 538 0038 FFF7FEFF 		bl	I2C_MasterReadBuf
+ 539              	.LVL60:
+ 540              	.L37:
+ 210:.\main.c      ****     while(((a_status = I2C_MasterStatus()) & I2C_MSTAT_RD_CMPLT) == 0);
+ 541              		.loc 1 210 0 discriminator 1
+ 542 003c FFF7FEFF 		bl	I2C_MasterStatus
+ 543              	.LVL61:
+ 544 0040 10F0010F 		tst	r0, #1
+ 545 0044 FAD0     		beq	.L37
+ 211:.\main.c      ****     
+ 212:.\main.c      ****     printf("%d %d %d %d %d %d\r\n", a_buf[0], a_buf[1], a_buf[2], a_buf[3], a_buf[4], a_buf[5] );
+ 546              		.loc 1 212 0
+ 547 0046 9DF81010 		ldrb	r1, [sp, #16]	@ zero_extendqisi2
+ 548 004a 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 549 004e 9DF81230 		ldrb	r3, [sp, #18]	@ zero_extendqisi2
+ 550 0052 9DF81350 		ldrb	r5, [sp, #19]	@ zero_extendqisi2
+ 551 0056 9DF81440 		ldrb	r4, [sp, #20]	@ zero_extendqisi2
+ 552 005a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+ 553              	.LVL62:
+ 554 005e 0095     		str	r5, [sp]
+ 555 0060 0194     		str	r4, [sp, #4]
+ 556 0062 0290     		str	r0, [sp, #8]
+ 557 0064 0248     		ldr	r0, .L39
+ 558 0066 FFF7FEFF 		bl	printf
+ 559              	.LVL63:
+ 213:.\main.c      ****    
+ 214:.\main.c      **** }    
+ 560              		.loc 1 214 0
+ 561 006a 07B0     		add	sp, sp, #28
+ 562              		.cfi_def_cfa_offset 12
+ 563              		@ sp needed
+ 564 006c 30BD     		pop	{r4, r5, pc}
+ 565              	.L40:
+ 566 006e 00BF     		.align	2
+ 567              	.L39:
+ 568 0070 10000000 		.word	.LC2
+ 569              		.cfi_endproc
+ 570              	.LFE70:
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 15
+
+
+ 571              		.size	accel_read, .-accel_read
+ 572              		.section	.text.gyro_write,"ax",%progbits
+ 573              		.align	2
+ 574              		.global	gyro_write
+ 575              		.thumb
+ 576              		.thumb_func
+ 577              		.type	gyro_write, %function
+ 578              	gyro_write:
+ 579              	.LFB71:
+ 215:.\main.c      **** void gyro_write(void)
+ 216:.\main.c      **** {
+ 580              		.loc 1 216 0
+ 581              		.cfi_startproc
+ 582              		@ args = 0, pretend = 0, frame = 8
+ 583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 584 0000 00B5     		push	{lr}
+ 585              		.cfi_def_cfa_offset 4
+ 586              		.cfi_offset 14, -4
+ 587 0002 83B0     		sub	sp, sp, #12
+ 588              		.cfi_def_cfa_offset 16
+ 217:.\main.c      ****      uint8_t g_status;
+ 218:.\main.c      ****     uint8_t g_buf[6]={0,1,2,3,4,5};
+ 589              		.loc 1 218 0
+ 590 0004 084B     		ldr	r3, .L43
+ 591 0006 1868     		ldr	r0, [r3]	@ unaligned
+ 592 0008 0090     		str	r0, [sp]	@ unaligned
+ 593 000a 9B88     		ldrh	r3, [r3, #4]	@ unaligned
+ 594 000c ADF80430 		strh	r3, [sp, #4]	@ unaligned
+ 219:.\main.c      ****     // send conversion command
+ 220:.\main.c      ****     
+ 221:.\main.c      ****     
+ 222:.\main.c      ****     I2C_MasterClearStatus();
+ 595              		.loc 1 222 0
+ 596 0010 FFF7FEFF 		bl	I2C_MasterClearStatus
+ 597              	.LVL64:
+ 223:.\main.c      ****     g_status = I2C_MasterWriteBuf(Gyro_W, g_buf, 1, I2C_MODE_COMPLETE_XFER);
+ 598              		.loc 1 223 0
+ 599 0014 D420     		movs	r0, #212
+ 600 0016 6946     		mov	r1, sp
+ 601 0018 0122     		movs	r2, #1
+ 602 001a 0023     		movs	r3, #0
+ 603 001c FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 604              	.LVL65:
+ 224:.\main.c      ****     //printf("%d %d %d %d %d %d\r\n", g_buf[0], g_buf[1], g_buf[2], g_buf[3], g_buf[4], g_buf[5] );
+ 225:.\main.c      ****     
+ 226:.\main.c      **** }
+ 605              		.loc 1 226 0
+ 606 0020 03B0     		add	sp, sp, #12
+ 607              		.cfi_def_cfa_offset 4
+ 608              		@ sp needed
+ 609 0022 5DF804FB 		ldr	pc, [sp], #4
+ 610              	.L44:
+ 611 0026 00BF     		.align	2
+ 612              	.L43:
+ 613 0028 00000000 		.word	.LANCHOR0
+ 614              		.cfi_endproc
+ 615              	.LFE71:
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 16
+
+
+ 616              		.size	gyro_write, .-gyro_write
+ 617              		.section	.text.gyro_read,"ax",%progbits
+ 618              		.align	2
+ 619              		.global	gyro_read
+ 620              		.thumb
+ 621              		.thumb_func
+ 622              		.type	gyro_read, %function
+ 623              	gyro_read:
+ 624              	.LFB72:
+ 227:.\main.c      **** 
+ 228:.\main.c      **** void gyro_read(void)
+ 229:.\main.c      **** {
+ 625              		.loc 1 229 0
+ 626              		.cfi_startproc
+ 627              		@ args = 0, pretend = 0, frame = 8
+ 628              		@ frame_needed = 0, uses_anonymous_args = 0
+ 629 0000 30B5     		push	{r4, r5, lr}
+ 630              		.cfi_def_cfa_offset 12
+ 631              		.cfi_offset 4, -12
+ 632              		.cfi_offset 5, -8
+ 633              		.cfi_offset 14, -4
+ 634 0002 87B0     		sub	sp, sp, #28
+ 635              		.cfi_def_cfa_offset 40
+ 230:.\main.c      ****      uint8_t g_status;
+ 231:.\main.c      ****     uint8_t g_buf[6];//={0};
+ 232:.\main.c      ****     // send conversion command
+ 233:.\main.c      ****     
+ 234:.\main.c      ****     g_buf[0] = 0x00;
+ 636              		.loc 1 234 0
+ 637 0004 0025     		movs	r5, #0
+ 638 0006 06AC     		add	r4, sp, #24
+ 639 0008 04F8085D 		strb	r5, [r4, #-8]!
+ 235:.\main.c      ****     
+ 236:.\main.c      ****     I2C_MasterClearStatus();
+ 640              		.loc 1 236 0
+ 641 000c FFF7FEFF 		bl	I2C_MasterClearStatus
+ 642              	.LVL66:
+ 237:.\main.c      ****     g_status = I2C_MasterWriteBuf(Gyro_W, g_buf, 1, I2C_MODE_COMPLETE_XFER);
+ 643              		.loc 1 237 0
+ 644 0010 D420     		movs	r0, #212
+ 645 0012 2146     		mov	r1, r4
+ 646 0014 0122     		movs	r2, #1
+ 647 0016 2B46     		mov	r3, r5
+ 648 0018 FFF7FEFF 		bl	I2C_MasterWriteBuf
+ 649              	.LVL67:
+ 650              	.L46:
+ 238:.\main.c      ****     
+ 239:.\main.c      ****     while(((g_status = I2C_MasterStatus()) & I2C_MSTAT_WR_CMPLT) == 0);
+ 651              		.loc 1 239 0 discriminator 1
+ 652 001c FFF7FEFF 		bl	I2C_MasterStatus
+ 653              	.LVL68:
+ 654 0020 10F0020F 		tst	r0, #2
+ 655 0024 FAD0     		beq	.L46
+ 240:.\main.c      ****     // wait for conversion to complete
+ 241:.\main.c      ****     CyDelay(50); // todo: check if shorter wait would work
+ 656              		.loc 1 241 0
+ 657 0026 3220     		movs	r0, #50
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 17
+
+
+ 658              	.LVL69:
+ 659 0028 FFF7FEFF 		bl	CyDelay
+ 660              	.LVL70:
+ 242:.\main.c      ****     // read values
+ 243:.\main.c      ****     I2C_MasterClearStatus();
+ 661              		.loc 1 243 0
+ 662 002c FFF7FEFF 		bl	I2C_MasterClearStatus
+ 663              	.LVL71:
+ 244:.\main.c      ****     g_status = I2C_MasterReadBuf(Gyro_R, g_buf, 6, I2C_MODE_COMPLETE_XFER);
+ 664              		.loc 1 244 0
+ 665 0030 D520     		movs	r0, #213
+ 666 0032 04A9     		add	r1, sp, #16
+ 667 0034 0622     		movs	r2, #6
+ 668 0036 0023     		movs	r3, #0
+ 669 0038 FFF7FEFF 		bl	I2C_MasterReadBuf
+ 670              	.LVL72:
+ 671              	.L47:
+ 245:.\main.c      ****     while(((g_status = I2C_MasterStatus()) & I2C_MSTAT_RD_CMPLT) == 0);
+ 672              		.loc 1 245 0 discriminator 1
+ 673 003c FFF7FEFF 		bl	I2C_MasterStatus
+ 674              	.LVL73:
+ 675 0040 10F0010F 		tst	r0, #1
+ 676 0044 FAD0     		beq	.L47
+ 246:.\main.c      ****     
+ 247:.\main.c      ****     printf("%d %d %d %d %d %d\r\n", g_buf[0], g_buf[1], g_buf[2], g_buf[3], g_buf[4], g_buf[5] );
+ 677              		.loc 1 247 0
+ 678 0046 9DF81010 		ldrb	r1, [sp, #16]	@ zero_extendqisi2
+ 679 004a 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 680 004e 9DF81230 		ldrb	r3, [sp, #18]	@ zero_extendqisi2
+ 681 0052 9DF81350 		ldrb	r5, [sp, #19]	@ zero_extendqisi2
+ 682 0056 9DF81440 		ldrb	r4, [sp, #20]	@ zero_extendqisi2
+ 683 005a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+ 684              	.LVL74:
+ 685 005e 0095     		str	r5, [sp]
+ 686 0060 0194     		str	r4, [sp, #4]
+ 687 0062 0290     		str	r0, [sp, #8]
+ 688 0064 0248     		ldr	r0, .L49
+ 689 0066 FFF7FEFF 		bl	printf
+ 690              	.LVL75:
+ 248:.\main.c      ****    
+ 249:.\main.c      **** }    
+ 691              		.loc 1 249 0
+ 692 006a 07B0     		add	sp, sp, #28
+ 693              		.cfi_def_cfa_offset 12
+ 694              		@ sp needed
+ 695 006c 30BD     		pop	{r4, r5, pc}
+ 696              	.L50:
+ 697 006e 00BF     		.align	2
+ 698              	.L49:
+ 699 0070 10000000 		.word	.LC2
+ 700              		.cfi_endproc
+ 701              	.LFE72:
+ 702              		.size	gyro_read, .-gyro_read
+ 703              		.section	.text.main,"ax",%progbits
+ 704              		.align	2
+ 705              		.global	main
+ 706              		.thumb
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 18
+
+
+ 707              		.thumb_func
+ 708              		.type	main, %function
+ 709              	main:
+ 710              	.LFB66:
+  75:.\main.c      ****     sensor_isr_StartEx(sensor_isr_handler);
+ 711              		.loc 1 75 0
+ 712              		.cfi_startproc
+ 713              		@ Volatile: function does not return.
+ 714              		@ args = 0, pretend = 0, frame = 0
+ 715              		@ frame_needed = 0, uses_anonymous_args = 0
+ 716 0000 08B5     		push	{r3, lr}
+ 717              		.cfi_def_cfa_offset 8
+ 718              		.cfi_offset 3, -8
+ 719              		.cfi_offset 14, -4
+  76:.\main.c      ****     
+ 720              		.loc 1 76 0
+ 721 0002 0E48     		ldr	r0, .L54
+ 722 0004 FFF7FEFF 		bl	sensor_isr_StartEx
+ 723              	.LVL76:
+  78:.\main.c      **** 
+ 724              		.loc 1 78 0
+ 725              	@ 78 ".\main.c" 1
+ 726 0008 62B6     		CPSIE   i
+ 727              	@ 0 "" 2
+  81:.\main.c      ****     Timer_RL_Start();
+ 728              		.loc 1 81 0
+ 729              		.thumb
+ 730 000a FFF7FEFF 		bl	UART_Start
+ 731              	.LVL77:
+  82:.\main.c      ****     Timer_RR_Start();
+ 732              		.loc 1 82 0
+ 733 000e FFF7FEFF 		bl	Timer_RL_Start
+ 734              	.LVL78:
+  83:.\main.c      ****     Timer_LL_Start();
+ 735              		.loc 1 83 0
+ 736 0012 FFF7FEFF 		bl	Timer_RR_Start
+ 737              	.LVL79:
+  84:.\main.c      ****     Timer_LR_Start();
+ 738              		.loc 1 84 0
+ 739 0016 FFF7FEFF 		bl	Timer_LL_Start
+ 740              	.LVL80:
+  85:.\main.c      ****     PWM_Start();
+ 741              		.loc 1 85 0
+ 742 001a FFF7FEFF 		bl	Timer_LR_Start
+ 743              	.LVL81:
+  86:.\main.c      ****     
+ 744              		.loc 1 86 0
+ 745 001e FFF7FEFF 		bl	PWM_Start
+ 746              	.LVL82:
+  88:.\main.c      ****     
+ 747              		.loc 1 88 0
+ 748 0022 FFF7FEFF 		bl	I2C_Start
+ 749              	.LVL83:
+  91:.\main.c      ****     
+ 750              		.loc 1 91 0
+ 751 0026 0648     		ldr	r0, .L54+4
+ 752 0028 FFF7FEFF 		bl	puts
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 19
+
+
+ 753              	.LVL84:
+  95:.\main.c      ****     
+ 754              		.loc 1 95 0
+ 755 002c FFF7FEFF 		bl	I2C_Start
+ 756              	.LVL85:
+  97:.\main.c      ****     for(;;)
+ 757              		.loc 1 97 0
+ 758 0030 0120     		movs	r0, #1
+ 759 0032 FFF7FEFF 		bl	IR_led_Write
+ 760              	.LVL86:
+ 761              	.L52:
+ 101:.\main.c      ****         /* 
+ 762              		.loc 1 101 0 discriminator 1
+ 763 0036 FFF7FEFF 		bl	gyro_read
+ 764              	.LVL87:
+ 112:.\main.c      **** }
+ 765              		.loc 1 112 0 discriminator 1
+ 766 003a FCE7     		b	.L52
+ 767              	.L55:
+ 768              		.align	2
+ 769              	.L54:
+ 770 003c 00000000 		.word	sensor_isr_handler
+ 771 0040 24000000 		.word	.LC3
+ 772              		.cfi_endproc
+ 773              	.LFE66:
+ 774              		.size	main, .-main
+ 775              		.section	.text.nunchuk_init,"ax",%progbits
+ 776              		.align	2
+ 777              		.global	nunchuk_init
+ 778              		.thumb
+ 779              		.thumb_func
+ 780              		.type	nunchuk_init, %function
+ 781              	nunchuk_init:
+ 782              	.LFB73:
+ 250:.\main.c      **** 
+ 251:.\main.c      **** 
+ 252:.\main.c      **** void nunchuk_init(void)
+ 253:.\main.c      **** {
+ 783              		.loc 1 253 0
+ 784              		.cfi_startproc
+ 785              		@ args = 0, pretend = 0, frame = 8
+ 786              		@ frame_needed = 0, uses_anonymous_args = 0
+ 787 0000 10B5     		push	{r4, lr}
+ 788              		.cfi_def_cfa_offset 8
+ 789              		.cfi_offset 4, -8
+ 790              		.cfi_offset 14, -4
+ 791 0002 82B0     		sub	sp, sp, #8
+ 792              		.cfi_def_cfa_offset 16
+ 254:.\main.c      ****     uint8_t buf[2] = { 0x40, 0x00 };
+ 793              		.loc 1 254 0
+ 794 0004 4023     		movs	r3, #64
+ 795 0006 8DF80430 		strb	r3, [sp, #4]
+ 796 000a 0024     		movs	r4, #0
+ 797 000c 8DF80540 		strb	r4, [sp, #5]
+ 255:.\main.c      ****     uint8_t status;
+ 256:.\main.c      ****     I2C_2_MasterClearStatus();
+ 798              		.loc 1 256 0
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 20
+
+
+ 799 0010 FFF7FEFF 		bl	I2C_2_MasterClearStatus
+ 800              	.LVL88:
+ 257:.\main.c      ****     CyDelay(100);
+ 801              		.loc 1 257 0
+ 802 0014 6420     		movs	r0, #100
+ 803 0016 FFF7FEFF 		bl	CyDelay
+ 804              	.LVL89:
+ 258:.\main.c      ****     status = I2C_2_MasterWriteBuf(0x52, buf, 2, I2C_2_MODE_COMPLETE_XFER);
+ 805              		.loc 1 258 0
+ 806 001a 5220     		movs	r0, #82
+ 807 001c 01A9     		add	r1, sp, #4
+ 808 001e 0222     		movs	r2, #2
+ 809 0020 2346     		mov	r3, r4
+ 810 0022 FFF7FEFF 		bl	I2C_2_MasterWriteBuf
+ 811              	.LVL90:
+ 812              	.L57:
+ 259:.\main.c      ****     while(((status = I2C_2_MasterStatus()) & I2C_2_MSTAT_WR_CMPLT) == 0);
+ 813              		.loc 1 259 0 discriminator 1
+ 814 0026 FFF7FEFF 		bl	I2C_2_MasterStatus
+ 815              	.LVL91:
+ 816 002a 10F0020F 		tst	r0, #2
+ 817 002e FAD0     		beq	.L57
+ 260:.\main.c      ****     CyDelay(100);
+ 818              		.loc 1 260 0
+ 819 0030 6420     		movs	r0, #100
+ 820              	.LVL92:
+ 821 0032 FFF7FEFF 		bl	CyDelay
+ 822              	.LVL93:
+ 261:.\main.c      **** }    
+ 823              		.loc 1 261 0
+ 824 0036 02B0     		add	sp, sp, #8
+ 825              		.cfi_def_cfa_offset 8
+ 826              		@ sp needed
+ 827 0038 10BD     		pop	{r4, pc}
+ 828              		.cfi_endproc
+ 829              	.LFE73:
+ 830              		.size	nunchuk_init, .-nunchuk_init
+ 831 003a 00BF     		.section	.text.nunchuk_read,"ax",%progbits
+ 832              		.align	2
+ 833              		.global	nunchuk_read
+ 834              		.thumb
+ 835              		.thumb_func
+ 836              		.type	nunchuk_read, %function
+ 837              	nunchuk_read:
+ 838              	.LFB74:
+ 262:.\main.c      **** 
+ 263:.\main.c      **** void nunchuk_read(void)
+ 264:.\main.c      **** {
+ 839              		.loc 1 264 0
+ 840              		.cfi_startproc
+ 841              		@ args = 0, pretend = 0, frame = 8
+ 842              		@ frame_needed = 0, uses_anonymous_args = 0
+ 843 0000 30B5     		push	{r4, r5, lr}
+ 844              		.cfi_def_cfa_offset 12
+ 845              		.cfi_offset 4, -12
+ 846              		.cfi_offset 5, -8
+ 847              		.cfi_offset 14, -4
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 21
+
+
+ 848 0002 83B0     		sub	sp, sp, #12
+ 849              		.cfi_def_cfa_offset 24
+ 265:.\main.c      ****     uint8_t status;
+ 266:.\main.c      ****     uint8_t buf[6];
+ 267:.\main.c      ****     // send conversion command
+ 268:.\main.c      ****     buf[0] = 0x00;
+ 850              		.loc 1 268 0
+ 851 0004 0025     		movs	r5, #0
+ 852 0006 02AC     		add	r4, sp, #8
+ 853 0008 04F8085D 		strb	r5, [r4, #-8]!
+ 269:.\main.c      ****     I2C_2_MasterClearStatus();
+ 854              		.loc 1 269 0
+ 855 000c FFF7FEFF 		bl	I2C_2_MasterClearStatus
+ 856              	.LVL94:
+ 270:.\main.c      ****     status = I2C_2_MasterWriteBuf(0x52, buf, 1, I2C_2_MODE_COMPLETE_XFER);
+ 857              		.loc 1 270 0
+ 858 0010 5220     		movs	r0, #82
+ 859 0012 2146     		mov	r1, r4
+ 860 0014 0122     		movs	r2, #1
+ 861 0016 2B46     		mov	r3, r5
+ 862 0018 FFF7FEFF 		bl	I2C_2_MasterWriteBuf
+ 863              	.LVL95:
+ 864              	.L60:
+ 271:.\main.c      ****     while(((status = I2C_2_MasterStatus()) & I2C_2_MSTAT_WR_CMPLT) == 0);
+ 865              		.loc 1 271 0 discriminator 1
+ 866 001c FFF7FEFF 		bl	I2C_2_MasterStatus
+ 867              	.LVL96:
+ 868 0020 10F0020F 		tst	r0, #2
+ 869 0024 FAD0     		beq	.L60
+ 272:.\main.c      ****     // wait for conversion to complete
+ 273:.\main.c      ****     CyDelay(50); // todo: check if shorter wait would work
+ 870              		.loc 1 273 0
+ 871 0026 3220     		movs	r0, #50
+ 872              	.LVL97:
+ 873 0028 FFF7FEFF 		bl	CyDelay
+ 874              	.LVL98:
+ 274:.\main.c      ****     // read values
+ 275:.\main.c      ****     I2C_2_MasterClearStatus();
+ 875              		.loc 1 275 0
+ 876 002c FFF7FEFF 		bl	I2C_2_MasterClearStatus
+ 877              	.LVL99:
+ 276:.\main.c      ****     status = I2C_2_MasterReadBuf(0x52, buf, 6, I2C_2_MODE_COMPLETE_XFER);
+ 878              		.loc 1 276 0
+ 879 0030 5220     		movs	r0, #82
+ 880 0032 6946     		mov	r1, sp
+ 881 0034 0622     		movs	r2, #6
+ 882 0036 0023     		movs	r3, #0
+ 883 0038 FFF7FEFF 		bl	I2C_2_MasterReadBuf
+ 884              	.LVL100:
+ 885              	.L61:
+ 277:.\main.c      ****     while(((status = I2C_2_MasterStatus()) & I2C_2_MSTAT_RD_CMPLT) == 0);
+ 886              		.loc 1 277 0 discriminator 1
+ 887 003c FFF7FEFF 		bl	I2C_2_MasterStatus
+ 888              	.LVL101:
+ 889 0040 10F0010F 		tst	r0, #1
+ 890 0044 FAD0     		beq	.L61
+ 891 0046 0023     		movs	r3, #0
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 22
+
+
+ 892 0048 00E0     		b	.L62
+ 893              	.LVL102:
+ 894              	.L63:
+ 278:.\main.c      ****     
+ 279:.\main.c      ****     int i;
+ 280:.\main.c      ****     // decrypt data
+ 281:.\main.c      ****     for(i = 0; i < 6; i++) buf[i] = (buf[i] ^ 0x17) + 0x17;
+ 895              		.loc 1 281 0 discriminator 3
+ 896 004a 0133     		adds	r3, r3, #1
+ 897              	.LVL103:
+ 898              	.L62:
+ 899              		.loc 1 281 0 is_stmt 0 discriminator 1
+ 900 004c 052B     		cmp	r3, #5
+ 901 004e FCDD     		ble	.L63
+ 282:.\main.c      ****     // accelerometer values
+ 283:.\main.c      ****     /*
+ 284:.\main.c      ****     int x,y,z;
+ 285:.\main.c      ****     x = (buf[2] << 2) | ((buf[5] >> 2) & 0x03);
+ 286:.\main.c      ****     y = (buf[3] << 2) | ((buf[5] >> 4) & 0x03);
+ 287:.\main.c      ****     z = (buf[4] << 2) | ((buf[5] >> 6) & 0x03);
+ 288:.\main.c      ****     // buf[0] = JoyX, buf[1] = JoyY
+ 289:.\main.c      ****     //printf("%3d %3d, %d, %d, %4d %4d %4d\r\n", buf[0], buf[1], (buf[5] >> 1) & 1, buf[5] & 1, x, 
+ 290:.\main.c      ****     */
+ 291:.\main.c      **** }    
+ 902              		.loc 1 291 0 is_stmt 1
+ 903 0050 03B0     		add	sp, sp, #12
+ 904              		.cfi_def_cfa_offset 12
+ 905              		@ sp needed
+ 906 0052 30BD     		pop	{r4, r5, pc}
+ 907              		.cfi_endproc
+ 908              	.LFE74:
+ 909              		.size	nunchuk_read, .-nunchuk_read
+ 910              		.section	.text._write,"ax",%progbits
+ 911              		.align	2
+ 912              		.global	_write
+ 913              		.thumb
+ 914              		.thumb_func
+ 915              		.type	_write, %function
+ 916              	_write:
+ 917              	.LFB75:
+ 292:.\main.c      **** 
+ 293:.\main.c      **** #if 0
+ 294:.\main.c      **** int rread(void)
+ 295:.\main.c      **** {
+ 296:.\main.c      ****     SC0_SetDriveMode(PIN_DM_STRONG);
+ 297:.\main.c      ****     SC0_Write(1);
+ 298:.\main.c      ****     CyDelayUs(10);
+ 299:.\main.c      ****     SC0_SetDriveMode(PIN_DM_DIG_HIZ);
+ 300:.\main.c      ****     Timer_1_Start();
+ 301:.\main.c      ****     uint16_t start = Timer_1_ReadCounter();
+ 302:.\main.c      ****     uint16_t end = 0;
+ 303:.\main.c      ****     while(!(Timer_1_ReadStatusRegister() & Timer_1_STATUS_TC)) {
+ 304:.\main.c      ****         if(SC0_Read() == 0 && end == 0) {
+ 305:.\main.c      ****             end = Timer_1_ReadCounter();
+ 306:.\main.c      ****         }
+ 307:.\main.c      ****     }
+ 308:.\main.c      ****     Timer_1_Stop();
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 23
+
+
+ 309:.\main.c      ****     
+ 310:.\main.c      ****     return (start - end);
+ 311:.\main.c      **** }
+ 312:.\main.c      **** #endif
+ 313:.\main.c      **** 
+ 314:.\main.c      **** int _write(int file, char *ptr, int len)
+ 315:.\main.c      **** {
+ 918              		.loc 1 315 0
+ 919              		.cfi_startproc
+ 920              		@ args = 0, pretend = 0, frame = 0
+ 921              		@ frame_needed = 0, uses_anonymous_args = 0
+ 922              	.LVL104:
+ 923 0000 70B5     		push	{r4, r5, r6, lr}
+ 924              		.cfi_def_cfa_offset 16
+ 925              		.cfi_offset 4, -16
+ 926              		.cfi_offset 5, -12
+ 927              		.cfi_offset 6, -8
+ 928              		.cfi_offset 14, -4
+ 929 0002 1646     		mov	r6, r2
+ 930              	.LVL105:
+ 316:.\main.c      ****     (void) file;
+ 317:.\main.c      **** 	int n;
+ 318:.\main.c      **** 	for(n = 0; n < len; n++) {
+ 931              		.loc 1 318 0
+ 932 0004 0024     		movs	r4, #0
+ 933 0006 05E0     		b	.L66
+ 934              	.LVL106:
+ 935              	.L67:
+ 319:.\main.c      **** 		UART_PutChar(*ptr++);
+ 936              		.loc 1 319 0 discriminator 3
+ 937 0008 4D1C     		adds	r5, r1, #1
+ 938              	.LVL107:
+ 939 000a 0878     		ldrb	r0, [r1]	@ zero_extendqisi2
+ 940 000c FFF7FEFF 		bl	UART_PutChar
+ 941              	.LVL108:
+ 318:.\main.c      **** 		UART_PutChar(*ptr++);
+ 942              		.loc 1 318 0 discriminator 3
+ 943 0010 0134     		adds	r4, r4, #1
+ 944              	.LVL109:
+ 945              		.loc 1 319 0 discriminator 3
+ 946 0012 2946     		mov	r1, r5
+ 947              	.LVL110:
+ 948              	.L66:
+ 318:.\main.c      **** 		UART_PutChar(*ptr++);
+ 949              		.loc 1 318 0 discriminator 1
+ 950 0014 B442     		cmp	r4, r6
+ 951 0016 F7DB     		blt	.L67
+ 320:.\main.c      **** 	}
+ 321:.\main.c      **** 	return len;
+ 322:.\main.c      **** }
+ 952              		.loc 1 322 0
+ 953 0018 3046     		mov	r0, r6
+ 954 001a 70BD     		pop	{r4, r5, r6, pc}
+ 955              		.cfi_endproc
+ 956              	.LFE75:
+ 957              		.size	_write, .-_write
+ 958              		.comm	digital_sensor_value,8,4
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 24
+
+
+ 959              		.comm	sensors,8,4
+ 960              		.section	.rodata
+ 961              		.align	2
+ 962              		.set	.LANCHOR0,. + 0
+ 963              	.LC0:
+ 964 0000 00       		.byte	0
+ 965 0001 01       		.byte	1
+ 966 0002 02       		.byte	2
+ 967 0003 03       		.byte	3
+ 968 0004 04       		.byte	4
+ 969 0005 05       		.byte	5
+ 970 0006 0000     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 971              		.align	2
+ 972              	.LC1:
+ 973 0000 25642025 		.ascii	"%d %d %d %d \011\000"
+ 973      64202564 
+ 973      20256420 
+ 973      0900
+ 974 000e 0000     		.space	2
+ 975              	.LC2:
+ 976 0010 25642025 		.ascii	"%d %d %d %d %d %d\015\012\000"
+ 976      64202564 
+ 976      20256420 
+ 976      25642025 
+ 976      640D0A00 
+ 977              	.LC3:
+ 978 0024 53746172 		.ascii	"Start\015\000"
+ 978      740D00
+ 979 002b 00       		.text
+ 980              	.Letext0:
+ 981              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 982              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 983              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 984              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 985              		.file 6 "Generated_Source\\PSoC5/Timer_RL.h"
+ 986              		.file 7 "Generated_Source\\PSoC5/Timer_RR.h"
+ 987              		.file 8 "Generated_Source\\PSoC5/Timer_LL.h"
+ 988              		.file 9 "Generated_Source\\PSoC5/Timer_LR.h"
+ 989              		.file 10 "Generated_Source\\PSoC5/RL.h"
+ 990              		.file 11 "Generated_Source\\PSoC5/RR.h"
+ 991              		.file 12 "Generated_Source\\PSoC5/LL.h"
+ 992              		.file 13 "Generated_Source\\PSoC5/LR.h"
+ 993              		.file 14 "Generated_Source\\PSoC5/CyLib.h"
+ 994              		.file 15 "Generated_Source\\PSoC5/PWM.h"
+ 995              		.file 16 "Generated_Source\\PSoC5/MotorDirLeft.h"
+ 996              		.file 17 "Generated_Source\\PSoC5/MotorDirRight.h"
+ 997              		.file 18 "Generated_Source\\PSoC5/I2C.h"
+ 998              		.file 19 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9
+ 999              		.file 20 "Generated_Source\\PSoC5/sensor_isr.h"
+ 1000              		.file 21 "Generated_Source\\PSoC5/UART.h"
+ 1001              		.file 22 "<built-in>"
+ 1002              		.file 23 "Generated_Source\\PSoC5/IR_led.h"
+ 1003              		.file 24 "Generated_Source\\PSoC5/I2C_2.h"
+ 1004              		.section	.debug_info,"",%progbits
+ 1005              	.Ldebug_info0:
+ 1006 0000 BA0C0000 		.4byte	0xcba
+ 1007 0004 0400     		.2byte	0x4
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 25
+
+
+ 1008 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1009 000a 04       		.byte	0x4
+ 1010 000b 01       		.uleb128 0x1
+ 1011 000c 02050000 		.4byte	.LASF101
+ 1012 0010 01       		.byte	0x1
+ 1013 0011 EF040000 		.4byte	.LASF102
+ 1014 0015 47010000 		.4byte	.LASF103
+ 1015 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1016 001d 00000000 		.4byte	0
+ 1017 0021 00000000 		.4byte	.Ldebug_line0
+ 1018 0025 02       		.uleb128 0x2
+ 1019 0026 01       		.byte	0x1
+ 1020 0027 06       		.byte	0x6
+ 1021 0028 F0020000 		.4byte	.LASF0
+ 1022 002c 03       		.uleb128 0x3
+ 1023 002d 32020000 		.4byte	.LASF3
+ 1024 0031 02       		.byte	0x2
+ 1025 0032 1D       		.byte	0x1d
+ 1026 0033 37000000 		.4byte	0x37
+ 1027 0037 02       		.uleb128 0x2
+ 1028 0038 01       		.byte	0x1
+ 1029 0039 08       		.byte	0x8
+ 1030 003a 83020000 		.4byte	.LASF1
+ 1031 003e 02       		.uleb128 0x2
+ 1032 003f 02       		.byte	0x2
+ 1033 0040 05       		.byte	0x5
+ 1034 0041 82000000 		.4byte	.LASF2
+ 1035 0045 03       		.uleb128 0x3
+ 1036 0046 E3000000 		.4byte	.LASF4
+ 1037 004a 02       		.byte	0x2
+ 1038 004b 2B       		.byte	0x2b
+ 1039 004c 50000000 		.4byte	0x50
+ 1040 0050 02       		.uleb128 0x2
+ 1041 0051 02       		.byte	0x2
+ 1042 0052 07       		.byte	0x7
+ 1043 0053 B4030000 		.4byte	.LASF5
+ 1044 0057 03       		.uleb128 0x3
+ 1045 0058 F8040000 		.4byte	.LASF6
+ 1046 005c 02       		.byte	0x2
+ 1047 005d 3F       		.byte	0x3f
+ 1048 005e 62000000 		.4byte	0x62
+ 1049 0062 02       		.uleb128 0x2
+ 1050 0063 04       		.byte	0x4
+ 1051 0064 05       		.byte	0x5
+ 1052 0065 00040000 		.4byte	.LASF7
+ 1053 0069 03       		.uleb128 0x3
+ 1054 006a 59020000 		.4byte	.LASF8
+ 1055 006e 02       		.byte	0x2
+ 1056 006f 41       		.byte	0x41
+ 1057 0070 74000000 		.4byte	0x74
+ 1058 0074 02       		.uleb128 0x2
+ 1059 0075 04       		.byte	0x4
+ 1060 0076 07       		.byte	0x7
+ 1061 0077 20020000 		.4byte	.LASF9
+ 1062 007b 02       		.uleb128 0x2
+ 1063 007c 08       		.byte	0x8
+ 1064 007d 05       		.byte	0x5
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 26
+
+
+ 1065 007e B1010000 		.4byte	.LASF10
+ 1066 0082 02       		.uleb128 0x2
+ 1067 0083 08       		.byte	0x8
+ 1068 0084 07       		.byte	0x7
+ 1069 0085 BF010000 		.4byte	.LASF11
+ 1070 0089 04       		.uleb128 0x4
+ 1071 008a 04       		.byte	0x4
+ 1072 008b 05       		.byte	0x5
+ 1073 008c 696E7400 		.ascii	"int\000"
+ 1074 0090 02       		.uleb128 0x2
+ 1075 0091 04       		.byte	0x4
+ 1076 0092 07       		.byte	0x7
+ 1077 0093 52030000 		.4byte	.LASF12
+ 1078 0097 03       		.uleb128 0x3
+ 1079 0098 3F010000 		.4byte	.LASF13
+ 1080 009c 03       		.byte	0x3
+ 1081 009d 15       		.byte	0x15
+ 1082 009e 2C000000 		.4byte	0x2c
+ 1083 00a2 03       		.uleb128 0x3
+ 1084 00a3 63040000 		.4byte	.LASF14
+ 1085 00a7 03       		.byte	0x3
+ 1086 00a8 21       		.byte	0x21
+ 1087 00a9 45000000 		.4byte	0x45
+ 1088 00ad 03       		.uleb128 0x3
+ 1089 00ae FC020000 		.4byte	.LASF15
+ 1090 00b2 03       		.byte	0x3
+ 1091 00b3 2C       		.byte	0x2c
+ 1092 00b4 57000000 		.4byte	0x57
+ 1093 00b8 03       		.uleb128 0x3
+ 1094 00b9 17030000 		.4byte	.LASF16
+ 1095 00bd 03       		.byte	0x3
+ 1096 00be 2D       		.byte	0x2d
+ 1097 00bf 69000000 		.4byte	0x69
+ 1098 00c3 05       		.uleb128 0x5
+ 1099 00c4 89010000 		.4byte	.LASF17
+ 1100 00c8 04       		.byte	0x4
+ 1101 00c9 3801     		.2byte	0x138
+ 1102 00cb 37000000 		.4byte	0x37
+ 1103 00cf 05       		.uleb128 0x5
+ 1104 00d0 2F010000 		.4byte	.LASF18
+ 1105 00d4 04       		.byte	0x4
+ 1106 00d5 3901     		.2byte	0x139
+ 1107 00d7 50000000 		.4byte	0x50
+ 1108 00db 05       		.uleb128 0x5
+ 1109 00dc 88040000 		.4byte	.LASF19
+ 1110 00e0 04       		.byte	0x4
+ 1111 00e1 3A01     		.2byte	0x13a
+ 1112 00e3 74000000 		.4byte	0x74
+ 1113 00e7 02       		.uleb128 0x2
+ 1114 00e8 04       		.byte	0x4
+ 1115 00e9 04       		.byte	0x4
+ 1116 00ea 9C010000 		.4byte	.LASF20
+ 1117 00ee 02       		.uleb128 0x2
+ 1118 00ef 08       		.byte	0x8
+ 1119 00f0 04       		.byte	0x4
+ 1120 00f1 D8050000 		.4byte	.LASF21
+ 1121 00f5 02       		.uleb128 0x2
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 27
+
+
+ 1122 00f6 01       		.byte	0x1
+ 1123 00f7 08       		.byte	0x8
+ 1124 00f8 FC010000 		.4byte	.LASF22
+ 1125 00fc 05       		.uleb128 0x5
+ 1126 00fd DE020000 		.4byte	.LASF23
+ 1127 0101 04       		.byte	0x4
+ 1128 0102 F401     		.2byte	0x1f4
+ 1129 0104 08010000 		.4byte	0x108
+ 1130 0108 06       		.uleb128 0x6
+ 1131 0109 04       		.byte	0x4
+ 1132 010a 0E010000 		.4byte	0x10e
+ 1133 010e 07       		.uleb128 0x7
+ 1134 010f 02       		.uleb128 0x2
+ 1135 0110 04       		.byte	0x4
+ 1136 0111 07       		.byte	0x7
+ 1137 0112 A3050000 		.4byte	.LASF24
+ 1138 0116 06       		.uleb128 0x6
+ 1139 0117 04       		.byte	0x4
+ 1140 0118 F5000000 		.4byte	0xf5
+ 1141 011c 06       		.uleb128 0x6
+ 1142 011d 04       		.byte	0x4
+ 1143 011e 22010000 		.4byte	0x122
+ 1144 0122 08       		.uleb128 0x8
+ 1145 0123 F5000000 		.4byte	0xf5
+ 1146 0127 09       		.uleb128 0x9
+ 1147 0128 36010000 		.4byte	.LASF25
+ 1148 012c 08       		.byte	0x8
+ 1149 012d 01       		.byte	0x1
+ 1150 012e 1D       		.byte	0x1d
+ 1151 012f 60010000 		.4byte	0x160
+ 1152 0133 0A       		.uleb128 0xa
+ 1153 0134 6C6C00   		.ascii	"ll\000"
+ 1154 0137 01       		.byte	0x1
+ 1155 0138 1E       		.byte	0x1e
+ 1156 0139 A2000000 		.4byte	0xa2
+ 1157 013d 00       		.byte	0
+ 1158 013e 0A       		.uleb128 0xa
+ 1159 013f 6C7200   		.ascii	"lr\000"
+ 1160 0142 01       		.byte	0x1
+ 1161 0143 20       		.byte	0x20
+ 1162 0144 A2000000 		.4byte	0xa2
+ 1163 0148 02       		.byte	0x2
+ 1164 0149 0A       		.uleb128 0xa
+ 1165 014a 726C00   		.ascii	"rl\000"
+ 1166 014d 01       		.byte	0x1
+ 1167 014e 21       		.byte	0x21
+ 1168 014f A2000000 		.4byte	0xa2
+ 1169 0153 04       		.byte	0x4
+ 1170 0154 0A       		.uleb128 0xa
+ 1171 0155 727200   		.ascii	"rr\000"
+ 1172 0158 01       		.byte	0x1
+ 1173 0159 23       		.byte	0x23
+ 1174 015a A2000000 		.4byte	0xa2
+ 1175 015e 06       		.byte	0x6
+ 1176 015f 00       		.byte	0
+ 1177 0160 09       		.uleb128 0x9
+ 1178 0161 2A000000 		.4byte	.LASF26
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 28
+
+
+ 1179 0165 08       		.byte	0x8
+ 1180 0166 01       		.byte	0x1
+ 1181 0167 26       		.byte	0x26
+ 1182 0168 99010000 		.4byte	0x199
+ 1183 016c 0A       		.uleb128 0xa
+ 1184 016d 6C6C00   		.ascii	"ll\000"
+ 1185 0170 01       		.byte	0x1
+ 1186 0171 27       		.byte	0x27
+ 1187 0172 A2000000 		.4byte	0xa2
+ 1188 0176 00       		.byte	0
+ 1189 0177 0A       		.uleb128 0xa
+ 1190 0178 6C7200   		.ascii	"lr\000"
+ 1191 017b 01       		.byte	0x1
+ 1192 017c 29       		.byte	0x29
+ 1193 017d A2000000 		.4byte	0xa2
+ 1194 0181 02       		.byte	0x2
+ 1195 0182 0A       		.uleb128 0xa
+ 1196 0183 726C00   		.ascii	"rl\000"
+ 1197 0186 01       		.byte	0x1
+ 1198 0187 2A       		.byte	0x2a
+ 1199 0188 A2000000 		.4byte	0xa2
+ 1200 018c 04       		.byte	0x4
+ 1201 018d 0A       		.uleb128 0xa
+ 1202 018e 727200   		.ascii	"rr\000"
+ 1203 0191 01       		.byte	0x1
+ 1204 0192 2C       		.byte	0x2c
+ 1205 0193 A2000000 		.4byte	0xa2
+ 1206 0197 06       		.byte	0x6
+ 1207 0198 00       		.byte	0
+ 1208 0199 0B       		.uleb128 0xb
+ 1209 019a D0000000 		.4byte	.LASF31
+ 1210 019e 01       		.byte	0x1
+ 1211 019f 73       		.byte	0x73
+ 1212 01a0 00000000 		.4byte	.LFB67
+ 1213 01a4 F8000000 		.4byte	.LFE67-.LFB67
+ 1214 01a8 01       		.uleb128 0x1
+ 1215 01a9 9C       		.byte	0x9c
+ 1216 01aa 6E030000 		.4byte	0x36e
+ 1217 01ae 0C       		.uleb128 0xc
+ 1218 01af 1D010000 		.4byte	.LASF27
+ 1219 01b3 01       		.byte	0x1
+ 1220 01b4 75       		.byte	0x75
+ 1221 01b5 B8000000 		.4byte	0xb8
+ 1222 01b9 00000000 		.4byte	.LLST0
+ 1223 01bd 0C       		.uleb128 0xc
+ 1224 01be 10020000 		.4byte	.LASF28
+ 1225 01c2 01       		.byte	0x1
+ 1226 01c3 76       		.byte	0x76
+ 1227 01c4 B8000000 		.4byte	0xb8
+ 1228 01c8 28000000 		.4byte	.LLST1
+ 1229 01cc 0C       		.uleb128 0xc
+ 1230 01cd 8F040000 		.4byte	.LASF29
+ 1231 01d1 01       		.byte	0x1
+ 1232 01d2 77       		.byte	0x77
+ 1233 01d3 B8000000 		.4byte	0xb8
+ 1234 01d7 40000000 		.4byte	.LLST2
+ 1235 01db 0C       		.uleb128 0xc
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 29
+
+
+ 1236 01dc AB040000 		.4byte	.LASF30
+ 1237 01e0 01       		.byte	0x1
+ 1238 01e1 78       		.byte	0x78
+ 1239 01e2 B8000000 		.4byte	0xb8
+ 1240 01e6 58000000 		.4byte	.LLST3
+ 1241 01ea 0D       		.uleb128 0xd
+ 1242 01eb 06000000 		.4byte	.LVL0
+ 1243 01ef FA090000 		.4byte	0x9fa
+ 1244 01f3 0D       		.uleb128 0xd
+ 1245 01f4 0C000000 		.4byte	.LVL2
+ 1246 01f8 050A0000 		.4byte	0xa05
+ 1247 01fc 0D       		.uleb128 0xd
+ 1248 01fd 12000000 		.4byte	.LVL4
+ 1249 0201 100A0000 		.4byte	0xa10
+ 1250 0205 0D       		.uleb128 0xd
+ 1251 0206 18000000 		.4byte	.LVL6
+ 1252 020a 1B0A0000 		.4byte	0xa1b
+ 1253 020e 0D       		.uleb128 0xd
+ 1254 020f 24000000 		.4byte	.LVL8
+ 1255 0213 260A0000 		.4byte	0xa26
+ 1256 0217 0D       		.uleb128 0xd
+ 1257 0218 2A000000 		.4byte	.LVL10
+ 1258 021c 310A0000 		.4byte	0xa31
+ 1259 0220 0D       		.uleb128 0xd
+ 1260 0221 38000000 		.4byte	.LVL12
+ 1261 0225 260A0000 		.4byte	0xa26
+ 1262 0229 0D       		.uleb128 0xd
+ 1263 022a 46000000 		.4byte	.LVL14
+ 1264 022e 3C0A0000 		.4byte	0xa3c
+ 1265 0232 0D       		.uleb128 0xd
+ 1266 0233 4C000000 		.4byte	.LVL15
+ 1267 0237 470A0000 		.4byte	0xa47
+ 1268 023b 0D       		.uleb128 0xd
+ 1269 023c 5A000000 		.4byte	.LVL16
+ 1270 0240 3C0A0000 		.4byte	0xa3c
+ 1271 0244 0D       		.uleb128 0xd
+ 1272 0245 68000000 		.4byte	.LVL17
+ 1273 0249 520A0000 		.4byte	0xa52
+ 1274 024d 0D       		.uleb128 0xd
+ 1275 024e 6E000000 		.4byte	.LVL18
+ 1276 0252 5D0A0000 		.4byte	0xa5d
+ 1277 0256 0D       		.uleb128 0xd
+ 1278 0257 7C000000 		.4byte	.LVL19
+ 1279 025b 520A0000 		.4byte	0xa52
+ 1280 025f 0D       		.uleb128 0xd
+ 1281 0260 8A000000 		.4byte	.LVL20
+ 1282 0264 680A0000 		.4byte	0xa68
+ 1283 0268 0D       		.uleb128 0xd
+ 1284 0269 90000000 		.4byte	.LVL21
+ 1285 026d 730A0000 		.4byte	0xa73
+ 1286 0271 0D       		.uleb128 0xd
+ 1287 0272 9E000000 		.4byte	.LVL22
+ 1288 0276 680A0000 		.4byte	0xa68
+ 1289 027a 0E       		.uleb128 0xe
+ 1290 027b A8000000 		.4byte	.LVL23
+ 1291 027f 7E0A0000 		.4byte	0xa7e
+ 1292 0283 8D020000 		.4byte	0x28d
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 30
+
+
+ 1293 0287 0F       		.uleb128 0xf
+ 1294 0288 01       		.uleb128 0x1
+ 1295 0289 50       		.byte	0x50
+ 1296 028a 01       		.uleb128 0x1
+ 1297 028b 3C       		.byte	0x3c
+ 1298 028c 00       		.byte	0
+ 1299 028d 0E       		.uleb128 0xe
+ 1300 028e AE000000 		.4byte	.LVL24
+ 1301 0292 8F0A0000 		.4byte	0xa8f
+ 1302 0296 A0020000 		.4byte	0x2a0
+ 1303 029a 0F       		.uleb128 0xf
+ 1304 029b 01       		.uleb128 0x1
+ 1305 029c 50       		.byte	0x50
+ 1306 029d 01       		.uleb128 0x1
+ 1307 029e 31       		.byte	0x31
+ 1308 029f 00       		.byte	0
+ 1309 02a0 0E       		.uleb128 0xe
+ 1310 02a1 B4000000 		.4byte	.LVL25
+ 1311 02a5 A00A0000 		.4byte	0xaa0
+ 1312 02a9 B3020000 		.4byte	0x2b3
+ 1313 02ad 0F       		.uleb128 0xf
+ 1314 02ae 01       		.uleb128 0x1
+ 1315 02af 50       		.byte	0x50
+ 1316 02b0 01       		.uleb128 0x1
+ 1317 02b1 3C       		.byte	0x3c
+ 1318 02b2 00       		.byte	0
+ 1319 02b3 0E       		.uleb128 0xe
+ 1320 02b4 BA000000 		.4byte	.LVL26
+ 1321 02b8 B10A0000 		.4byte	0xab1
+ 1322 02bc C6020000 		.4byte	0x2c6
+ 1323 02c0 0F       		.uleb128 0xf
+ 1324 02c1 01       		.uleb128 0x1
+ 1325 02c2 50       		.byte	0x50
+ 1326 02c3 01       		.uleb128 0x1
+ 1327 02c4 31       		.byte	0x31
+ 1328 02c5 00       		.byte	0
+ 1329 02c6 0E       		.uleb128 0xe
+ 1330 02c7 C0000000 		.4byte	.LVL27
+ 1331 02cb C20A0000 		.4byte	0xac2
+ 1332 02cf D9020000 		.4byte	0x2d9
+ 1333 02d3 0F       		.uleb128 0xf
+ 1334 02d4 01       		.uleb128 0x1
+ 1335 02d5 50       		.byte	0x50
+ 1336 02d6 01       		.uleb128 0x1
+ 1337 02d7 3C       		.byte	0x3c
+ 1338 02d8 00       		.byte	0
+ 1339 02d9 0E       		.uleb128 0xe
+ 1340 02da C6000000 		.4byte	.LVL28
+ 1341 02de D30A0000 		.4byte	0xad3
+ 1342 02e2 EC020000 		.4byte	0x2ec
+ 1343 02e6 0F       		.uleb128 0xf
+ 1344 02e7 01       		.uleb128 0x1
+ 1345 02e8 50       		.byte	0x50
+ 1346 02e9 01       		.uleb128 0x1
+ 1347 02ea 31       		.byte	0x31
+ 1348 02eb 00       		.byte	0
+ 1349 02ec 0E       		.uleb128 0xe
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 31
+
+
+ 1350 02ed CC000000 		.4byte	.LVL29
+ 1351 02f1 E40A0000 		.4byte	0xae4
+ 1352 02f5 FF020000 		.4byte	0x2ff
+ 1353 02f9 0F       		.uleb128 0xf
+ 1354 02fa 01       		.uleb128 0x1
+ 1355 02fb 50       		.byte	0x50
+ 1356 02fc 01       		.uleb128 0x1
+ 1357 02fd 3C       		.byte	0x3c
+ 1358 02fe 00       		.byte	0
+ 1359 02ff 0E       		.uleb128 0xe
+ 1360 0300 D2000000 		.4byte	.LVL30
+ 1361 0304 F50A0000 		.4byte	0xaf5
+ 1362 0308 12030000 		.4byte	0x312
+ 1363 030c 0F       		.uleb128 0xf
+ 1364 030d 01       		.uleb128 0x1
+ 1365 030e 50       		.byte	0x50
+ 1366 030f 01       		.uleb128 0x1
+ 1367 0310 31       		.byte	0x31
+ 1368 0311 00       		.byte	0
+ 1369 0312 0E       		.uleb128 0xe
+ 1370 0313 D8000000 		.4byte	.LVL31
+ 1371 0317 060B0000 		.4byte	0xb06
+ 1372 031b 25030000 		.4byte	0x325
+ 1373 031f 0F       		.uleb128 0xf
+ 1374 0320 01       		.uleb128 0x1
+ 1375 0321 50       		.byte	0x50
+ 1376 0322 01       		.uleb128 0x1
+ 1377 0323 3A       		.byte	0x3a
+ 1378 0324 00       		.byte	0
+ 1379 0325 0E       		.uleb128 0xe
+ 1380 0326 DE000000 		.4byte	.LVL32
+ 1381 032a 7E0A0000 		.4byte	0xa7e
+ 1382 032e 38030000 		.4byte	0x338
+ 1383 0332 0F       		.uleb128 0xf
+ 1384 0333 01       		.uleb128 0x1
+ 1385 0334 50       		.byte	0x50
+ 1386 0335 01       		.uleb128 0x1
+ 1387 0336 32       		.byte	0x32
+ 1388 0337 00       		.byte	0
+ 1389 0338 0E       		.uleb128 0xe
+ 1390 0339 E4000000 		.4byte	.LVL33
+ 1391 033d A00A0000 		.4byte	0xaa0
+ 1392 0341 4B030000 		.4byte	0x34b
+ 1393 0345 0F       		.uleb128 0xf
+ 1394 0346 01       		.uleb128 0x1
+ 1395 0347 50       		.byte	0x50
+ 1396 0348 01       		.uleb128 0x1
+ 1397 0349 32       		.byte	0x32
+ 1398 034a 00       		.byte	0
+ 1399 034b 0E       		.uleb128 0xe
+ 1400 034c EA000000 		.4byte	.LVL34
+ 1401 0350 C20A0000 		.4byte	0xac2
+ 1402 0354 5E030000 		.4byte	0x35e
+ 1403 0358 0F       		.uleb128 0xf
+ 1404 0359 01       		.uleb128 0x1
+ 1405 035a 50       		.byte	0x50
+ 1406 035b 01       		.uleb128 0x1
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 32
+
+
+ 1407 035c 32       		.byte	0x32
+ 1408 035d 00       		.byte	0
+ 1409 035e 10       		.uleb128 0x10
+ 1410 035f F0000000 		.4byte	.LVL35
+ 1411 0363 E40A0000 		.4byte	0xae4
+ 1412 0367 0F       		.uleb128 0xf
+ 1413 0368 01       		.uleb128 0x1
+ 1414 0369 50       		.byte	0x50
+ 1415 036a 01       		.uleb128 0x1
+ 1416 036b 32       		.byte	0x32
+ 1417 036c 00       		.byte	0
+ 1418 036d 00       		.byte	0
+ 1419 036e 0B       		.uleb128 0xb
+ 1420 036f CE030000 		.4byte	.LASF32
+ 1421 0373 01       		.byte	0x1
+ 1422 0374 30       		.byte	0x30
+ 1423 0375 00000000 		.4byte	.LFB63
+ 1424 0379 18000000 		.4byte	.LFE63-.LFB63
+ 1425 037d 01       		.uleb128 0x1
+ 1426 037e 9C       		.byte	0x9c
+ 1427 037f DA030000 		.4byte	0x3da
+ 1428 0383 11       		.uleb128 0x11
+ 1429 0384 8D030000 		.4byte	.LASF33
+ 1430 0388 01       		.byte	0x1
+ 1431 0389 30       		.byte	0x30
+ 1432 038a C3000000 		.4byte	0xc3
+ 1433 038e 70000000 		.4byte	.LLST4
+ 1434 0392 11       		.uleb128 0x11
+ 1435 0393 CA000000 		.4byte	.LASF34
+ 1436 0397 01       		.byte	0x1
+ 1437 0398 30       		.byte	0x30
+ 1438 0399 DB000000 		.4byte	0xdb
+ 1439 039d 91000000 		.4byte	.LLST5
+ 1440 03a1 0E       		.uleb128 0xe
+ 1441 03a2 0A000000 		.4byte	.LVL38
+ 1442 03a6 170B0000 		.4byte	0xb17
+ 1443 03aa B5030000 		.4byte	0x3b5
+ 1444 03ae 0F       		.uleb128 0xf
+ 1445 03af 01       		.uleb128 0x1
+ 1446 03b0 50       		.byte	0x50
+ 1447 03b1 02       		.uleb128 0x2
+ 1448 03b2 75       		.byte	0x75
+ 1449 03b3 00       		.sleb128 0
+ 1450 03b4 00       		.byte	0
+ 1451 03b5 0E       		.uleb128 0xe
+ 1452 03b6 10000000 		.4byte	.LVL39
+ 1453 03ba 280B0000 		.4byte	0xb28
+ 1454 03be C9030000 		.4byte	0x3c9
+ 1455 03c2 0F       		.uleb128 0xf
+ 1456 03c3 01       		.uleb128 0x1
+ 1457 03c4 50       		.byte	0x50
+ 1458 03c5 02       		.uleb128 0x2
+ 1459 03c6 75       		.byte	0x75
+ 1460 03c7 00       		.sleb128 0
+ 1461 03c8 00       		.byte	0
+ 1462 03c9 10       		.uleb128 0x10
+ 1463 03ca 16000000 		.4byte	.LVL40
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 33
+
+
+ 1464 03ce 390B0000 		.4byte	0xb39
+ 1465 03d2 0F       		.uleb128 0xf
+ 1466 03d3 01       		.uleb128 0x1
+ 1467 03d4 50       		.byte	0x50
+ 1468 03d5 02       		.uleb128 0x2
+ 1469 03d6 74       		.byte	0x74
+ 1470 03d7 00       		.sleb128 0
+ 1471 03d8 00       		.byte	0
+ 1472 03d9 00       		.byte	0
+ 1473 03da 0B       		.uleb128 0xb
+ 1474 03db 00000000 		.4byte	.LASF35
+ 1475 03df 01       		.byte	0x1
+ 1476 03e0 38       		.byte	0x38
+ 1477 03e1 00000000 		.4byte	.LFB64
+ 1478 03e5 18000000 		.4byte	.LFE64-.LFB64
+ 1479 03e9 01       		.uleb128 0x1
+ 1480 03ea 9C       		.byte	0x9c
+ 1481 03eb 4A040000 		.4byte	0x44a
+ 1482 03ef 11       		.uleb128 0x11
+ 1483 03f0 43060000 		.4byte	.LASF36
+ 1484 03f4 01       		.byte	0x1
+ 1485 03f5 38       		.byte	0x38
+ 1486 03f6 C3000000 		.4byte	0xc3
+ 1487 03fa AF000000 		.4byte	.LLST6
+ 1488 03fe 11       		.uleb128 0x11
+ 1489 03ff BB000000 		.4byte	.LASF37
+ 1490 0403 01       		.byte	0x1
+ 1491 0404 38       		.byte	0x38
+ 1492 0405 C3000000 		.4byte	0xc3
+ 1493 0409 D0000000 		.4byte	.LLST7
+ 1494 040d 11       		.uleb128 0x11
+ 1495 040e CA000000 		.4byte	.LASF34
+ 1496 0412 01       		.byte	0x1
+ 1497 0413 38       		.byte	0x38
+ 1498 0414 DB000000 		.4byte	0xdb
+ 1499 0418 F1000000 		.4byte	.LLST8
+ 1500 041c 0D       		.uleb128 0xd
+ 1501 041d 0A000000 		.4byte	.LVL42
+ 1502 0421 170B0000 		.4byte	0xb17
+ 1503 0425 0E       		.uleb128 0xe
+ 1504 0426 10000000 		.4byte	.LVL43
+ 1505 042a 280B0000 		.4byte	0xb28
+ 1506 042e 39040000 		.4byte	0x439
+ 1507 0432 0F       		.uleb128 0xf
+ 1508 0433 01       		.uleb128 0x1
+ 1509 0434 50       		.byte	0x50
+ 1510 0435 02       		.uleb128 0x2
+ 1511 0436 75       		.byte	0x75
+ 1512 0437 00       		.sleb128 0
+ 1513 0438 00       		.byte	0
+ 1514 0439 10       		.uleb128 0x10
+ 1515 043a 16000000 		.4byte	.LVL44
+ 1516 043e 390B0000 		.4byte	0xb39
+ 1517 0442 0F       		.uleb128 0xf
+ 1518 0443 01       		.uleb128 0x1
+ 1519 0444 50       		.byte	0x50
+ 1520 0445 02       		.uleb128 0x2
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 34
+
+
+ 1521 0446 74       		.byte	0x74
+ 1522 0447 00       		.sleb128 0
+ 1523 0448 00       		.byte	0
+ 1524 0449 00       		.byte	0
+ 1525 044a 0B       		.uleb128 0xb
+ 1526 044b 01020000 		.4byte	.LASF38
+ 1527 044f 01       		.byte	0x1
+ 1528 0450 40       		.byte	0x40
+ 1529 0451 00000000 		.4byte	.LFB65
+ 1530 0455 26000000 		.4byte	.LFE65-.LFB65
+ 1531 0459 01       		.uleb128 0x1
+ 1532 045a 9C       		.byte	0x9c
+ 1533 045b DC040000 		.4byte	0x4dc
+ 1534 045f 11       		.uleb128 0x11
+ 1535 0460 8D030000 		.4byte	.LASF33
+ 1536 0464 01       		.byte	0x1
+ 1537 0465 40       		.byte	0x40
+ 1538 0466 C3000000 		.4byte	0xc3
+ 1539 046a 0F010000 		.4byte	.LLST9
+ 1540 046e 11       		.uleb128 0x11
+ 1541 046f CA000000 		.4byte	.LASF34
+ 1542 0473 01       		.byte	0x1
+ 1543 0474 40       		.byte	0x40
+ 1544 0475 DB000000 		.4byte	0xdb
+ 1545 0479 30010000 		.4byte	.LLST10
+ 1546 047d 0E       		.uleb128 0xe
+ 1547 047e 0C000000 		.4byte	.LVL47
+ 1548 0482 4A0B0000 		.4byte	0xb4a
+ 1549 0486 90040000 		.4byte	0x490
+ 1550 048a 0F       		.uleb128 0xf
+ 1551 048b 01       		.uleb128 0x1
+ 1552 048c 50       		.byte	0x50
+ 1553 048d 01       		.uleb128 0x1
+ 1554 048e 31       		.byte	0x31
+ 1555 048f 00       		.byte	0
+ 1556 0490 0E       		.uleb128 0xe
+ 1557 0491 12000000 		.4byte	.LVL48
+ 1558 0495 5B0B0000 		.4byte	0xb5b
+ 1559 0499 A3040000 		.4byte	0x4a3
+ 1560 049d 0F       		.uleb128 0xf
+ 1561 049e 01       		.uleb128 0x1
+ 1562 049f 50       		.byte	0x50
+ 1563 04a0 01       		.uleb128 0x1
+ 1564 04a1 31       		.byte	0x31
+ 1565 04a2 00       		.byte	0
+ 1566 04a3 0E       		.uleb128 0xe
+ 1567 04a4 18000000 		.4byte	.LVL49
+ 1568 04a8 170B0000 		.4byte	0xb17
+ 1569 04ac B7040000 		.4byte	0x4b7
+ 1570 04b0 0F       		.uleb128 0xf
+ 1571 04b1 01       		.uleb128 0x1
+ 1572 04b2 50       		.byte	0x50
+ 1573 04b3 02       		.uleb128 0x2
+ 1574 04b4 74       		.byte	0x74
+ 1575 04b5 00       		.sleb128 0
+ 1576 04b6 00       		.byte	0
+ 1577 04b7 0E       		.uleb128 0xe
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 35
+
+
+ 1578 04b8 1E000000 		.4byte	.LVL50
+ 1579 04bc 280B0000 		.4byte	0xb28
+ 1580 04c0 CB040000 		.4byte	0x4cb
+ 1581 04c4 0F       		.uleb128 0xf
+ 1582 04c5 01       		.uleb128 0x1
+ 1583 04c6 50       		.byte	0x50
+ 1584 04c7 02       		.uleb128 0x2
+ 1585 04c8 74       		.byte	0x74
+ 1586 04c9 00       		.sleb128 0
+ 1587 04ca 00       		.byte	0
+ 1588 04cb 10       		.uleb128 0x10
+ 1589 04cc 24000000 		.4byte	.LVL51
+ 1590 04d0 390B0000 		.4byte	0xb39
+ 1591 04d4 0F       		.uleb128 0xf
+ 1592 04d5 01       		.uleb128 0x1
+ 1593 04d6 50       		.byte	0x50
+ 1594 04d7 02       		.uleb128 0x2
+ 1595 04d8 75       		.byte	0x75
+ 1596 04d9 00       		.sleb128 0
+ 1597 04da 00       		.byte	0
+ 1598 04db 00       		.byte	0
+ 1599 04dc 12       		.uleb128 0x12
+ 1600 04dd A0000000 		.4byte	.LASF39
+ 1601 04e1 01       		.byte	0x1
+ 1602 04e2 A6       		.byte	0xa6
+ 1603 04e3 00000000 		.4byte	.LFB68
+ 1604 04e7 2C000000 		.4byte	.LFE68-.LFB68
+ 1605 04eb 01       		.uleb128 0x1
+ 1606 04ec 9C       		.byte	0x9c
+ 1607 04ed 05050000 		.4byte	0x505
+ 1608 04f1 10       		.uleb128 0x10
+ 1609 04f2 1E000000 		.4byte	.LVL52
+ 1610 04f6 6C0B0000 		.4byte	0xb6c
+ 1611 04fa 0F       		.uleb128 0xf
+ 1612 04fb 01       		.uleb128 0x1
+ 1613 04fc 50       		.byte	0x50
+ 1614 04fd 05       		.uleb128 0x5
+ 1615 04fe 03       		.byte	0x3
+ 1616 04ff 00000000 		.4byte	.LC1
+ 1617 0503 00       		.byte	0
+ 1618 0504 00       		.byte	0
+ 1619 0505 12       		.uleb128 0x12
+ 1620 0506 E8010000 		.4byte	.LASF40
+ 1621 050a 01       		.byte	0x1
+ 1622 050b AB       		.byte	0xab
+ 1623 050c 00000000 		.4byte	.LFB69
+ 1624 0510 A0000000 		.4byte	.LFE69-.LFB69
+ 1625 0514 01       		.uleb128 0x1
+ 1626 0515 9C       		.byte	0x9c
+ 1627 0516 2E050000 		.4byte	0x52e
+ 1628 051a 10       		.uleb128 0x10
+ 1629 051b 8E000000 		.4byte	.LVL53
+ 1630 051f 6C0B0000 		.4byte	0xb6c
+ 1631 0523 0F       		.uleb128 0xf
+ 1632 0524 01       		.uleb128 0x1
+ 1633 0525 50       		.byte	0x50
+ 1634 0526 05       		.uleb128 0x5
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 36
+
+
+ 1635 0527 03       		.byte	0x3
+ 1636 0528 00000000 		.4byte	.LC1
+ 1637 052c 00       		.byte	0
+ 1638 052d 00       		.byte	0
+ 1639 052e 0B       		.uleb128 0xb
+ 1640 052f B4040000 		.4byte	.LASF41
+ 1641 0533 01       		.byte	0x1
+ 1642 0534 C3       		.byte	0xc3
+ 1643 0535 00000000 		.4byte	.LFB70
+ 1644 0539 74000000 		.4byte	.LFE70-.LFB70
+ 1645 053d 01       		.uleb128 0x1
+ 1646 053e 9C       		.byte	0x9c
+ 1647 053f 04060000 		.4byte	0x604
+ 1648 0543 0C       		.uleb128 0xc
+ 1649 0544 90050000 		.4byte	.LASF42
+ 1650 0548 01       		.byte	0x1
+ 1651 0549 C5       		.byte	0xc5
+ 1652 054a 97000000 		.4byte	0x97
+ 1653 054e 4E010000 		.4byte	.LLST11
+ 1654 0552 13       		.uleb128 0x13
+ 1655 0553 1D060000 		.4byte	.LASF43
+ 1656 0557 01       		.byte	0x1
+ 1657 0558 C6       		.byte	0xc6
+ 1658 0559 04060000 		.4byte	0x604
+ 1659 055d 02       		.uleb128 0x2
+ 1660 055e 91       		.byte	0x91
+ 1661 055f 68       		.sleb128 -24
+ 1662 0560 0D       		.uleb128 0xd
+ 1663 0561 10000000 		.4byte	.LVL54
+ 1664 0565 820B0000 		.4byte	0xb82
+ 1665 0569 0E       		.uleb128 0xe
+ 1666 056a 1C000000 		.4byte	.LVL55
+ 1667 056e 8D0B0000 		.4byte	0xb8d
+ 1668 0572 8E050000 		.4byte	0x58e
+ 1669 0576 0F       		.uleb128 0xf
+ 1670 0577 01       		.uleb128 0x1
+ 1671 0578 53       		.byte	0x53
+ 1672 0579 02       		.uleb128 0x2
+ 1673 057a 75       		.byte	0x75
+ 1674 057b 00       		.sleb128 0
+ 1675 057c 0F       		.uleb128 0xf
+ 1676 057d 01       		.uleb128 0x1
+ 1677 057e 52       		.byte	0x52
+ 1678 057f 01       		.uleb128 0x1
+ 1679 0580 31       		.byte	0x31
+ 1680 0581 0F       		.uleb128 0xf
+ 1681 0582 01       		.uleb128 0x1
+ 1682 0583 51       		.byte	0x51
+ 1683 0584 02       		.uleb128 0x2
+ 1684 0585 74       		.byte	0x74
+ 1685 0586 00       		.sleb128 0
+ 1686 0587 0F       		.uleb128 0xf
+ 1687 0588 01       		.uleb128 0x1
+ 1688 0589 50       		.byte	0x50
+ 1689 058a 02       		.uleb128 0x2
+ 1690 058b 08       		.byte	0x8
+ 1691 058c 3A       		.byte	0x3a
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 37
+
+
+ 1692 058d 00       		.byte	0
+ 1693 058e 0D       		.uleb128 0xd
+ 1694 058f 20000000 		.4byte	.LVL56
+ 1695 0593 B70B0000 		.4byte	0xbb7
+ 1696 0597 0E       		.uleb128 0xe
+ 1697 0598 2C000000 		.4byte	.LVL58
+ 1698 059c 390B0000 		.4byte	0xb39
+ 1699 05a0 AB050000 		.4byte	0x5ab
+ 1700 05a4 0F       		.uleb128 0xf
+ 1701 05a5 01       		.uleb128 0x1
+ 1702 05a6 50       		.byte	0x50
+ 1703 05a7 02       		.uleb128 0x2
+ 1704 05a8 08       		.byte	0x8
+ 1705 05a9 32       		.byte	0x32
+ 1706 05aa 00       		.byte	0
+ 1707 05ab 0D       		.uleb128 0xd
+ 1708 05ac 30000000 		.4byte	.LVL59
+ 1709 05b0 820B0000 		.4byte	0xb82
+ 1710 05b4 0E       		.uleb128 0xe
+ 1711 05b5 3C000000 		.4byte	.LVL60
+ 1712 05b9 C20B0000 		.4byte	0xbc2
+ 1713 05bd D9050000 		.4byte	0x5d9
+ 1714 05c1 0F       		.uleb128 0xf
+ 1715 05c2 01       		.uleb128 0x1
+ 1716 05c3 53       		.byte	0x53
+ 1717 05c4 02       		.uleb128 0x2
+ 1718 05c5 75       		.byte	0x75
+ 1719 05c6 00       		.sleb128 0
+ 1720 05c7 0F       		.uleb128 0xf
+ 1721 05c8 01       		.uleb128 0x1
+ 1722 05c9 52       		.byte	0x52
+ 1723 05ca 01       		.uleb128 0x1
+ 1724 05cb 36       		.byte	0x36
+ 1725 05cc 0F       		.uleb128 0xf
+ 1726 05cd 01       		.uleb128 0x1
+ 1727 05ce 51       		.byte	0x51
+ 1728 05cf 02       		.uleb128 0x2
+ 1729 05d0 91       		.byte	0x91
+ 1730 05d1 68       		.sleb128 -24
+ 1731 05d2 0F       		.uleb128 0xf
+ 1732 05d3 01       		.uleb128 0x1
+ 1733 05d4 50       		.byte	0x50
+ 1734 05d5 02       		.uleb128 0x2
+ 1735 05d6 08       		.byte	0x8
+ 1736 05d7 3B       		.byte	0x3b
+ 1737 05d8 00       		.byte	0
+ 1738 05d9 0D       		.uleb128 0xd
+ 1739 05da 40000000 		.4byte	.LVL61
+ 1740 05de B70B0000 		.4byte	0xbb7
+ 1741 05e2 10       		.uleb128 0x10
+ 1742 05e3 6A000000 		.4byte	.LVL63
+ 1743 05e7 6C0B0000 		.4byte	0xb6c
+ 1744 05eb 0F       		.uleb128 0xf
+ 1745 05ec 01       		.uleb128 0x1
+ 1746 05ed 50       		.byte	0x50
+ 1747 05ee 05       		.uleb128 0x5
+ 1748 05ef 03       		.byte	0x3
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 38
+
+
+ 1749 05f0 10000000 		.4byte	.LC2
+ 1750 05f4 0F       		.uleb128 0xf
+ 1751 05f5 02       		.uleb128 0x2
+ 1752 05f6 7D       		.byte	0x7d
+ 1753 05f7 04       		.sleb128 4
+ 1754 05f8 02       		.uleb128 0x2
+ 1755 05f9 74       		.byte	0x74
+ 1756 05fa 00       		.sleb128 0
+ 1757 05fb 0F       		.uleb128 0xf
+ 1758 05fc 02       		.uleb128 0x2
+ 1759 05fd 7D       		.byte	0x7d
+ 1760 05fe 00       		.sleb128 0
+ 1761 05ff 02       		.uleb128 0x2
+ 1762 0600 75       		.byte	0x75
+ 1763 0601 00       		.sleb128 0
+ 1764 0602 00       		.byte	0
+ 1765 0603 00       		.byte	0
+ 1766 0604 14       		.uleb128 0x14
+ 1767 0605 97000000 		.4byte	0x97
+ 1768 0609 14060000 		.4byte	0x614
+ 1769 060d 15       		.uleb128 0x15
+ 1770 060e 0F010000 		.4byte	0x10f
+ 1771 0612 05       		.byte	0x5
+ 1772 0613 00       		.byte	0
+ 1773 0614 0B       		.uleb128 0xb
+ 1774 0615 12010000 		.4byte	.LASF44
+ 1775 0619 01       		.byte	0x1
+ 1776 061a D7       		.byte	0xd7
+ 1777 061b 00000000 		.4byte	.LFB71
+ 1778 061f 2C000000 		.4byte	.LFE71-.LFB71
+ 1779 0623 01       		.uleb128 0x1
+ 1780 0624 9C       		.byte	0x9c
+ 1781 0625 6C060000 		.4byte	0x66c
+ 1782 0629 16       		.uleb128 0x16
+ 1783 062a 50020000 		.4byte	.LASF47
+ 1784 062e 01       		.byte	0x1
+ 1785 062f D9       		.byte	0xd9
+ 1786 0630 97000000 		.4byte	0x97
+ 1787 0634 13       		.uleb128 0x13
+ 1788 0635 7C000000 		.4byte	.LASF45
+ 1789 0639 01       		.byte	0x1
+ 1790 063a DA       		.byte	0xda
+ 1791 063b 04060000 		.4byte	0x604
+ 1792 063f 02       		.uleb128 0x2
+ 1793 0640 91       		.byte	0x91
+ 1794 0641 70       		.sleb128 -16
+ 1795 0642 0D       		.uleb128 0xd
+ 1796 0643 14000000 		.4byte	.LVL64
+ 1797 0647 820B0000 		.4byte	0xb82
+ 1798 064b 10       		.uleb128 0x10
+ 1799 064c 20000000 		.4byte	.LVL65
+ 1800 0650 8D0B0000 		.4byte	0xb8d
+ 1801 0654 0F       		.uleb128 0xf
+ 1802 0655 01       		.uleb128 0x1
+ 1803 0656 53       		.byte	0x53
+ 1804 0657 01       		.uleb128 0x1
+ 1805 0658 30       		.byte	0x30
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 39
+
+
+ 1806 0659 0F       		.uleb128 0xf
+ 1807 065a 01       		.uleb128 0x1
+ 1808 065b 52       		.byte	0x52
+ 1809 065c 01       		.uleb128 0x1
+ 1810 065d 31       		.byte	0x31
+ 1811 065e 0F       		.uleb128 0xf
+ 1812 065f 01       		.uleb128 0x1
+ 1813 0660 51       		.byte	0x51
+ 1814 0661 02       		.uleb128 0x2
+ 1815 0662 7D       		.byte	0x7d
+ 1816 0663 00       		.sleb128 0
+ 1817 0664 0F       		.uleb128 0xf
+ 1818 0665 01       		.uleb128 0x1
+ 1819 0666 50       		.byte	0x50
+ 1820 0667 02       		.uleb128 0x2
+ 1821 0668 09       		.byte	0x9
+ 1822 0669 D4       		.byte	0xd4
+ 1823 066a 00       		.byte	0
+ 1824 066b 00       		.byte	0
+ 1825 066c 0B       		.uleb128 0xb
+ 1826 066d FE050000 		.4byte	.LASF46
+ 1827 0671 01       		.byte	0x1
+ 1828 0672 E4       		.byte	0xe4
+ 1829 0673 00000000 		.4byte	.LFB72
+ 1830 0677 74000000 		.4byte	.LFE72-.LFB72
+ 1831 067b 01       		.uleb128 0x1
+ 1832 067c 9C       		.byte	0x9c
+ 1833 067d 42070000 		.4byte	0x742
+ 1834 0681 0C       		.uleb128 0xc
+ 1835 0682 50020000 		.4byte	.LASF47
+ 1836 0686 01       		.byte	0x1
+ 1837 0687 E6       		.byte	0xe6
+ 1838 0688 97000000 		.4byte	0x97
+ 1839 068c 6C010000 		.4byte	.LLST12
+ 1840 0690 13       		.uleb128 0x13
+ 1841 0691 7C000000 		.4byte	.LASF45
+ 1842 0695 01       		.byte	0x1
+ 1843 0696 E7       		.byte	0xe7
+ 1844 0697 04060000 		.4byte	0x604
+ 1845 069b 02       		.uleb128 0x2
+ 1846 069c 91       		.byte	0x91
+ 1847 069d 68       		.sleb128 -24
+ 1848 069e 0D       		.uleb128 0xd
+ 1849 069f 10000000 		.4byte	.LVL66
+ 1850 06a3 820B0000 		.4byte	0xb82
+ 1851 06a7 0E       		.uleb128 0xe
+ 1852 06a8 1C000000 		.4byte	.LVL67
+ 1853 06ac 8D0B0000 		.4byte	0xb8d
+ 1854 06b0 CC060000 		.4byte	0x6cc
+ 1855 06b4 0F       		.uleb128 0xf
+ 1856 06b5 01       		.uleb128 0x1
+ 1857 06b6 53       		.byte	0x53
+ 1858 06b7 02       		.uleb128 0x2
+ 1859 06b8 75       		.byte	0x75
+ 1860 06b9 00       		.sleb128 0
+ 1861 06ba 0F       		.uleb128 0xf
+ 1862 06bb 01       		.uleb128 0x1
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 40
+
+
+ 1863 06bc 52       		.byte	0x52
+ 1864 06bd 01       		.uleb128 0x1
+ 1865 06be 31       		.byte	0x31
+ 1866 06bf 0F       		.uleb128 0xf
+ 1867 06c0 01       		.uleb128 0x1
+ 1868 06c1 51       		.byte	0x51
+ 1869 06c2 02       		.uleb128 0x2
+ 1870 06c3 74       		.byte	0x74
+ 1871 06c4 00       		.sleb128 0
+ 1872 06c5 0F       		.uleb128 0xf
+ 1873 06c6 01       		.uleb128 0x1
+ 1874 06c7 50       		.byte	0x50
+ 1875 06c8 02       		.uleb128 0x2
+ 1876 06c9 09       		.byte	0x9
+ 1877 06ca D4       		.byte	0xd4
+ 1878 06cb 00       		.byte	0
+ 1879 06cc 0D       		.uleb128 0xd
+ 1880 06cd 20000000 		.4byte	.LVL68
+ 1881 06d1 B70B0000 		.4byte	0xbb7
+ 1882 06d5 0E       		.uleb128 0xe
+ 1883 06d6 2C000000 		.4byte	.LVL70
+ 1884 06da 390B0000 		.4byte	0xb39
+ 1885 06de E9060000 		.4byte	0x6e9
+ 1886 06e2 0F       		.uleb128 0xf
+ 1887 06e3 01       		.uleb128 0x1
+ 1888 06e4 50       		.byte	0x50
+ 1889 06e5 02       		.uleb128 0x2
+ 1890 06e6 08       		.byte	0x8
+ 1891 06e7 32       		.byte	0x32
+ 1892 06e8 00       		.byte	0
+ 1893 06e9 0D       		.uleb128 0xd
+ 1894 06ea 30000000 		.4byte	.LVL71
+ 1895 06ee 820B0000 		.4byte	0xb82
+ 1896 06f2 0E       		.uleb128 0xe
+ 1897 06f3 3C000000 		.4byte	.LVL72
+ 1898 06f7 C20B0000 		.4byte	0xbc2
+ 1899 06fb 17070000 		.4byte	0x717
+ 1900 06ff 0F       		.uleb128 0xf
+ 1901 0700 01       		.uleb128 0x1
+ 1902 0701 53       		.byte	0x53
+ 1903 0702 02       		.uleb128 0x2
+ 1904 0703 75       		.byte	0x75
+ 1905 0704 00       		.sleb128 0
+ 1906 0705 0F       		.uleb128 0xf
+ 1907 0706 01       		.uleb128 0x1
+ 1908 0707 52       		.byte	0x52
+ 1909 0708 01       		.uleb128 0x1
+ 1910 0709 36       		.byte	0x36
+ 1911 070a 0F       		.uleb128 0xf
+ 1912 070b 01       		.uleb128 0x1
+ 1913 070c 51       		.byte	0x51
+ 1914 070d 02       		.uleb128 0x2
+ 1915 070e 91       		.byte	0x91
+ 1916 070f 68       		.sleb128 -24
+ 1917 0710 0F       		.uleb128 0xf
+ 1918 0711 01       		.uleb128 0x1
+ 1919 0712 50       		.byte	0x50
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 41
+
+
+ 1920 0713 02       		.uleb128 0x2
+ 1921 0714 09       		.byte	0x9
+ 1922 0715 D5       		.byte	0xd5
+ 1923 0716 00       		.byte	0
+ 1924 0717 0D       		.uleb128 0xd
+ 1925 0718 40000000 		.4byte	.LVL73
+ 1926 071c B70B0000 		.4byte	0xbb7
+ 1927 0720 10       		.uleb128 0x10
+ 1928 0721 6A000000 		.4byte	.LVL75
+ 1929 0725 6C0B0000 		.4byte	0xb6c
+ 1930 0729 0F       		.uleb128 0xf
+ 1931 072a 01       		.uleb128 0x1
+ 1932 072b 50       		.byte	0x50
+ 1933 072c 05       		.uleb128 0x5
+ 1934 072d 03       		.byte	0x3
+ 1935 072e 10000000 		.4byte	.LC2
+ 1936 0732 0F       		.uleb128 0xf
+ 1937 0733 02       		.uleb128 0x2
+ 1938 0734 7D       		.byte	0x7d
+ 1939 0735 04       		.sleb128 4
+ 1940 0736 02       		.uleb128 0x2
+ 1941 0737 74       		.byte	0x74
+ 1942 0738 00       		.sleb128 0
+ 1943 0739 0F       		.uleb128 0xf
+ 1944 073a 02       		.uleb128 0x2
+ 1945 073b 7D       		.byte	0x7d
+ 1946 073c 00       		.sleb128 0
+ 1947 073d 02       		.uleb128 0x2
+ 1948 073e 75       		.byte	0x75
+ 1949 073f 00       		.sleb128 0
+ 1950 0740 00       		.byte	0
+ 1951 0741 00       		.byte	0
+ 1952 0742 17       		.uleb128 0x17
+ 1953 0743 09040000 		.4byte	.LASF48
+ 1954 0747 01       		.byte	0x1
+ 1955 0748 4A       		.byte	0x4a
+ 1956 0749 89000000 		.4byte	0x89
+ 1957 074d 00000000 		.4byte	.LFB66
+ 1958 0751 44000000 		.4byte	.LFE66-.LFB66
+ 1959 0755 01       		.uleb128 0x1
+ 1960 0756 9C       		.byte	0x9c
+ 1961 0757 F9070000 		.4byte	0x7f9
+ 1962 075b 16       		.uleb128 0x16
+ 1963 075c 7C000000 		.4byte	.LASF45
+ 1964 0760 01       		.byte	0x1
+ 1965 0761 5D       		.byte	0x5d
+ 1966 0762 04060000 		.4byte	0x604
+ 1967 0766 0E       		.uleb128 0xe
+ 1968 0767 08000000 		.4byte	.LVL76
+ 1969 076b E60B0000 		.4byte	0xbe6
+ 1970 076f 7D070000 		.4byte	0x77d
+ 1971 0773 0F       		.uleb128 0xf
+ 1972 0774 01       		.uleb128 0x1
+ 1973 0775 50       		.byte	0x50
+ 1974 0776 05       		.uleb128 0x5
+ 1975 0777 03       		.byte	0x3
+ 1976 0778 00000000 		.4byte	sensor_isr_handler
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 42
+
+
+ 1977 077c 00       		.byte	0
+ 1978 077d 0D       		.uleb128 0xd
+ 1979 077e 0E000000 		.4byte	.LVL77
+ 1980 0782 F70B0000 		.4byte	0xbf7
+ 1981 0786 0D       		.uleb128 0xd
+ 1982 0787 12000000 		.4byte	.LVL78
+ 1983 078b FE0B0000 		.4byte	0xbfe
+ 1984 078f 0D       		.uleb128 0xd
+ 1985 0790 16000000 		.4byte	.LVL79
+ 1986 0794 050C0000 		.4byte	0xc05
+ 1987 0798 0D       		.uleb128 0xd
+ 1988 0799 1A000000 		.4byte	.LVL80
+ 1989 079d 0C0C0000 		.4byte	0xc0c
+ 1990 07a1 0D       		.uleb128 0xd
+ 1991 07a2 1E000000 		.4byte	.LVL81
+ 1992 07a6 130C0000 		.4byte	0xc13
+ 1993 07aa 0D       		.uleb128 0xd
+ 1994 07ab 22000000 		.4byte	.LVL82
+ 1995 07af 1A0C0000 		.4byte	0xc1a
+ 1996 07b3 0D       		.uleb128 0xd
+ 1997 07b4 26000000 		.4byte	.LVL83
+ 1998 07b8 210C0000 		.4byte	0xc21
+ 1999 07bc 0E       		.uleb128 0xe
+ 2000 07bd 2C000000 		.4byte	.LVL84
+ 2001 07c1 280C0000 		.4byte	0xc28
+ 2002 07c5 D3070000 		.4byte	0x7d3
+ 2003 07c9 0F       		.uleb128 0xf
+ 2004 07ca 01       		.uleb128 0x1
+ 2005 07cb 50       		.byte	0x50
+ 2006 07cc 05       		.uleb128 0x5
+ 2007 07cd 03       		.byte	0x3
+ 2008 07ce 24000000 		.4byte	.LC3
+ 2009 07d2 00       		.byte	0
+ 2010 07d3 0D       		.uleb128 0xd
+ 2011 07d4 30000000 		.4byte	.LVL85
+ 2012 07d8 210C0000 		.4byte	0xc21
+ 2013 07dc 0E       		.uleb128 0xe
+ 2014 07dd 36000000 		.4byte	.LVL86
+ 2015 07e1 410C0000 		.4byte	0xc41
+ 2016 07e5 EF070000 		.4byte	0x7ef
+ 2017 07e9 0F       		.uleb128 0xf
+ 2018 07ea 01       		.uleb128 0x1
+ 2019 07eb 50       		.byte	0x50
+ 2020 07ec 01       		.uleb128 0x1
+ 2021 07ed 31       		.byte	0x31
+ 2022 07ee 00       		.byte	0
+ 2023 07ef 0D       		.uleb128 0xd
+ 2024 07f0 3A000000 		.4byte	.LVL87
+ 2025 07f4 6C060000 		.4byte	0x66c
+ 2026 07f8 00       		.byte	0
+ 2027 07f9 0B       		.uleb128 0xb
+ 2028 07fa 8F010000 		.4byte	.LASF49
+ 2029 07fe 01       		.byte	0x1
+ 2030 07ff FC       		.byte	0xfc
+ 2031 0800 00000000 		.4byte	.LFB73
+ 2032 0804 3A000000 		.4byte	.LFE73-.LFB73
+ 2033 0808 01       		.uleb128 0x1
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 43
+
+
+ 2034 0809 9C       		.byte	0x9c
+ 2035 080a 87080000 		.4byte	0x887
+ 2036 080e 18       		.uleb128 0x18
+ 2037 080f 62756600 		.ascii	"buf\000"
+ 2038 0813 01       		.byte	0x1
+ 2039 0814 FE       		.byte	0xfe
+ 2040 0815 87080000 		.4byte	0x887
+ 2041 0819 02       		.uleb128 0x2
+ 2042 081a 91       		.byte	0x91
+ 2043 081b 74       		.sleb128 -12
+ 2044 081c 0C       		.uleb128 0xc
+ 2045 081d C7030000 		.4byte	.LASF50
+ 2046 0821 01       		.byte	0x1
+ 2047 0822 FF       		.byte	0xff
+ 2048 0823 97000000 		.4byte	0x97
+ 2049 0827 8A010000 		.4byte	.LLST13
+ 2050 082b 0D       		.uleb128 0xd
+ 2051 082c 14000000 		.4byte	.LVL88
+ 2052 0830 520C0000 		.4byte	0xc52
+ 2053 0834 0E       		.uleb128 0xe
+ 2054 0835 1A000000 		.4byte	.LVL89
+ 2055 0839 390B0000 		.4byte	0xb39
+ 2056 083d 48080000 		.4byte	0x848
+ 2057 0841 0F       		.uleb128 0xf
+ 2058 0842 01       		.uleb128 0x1
+ 2059 0843 50       		.byte	0x50
+ 2060 0844 02       		.uleb128 0x2
+ 2061 0845 08       		.byte	0x8
+ 2062 0846 64       		.byte	0x64
+ 2063 0847 00       		.byte	0
+ 2064 0848 0E       		.uleb128 0xe
+ 2065 0849 26000000 		.4byte	.LVL90
+ 2066 084d 5D0C0000 		.4byte	0xc5d
+ 2067 0851 6D080000 		.4byte	0x86d
+ 2068 0855 0F       		.uleb128 0xf
+ 2069 0856 01       		.uleb128 0x1
+ 2070 0857 53       		.byte	0x53
+ 2071 0858 02       		.uleb128 0x2
+ 2072 0859 74       		.byte	0x74
+ 2073 085a 00       		.sleb128 0
+ 2074 085b 0F       		.uleb128 0xf
+ 2075 085c 01       		.uleb128 0x1
+ 2076 085d 52       		.byte	0x52
+ 2077 085e 01       		.uleb128 0x1
+ 2078 085f 32       		.byte	0x32
+ 2079 0860 0F       		.uleb128 0xf
+ 2080 0861 01       		.uleb128 0x1
+ 2081 0862 51       		.byte	0x51
+ 2082 0863 02       		.uleb128 0x2
+ 2083 0864 91       		.byte	0x91
+ 2084 0865 74       		.sleb128 -12
+ 2085 0866 0F       		.uleb128 0xf
+ 2086 0867 01       		.uleb128 0x1
+ 2087 0868 50       		.byte	0x50
+ 2088 0869 02       		.uleb128 0x2
+ 2089 086a 08       		.byte	0x8
+ 2090 086b 52       		.byte	0x52
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 44
+
+
+ 2091 086c 00       		.byte	0
+ 2092 086d 0D       		.uleb128 0xd
+ 2093 086e 2A000000 		.4byte	.LVL91
+ 2094 0872 810C0000 		.4byte	0xc81
+ 2095 0876 10       		.uleb128 0x10
+ 2096 0877 36000000 		.4byte	.LVL93
+ 2097 087b 390B0000 		.4byte	0xb39
+ 2098 087f 0F       		.uleb128 0xf
+ 2099 0880 01       		.uleb128 0x1
+ 2100 0881 50       		.byte	0x50
+ 2101 0882 02       		.uleb128 0x2
+ 2102 0883 08       		.byte	0x8
+ 2103 0884 64       		.byte	0x64
+ 2104 0885 00       		.byte	0
+ 2105 0886 00       		.byte	0
+ 2106 0887 14       		.uleb128 0x14
+ 2107 0888 97000000 		.4byte	0x97
+ 2108 088c 97080000 		.4byte	0x897
+ 2109 0890 15       		.uleb128 0x15
+ 2110 0891 0F010000 		.4byte	0x10f
+ 2111 0895 01       		.byte	0x1
+ 2112 0896 00       		.byte	0
+ 2113 0897 19       		.uleb128 0x19
+ 2114 0898 64020000 		.4byte	.LASF51
+ 2115 089c 01       		.byte	0x1
+ 2116 089d 0701     		.2byte	0x107
+ 2117 089f 00000000 		.4byte	.LFB74
+ 2118 08a3 54000000 		.4byte	.LFE74-.LFB74
+ 2119 08a7 01       		.uleb128 0x1
+ 2120 08a8 9C       		.byte	0x9c
+ 2121 08a9 5B090000 		.4byte	0x95b
+ 2122 08ad 1A       		.uleb128 0x1a
+ 2123 08ae C7030000 		.4byte	.LASF50
+ 2124 08b2 01       		.byte	0x1
+ 2125 08b3 0901     		.2byte	0x109
+ 2126 08b5 97000000 		.4byte	0x97
+ 2127 08b9 9D010000 		.4byte	.LLST14
+ 2128 08bd 1B       		.uleb128 0x1b
+ 2129 08be 62756600 		.ascii	"buf\000"
+ 2130 08c2 01       		.byte	0x1
+ 2131 08c3 0A01     		.2byte	0x10a
+ 2132 08c5 04060000 		.4byte	0x604
+ 2133 08c9 02       		.uleb128 0x2
+ 2134 08ca 91       		.byte	0x91
+ 2135 08cb 68       		.sleb128 -24
+ 2136 08cc 1B       		.uleb128 0x1b
+ 2137 08cd 6900     		.ascii	"i\000"
+ 2138 08cf 01       		.byte	0x1
+ 2139 08d0 1701     		.2byte	0x117
+ 2140 08d2 89000000 		.4byte	0x89
+ 2141 08d6 01       		.uleb128 0x1
+ 2142 08d7 53       		.byte	0x53
+ 2143 08d8 0D       		.uleb128 0xd
+ 2144 08d9 10000000 		.4byte	.LVL94
+ 2145 08dd 520C0000 		.4byte	0xc52
+ 2146 08e1 0E       		.uleb128 0xe
+ 2147 08e2 1C000000 		.4byte	.LVL95
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 45
+
+
+ 2148 08e6 5D0C0000 		.4byte	0xc5d
+ 2149 08ea 06090000 		.4byte	0x906
+ 2150 08ee 0F       		.uleb128 0xf
+ 2151 08ef 01       		.uleb128 0x1
+ 2152 08f0 53       		.byte	0x53
+ 2153 08f1 02       		.uleb128 0x2
+ 2154 08f2 75       		.byte	0x75
+ 2155 08f3 00       		.sleb128 0
+ 2156 08f4 0F       		.uleb128 0xf
+ 2157 08f5 01       		.uleb128 0x1
+ 2158 08f6 52       		.byte	0x52
+ 2159 08f7 01       		.uleb128 0x1
+ 2160 08f8 31       		.byte	0x31
+ 2161 08f9 0F       		.uleb128 0xf
+ 2162 08fa 01       		.uleb128 0x1
+ 2163 08fb 51       		.byte	0x51
+ 2164 08fc 02       		.uleb128 0x2
+ 2165 08fd 74       		.byte	0x74
+ 2166 08fe 00       		.sleb128 0
+ 2167 08ff 0F       		.uleb128 0xf
+ 2168 0900 01       		.uleb128 0x1
+ 2169 0901 50       		.byte	0x50
+ 2170 0902 02       		.uleb128 0x2
+ 2171 0903 08       		.byte	0x8
+ 2172 0904 52       		.byte	0x52
+ 2173 0905 00       		.byte	0
+ 2174 0906 0D       		.uleb128 0xd
+ 2175 0907 20000000 		.4byte	.LVL96
+ 2176 090b 810C0000 		.4byte	0xc81
+ 2177 090f 0E       		.uleb128 0xe
+ 2178 0910 2C000000 		.4byte	.LVL98
+ 2179 0914 390B0000 		.4byte	0xb39
+ 2180 0918 23090000 		.4byte	0x923
+ 2181 091c 0F       		.uleb128 0xf
+ 2182 091d 01       		.uleb128 0x1
+ 2183 091e 50       		.byte	0x50
+ 2184 091f 02       		.uleb128 0x2
+ 2185 0920 08       		.byte	0x8
+ 2186 0921 32       		.byte	0x32
+ 2187 0922 00       		.byte	0
+ 2188 0923 0D       		.uleb128 0xd
+ 2189 0924 30000000 		.4byte	.LVL99
+ 2190 0928 520C0000 		.4byte	0xc52
+ 2191 092c 0E       		.uleb128 0xe
+ 2192 092d 3C000000 		.4byte	.LVL100
+ 2193 0931 8C0C0000 		.4byte	0xc8c
+ 2194 0935 51090000 		.4byte	0x951
+ 2195 0939 0F       		.uleb128 0xf
+ 2196 093a 01       		.uleb128 0x1
+ 2197 093b 53       		.byte	0x53
+ 2198 093c 02       		.uleb128 0x2
+ 2199 093d 75       		.byte	0x75
+ 2200 093e 00       		.sleb128 0
+ 2201 093f 0F       		.uleb128 0xf
+ 2202 0940 01       		.uleb128 0x1
+ 2203 0941 52       		.byte	0x52
+ 2204 0942 01       		.uleb128 0x1
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 46
+
+
+ 2205 0943 36       		.byte	0x36
+ 2206 0944 0F       		.uleb128 0xf
+ 2207 0945 01       		.uleb128 0x1
+ 2208 0946 51       		.byte	0x51
+ 2209 0947 02       		.uleb128 0x2
+ 2210 0948 7D       		.byte	0x7d
+ 2211 0949 00       		.sleb128 0
+ 2212 094a 0F       		.uleb128 0xf
+ 2213 094b 01       		.uleb128 0x1
+ 2214 094c 50       		.byte	0x50
+ 2215 094d 02       		.uleb128 0x2
+ 2216 094e 08       		.byte	0x8
+ 2217 094f 52       		.byte	0x52
+ 2218 0950 00       		.byte	0
+ 2219 0951 0D       		.uleb128 0xd
+ 2220 0952 40000000 		.4byte	.LVL101
+ 2221 0956 810C0000 		.4byte	0xc81
+ 2222 095a 00       		.byte	0
+ 2223 095b 1C       		.uleb128 0x1c
+ 2224 095c C3000000 		.4byte	.LASF104
+ 2225 0960 01       		.byte	0x1
+ 2226 0961 3A01     		.2byte	0x13a
+ 2227 0963 89000000 		.4byte	0x89
+ 2228 0967 00000000 		.4byte	.LFB75
+ 2229 096b 1C000000 		.4byte	.LFE75-.LFB75
+ 2230 096f 01       		.uleb128 0x1
+ 2231 0970 9C       		.byte	0x9c
+ 2232 0971 BD090000 		.4byte	0x9bd
+ 2233 0975 1D       		.uleb128 0x1d
+ 2234 0976 EB020000 		.4byte	.LASF52
+ 2235 097a 01       		.byte	0x1
+ 2236 097b 3A01     		.2byte	0x13a
+ 2237 097d 89000000 		.4byte	0x89
+ 2238 0981 BB010000 		.4byte	.LLST15
+ 2239 0985 1E       		.uleb128 0x1e
+ 2240 0986 70747200 		.ascii	"ptr\000"
+ 2241 098a 01       		.byte	0x1
+ 2242 098b 3A01     		.2byte	0x13a
+ 2243 098d 16010000 		.4byte	0x116
+ 2244 0991 DC010000 		.4byte	.LLST16
+ 2245 0995 1E       		.uleb128 0x1e
+ 2246 0996 6C656E00 		.ascii	"len\000"
+ 2247 099a 01       		.byte	0x1
+ 2248 099b 3A01     		.2byte	0x13a
+ 2249 099d 89000000 		.4byte	0x89
+ 2250 09a1 05020000 		.4byte	.LLST17
+ 2251 09a5 1F       		.uleb128 0x1f
+ 2252 09a6 6E00     		.ascii	"n\000"
+ 2253 09a8 01       		.byte	0x1
+ 2254 09a9 3D01     		.2byte	0x13d
+ 2255 09ab 89000000 		.4byte	0x89
+ 2256 09af 23020000 		.4byte	.LLST18
+ 2257 09b3 0D       		.uleb128 0xd
+ 2258 09b4 10000000 		.4byte	.LVL108
+ 2259 09b8 B00C0000 		.4byte	0xcb0
+ 2260 09bc 00       		.byte	0
+ 2261 09bd 20       		.uleb128 0x20
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 47
+
+
+ 2262 09be DF050000 		.4byte	.LASF53
+ 2263 09c2 05       		.byte	0x5
+ 2264 09c3 5506     		.2byte	0x655
+ 2265 09c5 C9090000 		.4byte	0x9c9
+ 2266 09c9 21       		.uleb128 0x21
+ 2267 09ca AD000000 		.4byte	0xad
+ 2268 09ce 22       		.uleb128 0x22
+ 2269 09cf B3000000 		.4byte	.LASF54
+ 2270 09d3 01       		.byte	0x1
+ 2271 09d4 24       		.byte	0x24
+ 2272 09d5 DF090000 		.4byte	0x9df
+ 2273 09d9 05       		.uleb128 0x5
+ 2274 09da 03       		.byte	0x3
+ 2275 09db 00000000 		.4byte	sensors
+ 2276 09df 21       		.uleb128 0x21
+ 2277 09e0 27010000 		.4byte	0x127
+ 2278 09e4 22       		.uleb128 0x22
+ 2279 09e5 DC030000 		.4byte	.LASF55
+ 2280 09e9 01       		.byte	0x1
+ 2281 09ea 2D       		.byte	0x2d
+ 2282 09eb F5090000 		.4byte	0x9f5
+ 2283 09ef 05       		.uleb128 0x5
+ 2284 09f0 03       		.byte	0x3
+ 2285 09f1 00000000 		.4byte	digital_sensor_value
+ 2286 09f5 21       		.uleb128 0x21
+ 2287 09f6 60010000 		.4byte	0x160
+ 2288 09fa 23       		.uleb128 0x23
+ 2289 09fb BF040000 		.4byte	.LASF56
+ 2290 09ff 06       		.byte	0x6
+ 2291 0a00 5E       		.byte	0x5e
+ 2292 0a01 C3000000 		.4byte	0xc3
+ 2293 0a05 23       		.uleb128 0x23
+ 2294 0a06 6C040000 		.4byte	.LASF57
+ 2295 0a0a 07       		.byte	0x7
+ 2296 0a0b 5E       		.byte	0x5e
+ 2297 0a0c C3000000 		.4byte	0xc3
+ 2298 0a10 23       		.uleb128 0x23
+ 2299 0a11 98030000 		.4byte	.LASF58
+ 2300 0a15 08       		.byte	0x8
+ 2301 0a16 5E       		.byte	0x5e
+ 2302 0a17 C3000000 		.4byte	0xc3
+ 2303 0a1b 23       		.uleb128 0x23
+ 2304 0a1c 36030000 		.4byte	.LASF59
+ 2305 0a20 09       		.byte	0x9
+ 2306 0a21 5E       		.byte	0x5e
+ 2307 0a22 C3000000 		.4byte	0xc3
+ 2308 0a26 23       		.uleb128 0x23
+ 2309 0a27 8C000000 		.4byte	.LASF60
+ 2310 0a2b 06       		.byte	0x6
+ 2311 0a2c 67       		.byte	0x67
+ 2312 0a2d CF000000 		.4byte	0xcf
+ 2313 0a31 23       		.uleb128 0x23
+ 2314 0a32 08060000 		.4byte	.LASF61
+ 2315 0a36 06       		.byte	0x6
+ 2316 0a37 6B       		.byte	0x6b
+ 2317 0a38 CF000000 		.4byte	0xcf
+ 2318 0a3c 23       		.uleb128 0x23
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 48
+
+
+ 2319 0a3d 3C020000 		.4byte	.LASF62
+ 2320 0a41 07       		.byte	0x7
+ 2321 0a42 67       		.byte	0x67
+ 2322 0a43 CF000000 		.4byte	0xcf
+ 2323 0a47 23       		.uleb128 0x23
+ 2324 0a48 78030000 		.4byte	.LASF63
+ 2325 0a4c 07       		.byte	0x7
+ 2326 0a4d 6B       		.byte	0x6b
+ 2327 0a4e CF000000 		.4byte	0xcf
+ 2328 0a52 23       		.uleb128 0x23
+ 2329 0a53 AC050000 		.4byte	.LASF64
+ 2330 0a57 08       		.byte	0x8
+ 2331 0a58 67       		.byte	0x67
+ 2332 0a59 CF000000 		.4byte	0xcf
+ 2333 0a5d 23       		.uleb128 0x23
+ 2334 0a5e 3D040000 		.4byte	.LASF65
+ 2335 0a62 08       		.byte	0x8
+ 2336 0a63 6B       		.byte	0x6b
+ 2337 0a64 CF000000 		.4byte	0xcf
+ 2338 0a68 23       		.uleb128 0x23
+ 2339 0a69 DB040000 		.4byte	.LASF66
+ 2340 0a6d 09       		.byte	0x9
+ 2341 0a6e 67       		.byte	0x67
+ 2342 0a6f CF000000 		.4byte	0xcf
+ 2343 0a73 23       		.uleb128 0x23
+ 2344 0a74 91020000 		.4byte	.LASF67
+ 2345 0a78 09       		.byte	0x9
+ 2346 0a79 6B       		.byte	0x6b
+ 2347 0a7a CF000000 		.4byte	0xcf
+ 2348 0a7e 24       		.uleb128 0x24
+ 2349 0a7f 5F030000 		.4byte	.LASF68
+ 2350 0a83 0A       		.byte	0xa
+ 2351 0a84 27       		.byte	0x27
+ 2352 0a85 8F0A0000 		.4byte	0xa8f
+ 2353 0a89 25       		.uleb128 0x25
+ 2354 0a8a C3000000 		.4byte	0xc3
+ 2355 0a8e 00       		.byte	0
+ 2356 0a8f 24       		.uleb128 0x24
+ 2357 0a90 26010000 		.4byte	.LASF69
+ 2358 0a94 0A       		.byte	0xa
+ 2359 0a95 26       		.byte	0x26
+ 2360 0a96 A00A0000 		.4byte	0xaa0
+ 2361 0a9a 25       		.uleb128 0x25
+ 2362 0a9b C3000000 		.4byte	0xc3
+ 2363 0a9f 00       		.byte	0
+ 2364 0aa0 24       		.uleb128 0x24
+ 2365 0aa1 02010000 		.4byte	.LASF70
+ 2366 0aa5 0B       		.byte	0xb
+ 2367 0aa6 27       		.byte	0x27
+ 2368 0aa7 B10A0000 		.4byte	0xab1
+ 2369 0aab 25       		.uleb128 0x25
+ 2370 0aac C3000000 		.4byte	0xc3
+ 2371 0ab0 00       		.byte	0
+ 2372 0ab1 24       		.uleb128 0x24
+ 2373 0ab2 A6020000 		.4byte	.LASF71
+ 2374 0ab6 0B       		.byte	0xb
+ 2375 0ab7 26       		.byte	0x26
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 49
+
+
+ 2376 0ab8 C20A0000 		.4byte	0xac2
+ 2377 0abc 25       		.uleb128 0x25
+ 2378 0abd C3000000 		.4byte	0xc3
+ 2379 0ac1 00       		.byte	0
+ 2380 0ac2 24       		.uleb128 0x24
+ 2381 0ac3 1A000000 		.4byte	.LASF72
+ 2382 0ac7 0C       		.byte	0xc
+ 2383 0ac8 27       		.byte	0x27
+ 2384 0ac9 D30A0000 		.4byte	0xad3
+ 2385 0acd 25       		.uleb128 0x25
+ 2386 0ace C3000000 		.4byte	0xc3
+ 2387 0ad2 00       		.byte	0
+ 2388 0ad3 24       		.uleb128 0x24
+ 2389 0ad4 6F030000 		.4byte	.LASF73
+ 2390 0ad8 0C       		.byte	0xc
+ 2391 0ad9 26       		.byte	0x26
+ 2392 0ada E40A0000 		.4byte	0xae4
+ 2393 0ade 25       		.uleb128 0x25
+ 2394 0adf C3000000 		.4byte	0xc3
+ 2395 0ae3 00       		.byte	0
+ 2396 0ae4 24       		.uleb128 0x24
+ 2397 0ae5 2D040000 		.4byte	.LASF74
+ 2398 0ae9 0D       		.byte	0xd
+ 2399 0aea 27       		.byte	0x27
+ 2400 0aeb F50A0000 		.4byte	0xaf5
+ 2401 0aef 25       		.uleb128 0x25
+ 2402 0af0 C3000000 		.4byte	0xc3
+ 2403 0af4 00       		.byte	0
+ 2404 0af5 24       		.uleb128 0x24
+ 2405 0af6 CF050000 		.4byte	.LASF75
+ 2406 0afa 0D       		.byte	0xd
+ 2407 0afb 26       		.byte	0x26
+ 2408 0afc 060B0000 		.4byte	0xb06
+ 2409 0b00 25       		.uleb128 0x25
+ 2410 0b01 C3000000 		.4byte	0xc3
+ 2411 0b05 00       		.byte	0
+ 2412 0b06 24       		.uleb128 0x24
+ 2413 0b07 D4020000 		.4byte	.LASF76
+ 2414 0b0b 0E       		.byte	0xe
+ 2415 0b0c 78       		.byte	0x78
+ 2416 0b0d 170B0000 		.4byte	0xb17
+ 2417 0b11 25       		.uleb128 0x25
+ 2418 0b12 CF000000 		.4byte	0xcf
+ 2419 0b16 00       		.byte	0
+ 2420 0b17 24       		.uleb128 0x24
+ 2421 0b18 D6010000 		.4byte	.LASF77
+ 2422 0b1c 0F       		.byte	0xf
+ 2423 0b1d C7       		.byte	0xc7
+ 2424 0b1e 280B0000 		.4byte	0xb28
+ 2425 0b22 25       		.uleb128 0x25
+ 2426 0b23 C3000000 		.4byte	0xc3
+ 2427 0b27 00       		.byte	0
+ 2428 0b28 24       		.uleb128 0x24
+ 2429 0b29 71020000 		.4byte	.LASF78
+ 2430 0b2d 0F       		.byte	0xf
+ 2431 0b2e CA       		.byte	0xca
+ 2432 0b2f 390B0000 		.4byte	0xb39
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 50
+
+
+ 2433 0b33 25       		.uleb128 0x25
+ 2434 0b34 C3000000 		.4byte	0xc3
+ 2435 0b38 00       		.byte	0
+ 2436 0b39 24       		.uleb128 0x24
+ 2437 0b3a EC050000 		.4byte	.LASF79
+ 2438 0b3e 0E       		.byte	0xe
+ 2439 0b3f 77       		.byte	0x77
+ 2440 0b40 4A0B0000 		.4byte	0xb4a
+ 2441 0b44 25       		.uleb128 0x25
+ 2442 0b45 DB000000 		.4byte	0xdb
+ 2443 0b49 00       		.byte	0
+ 2444 0b4a 24       		.uleb128 0x24
+ 2445 0b4b 23060000 		.4byte	.LASF80
+ 2446 0b4f 10       		.byte	0x10
+ 2447 0b50 26       		.byte	0x26
+ 2448 0b51 5B0B0000 		.4byte	0xb5b
+ 2449 0b55 25       		.uleb128 0x25
+ 2450 0b56 C3000000 		.4byte	0xc3
+ 2451 0b5a 00       		.byte	0
+ 2452 0b5b 24       		.uleb128 0x24
+ 2453 0b5c 19040000 		.4byte	.LASF81
+ 2454 0b60 11       		.byte	0x11
+ 2455 0b61 26       		.byte	0x26
+ 2456 0b62 6C0B0000 		.4byte	0xb6c
+ 2457 0b66 25       		.uleb128 0x25
+ 2458 0b67 C3000000 		.4byte	0xc3
+ 2459 0b6b 00       		.byte	0
+ 2460 0b6c 26       		.uleb128 0x26
+ 2461 0b6d 19020000 		.4byte	.LASF83
+ 2462 0b71 13       		.byte	0x13
+ 2463 0b72 B2       		.byte	0xb2
+ 2464 0b73 89000000 		.4byte	0x89
+ 2465 0b77 820B0000 		.4byte	0xb82
+ 2466 0b7b 25       		.uleb128 0x25
+ 2467 0b7c 1C010000 		.4byte	0x11c
+ 2468 0b80 27       		.uleb128 0x27
+ 2469 0b81 00       		.byte	0
+ 2470 0b82 23       		.uleb128 0x23
+ 2471 0b83 20030000 		.4byte	.LASF82
+ 2472 0b87 12       		.byte	0x12
+ 2473 0b88 A4       		.byte	0xa4
+ 2474 0b89 C3000000 		.4byte	0xc3
+ 2475 0b8d 26       		.uleb128 0x26
+ 2476 0b8e 04030000 		.4byte	.LASF84
+ 2477 0b92 12       		.byte	0x12
+ 2478 0b93 A7       		.byte	0xa7
+ 2479 0b94 C3000000 		.4byte	0xc3
+ 2480 0b98 B10B0000 		.4byte	0xbb1
+ 2481 0b9c 25       		.uleb128 0x25
+ 2482 0b9d C3000000 		.4byte	0xc3
+ 2483 0ba1 25       		.uleb128 0x25
+ 2484 0ba2 B10B0000 		.4byte	0xbb1
+ 2485 0ba6 25       		.uleb128 0x25
+ 2486 0ba7 C3000000 		.4byte	0xc3
+ 2487 0bab 25       		.uleb128 0x25
+ 2488 0bac C3000000 		.4byte	0xc3
+ 2489 0bb0 00       		.byte	0
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 51
+
+
+ 2490 0bb1 06       		.uleb128 0x6
+ 2491 0bb2 04       		.byte	0x4
+ 2492 0bb3 C3000000 		.4byte	0xc3
+ 2493 0bb7 23       		.uleb128 0x23
+ 2494 0bb8 52040000 		.4byte	.LASF85
+ 2495 0bbc 12       		.byte	0x12
+ 2496 0bbd A3       		.byte	0xa3
+ 2497 0bbe C3000000 		.4byte	0xc3
+ 2498 0bc2 26       		.uleb128 0x26
+ 2499 0bc3 C2020000 		.4byte	.LASF86
+ 2500 0bc7 12       		.byte	0x12
+ 2501 0bc8 A9       		.byte	0xa9
+ 2502 0bc9 C3000000 		.4byte	0xc3
+ 2503 0bcd E60B0000 		.4byte	0xbe6
+ 2504 0bd1 25       		.uleb128 0x25
+ 2505 0bd2 C3000000 		.4byte	0xc3
+ 2506 0bd6 25       		.uleb128 0x25
+ 2507 0bd7 B10B0000 		.4byte	0xbb1
+ 2508 0bdb 25       		.uleb128 0x25
+ 2509 0bdc C3000000 		.4byte	0xc3
+ 2510 0be0 25       		.uleb128 0x25
+ 2511 0be1 C3000000 		.4byte	0xc3
+ 2512 0be5 00       		.byte	0
+ 2513 0be6 24       		.uleb128 0x24
+ 2514 0be7 98040000 		.4byte	.LASF87
+ 2515 0beb 14       		.byte	0x14
+ 2516 0bec 18       		.byte	0x18
+ 2517 0bed F70B0000 		.4byte	0xbf7
+ 2518 0bf1 25       		.uleb128 0x25
+ 2519 0bf2 FC000000 		.4byte	0xfc
+ 2520 0bf6 00       		.byte	0
+ 2521 0bf7 28       		.uleb128 0x28
+ 2522 0bf8 0E040000 		.4byte	.LASF88
+ 2523 0bfc 15       		.byte	0x15
+ 2524 0bfd 54       		.byte	0x54
+ 2525 0bfe 28       		.uleb128 0x28
+ 2526 0bff F1030000 		.4byte	.LASF89
+ 2527 0c03 06       		.byte	0x6
+ 2528 0c04 5A       		.byte	0x5a
+ 2529 0c05 28       		.uleb128 0x28
+ 2530 0c06 C0050000 		.4byte	.LASF90
+ 2531 0c0a 07       		.byte	0x7
+ 2532 0c0b 5A       		.byte	0x5a
+ 2533 0c0c 28       		.uleb128 0x28
+ 2534 0c0d 6D000000 		.4byte	.LASF91
+ 2535 0c11 08       		.byte	0x8
+ 2536 0c12 5A       		.byte	0x5a
+ 2537 0c13 28       		.uleb128 0x28
+ 2538 0c14 A2010000 		.4byte	.LASF92
+ 2539 0c18 09       		.byte	0x9
+ 2540 0c19 5A       		.byte	0x5a
+ 2541 0c1a 28       		.uleb128 0x28
+ 2542 0c1b 99050000 		.4byte	.LASF93
+ 2543 0c1f 0F       		.byte	0xf
+ 2544 0c20 92       		.byte	0x92
+ 2545 0c21 28       		.uleb128 0x28
+ 2546 0c22 F4050000 		.4byte	.LASF94
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 52
+
+
+ 2547 0c26 12       		.byte	0x12
+ 2548 0c27 93       		.byte	0x93
+ 2549 0c28 29       		.uleb128 0x29
+ 2550 0c29 0B000000 		.4byte	.LASF95
+ 2551 0c2d 16       		.byte	0x16
+ 2552 0c2e 00       		.byte	0
+ 2553 0c2f 93030000 		.4byte	.LASF105
+ 2554 0c33 89000000 		.4byte	0x89
+ 2555 0c37 410C0000 		.4byte	0xc41
+ 2556 0c3b 25       		.uleb128 0x25
+ 2557 0c3c 1C010000 		.4byte	0x11c
+ 2558 0c40 00       		.byte	0
+ 2559 0c41 24       		.uleb128 0x24
+ 2560 0c42 4B060000 		.4byte	.LASF96
+ 2561 0c46 17       		.byte	0x17
+ 2562 0c47 26       		.byte	0x26
+ 2563 0c48 520C0000 		.4byte	0xc52
+ 2564 0c4c 25       		.uleb128 0x25
+ 2565 0c4d C3000000 		.4byte	0xc3
+ 2566 0c51 00       		.byte	0
+ 2567 0c52 23       		.uleb128 0x23
+ 2568 0c53 40000000 		.4byte	.LASF97
+ 2569 0c57 18       		.byte	0x18
+ 2570 0c58 A4       		.byte	0xa4
+ 2571 0c59 C3000000 		.4byte	0xc3
+ 2572 0c5d 26       		.uleb128 0x26
+ 2573 0c5e 58000000 		.4byte	.LASF98
+ 2574 0c62 18       		.byte	0x18
+ 2575 0c63 A7       		.byte	0xa7
+ 2576 0c64 C3000000 		.4byte	0xc3
+ 2577 0c68 810C0000 		.4byte	0xc81
+ 2578 0c6c 25       		.uleb128 0x25
+ 2579 0c6d C3000000 		.4byte	0xc3
+ 2580 0c71 25       		.uleb128 0x25
+ 2581 0c72 B10B0000 		.4byte	0xbb1
+ 2582 0c76 25       		.uleb128 0x25
+ 2583 0c77 C3000000 		.4byte	0xc3
+ 2584 0c7b 25       		.uleb128 0x25
+ 2585 0c7c C3000000 		.4byte	0xc3
+ 2586 0c80 00       		.byte	0
+ 2587 0c81 23       		.uleb128 0x23
+ 2588 0c82 AF020000 		.4byte	.LASF99
+ 2589 0c86 18       		.byte	0x18
+ 2590 0c87 A3       		.byte	0xa3
+ 2591 0c88 C3000000 		.4byte	0xc3
+ 2592 0c8c 26       		.uleb128 0x26
+ 2593 0c8d EE000000 		.4byte	.LASF100
+ 2594 0c91 18       		.byte	0x18
+ 2595 0c92 A9       		.byte	0xa9
+ 2596 0c93 C3000000 		.4byte	0xc3
+ 2597 0c97 B00C0000 		.4byte	0xcb0
+ 2598 0c9b 25       		.uleb128 0x25
+ 2599 0c9c C3000000 		.4byte	0xc3
+ 2600 0ca0 25       		.uleb128 0x25
+ 2601 0ca1 B10B0000 		.4byte	0xbb1
+ 2602 0ca5 25       		.uleb128 0x25
+ 2603 0ca6 C3000000 		.4byte	0xc3
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 53
+
+
+ 2604 0caa 25       		.uleb128 0x25
+ 2605 0cab C3000000 		.4byte	0xc3
+ 2606 0caf 00       		.byte	0
+ 2607 0cb0 2A       		.uleb128 0x2a
+ 2608 0cb1 36060000 		.4byte	.LASF106
+ 2609 0cb5 15       		.byte	0x15
+ 2610 0cb6 8A       		.byte	0x8a
+ 2611 0cb7 25       		.uleb128 0x25
+ 2612 0cb8 C3000000 		.4byte	0xc3
+ 2613 0cbc 00       		.byte	0
+ 2614 0cbd 00       		.byte	0
+ 2615              		.section	.debug_abbrev,"",%progbits
+ 2616              	.Ldebug_abbrev0:
+ 2617 0000 01       		.uleb128 0x1
+ 2618 0001 11       		.uleb128 0x11
+ 2619 0002 01       		.byte	0x1
+ 2620 0003 25       		.uleb128 0x25
+ 2621 0004 0E       		.uleb128 0xe
+ 2622 0005 13       		.uleb128 0x13
+ 2623 0006 0B       		.uleb128 0xb
+ 2624 0007 03       		.uleb128 0x3
+ 2625 0008 0E       		.uleb128 0xe
+ 2626 0009 1B       		.uleb128 0x1b
+ 2627 000a 0E       		.uleb128 0xe
+ 2628 000b 55       		.uleb128 0x55
+ 2629 000c 17       		.uleb128 0x17
+ 2630 000d 11       		.uleb128 0x11
+ 2631 000e 01       		.uleb128 0x1
+ 2632 000f 10       		.uleb128 0x10
+ 2633 0010 17       		.uleb128 0x17
+ 2634 0011 00       		.byte	0
+ 2635 0012 00       		.byte	0
+ 2636 0013 02       		.uleb128 0x2
+ 2637 0014 24       		.uleb128 0x24
+ 2638 0015 00       		.byte	0
+ 2639 0016 0B       		.uleb128 0xb
+ 2640 0017 0B       		.uleb128 0xb
+ 2641 0018 3E       		.uleb128 0x3e
+ 2642 0019 0B       		.uleb128 0xb
+ 2643 001a 03       		.uleb128 0x3
+ 2644 001b 0E       		.uleb128 0xe
+ 2645 001c 00       		.byte	0
+ 2646 001d 00       		.byte	0
+ 2647 001e 03       		.uleb128 0x3
+ 2648 001f 16       		.uleb128 0x16
+ 2649 0020 00       		.byte	0
+ 2650 0021 03       		.uleb128 0x3
+ 2651 0022 0E       		.uleb128 0xe
+ 2652 0023 3A       		.uleb128 0x3a
+ 2653 0024 0B       		.uleb128 0xb
+ 2654 0025 3B       		.uleb128 0x3b
+ 2655 0026 0B       		.uleb128 0xb
+ 2656 0027 49       		.uleb128 0x49
+ 2657 0028 13       		.uleb128 0x13
+ 2658 0029 00       		.byte	0
+ 2659 002a 00       		.byte	0
+ 2660 002b 04       		.uleb128 0x4
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 54
+
+
+ 2661 002c 24       		.uleb128 0x24
+ 2662 002d 00       		.byte	0
+ 2663 002e 0B       		.uleb128 0xb
+ 2664 002f 0B       		.uleb128 0xb
+ 2665 0030 3E       		.uleb128 0x3e
+ 2666 0031 0B       		.uleb128 0xb
+ 2667 0032 03       		.uleb128 0x3
+ 2668 0033 08       		.uleb128 0x8
+ 2669 0034 00       		.byte	0
+ 2670 0035 00       		.byte	0
+ 2671 0036 05       		.uleb128 0x5
+ 2672 0037 16       		.uleb128 0x16
+ 2673 0038 00       		.byte	0
+ 2674 0039 03       		.uleb128 0x3
+ 2675 003a 0E       		.uleb128 0xe
+ 2676 003b 3A       		.uleb128 0x3a
+ 2677 003c 0B       		.uleb128 0xb
+ 2678 003d 3B       		.uleb128 0x3b
+ 2679 003e 05       		.uleb128 0x5
+ 2680 003f 49       		.uleb128 0x49
+ 2681 0040 13       		.uleb128 0x13
+ 2682 0041 00       		.byte	0
+ 2683 0042 00       		.byte	0
+ 2684 0043 06       		.uleb128 0x6
+ 2685 0044 0F       		.uleb128 0xf
+ 2686 0045 00       		.byte	0
+ 2687 0046 0B       		.uleb128 0xb
+ 2688 0047 0B       		.uleb128 0xb
+ 2689 0048 49       		.uleb128 0x49
+ 2690 0049 13       		.uleb128 0x13
+ 2691 004a 00       		.byte	0
+ 2692 004b 00       		.byte	0
+ 2693 004c 07       		.uleb128 0x7
+ 2694 004d 15       		.uleb128 0x15
+ 2695 004e 00       		.byte	0
+ 2696 004f 27       		.uleb128 0x27
+ 2697 0050 19       		.uleb128 0x19
+ 2698 0051 00       		.byte	0
+ 2699 0052 00       		.byte	0
+ 2700 0053 08       		.uleb128 0x8
+ 2701 0054 26       		.uleb128 0x26
+ 2702 0055 00       		.byte	0
+ 2703 0056 49       		.uleb128 0x49
+ 2704 0057 13       		.uleb128 0x13
+ 2705 0058 00       		.byte	0
+ 2706 0059 00       		.byte	0
+ 2707 005a 09       		.uleb128 0x9
+ 2708 005b 13       		.uleb128 0x13
+ 2709 005c 01       		.byte	0x1
+ 2710 005d 03       		.uleb128 0x3
+ 2711 005e 0E       		.uleb128 0xe
+ 2712 005f 0B       		.uleb128 0xb
+ 2713 0060 0B       		.uleb128 0xb
+ 2714 0061 3A       		.uleb128 0x3a
+ 2715 0062 0B       		.uleb128 0xb
+ 2716 0063 3B       		.uleb128 0x3b
+ 2717 0064 0B       		.uleb128 0xb
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 55
+
+
+ 2718 0065 01       		.uleb128 0x1
+ 2719 0066 13       		.uleb128 0x13
+ 2720 0067 00       		.byte	0
+ 2721 0068 00       		.byte	0
+ 2722 0069 0A       		.uleb128 0xa
+ 2723 006a 0D       		.uleb128 0xd
+ 2724 006b 00       		.byte	0
+ 2725 006c 03       		.uleb128 0x3
+ 2726 006d 08       		.uleb128 0x8
+ 2727 006e 3A       		.uleb128 0x3a
+ 2728 006f 0B       		.uleb128 0xb
+ 2729 0070 3B       		.uleb128 0x3b
+ 2730 0071 0B       		.uleb128 0xb
+ 2731 0072 49       		.uleb128 0x49
+ 2732 0073 13       		.uleb128 0x13
+ 2733 0074 38       		.uleb128 0x38
+ 2734 0075 0B       		.uleb128 0xb
+ 2735 0076 00       		.byte	0
+ 2736 0077 00       		.byte	0
+ 2737 0078 0B       		.uleb128 0xb
+ 2738 0079 2E       		.uleb128 0x2e
+ 2739 007a 01       		.byte	0x1
+ 2740 007b 3F       		.uleb128 0x3f
+ 2741 007c 19       		.uleb128 0x19
+ 2742 007d 03       		.uleb128 0x3
+ 2743 007e 0E       		.uleb128 0xe
+ 2744 007f 3A       		.uleb128 0x3a
+ 2745 0080 0B       		.uleb128 0xb
+ 2746 0081 3B       		.uleb128 0x3b
+ 2747 0082 0B       		.uleb128 0xb
+ 2748 0083 27       		.uleb128 0x27
+ 2749 0084 19       		.uleb128 0x19
+ 2750 0085 11       		.uleb128 0x11
+ 2751 0086 01       		.uleb128 0x1
+ 2752 0087 12       		.uleb128 0x12
+ 2753 0088 06       		.uleb128 0x6
+ 2754 0089 40       		.uleb128 0x40
+ 2755 008a 18       		.uleb128 0x18
+ 2756 008b 9742     		.uleb128 0x2117
+ 2757 008d 19       		.uleb128 0x19
+ 2758 008e 01       		.uleb128 0x1
+ 2759 008f 13       		.uleb128 0x13
+ 2760 0090 00       		.byte	0
+ 2761 0091 00       		.byte	0
+ 2762 0092 0C       		.uleb128 0xc
+ 2763 0093 34       		.uleb128 0x34
+ 2764 0094 00       		.byte	0
+ 2765 0095 03       		.uleb128 0x3
+ 2766 0096 0E       		.uleb128 0xe
+ 2767 0097 3A       		.uleb128 0x3a
+ 2768 0098 0B       		.uleb128 0xb
+ 2769 0099 3B       		.uleb128 0x3b
+ 2770 009a 0B       		.uleb128 0xb
+ 2771 009b 49       		.uleb128 0x49
+ 2772 009c 13       		.uleb128 0x13
+ 2773 009d 02       		.uleb128 0x2
+ 2774 009e 17       		.uleb128 0x17
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 56
+
+
+ 2775 009f 00       		.byte	0
+ 2776 00a0 00       		.byte	0
+ 2777 00a1 0D       		.uleb128 0xd
+ 2778 00a2 898201   		.uleb128 0x4109
+ 2779 00a5 00       		.byte	0
+ 2780 00a6 11       		.uleb128 0x11
+ 2781 00a7 01       		.uleb128 0x1
+ 2782 00a8 31       		.uleb128 0x31
+ 2783 00a9 13       		.uleb128 0x13
+ 2784 00aa 00       		.byte	0
+ 2785 00ab 00       		.byte	0
+ 2786 00ac 0E       		.uleb128 0xe
+ 2787 00ad 898201   		.uleb128 0x4109
+ 2788 00b0 01       		.byte	0x1
+ 2789 00b1 11       		.uleb128 0x11
+ 2790 00b2 01       		.uleb128 0x1
+ 2791 00b3 31       		.uleb128 0x31
+ 2792 00b4 13       		.uleb128 0x13
+ 2793 00b5 01       		.uleb128 0x1
+ 2794 00b6 13       		.uleb128 0x13
+ 2795 00b7 00       		.byte	0
+ 2796 00b8 00       		.byte	0
+ 2797 00b9 0F       		.uleb128 0xf
+ 2798 00ba 8A8201   		.uleb128 0x410a
+ 2799 00bd 00       		.byte	0
+ 2800 00be 02       		.uleb128 0x2
+ 2801 00bf 18       		.uleb128 0x18
+ 2802 00c0 9142     		.uleb128 0x2111
+ 2803 00c2 18       		.uleb128 0x18
+ 2804 00c3 00       		.byte	0
+ 2805 00c4 00       		.byte	0
+ 2806 00c5 10       		.uleb128 0x10
+ 2807 00c6 898201   		.uleb128 0x4109
+ 2808 00c9 01       		.byte	0x1
+ 2809 00ca 11       		.uleb128 0x11
+ 2810 00cb 01       		.uleb128 0x1
+ 2811 00cc 31       		.uleb128 0x31
+ 2812 00cd 13       		.uleb128 0x13
+ 2813 00ce 00       		.byte	0
+ 2814 00cf 00       		.byte	0
+ 2815 00d0 11       		.uleb128 0x11
+ 2816 00d1 05       		.uleb128 0x5
+ 2817 00d2 00       		.byte	0
+ 2818 00d3 03       		.uleb128 0x3
+ 2819 00d4 0E       		.uleb128 0xe
+ 2820 00d5 3A       		.uleb128 0x3a
+ 2821 00d6 0B       		.uleb128 0xb
+ 2822 00d7 3B       		.uleb128 0x3b
+ 2823 00d8 0B       		.uleb128 0xb
+ 2824 00d9 49       		.uleb128 0x49
+ 2825 00da 13       		.uleb128 0x13
+ 2826 00db 02       		.uleb128 0x2
+ 2827 00dc 17       		.uleb128 0x17
+ 2828 00dd 00       		.byte	0
+ 2829 00de 00       		.byte	0
+ 2830 00df 12       		.uleb128 0x12
+ 2831 00e0 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 57
+
+
+ 2832 00e1 01       		.byte	0x1
+ 2833 00e2 3F       		.uleb128 0x3f
+ 2834 00e3 19       		.uleb128 0x19
+ 2835 00e4 03       		.uleb128 0x3
+ 2836 00e5 0E       		.uleb128 0xe
+ 2837 00e6 3A       		.uleb128 0x3a
+ 2838 00e7 0B       		.uleb128 0xb
+ 2839 00e8 3B       		.uleb128 0x3b
+ 2840 00e9 0B       		.uleb128 0xb
+ 2841 00ea 11       		.uleb128 0x11
+ 2842 00eb 01       		.uleb128 0x1
+ 2843 00ec 12       		.uleb128 0x12
+ 2844 00ed 06       		.uleb128 0x6
+ 2845 00ee 40       		.uleb128 0x40
+ 2846 00ef 18       		.uleb128 0x18
+ 2847 00f0 9742     		.uleb128 0x2117
+ 2848 00f2 19       		.uleb128 0x19
+ 2849 00f3 01       		.uleb128 0x1
+ 2850 00f4 13       		.uleb128 0x13
+ 2851 00f5 00       		.byte	0
+ 2852 00f6 00       		.byte	0
+ 2853 00f7 13       		.uleb128 0x13
+ 2854 00f8 34       		.uleb128 0x34
+ 2855 00f9 00       		.byte	0
+ 2856 00fa 03       		.uleb128 0x3
+ 2857 00fb 0E       		.uleb128 0xe
+ 2858 00fc 3A       		.uleb128 0x3a
+ 2859 00fd 0B       		.uleb128 0xb
+ 2860 00fe 3B       		.uleb128 0x3b
+ 2861 00ff 0B       		.uleb128 0xb
+ 2862 0100 49       		.uleb128 0x49
+ 2863 0101 13       		.uleb128 0x13
+ 2864 0102 02       		.uleb128 0x2
+ 2865 0103 18       		.uleb128 0x18
+ 2866 0104 00       		.byte	0
+ 2867 0105 00       		.byte	0
+ 2868 0106 14       		.uleb128 0x14
+ 2869 0107 01       		.uleb128 0x1
+ 2870 0108 01       		.byte	0x1
+ 2871 0109 49       		.uleb128 0x49
+ 2872 010a 13       		.uleb128 0x13
+ 2873 010b 01       		.uleb128 0x1
+ 2874 010c 13       		.uleb128 0x13
+ 2875 010d 00       		.byte	0
+ 2876 010e 00       		.byte	0
+ 2877 010f 15       		.uleb128 0x15
+ 2878 0110 21       		.uleb128 0x21
+ 2879 0111 00       		.byte	0
+ 2880 0112 49       		.uleb128 0x49
+ 2881 0113 13       		.uleb128 0x13
+ 2882 0114 2F       		.uleb128 0x2f
+ 2883 0115 0B       		.uleb128 0xb
+ 2884 0116 00       		.byte	0
+ 2885 0117 00       		.byte	0
+ 2886 0118 16       		.uleb128 0x16
+ 2887 0119 34       		.uleb128 0x34
+ 2888 011a 00       		.byte	0
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 58
+
+
+ 2889 011b 03       		.uleb128 0x3
+ 2890 011c 0E       		.uleb128 0xe
+ 2891 011d 3A       		.uleb128 0x3a
+ 2892 011e 0B       		.uleb128 0xb
+ 2893 011f 3B       		.uleb128 0x3b
+ 2894 0120 0B       		.uleb128 0xb
+ 2895 0121 49       		.uleb128 0x49
+ 2896 0122 13       		.uleb128 0x13
+ 2897 0123 00       		.byte	0
+ 2898 0124 00       		.byte	0
+ 2899 0125 17       		.uleb128 0x17
+ 2900 0126 2E       		.uleb128 0x2e
+ 2901 0127 01       		.byte	0x1
+ 2902 0128 3F       		.uleb128 0x3f
+ 2903 0129 19       		.uleb128 0x19
+ 2904 012a 03       		.uleb128 0x3
+ 2905 012b 0E       		.uleb128 0xe
+ 2906 012c 3A       		.uleb128 0x3a
+ 2907 012d 0B       		.uleb128 0xb
+ 2908 012e 3B       		.uleb128 0x3b
+ 2909 012f 0B       		.uleb128 0xb
+ 2910 0130 49       		.uleb128 0x49
+ 2911 0131 13       		.uleb128 0x13
+ 2912 0132 11       		.uleb128 0x11
+ 2913 0133 01       		.uleb128 0x1
+ 2914 0134 12       		.uleb128 0x12
+ 2915 0135 06       		.uleb128 0x6
+ 2916 0136 40       		.uleb128 0x40
+ 2917 0137 18       		.uleb128 0x18
+ 2918 0138 9742     		.uleb128 0x2117
+ 2919 013a 19       		.uleb128 0x19
+ 2920 013b 01       		.uleb128 0x1
+ 2921 013c 13       		.uleb128 0x13
+ 2922 013d 00       		.byte	0
+ 2923 013e 00       		.byte	0
+ 2924 013f 18       		.uleb128 0x18
+ 2925 0140 34       		.uleb128 0x34
+ 2926 0141 00       		.byte	0
+ 2927 0142 03       		.uleb128 0x3
+ 2928 0143 08       		.uleb128 0x8
+ 2929 0144 3A       		.uleb128 0x3a
+ 2930 0145 0B       		.uleb128 0xb
+ 2931 0146 3B       		.uleb128 0x3b
+ 2932 0147 0B       		.uleb128 0xb
+ 2933 0148 49       		.uleb128 0x49
+ 2934 0149 13       		.uleb128 0x13
+ 2935 014a 02       		.uleb128 0x2
+ 2936 014b 18       		.uleb128 0x18
+ 2937 014c 00       		.byte	0
+ 2938 014d 00       		.byte	0
+ 2939 014e 19       		.uleb128 0x19
+ 2940 014f 2E       		.uleb128 0x2e
+ 2941 0150 01       		.byte	0x1
+ 2942 0151 3F       		.uleb128 0x3f
+ 2943 0152 19       		.uleb128 0x19
+ 2944 0153 03       		.uleb128 0x3
+ 2945 0154 0E       		.uleb128 0xe
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 59
+
+
+ 2946 0155 3A       		.uleb128 0x3a
+ 2947 0156 0B       		.uleb128 0xb
+ 2948 0157 3B       		.uleb128 0x3b
+ 2949 0158 05       		.uleb128 0x5
+ 2950 0159 27       		.uleb128 0x27
+ 2951 015a 19       		.uleb128 0x19
+ 2952 015b 11       		.uleb128 0x11
+ 2953 015c 01       		.uleb128 0x1
+ 2954 015d 12       		.uleb128 0x12
+ 2955 015e 06       		.uleb128 0x6
+ 2956 015f 40       		.uleb128 0x40
+ 2957 0160 18       		.uleb128 0x18
+ 2958 0161 9742     		.uleb128 0x2117
+ 2959 0163 19       		.uleb128 0x19
+ 2960 0164 01       		.uleb128 0x1
+ 2961 0165 13       		.uleb128 0x13
+ 2962 0166 00       		.byte	0
+ 2963 0167 00       		.byte	0
+ 2964 0168 1A       		.uleb128 0x1a
+ 2965 0169 34       		.uleb128 0x34
+ 2966 016a 00       		.byte	0
+ 2967 016b 03       		.uleb128 0x3
+ 2968 016c 0E       		.uleb128 0xe
+ 2969 016d 3A       		.uleb128 0x3a
+ 2970 016e 0B       		.uleb128 0xb
+ 2971 016f 3B       		.uleb128 0x3b
+ 2972 0170 05       		.uleb128 0x5
+ 2973 0171 49       		.uleb128 0x49
+ 2974 0172 13       		.uleb128 0x13
+ 2975 0173 02       		.uleb128 0x2
+ 2976 0174 17       		.uleb128 0x17
+ 2977 0175 00       		.byte	0
+ 2978 0176 00       		.byte	0
+ 2979 0177 1B       		.uleb128 0x1b
+ 2980 0178 34       		.uleb128 0x34
+ 2981 0179 00       		.byte	0
+ 2982 017a 03       		.uleb128 0x3
+ 2983 017b 08       		.uleb128 0x8
+ 2984 017c 3A       		.uleb128 0x3a
+ 2985 017d 0B       		.uleb128 0xb
+ 2986 017e 3B       		.uleb128 0x3b
+ 2987 017f 05       		.uleb128 0x5
+ 2988 0180 49       		.uleb128 0x49
+ 2989 0181 13       		.uleb128 0x13
+ 2990 0182 02       		.uleb128 0x2
+ 2991 0183 18       		.uleb128 0x18
+ 2992 0184 00       		.byte	0
+ 2993 0185 00       		.byte	0
+ 2994 0186 1C       		.uleb128 0x1c
+ 2995 0187 2E       		.uleb128 0x2e
+ 2996 0188 01       		.byte	0x1
+ 2997 0189 3F       		.uleb128 0x3f
+ 2998 018a 19       		.uleb128 0x19
+ 2999 018b 03       		.uleb128 0x3
+ 3000 018c 0E       		.uleb128 0xe
+ 3001 018d 3A       		.uleb128 0x3a
+ 3002 018e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 60
+
+
+ 3003 018f 3B       		.uleb128 0x3b
+ 3004 0190 05       		.uleb128 0x5
+ 3005 0191 27       		.uleb128 0x27
+ 3006 0192 19       		.uleb128 0x19
+ 3007 0193 49       		.uleb128 0x49
+ 3008 0194 13       		.uleb128 0x13
+ 3009 0195 11       		.uleb128 0x11
+ 3010 0196 01       		.uleb128 0x1
+ 3011 0197 12       		.uleb128 0x12
+ 3012 0198 06       		.uleb128 0x6
+ 3013 0199 40       		.uleb128 0x40
+ 3014 019a 18       		.uleb128 0x18
+ 3015 019b 9742     		.uleb128 0x2117
+ 3016 019d 19       		.uleb128 0x19
+ 3017 019e 01       		.uleb128 0x1
+ 3018 019f 13       		.uleb128 0x13
+ 3019 01a0 00       		.byte	0
+ 3020 01a1 00       		.byte	0
+ 3021 01a2 1D       		.uleb128 0x1d
+ 3022 01a3 05       		.uleb128 0x5
+ 3023 01a4 00       		.byte	0
+ 3024 01a5 03       		.uleb128 0x3
+ 3025 01a6 0E       		.uleb128 0xe
+ 3026 01a7 3A       		.uleb128 0x3a
+ 3027 01a8 0B       		.uleb128 0xb
+ 3028 01a9 3B       		.uleb128 0x3b
+ 3029 01aa 05       		.uleb128 0x5
+ 3030 01ab 49       		.uleb128 0x49
+ 3031 01ac 13       		.uleb128 0x13
+ 3032 01ad 02       		.uleb128 0x2
+ 3033 01ae 17       		.uleb128 0x17
+ 3034 01af 00       		.byte	0
+ 3035 01b0 00       		.byte	0
+ 3036 01b1 1E       		.uleb128 0x1e
+ 3037 01b2 05       		.uleb128 0x5
+ 3038 01b3 00       		.byte	0
+ 3039 01b4 03       		.uleb128 0x3
+ 3040 01b5 08       		.uleb128 0x8
+ 3041 01b6 3A       		.uleb128 0x3a
+ 3042 01b7 0B       		.uleb128 0xb
+ 3043 01b8 3B       		.uleb128 0x3b
+ 3044 01b9 05       		.uleb128 0x5
+ 3045 01ba 49       		.uleb128 0x49
+ 3046 01bb 13       		.uleb128 0x13
+ 3047 01bc 02       		.uleb128 0x2
+ 3048 01bd 17       		.uleb128 0x17
+ 3049 01be 00       		.byte	0
+ 3050 01bf 00       		.byte	0
+ 3051 01c0 1F       		.uleb128 0x1f
+ 3052 01c1 34       		.uleb128 0x34
+ 3053 01c2 00       		.byte	0
+ 3054 01c3 03       		.uleb128 0x3
+ 3055 01c4 08       		.uleb128 0x8
+ 3056 01c5 3A       		.uleb128 0x3a
+ 3057 01c6 0B       		.uleb128 0xb
+ 3058 01c7 3B       		.uleb128 0x3b
+ 3059 01c8 05       		.uleb128 0x5
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 61
+
+
+ 3060 01c9 49       		.uleb128 0x49
+ 3061 01ca 13       		.uleb128 0x13
+ 3062 01cb 02       		.uleb128 0x2
+ 3063 01cc 17       		.uleb128 0x17
+ 3064 01cd 00       		.byte	0
+ 3065 01ce 00       		.byte	0
+ 3066 01cf 20       		.uleb128 0x20
+ 3067 01d0 34       		.uleb128 0x34
+ 3068 01d1 00       		.byte	0
+ 3069 01d2 03       		.uleb128 0x3
+ 3070 01d3 0E       		.uleb128 0xe
+ 3071 01d4 3A       		.uleb128 0x3a
+ 3072 01d5 0B       		.uleb128 0xb
+ 3073 01d6 3B       		.uleb128 0x3b
+ 3074 01d7 05       		.uleb128 0x5
+ 3075 01d8 49       		.uleb128 0x49
+ 3076 01d9 13       		.uleb128 0x13
+ 3077 01da 3F       		.uleb128 0x3f
+ 3078 01db 19       		.uleb128 0x19
+ 3079 01dc 3C       		.uleb128 0x3c
+ 3080 01dd 19       		.uleb128 0x19
+ 3081 01de 00       		.byte	0
+ 3082 01df 00       		.byte	0
+ 3083 01e0 21       		.uleb128 0x21
+ 3084 01e1 35       		.uleb128 0x35
+ 3085 01e2 00       		.byte	0
+ 3086 01e3 49       		.uleb128 0x49
+ 3087 01e4 13       		.uleb128 0x13
+ 3088 01e5 00       		.byte	0
+ 3089 01e6 00       		.byte	0
+ 3090 01e7 22       		.uleb128 0x22
+ 3091 01e8 34       		.uleb128 0x34
+ 3092 01e9 00       		.byte	0
+ 3093 01ea 03       		.uleb128 0x3
+ 3094 01eb 0E       		.uleb128 0xe
+ 3095 01ec 3A       		.uleb128 0x3a
+ 3096 01ed 0B       		.uleb128 0xb
+ 3097 01ee 3B       		.uleb128 0x3b
+ 3098 01ef 0B       		.uleb128 0xb
+ 3099 01f0 49       		.uleb128 0x49
+ 3100 01f1 13       		.uleb128 0x13
+ 3101 01f2 3F       		.uleb128 0x3f
+ 3102 01f3 19       		.uleb128 0x19
+ 3103 01f4 02       		.uleb128 0x2
+ 3104 01f5 18       		.uleb128 0x18
+ 3105 01f6 00       		.byte	0
+ 3106 01f7 00       		.byte	0
+ 3107 01f8 23       		.uleb128 0x23
+ 3108 01f9 2E       		.uleb128 0x2e
+ 3109 01fa 00       		.byte	0
+ 3110 01fb 3F       		.uleb128 0x3f
+ 3111 01fc 19       		.uleb128 0x19
+ 3112 01fd 03       		.uleb128 0x3
+ 3113 01fe 0E       		.uleb128 0xe
+ 3114 01ff 3A       		.uleb128 0x3a
+ 3115 0200 0B       		.uleb128 0xb
+ 3116 0201 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 62
+
+
+ 3117 0202 0B       		.uleb128 0xb
+ 3118 0203 27       		.uleb128 0x27
+ 3119 0204 19       		.uleb128 0x19
+ 3120 0205 49       		.uleb128 0x49
+ 3121 0206 13       		.uleb128 0x13
+ 3122 0207 3C       		.uleb128 0x3c
+ 3123 0208 19       		.uleb128 0x19
+ 3124 0209 00       		.byte	0
+ 3125 020a 00       		.byte	0
+ 3126 020b 24       		.uleb128 0x24
+ 3127 020c 2E       		.uleb128 0x2e
+ 3128 020d 01       		.byte	0x1
+ 3129 020e 3F       		.uleb128 0x3f
+ 3130 020f 19       		.uleb128 0x19
+ 3131 0210 03       		.uleb128 0x3
+ 3132 0211 0E       		.uleb128 0xe
+ 3133 0212 3A       		.uleb128 0x3a
+ 3134 0213 0B       		.uleb128 0xb
+ 3135 0214 3B       		.uleb128 0x3b
+ 3136 0215 0B       		.uleb128 0xb
+ 3137 0216 27       		.uleb128 0x27
+ 3138 0217 19       		.uleb128 0x19
+ 3139 0218 3C       		.uleb128 0x3c
+ 3140 0219 19       		.uleb128 0x19
+ 3141 021a 01       		.uleb128 0x1
+ 3142 021b 13       		.uleb128 0x13
+ 3143 021c 00       		.byte	0
+ 3144 021d 00       		.byte	0
+ 3145 021e 25       		.uleb128 0x25
+ 3146 021f 05       		.uleb128 0x5
+ 3147 0220 00       		.byte	0
+ 3148 0221 49       		.uleb128 0x49
+ 3149 0222 13       		.uleb128 0x13
+ 3150 0223 00       		.byte	0
+ 3151 0224 00       		.byte	0
+ 3152 0225 26       		.uleb128 0x26
+ 3153 0226 2E       		.uleb128 0x2e
+ 3154 0227 01       		.byte	0x1
+ 3155 0228 3F       		.uleb128 0x3f
+ 3156 0229 19       		.uleb128 0x19
+ 3157 022a 03       		.uleb128 0x3
+ 3158 022b 0E       		.uleb128 0xe
+ 3159 022c 3A       		.uleb128 0x3a
+ 3160 022d 0B       		.uleb128 0xb
+ 3161 022e 3B       		.uleb128 0x3b
+ 3162 022f 0B       		.uleb128 0xb
+ 3163 0230 27       		.uleb128 0x27
+ 3164 0231 19       		.uleb128 0x19
+ 3165 0232 49       		.uleb128 0x49
+ 3166 0233 13       		.uleb128 0x13
+ 3167 0234 3C       		.uleb128 0x3c
+ 3168 0235 19       		.uleb128 0x19
+ 3169 0236 01       		.uleb128 0x1
+ 3170 0237 13       		.uleb128 0x13
+ 3171 0238 00       		.byte	0
+ 3172 0239 00       		.byte	0
+ 3173 023a 27       		.uleb128 0x27
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 63
+
+
+ 3174 023b 18       		.uleb128 0x18
+ 3175 023c 00       		.byte	0
+ 3176 023d 00       		.byte	0
+ 3177 023e 00       		.byte	0
+ 3178 023f 28       		.uleb128 0x28
+ 3179 0240 2E       		.uleb128 0x2e
+ 3180 0241 00       		.byte	0
+ 3181 0242 3F       		.uleb128 0x3f
+ 3182 0243 19       		.uleb128 0x19
+ 3183 0244 03       		.uleb128 0x3
+ 3184 0245 0E       		.uleb128 0xe
+ 3185 0246 3A       		.uleb128 0x3a
+ 3186 0247 0B       		.uleb128 0xb
+ 3187 0248 3B       		.uleb128 0x3b
+ 3188 0249 0B       		.uleb128 0xb
+ 3189 024a 27       		.uleb128 0x27
+ 3190 024b 19       		.uleb128 0x19
+ 3191 024c 3C       		.uleb128 0x3c
+ 3192 024d 19       		.uleb128 0x19
+ 3193 024e 00       		.byte	0
+ 3194 024f 00       		.byte	0
+ 3195 0250 29       		.uleb128 0x29
+ 3196 0251 2E       		.uleb128 0x2e
+ 3197 0252 01       		.byte	0x1
+ 3198 0253 3F       		.uleb128 0x3f
+ 3199 0254 19       		.uleb128 0x19
+ 3200 0255 03       		.uleb128 0x3
+ 3201 0256 0E       		.uleb128 0xe
+ 3202 0257 3A       		.uleb128 0x3a
+ 3203 0258 0B       		.uleb128 0xb
+ 3204 0259 3B       		.uleb128 0x3b
+ 3205 025a 0B       		.uleb128 0xb
+ 3206 025b 6E       		.uleb128 0x6e
+ 3207 025c 0E       		.uleb128 0xe
+ 3208 025d 27       		.uleb128 0x27
+ 3209 025e 19       		.uleb128 0x19
+ 3210 025f 49       		.uleb128 0x49
+ 3211 0260 13       		.uleb128 0x13
+ 3212 0261 3C       		.uleb128 0x3c
+ 3213 0262 19       		.uleb128 0x19
+ 3214 0263 01       		.uleb128 0x1
+ 3215 0264 13       		.uleb128 0x13
+ 3216 0265 00       		.byte	0
+ 3217 0266 00       		.byte	0
+ 3218 0267 2A       		.uleb128 0x2a
+ 3219 0268 2E       		.uleb128 0x2e
+ 3220 0269 01       		.byte	0x1
+ 3221 026a 3F       		.uleb128 0x3f
+ 3222 026b 19       		.uleb128 0x19
+ 3223 026c 03       		.uleb128 0x3
+ 3224 026d 0E       		.uleb128 0xe
+ 3225 026e 3A       		.uleb128 0x3a
+ 3226 026f 0B       		.uleb128 0xb
+ 3227 0270 3B       		.uleb128 0x3b
+ 3228 0271 0B       		.uleb128 0xb
+ 3229 0272 27       		.uleb128 0x27
+ 3230 0273 19       		.uleb128 0x19
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 64
+
+
+ 3231 0274 3C       		.uleb128 0x3c
+ 3232 0275 19       		.uleb128 0x19
+ 3233 0276 00       		.byte	0
+ 3234 0277 00       		.byte	0
+ 3235 0278 00       		.byte	0
+ 3236              		.section	.debug_loc,"",%progbits
+ 3237              	.Ldebug_loc0:
+ 3238              	.LLST0:
+ 3239 0000 08000000 		.4byte	.LVL1
+ 3240 0004 26000000 		.4byte	.LVL9
+ 3241 0008 0600     		.2byte	0x6
+ 3242 000a 74       		.byte	0x74
+ 3243 000b 00       		.sleb128 0
+ 3244 000c 08       		.byte	0x8
+ 3245 000d FF       		.byte	0xff
+ 3246 000e 1A       		.byte	0x1a
+ 3247 000f 9F       		.byte	0x9f
+ 3248 0010 34000000 		.4byte	.LVL11
+ 3249 0014 3C000000 		.4byte	.LVL13
+ 3250 0018 0600     		.2byte	0x6
+ 3251 001a 74       		.byte	0x74
+ 3252 001b 00       		.sleb128 0
+ 3253 001c 08       		.byte	0x8
+ 3254 001d FF       		.byte	0xff
+ 3255 001e 1A       		.byte	0x1a
+ 3256 001f 9F       		.byte	0x9f
+ 3257 0020 00000000 		.4byte	0
+ 3258 0024 00000000 		.4byte	0
+ 3259              	.LLST1:
+ 3260 0028 0E000000 		.4byte	.LVL3
+ 3261 002c F2000000 		.4byte	.LVL36
+ 3262 0030 0600     		.2byte	0x6
+ 3263 0032 77       		.byte	0x77
+ 3264 0033 00       		.sleb128 0
+ 3265 0034 08       		.byte	0x8
+ 3266 0035 FF       		.byte	0xff
+ 3267 0036 1A       		.byte	0x1a
+ 3268 0037 9F       		.byte	0x9f
+ 3269 0038 00000000 		.4byte	0
+ 3270 003c 00000000 		.4byte	0
+ 3271              	.LLST2:
+ 3272 0040 14000000 		.4byte	.LVL5
+ 3273 0044 F2000000 		.4byte	.LVL36
+ 3274 0048 0600     		.2byte	0x6
+ 3275 004a 76       		.byte	0x76
+ 3276 004b 00       		.sleb128 0
+ 3277 004c 08       		.byte	0x8
+ 3278 004d FF       		.byte	0xff
+ 3279 004e 1A       		.byte	0x1a
+ 3280 004f 9F       		.byte	0x9f
+ 3281 0050 00000000 		.4byte	0
+ 3282 0054 00000000 		.4byte	0
+ 3283              	.LLST3:
+ 3284 0058 1A000000 		.4byte	.LVL7
+ 3285 005c F2000000 		.4byte	.LVL36
+ 3286 0060 0600     		.2byte	0x6
+ 3287 0062 75       		.byte	0x75
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 65
+
+
+ 3288 0063 00       		.sleb128 0
+ 3289 0064 08       		.byte	0x8
+ 3290 0065 FF       		.byte	0xff
+ 3291 0066 1A       		.byte	0x1a
+ 3292 0067 9F       		.byte	0x9f
+ 3293 0068 00000000 		.4byte	0
+ 3294 006c 00000000 		.4byte	0
+ 3295              	.LLST4:
+ 3296 0070 00000000 		.4byte	.LVL37
+ 3297 0074 09000000 		.4byte	.LVL38-1
+ 3298 0078 0100     		.2byte	0x1
+ 3299 007a 50       		.byte	0x50
+ 3300 007b 09000000 		.4byte	.LVL38-1
+ 3301 007f 18000000 		.4byte	.LFE63
+ 3302 0083 0400     		.2byte	0x4
+ 3303 0085 F3       		.byte	0xf3
+ 3304 0086 01       		.uleb128 0x1
+ 3305 0087 50       		.byte	0x50
+ 3306 0088 9F       		.byte	0x9f
+ 3307 0089 00000000 		.4byte	0
+ 3308 008d 00000000 		.4byte	0
+ 3309              	.LLST5:
+ 3310 0091 00000000 		.4byte	.LVL37
+ 3311 0095 09000000 		.4byte	.LVL38-1
+ 3312 0099 0100     		.2byte	0x1
+ 3313 009b 51       		.byte	0x51
+ 3314 009c 09000000 		.4byte	.LVL38-1
+ 3315 00a0 18000000 		.4byte	.LFE63
+ 3316 00a4 0100     		.2byte	0x1
+ 3317 00a6 54       		.byte	0x54
+ 3318 00a7 00000000 		.4byte	0
+ 3319 00ab 00000000 		.4byte	0
+ 3320              	.LLST6:
+ 3321 00af 00000000 		.4byte	.LVL41
+ 3322 00b3 09000000 		.4byte	.LVL42-1
+ 3323 00b7 0100     		.2byte	0x1
+ 3324 00b9 50       		.byte	0x50
+ 3325 00ba 09000000 		.4byte	.LVL42-1
+ 3326 00be 18000000 		.4byte	.LFE64
+ 3327 00c2 0400     		.2byte	0x4
+ 3328 00c4 F3       		.byte	0xf3
+ 3329 00c5 01       		.uleb128 0x1
+ 3330 00c6 50       		.byte	0x50
+ 3331 00c7 9F       		.byte	0x9f
+ 3332 00c8 00000000 		.4byte	0
+ 3333 00cc 00000000 		.4byte	0
+ 3334              	.LLST7:
+ 3335 00d0 00000000 		.4byte	.LVL41
+ 3336 00d4 09000000 		.4byte	.LVL42-1
+ 3337 00d8 0100     		.2byte	0x1
+ 3338 00da 51       		.byte	0x51
+ 3339 00db 09000000 		.4byte	.LVL42-1
+ 3340 00df 18000000 		.4byte	.LFE64
+ 3341 00e3 0400     		.2byte	0x4
+ 3342 00e5 F3       		.byte	0xf3
+ 3343 00e6 01       		.uleb128 0x1
+ 3344 00e7 51       		.byte	0x51
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 66
+
+
+ 3345 00e8 9F       		.byte	0x9f
+ 3346 00e9 00000000 		.4byte	0
+ 3347 00ed 00000000 		.4byte	0
+ 3348              	.LLST8:
+ 3349 00f1 00000000 		.4byte	.LVL41
+ 3350 00f5 09000000 		.4byte	.LVL42-1
+ 3351 00f9 0100     		.2byte	0x1
+ 3352 00fb 52       		.byte	0x52
+ 3353 00fc 09000000 		.4byte	.LVL42-1
+ 3354 0100 18000000 		.4byte	.LFE64
+ 3355 0104 0100     		.2byte	0x1
+ 3356 0106 54       		.byte	0x54
+ 3357 0107 00000000 		.4byte	0
+ 3358 010b 00000000 		.4byte	0
+ 3359              	.LLST9:
+ 3360 010f 00000000 		.4byte	.LVL45
+ 3361 0113 08000000 		.4byte	.LVL46
+ 3362 0117 0100     		.2byte	0x1
+ 3363 0119 50       		.byte	0x50
+ 3364 011a 08000000 		.4byte	.LVL46
+ 3365 011e 26000000 		.4byte	.LFE65
+ 3366 0122 0400     		.2byte	0x4
+ 3367 0124 F3       		.byte	0xf3
+ 3368 0125 01       		.uleb128 0x1
+ 3369 0126 50       		.byte	0x50
+ 3370 0127 9F       		.byte	0x9f
+ 3371 0128 00000000 		.4byte	0
+ 3372 012c 00000000 		.4byte	0
+ 3373              	.LLST10:
+ 3374 0130 00000000 		.4byte	.LVL45
+ 3375 0134 0B000000 		.4byte	.LVL47-1
+ 3376 0138 0100     		.2byte	0x1
+ 3377 013a 51       		.byte	0x51
+ 3378 013b 0B000000 		.4byte	.LVL47-1
+ 3379 013f 26000000 		.4byte	.LFE65
+ 3380 0143 0100     		.2byte	0x1
+ 3381 0145 55       		.byte	0x55
+ 3382 0146 00000000 		.4byte	0
+ 3383 014a 00000000 		.4byte	0
+ 3384              	.LLST11:
+ 3385 014e 20000000 		.4byte	.LVL56
+ 3386 0152 28000000 		.4byte	.LVL57
+ 3387 0156 0100     		.2byte	0x1
+ 3388 0158 50       		.byte	0x50
+ 3389 0159 40000000 		.4byte	.LVL61
+ 3390 015d 5E000000 		.4byte	.LVL62
+ 3391 0161 0100     		.2byte	0x1
+ 3392 0163 50       		.byte	0x50
+ 3393 0164 00000000 		.4byte	0
+ 3394 0168 00000000 		.4byte	0
+ 3395              	.LLST12:
+ 3396 016c 20000000 		.4byte	.LVL68
+ 3397 0170 28000000 		.4byte	.LVL69
+ 3398 0174 0100     		.2byte	0x1
+ 3399 0176 50       		.byte	0x50
+ 3400 0177 40000000 		.4byte	.LVL73
+ 3401 017b 5E000000 		.4byte	.LVL74
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 67
+
+
+ 3402 017f 0100     		.2byte	0x1
+ 3403 0181 50       		.byte	0x50
+ 3404 0182 00000000 		.4byte	0
+ 3405 0186 00000000 		.4byte	0
+ 3406              	.LLST13:
+ 3407 018a 2A000000 		.4byte	.LVL91
+ 3408 018e 32000000 		.4byte	.LVL92
+ 3409 0192 0100     		.2byte	0x1
+ 3410 0194 50       		.byte	0x50
+ 3411 0195 00000000 		.4byte	0
+ 3412 0199 00000000 		.4byte	0
+ 3413              	.LLST14:
+ 3414 019d 20000000 		.4byte	.LVL96
+ 3415 01a1 28000000 		.4byte	.LVL97
+ 3416 01a5 0100     		.2byte	0x1
+ 3417 01a7 50       		.byte	0x50
+ 3418 01a8 40000000 		.4byte	.LVL101
+ 3419 01ac 54000000 		.4byte	.LFE74
+ 3420 01b0 0100     		.2byte	0x1
+ 3421 01b2 50       		.byte	0x50
+ 3422 01b3 00000000 		.4byte	0
+ 3423 01b7 00000000 		.4byte	0
+ 3424              	.LLST15:
+ 3425 01bb 00000000 		.4byte	.LVL104
+ 3426 01bf 08000000 		.4byte	.LVL106
+ 3427 01c3 0100     		.2byte	0x1
+ 3428 01c5 50       		.byte	0x50
+ 3429 01c6 08000000 		.4byte	.LVL106
+ 3430 01ca 1C000000 		.4byte	.LFE75
+ 3431 01ce 0400     		.2byte	0x4
+ 3432 01d0 F3       		.byte	0xf3
+ 3433 01d1 01       		.uleb128 0x1
+ 3434 01d2 50       		.byte	0x50
+ 3435 01d3 9F       		.byte	0x9f
+ 3436 01d4 00000000 		.4byte	0
+ 3437 01d8 00000000 		.4byte	0
+ 3438              	.LLST16:
+ 3439 01dc 00000000 		.4byte	.LVL104
+ 3440 01e0 0A000000 		.4byte	.LVL107
+ 3441 01e4 0100     		.2byte	0x1
+ 3442 01e6 51       		.byte	0x51
+ 3443 01e7 0A000000 		.4byte	.LVL107
+ 3444 01eb 14000000 		.4byte	.LVL110
+ 3445 01ef 0100     		.2byte	0x1
+ 3446 01f1 55       		.byte	0x55
+ 3447 01f2 14000000 		.4byte	.LVL110
+ 3448 01f6 1C000000 		.4byte	.LFE75
+ 3449 01fa 0100     		.2byte	0x1
+ 3450 01fc 51       		.byte	0x51
+ 3451 01fd 00000000 		.4byte	0
+ 3452 0201 00000000 		.4byte	0
+ 3453              	.LLST17:
+ 3454 0205 00000000 		.4byte	.LVL104
+ 3455 0209 08000000 		.4byte	.LVL106
+ 3456 020d 0100     		.2byte	0x1
+ 3457 020f 52       		.byte	0x52
+ 3458 0210 08000000 		.4byte	.LVL106
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 68
+
+
+ 3459 0214 1C000000 		.4byte	.LFE75
+ 3460 0218 0100     		.2byte	0x1
+ 3461 021a 56       		.byte	0x56
+ 3462 021b 00000000 		.4byte	0
+ 3463 021f 00000000 		.4byte	0
+ 3464              	.LLST18:
+ 3465 0223 04000000 		.4byte	.LVL105
+ 3466 0227 08000000 		.4byte	.LVL106
+ 3467 022b 0200     		.2byte	0x2
+ 3468 022d 30       		.byte	0x30
+ 3469 022e 9F       		.byte	0x9f
+ 3470 022f 08000000 		.4byte	.LVL106
+ 3471 0233 1C000000 		.4byte	.LFE75
+ 3472 0237 0100     		.2byte	0x1
+ 3473 0239 54       		.byte	0x54
+ 3474 023a 00000000 		.4byte	0
+ 3475 023e 00000000 		.4byte	0
+ 3476              		.section	.debug_aranges,"",%progbits
+ 3477 0000 7C000000 		.4byte	0x7c
+ 3478 0004 0200     		.2byte	0x2
+ 3479 0006 00000000 		.4byte	.Ldebug_info0
+ 3480 000a 04       		.byte	0x4
+ 3481 000b 00       		.byte	0
+ 3482 000c 0000     		.2byte	0
+ 3483 000e 0000     		.2byte	0
+ 3484 0010 00000000 		.4byte	.LFB67
+ 3485 0014 F8000000 		.4byte	.LFE67-.LFB67
+ 3486 0018 00000000 		.4byte	.LFB63
+ 3487 001c 18000000 		.4byte	.LFE63-.LFB63
+ 3488 0020 00000000 		.4byte	.LFB64
+ 3489 0024 18000000 		.4byte	.LFE64-.LFB64
+ 3490 0028 00000000 		.4byte	.LFB65
+ 3491 002c 26000000 		.4byte	.LFE65-.LFB65
+ 3492 0030 00000000 		.4byte	.LFB68
+ 3493 0034 2C000000 		.4byte	.LFE68-.LFB68
+ 3494 0038 00000000 		.4byte	.LFB69
+ 3495 003c A0000000 		.4byte	.LFE69-.LFB69
+ 3496 0040 00000000 		.4byte	.LFB70
+ 3497 0044 74000000 		.4byte	.LFE70-.LFB70
+ 3498 0048 00000000 		.4byte	.LFB71
+ 3499 004c 2C000000 		.4byte	.LFE71-.LFB71
+ 3500 0050 00000000 		.4byte	.LFB72
+ 3501 0054 74000000 		.4byte	.LFE72-.LFB72
+ 3502 0058 00000000 		.4byte	.LFB66
+ 3503 005c 44000000 		.4byte	.LFE66-.LFB66
+ 3504 0060 00000000 		.4byte	.LFB73
+ 3505 0064 3A000000 		.4byte	.LFE73-.LFB73
+ 3506 0068 00000000 		.4byte	.LFB74
+ 3507 006c 54000000 		.4byte	.LFE74-.LFB74
+ 3508 0070 00000000 		.4byte	.LFB75
+ 3509 0074 1C000000 		.4byte	.LFE75-.LFB75
+ 3510 0078 00000000 		.4byte	0
+ 3511 007c 00000000 		.4byte	0
+ 3512              		.section	.debug_ranges,"",%progbits
+ 3513              	.Ldebug_ranges0:
+ 3514 0000 00000000 		.4byte	.LFB67
+ 3515 0004 F8000000 		.4byte	.LFE67
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 69
+
+
+ 3516 0008 00000000 		.4byte	.LFB63
+ 3517 000c 18000000 		.4byte	.LFE63
+ 3518 0010 00000000 		.4byte	.LFB64
+ 3519 0014 18000000 		.4byte	.LFE64
+ 3520 0018 00000000 		.4byte	.LFB65
+ 3521 001c 26000000 		.4byte	.LFE65
+ 3522 0020 00000000 		.4byte	.LFB68
+ 3523 0024 2C000000 		.4byte	.LFE68
+ 3524 0028 00000000 		.4byte	.LFB69
+ 3525 002c A0000000 		.4byte	.LFE69
+ 3526 0030 00000000 		.4byte	.LFB70
+ 3527 0034 74000000 		.4byte	.LFE70
+ 3528 0038 00000000 		.4byte	.LFB71
+ 3529 003c 2C000000 		.4byte	.LFE71
+ 3530 0040 00000000 		.4byte	.LFB72
+ 3531 0044 74000000 		.4byte	.LFE72
+ 3532 0048 00000000 		.4byte	.LFB66
+ 3533 004c 44000000 		.4byte	.LFE66
+ 3534 0050 00000000 		.4byte	.LFB73
+ 3535 0054 3A000000 		.4byte	.LFE73
+ 3536 0058 00000000 		.4byte	.LFB74
+ 3537 005c 54000000 		.4byte	.LFE74
+ 3538 0060 00000000 		.4byte	.LFB75
+ 3539 0064 1C000000 		.4byte	.LFE75
+ 3540 0068 00000000 		.4byte	0
+ 3541 006c 00000000 		.4byte	0
+ 3542              		.section	.debug_line,"",%progbits
+ 3543              	.Ldebug_line0:
+ 3544 0000 BB030000 		.section	.debug_str,"MS",%progbits,1
+ 3544      02002D02 
+ 3544      00000201 
+ 3544      FB0E0D00 
+ 3544      01010101 
+ 3545              	.LASF35:
+ 3546 0000 6D6F746F 		.ascii	"motor_turn\000"
+ 3546      725F7475 
+ 3546      726E00
+ 3547              	.LASF95:
+ 3548 000b 5F5F6275 		.ascii	"__builtin_puts\000"
+ 3548      696C7469 
+ 3548      6E5F7075 
+ 3548      747300
+ 3549              	.LASF72:
+ 3550 001a 4C4C5F53 		.ascii	"LL_SetDriveMode\000"
+ 3550      65744472 
+ 3550      6976654D 
+ 3550      6F646500 
+ 3551              	.LASF26:
+ 3552 002a 64696769 		.ascii	"digital_sensor_value_\000"
+ 3552      74616C5F 
+ 3552      73656E73 
+ 3552      6F725F76 
+ 3552      616C7565 
+ 3553              	.LASF97:
+ 3554 0040 4932435F 		.ascii	"I2C_2_MasterClearStatus\000"
+ 3554      325F4D61 
+ 3554      73746572 
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 70
+
+
+ 3554      436C6561 
+ 3554      72537461 
+ 3555              	.LASF98:
+ 3556 0058 4932435F 		.ascii	"I2C_2_MasterWriteBuf\000"
+ 3556      325F4D61 
+ 3556      73746572 
+ 3556      57726974 
+ 3556      65427566 
+ 3557              	.LASF91:
+ 3558 006d 54696D65 		.ascii	"Timer_LL_Start\000"
+ 3558      725F4C4C 
+ 3558      5F537461 
+ 3558      727400
+ 3559              	.LASF45:
+ 3560 007c 675F6275 		.ascii	"g_buf\000"
+ 3560      6600
+ 3561              	.LASF2:
+ 3562 0082 73686F72 		.ascii	"short int\000"
+ 3562      7420696E 
+ 3562      7400
+ 3563              	.LASF60:
+ 3564 008c 54696D65 		.ascii	"Timer_RL_ReadPeriod\000"
+ 3564      725F524C 
+ 3564      5F526561 
+ 3564      64506572 
+ 3564      696F6400 
+ 3565              	.LASF39:
+ 3566 00a0 7265666C 		.ascii	"reflectance_period\000"
+ 3566      65637461 
+ 3566      6E63655F 
+ 3566      70657269 
+ 3566      6F6400
+ 3567              	.LASF54:
+ 3568 00b3 73656E73 		.ascii	"sensors\000"
+ 3568      6F727300 
+ 3569              	.LASF37:
+ 3570 00bb 725F7370 		.ascii	"r_speed\000"
+ 3570      65656400 
+ 3571              	.LASF104:
+ 3572 00c3 5F777269 		.ascii	"_write\000"
+ 3572      746500
+ 3573              	.LASF34:
+ 3574 00ca 64656C61 		.ascii	"delay\000"
+ 3574      7900
+ 3575              	.LASF31:
+ 3576 00d0 73656E73 		.ascii	"sensor_isr_handler\000"
+ 3576      6F725F69 
+ 3576      73725F68 
+ 3576      616E646C 
+ 3576      657200
+ 3577              	.LASF4:
+ 3578 00e3 5F5F7569 		.ascii	"__uint16_t\000"
+ 3578      6E743136 
+ 3578      5F7400
+ 3579              	.LASF100:
+ 3580 00ee 4932435F 		.ascii	"I2C_2_MasterReadBuf\000"
+ 3580      325F4D61 
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 71
+
+
+ 3580      73746572 
+ 3580      52656164 
+ 3580      42756600 
+ 3581              	.LASF70:
+ 3582 0102 52525F53 		.ascii	"RR_SetDriveMode\000"
+ 3582      65744472 
+ 3582      6976654D 
+ 3582      6F646500 
+ 3583              	.LASF44:
+ 3584 0112 6779726F 		.ascii	"gyro_write\000"
+ 3584      5F777269 
+ 3584      746500
+ 3585              	.LASF27:
+ 3586 011d 73746174 		.ascii	"statusRL\000"
+ 3586      7573524C 
+ 3586      00
+ 3587              	.LASF69:
+ 3588 0126 524C5F57 		.ascii	"RL_Write\000"
+ 3588      72697465 
+ 3588      00
+ 3589              	.LASF18:
+ 3590 012f 75696E74 		.ascii	"uint16\000"
+ 3590      313600
+ 3591              	.LASF25:
+ 3592 0136 73656E73 		.ascii	"sensors_\000"
+ 3592      6F72735F 
+ 3592      00
+ 3593              	.LASF13:
+ 3594 013f 75696E74 		.ascii	"uint8_t\000"
+ 3594      385F7400 
+ 3595              	.LASF103:
+ 3596 0147 433A5C55 		.ascii	"C:\\Users\\suminh\\project\\ZumoBot.cyprj.Archive01"
+ 3596      73657273 
+ 3596      5C73756D 
+ 3596      696E685C 
+ 3596      70726F6A 
+ 3597 0176 5C5A756D 		.ascii	"\\ZumoBot_I2C.cydsn\000"
+ 3597      6F426F74 
+ 3597      5F493243 
+ 3597      2E637964 
+ 3597      736E00
+ 3598              	.LASF17:
+ 3599 0189 75696E74 		.ascii	"uint8\000"
+ 3599      3800
+ 3600              	.LASF49:
+ 3601 018f 6E756E63 		.ascii	"nunchuk_init\000"
+ 3601      68756B5F 
+ 3601      696E6974 
+ 3601      00
+ 3602              	.LASF20:
+ 3603 019c 666C6F61 		.ascii	"float\000"
+ 3603      7400
+ 3604              	.LASF92:
+ 3605 01a2 54696D65 		.ascii	"Timer_LR_Start\000"
+ 3605      725F4C52 
+ 3605      5F537461 
+ 3605      727400
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 72
+
+
+ 3606              	.LASF10:
+ 3607 01b1 6C6F6E67 		.ascii	"long long int\000"
+ 3607      206C6F6E 
+ 3607      6720696E 
+ 3607      7400
+ 3608              	.LASF11:
+ 3609 01bf 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3609      206C6F6E 
+ 3609      6720756E 
+ 3609      7369676E 
+ 3609      65642069 
+ 3610              	.LASF77:
+ 3611 01d6 50574D5F 		.ascii	"PWM_WriteCompare1\000"
+ 3611      57726974 
+ 3611      65436F6D 
+ 3611      70617265 
+ 3611      3100
+ 3612              	.LASF40:
+ 3613 01e8 7265666C 		.ascii	"reflectance_digital\000"
+ 3613      65637461 
+ 3613      6E63655F 
+ 3613      64696769 
+ 3613      74616C00 
+ 3614              	.LASF22:
+ 3615 01fc 63686172 		.ascii	"char\000"
+ 3615      00
+ 3616              	.LASF38:
+ 3617 0201 6D6F746F 		.ascii	"motor_backward\000"
+ 3617      725F6261 
+ 3617      636B7761 
+ 3617      726400
+ 3618              	.LASF28:
+ 3619 0210 73746174 		.ascii	"statusRR\000"
+ 3619      75735252 
+ 3619      00
+ 3620              	.LASF83:
+ 3621 0219 7072696E 		.ascii	"printf\000"
+ 3621      746600
+ 3622              	.LASF9:
+ 3623 0220 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3623      20756E73 
+ 3623      69676E65 
+ 3623      6420696E 
+ 3623      7400
+ 3624              	.LASF3:
+ 3625 0232 5F5F7569 		.ascii	"__uint8_t\000"
+ 3625      6E74385F 
+ 3625      7400
+ 3626              	.LASF62:
+ 3627 023c 54696D65 		.ascii	"Timer_RR_ReadPeriod\000"
+ 3627      725F5252 
+ 3627      5F526561 
+ 3627      64506572 
+ 3627      696F6400 
+ 3628              	.LASF47:
+ 3629 0250 675F7374 		.ascii	"g_status\000"
+ 3629      61747573 
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 73
+
+
+ 3629      00
+ 3630              	.LASF8:
+ 3631 0259 5F5F7569 		.ascii	"__uint32_t\000"
+ 3631      6E743332 
+ 3631      5F7400
+ 3632              	.LASF51:
+ 3633 0264 6E756E63 		.ascii	"nunchuk_read\000"
+ 3633      68756B5F 
+ 3633      72656164 
+ 3633      00
+ 3634              	.LASF78:
+ 3635 0271 50574D5F 		.ascii	"PWM_WriteCompare2\000"
+ 3635      57726974 
+ 3635      65436F6D 
+ 3635      70617265 
+ 3635      3200
+ 3636              	.LASF1:
+ 3637 0283 756E7369 		.ascii	"unsigned char\000"
+ 3637      676E6564 
+ 3637      20636861 
+ 3637      7200
+ 3638              	.LASF67:
+ 3639 0291 54696D65 		.ascii	"Timer_LR_ReadCapture\000"
+ 3639      725F4C52 
+ 3639      5F526561 
+ 3639      64436170 
+ 3639      74757265 
+ 3640              	.LASF71:
+ 3641 02a6 52525F57 		.ascii	"RR_Write\000"
+ 3641      72697465 
+ 3641      00
+ 3642              	.LASF99:
+ 3643 02af 4932435F 		.ascii	"I2C_2_MasterStatus\000"
+ 3643      325F4D61 
+ 3643      73746572 
+ 3643      53746174 
+ 3643      757300
+ 3644              	.LASF86:
+ 3645 02c2 4932435F 		.ascii	"I2C_MasterReadBuf\000"
+ 3645      4D617374 
+ 3645      65725265 
+ 3645      61644275 
+ 3645      6600
+ 3646              	.LASF76:
+ 3647 02d4 43794465 		.ascii	"CyDelayUs\000"
+ 3647      6C617955 
+ 3647      7300
+ 3648              	.LASF23:
+ 3649 02de 63796973 		.ascii	"cyisraddress\000"
+ 3649      72616464 
+ 3649      72657373 
+ 3649      00
+ 3650              	.LASF52:
+ 3651 02eb 66696C65 		.ascii	"file\000"
+ 3651      00
+ 3652              	.LASF0:
+ 3653 02f0 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 74
+
+
+ 3653      65642063 
+ 3653      68617200 
+ 3654              	.LASF15:
+ 3655 02fc 696E7433 		.ascii	"int32_t\000"
+ 3655      325F7400 
+ 3656              	.LASF84:
+ 3657 0304 4932435F 		.ascii	"I2C_MasterWriteBuf\000"
+ 3657      4D617374 
+ 3657      65725772 
+ 3657      69746542 
+ 3657      756600
+ 3658              	.LASF16:
+ 3659 0317 75696E74 		.ascii	"uint32_t\000"
+ 3659      33325F74 
+ 3659      00
+ 3660              	.LASF82:
+ 3661 0320 4932435F 		.ascii	"I2C_MasterClearStatus\000"
+ 3661      4D617374 
+ 3661      6572436C 
+ 3661      65617253 
+ 3661      74617475 
+ 3662              	.LASF59:
+ 3663 0336 54696D65 		.ascii	"Timer_LR_ReadStatusRegister\000"
+ 3663      725F4C52 
+ 3663      5F526561 
+ 3663      64537461 
+ 3663      74757352 
+ 3664              	.LASF12:
+ 3665 0352 756E7369 		.ascii	"unsigned int\000"
+ 3665      676E6564 
+ 3665      20696E74 
+ 3665      00
+ 3666              	.LASF68:
+ 3667 035f 524C5F53 		.ascii	"RL_SetDriveMode\000"
+ 3667      65744472 
+ 3667      6976654D 
+ 3667      6F646500 
+ 3668              	.LASF73:
+ 3669 036f 4C4C5F57 		.ascii	"LL_Write\000"
+ 3669      72697465 
+ 3669      00
+ 3670              	.LASF63:
+ 3671 0378 54696D65 		.ascii	"Timer_RR_ReadCapture\000"
+ 3671      725F5252 
+ 3671      5F526561 
+ 3671      64436170 
+ 3671      74757265 
+ 3672              	.LASF33:
+ 3673 038d 73706565 		.ascii	"speed\000"
+ 3673      6400
+ 3674              	.LASF105:
+ 3675 0393 70757473 		.ascii	"puts\000"
+ 3675      00
+ 3676              	.LASF58:
+ 3677 0398 54696D65 		.ascii	"Timer_LL_ReadStatusRegister\000"
+ 3677      725F4C4C 
+ 3677      5F526561 
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 75
+
+
+ 3677      64537461 
+ 3677      74757352 
+ 3678              	.LASF5:
+ 3679 03b4 73686F72 		.ascii	"short unsigned int\000"
+ 3679      7420756E 
+ 3679      7369676E 
+ 3679      65642069 
+ 3679      6E7400
+ 3680              	.LASF50:
+ 3681 03c7 73746174 		.ascii	"status\000"
+ 3681      757300
+ 3682              	.LASF32:
+ 3683 03ce 6D6F746F 		.ascii	"motor_forward\000"
+ 3683      725F666F 
+ 3683      72776172 
+ 3683      6400
+ 3684              	.LASF55:
+ 3685 03dc 64696769 		.ascii	"digital_sensor_value\000"
+ 3685      74616C5F 
+ 3685      73656E73 
+ 3685      6F725F76 
+ 3685      616C7565 
+ 3686              	.LASF89:
+ 3687 03f1 54696D65 		.ascii	"Timer_RL_Start\000"
+ 3687      725F524C 
+ 3687      5F537461 
+ 3687      727400
+ 3688              	.LASF7:
+ 3689 0400 6C6F6E67 		.ascii	"long int\000"
+ 3689      20696E74 
+ 3689      00
+ 3690              	.LASF48:
+ 3691 0409 6D61696E 		.ascii	"main\000"
+ 3691      00
+ 3692              	.LASF88:
+ 3693 040e 55415254 		.ascii	"UART_Start\000"
+ 3693      5F537461 
+ 3693      727400
+ 3694              	.LASF81:
+ 3695 0419 4D6F746F 		.ascii	"MotorDirRight_Write\000"
+ 3695      72446972 
+ 3695      52696768 
+ 3695      745F5772 
+ 3695      69746500 
+ 3696              	.LASF74:
+ 3697 042d 4C525F53 		.ascii	"LR_SetDriveMode\000"
+ 3697      65744472 
+ 3697      6976654D 
+ 3697      6F646500 
+ 3698              	.LASF65:
+ 3699 043d 54696D65 		.ascii	"Timer_LL_ReadCapture\000"
+ 3699      725F4C4C 
+ 3699      5F526561 
+ 3699      64436170 
+ 3699      74757265 
+ 3700              	.LASF85:
+ 3701 0452 4932435F 		.ascii	"I2C_MasterStatus\000"
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 76
+
+
+ 3701      4D617374 
+ 3701      65725374 
+ 3701      61747573 
+ 3701      00
+ 3702              	.LASF14:
+ 3703 0463 75696E74 		.ascii	"uint16_t\000"
+ 3703      31365F74 
+ 3703      00
+ 3704              	.LASF57:
+ 3705 046c 54696D65 		.ascii	"Timer_RR_ReadStatusRegister\000"
+ 3705      725F5252 
+ 3705      5F526561 
+ 3705      64537461 
+ 3705      74757352 
+ 3706              	.LASF19:
+ 3707 0488 75696E74 		.ascii	"uint32\000"
+ 3707      333200
+ 3708              	.LASF29:
+ 3709 048f 73746174 		.ascii	"statusLL\000"
+ 3709      75734C4C 
+ 3709      00
+ 3710              	.LASF87:
+ 3711 0498 73656E73 		.ascii	"sensor_isr_StartEx\000"
+ 3711      6F725F69 
+ 3711      73725F53 
+ 3711      74617274 
+ 3711      457800
+ 3712              	.LASF30:
+ 3713 04ab 73746174 		.ascii	"statusLR\000"
+ 3713      75734C52 
+ 3713      00
+ 3714              	.LASF41:
+ 3715 04b4 61636365 		.ascii	"accel_read\000"
+ 3715      6C5F7265 
+ 3715      616400
+ 3716              	.LASF56:
+ 3717 04bf 54696D65 		.ascii	"Timer_RL_ReadStatusRegister\000"
+ 3717      725F524C 
+ 3717      5F526561 
+ 3717      64537461 
+ 3717      74757352 
+ 3718              	.LASF66:
+ 3719 04db 54696D65 		.ascii	"Timer_LR_ReadPeriod\000"
+ 3719      725F4C52 
+ 3719      5F526561 
+ 3719      64506572 
+ 3719      696F6400 
+ 3720              	.LASF102:
+ 3721 04ef 2E5C6D61 		.ascii	".\\main.c\000"
+ 3721      696E2E63 
+ 3721      00
+ 3722              	.LASF6:
+ 3723 04f8 5F5F696E 		.ascii	"__int32_t\000"
+ 3723      7433325F 
+ 3723      7400
+ 3724              	.LASF101:
+ 3725 0502 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 77
+
+
+ 3725      4320342E 
+ 3725      392E3320 
+ 3725      32303135 
+ 3725      30333033 
+ 3726 0535 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3726      20726576 
+ 3726      6973696F 
+ 3726      6E203232 
+ 3726      31323230 
+ 3727 0568 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3727      66756E63 
+ 3727      74696F6E 
+ 3727      2D736563 
+ 3727      74696F6E 
+ 3728              	.LASF42:
+ 3729 0590 615F7374 		.ascii	"a_status\000"
+ 3729      61747573 
+ 3729      00
+ 3730              	.LASF93:
+ 3731 0599 50574D5F 		.ascii	"PWM_Start\000"
+ 3731      53746172 
+ 3731      7400
+ 3732              	.LASF24:
+ 3733 05a3 73697A65 		.ascii	"sizetype\000"
+ 3733      74797065 
+ 3733      00
+ 3734              	.LASF64:
+ 3735 05ac 54696D65 		.ascii	"Timer_LL_ReadPeriod\000"
+ 3735      725F4C4C 
+ 3735      5F526561 
+ 3735      64506572 
+ 3735      696F6400 
+ 3736              	.LASF90:
+ 3737 05c0 54696D65 		.ascii	"Timer_RR_Start\000"
+ 3737      725F5252 
+ 3737      5F537461 
+ 3737      727400
+ 3738              	.LASF75:
+ 3739 05cf 4C525F57 		.ascii	"LR_Write\000"
+ 3739      72697465 
+ 3739      00
+ 3740              	.LASF21:
+ 3741 05d8 646F7562 		.ascii	"double\000"
+ 3741      6C6500
+ 3742              	.LASF53:
+ 3743 05df 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3743      52784275 
+ 3743      66666572 
+ 3743      00
+ 3744              	.LASF79:
+ 3745 05ec 43794465 		.ascii	"CyDelay\000"
+ 3745      6C617900 
+ 3746              	.LASF94:
+ 3747 05f4 4932435F 		.ascii	"I2C_Start\000"
+ 3747      53746172 
+ 3747      7400
+ 3748              	.LASF46:
+ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVooiEL.s 			page 78
+
+
+ 3749 05fe 6779726F 		.ascii	"gyro_read\000"
+ 3749      5F726561 
+ 3749      6400
+ 3750              	.LASF61:
+ 3751 0608 54696D65 		.ascii	"Timer_RL_ReadCapture\000"
+ 3751      725F524C 
+ 3751      5F526561 
+ 3751      64436170 
+ 3751      74757265 
+ 3752              	.LASF43:
+ 3753 061d 615F6275 		.ascii	"a_buf\000"
+ 3753      6600
+ 3754              	.LASF80:
+ 3755 0623 4D6F746F 		.ascii	"MotorDirLeft_Write\000"
+ 3755      72446972 
+ 3755      4C656674 
+ 3755      5F577269 
+ 3755      746500
+ 3756              	.LASF106:
+ 3757 0636 55415254 		.ascii	"UART_PutChar\000"
+ 3757      5F507574 
+ 3757      43686172 
+ 3757      00
+ 3758              	.LASF36:
+ 3759 0643 6C5F7370 		.ascii	"l_speed\000"
+ 3759      65656400 
+ 3760              	.LASF96:
+ 3761 064b 49525F6C 		.ascii	"IR_led_Write\000"
+ 3761      65645F57 
+ 3761      72697465 
+ 3761      00
+ 3762              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

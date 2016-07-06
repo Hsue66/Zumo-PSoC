@@ -1,0 +1,5 @@
+C:\Users\suminh\project\ZumoBot.cyprj.Archive01\ZumoBot_I2C.cydsn\ZumoBot_I2C.cyprj|fc3ccb49-91d0-4321-828c-17c606daf9db
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|cbec3d23-065f-4749-bd8a-c3bc474c045f
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|3e528e79-35d3-4a29-b291-b9a488b5065e
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|b40808ae-9436-4b95-b44d-0efba90f5c99
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|3f104a5a-bf0a-402a-a26b-34be4e9c212e
