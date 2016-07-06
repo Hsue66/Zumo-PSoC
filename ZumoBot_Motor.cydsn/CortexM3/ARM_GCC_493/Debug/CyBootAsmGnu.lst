@@ -12103,41 +12103,41 @@ ARM GAS  .\Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  768              	.set sensor_isr__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
  769              	
  770              	/* MotorDirLeft */
- 771              	.set MotorDirLeft__0__INTTYPE, CYREG_PICU15_INTTYPE5
- 772              	.set MotorDirLeft__0__MASK, 0x20
- 773              	.set MotorDirLeft__0__PC, CYREG_IO_PC_PRT15_PC5
- 774              	.set MotorDirLeft__0__PORT, 15
- 775              	.set MotorDirLeft__0__SHIFT, 5
- 776              	.set MotorDirLeft__AG, CYREG_PRT15_AG
- 777              	.set MotorDirLeft__AMUX, CYREG_PRT15_AMUX
- 778              	.set MotorDirLeft__BIE, CYREG_PRT15_BIE
- 779              	.set MotorDirLeft__BIT_MASK, CYREG_PRT15_BIT_MASK
- 780              	.set MotorDirLeft__BYP, CYREG_PRT15_BYP
- 781              	.set MotorDirLeft__CTL, CYREG_PRT15_CTL
- 782              	.set MotorDirLeft__DM0, CYREG_PRT15_DM0
- 783              	.set MotorDirLeft__DM1, CYREG_PRT15_DM1
- 784              	.set MotorDirLeft__DM2, CYREG_PRT15_DM2
- 785              	.set MotorDirLeft__DR, CYREG_PRT15_DR
+ 771              	.set MotorDirLeft__0__INTTYPE, CYREG_PICU3_INTTYPE7
+ 772              	.set MotorDirLeft__0__MASK, 0x80
+ 773              	.set MotorDirLeft__0__PC, CYREG_PRT3_PC7
+ 774              	.set MotorDirLeft__0__PORT, 3
+ 775              	.set MotorDirLeft__0__SHIFT, 7
+ 776              	.set MotorDirLeft__AG, CYREG_PRT3_AG
+ 777              	.set MotorDirLeft__AMUX, CYREG_PRT3_AMUX
+ 778              	.set MotorDirLeft__BIE, CYREG_PRT3_BIE
+ 779              	.set MotorDirLeft__BIT_MASK, CYREG_PRT3_BIT_MASK
+ 780              	.set MotorDirLeft__BYP, CYREG_PRT3_BYP
+ 781              	.set MotorDirLeft__CTL, CYREG_PRT3_CTL
+ 782              	.set MotorDirLeft__DM0, CYREG_PRT3_DM0
+ 783              	.set MotorDirLeft__DM1, CYREG_PRT3_DM1
+ 784              	.set MotorDirLeft__DM2, CYREG_PRT3_DM2
+ 785              	.set MotorDirLeft__DR, CYREG_PRT3_DR
 ARM GAS  .\Generated_Source\PSoC5\CyBootAsmGnu.s 			page 203
 
 
- 786              	.set MotorDirLeft__INP_DIS, CYREG_PRT15_INP_DIS
- 787              	.set MotorDirLeft__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU15_BASE
- 788              	.set MotorDirLeft__LCD_COM_SEG, CYREG_PRT15_LCD_COM_SEG
- 789              	.set MotorDirLeft__LCD_EN, CYREG_PRT15_LCD_EN
- 790              	.set MotorDirLeft__MASK, 0x20
- 791              	.set MotorDirLeft__PORT, 15
- 792              	.set MotorDirLeft__PRT, CYREG_PRT15_PRT
- 793              	.set MotorDirLeft__PRTDSI__CAPS_SEL, CYREG_PRT15_CAPS_SEL
- 794              	.set MotorDirLeft__PRTDSI__DBL_SYNC_IN, CYREG_PRT15_DBL_SYNC_IN
- 795              	.set MotorDirLeft__PRTDSI__OE_SEL0, CYREG_PRT15_OE_SEL0
- 796              	.set MotorDirLeft__PRTDSI__OE_SEL1, CYREG_PRT15_OE_SEL1
- 797              	.set MotorDirLeft__PRTDSI__OUT_SEL0, CYREG_PRT15_OUT_SEL0
- 798              	.set MotorDirLeft__PRTDSI__OUT_SEL1, CYREG_PRT15_OUT_SEL1
- 799              	.set MotorDirLeft__PRTDSI__SYNC_OUT, CYREG_PRT15_SYNC_OUT
- 800              	.set MotorDirLeft__PS, CYREG_PRT15_PS
- 801              	.set MotorDirLeft__SHIFT, 5
- 802              	.set MotorDirLeft__SLW, CYREG_PRT15_SLW
+ 786              	.set MotorDirLeft__INP_DIS, CYREG_PRT3_INP_DIS
+ 787              	.set MotorDirLeft__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU3_BASE
+ 788              	.set MotorDirLeft__LCD_COM_SEG, CYREG_PRT3_LCD_COM_SEG
+ 789              	.set MotorDirLeft__LCD_EN, CYREG_PRT3_LCD_EN
+ 790              	.set MotorDirLeft__MASK, 0x80
+ 791              	.set MotorDirLeft__PORT, 3
+ 792              	.set MotorDirLeft__PRT, CYREG_PRT3_PRT
+ 793              	.set MotorDirLeft__PRTDSI__CAPS_SEL, CYREG_PRT3_CAPS_SEL
+ 794              	.set MotorDirLeft__PRTDSI__DBL_SYNC_IN, CYREG_PRT3_DBL_SYNC_IN
+ 795              	.set MotorDirLeft__PRTDSI__OE_SEL0, CYREG_PRT3_OE_SEL0
+ 796              	.set MotorDirLeft__PRTDSI__OE_SEL1, CYREG_PRT3_OE_SEL1
+ 797              	.set MotorDirLeft__PRTDSI__OUT_SEL0, CYREG_PRT3_OUT_SEL0
+ 798              	.set MotorDirLeft__PRTDSI__OUT_SEL1, CYREG_PRT3_OUT_SEL1
+ 799              	.set MotorDirLeft__PRTDSI__SYNC_OUT, CYREG_PRT3_SYNC_OUT
+ 800              	.set MotorDirLeft__PS, CYREG_PRT3_PS
+ 801              	.set MotorDirLeft__SHIFT, 7
+ 802              	.set MotorDirLeft__SLW, CYREG_PRT3_SLW
  803              	
  804              	/* MotorPwmLeft */
  805              	.set MotorPwmLeft__0__INTTYPE, CYREG_PICU3_INTTYPE5
@@ -12174,41 +12174,41 @@ ARM GAS  .\Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  836              	.set MotorPwmLeft__SLW, CYREG_PRT3_SLW
  837              	
  838              	/* MotorDirRight */
- 839              	.set MotorDirRight__0__INTTYPE, CYREG_PICU0_INTTYPE0
+ 839              	.set MotorDirRight__0__INTTYPE, CYREG_PICU15_INTTYPE0
  840              	.set MotorDirRight__0__MASK, 0x01
- 841              	.set MotorDirRight__0__PC, CYREG_PRT0_PC0
- 842              	.set MotorDirRight__0__PORT, 0
+ 841              	.set MotorDirRight__0__PC, CYREG_IO_PC_PRT15_PC0
+ 842              	.set MotorDirRight__0__PORT, 15
 ARM GAS  .\Generated_Source\PSoC5\CyBootAsmGnu.s 			page 204
 
 
  843              	.set MotorDirRight__0__SHIFT, 0
- 844              	.set MotorDirRight__AG, CYREG_PRT0_AG
- 845              	.set MotorDirRight__AMUX, CYREG_PRT0_AMUX
- 846              	.set MotorDirRight__BIE, CYREG_PRT0_BIE
- 847              	.set MotorDirRight__BIT_MASK, CYREG_PRT0_BIT_MASK
- 848              	.set MotorDirRight__BYP, CYREG_PRT0_BYP
- 849              	.set MotorDirRight__CTL, CYREG_PRT0_CTL
- 850              	.set MotorDirRight__DM0, CYREG_PRT0_DM0
- 851              	.set MotorDirRight__DM1, CYREG_PRT0_DM1
- 852              	.set MotorDirRight__DM2, CYREG_PRT0_DM2
- 853              	.set MotorDirRight__DR, CYREG_PRT0_DR
- 854              	.set MotorDirRight__INP_DIS, CYREG_PRT0_INP_DIS
- 855              	.set MotorDirRight__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU0_BASE
- 856              	.set MotorDirRight__LCD_COM_SEG, CYREG_PRT0_LCD_COM_SEG
- 857              	.set MotorDirRight__LCD_EN, CYREG_PRT0_LCD_EN
+ 844              	.set MotorDirRight__AG, CYREG_PRT15_AG
+ 845              	.set MotorDirRight__AMUX, CYREG_PRT15_AMUX
+ 846              	.set MotorDirRight__BIE, CYREG_PRT15_BIE
+ 847              	.set MotorDirRight__BIT_MASK, CYREG_PRT15_BIT_MASK
+ 848              	.set MotorDirRight__BYP, CYREG_PRT15_BYP
+ 849              	.set MotorDirRight__CTL, CYREG_PRT15_CTL
+ 850              	.set MotorDirRight__DM0, CYREG_PRT15_DM0
+ 851              	.set MotorDirRight__DM1, CYREG_PRT15_DM1
+ 852              	.set MotorDirRight__DM2, CYREG_PRT15_DM2
+ 853              	.set MotorDirRight__DR, CYREG_PRT15_DR
+ 854              	.set MotorDirRight__INP_DIS, CYREG_PRT15_INP_DIS
+ 855              	.set MotorDirRight__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU15_BASE
+ 856              	.set MotorDirRight__LCD_COM_SEG, CYREG_PRT15_LCD_COM_SEG
+ 857              	.set MotorDirRight__LCD_EN, CYREG_PRT15_LCD_EN
  858              	.set MotorDirRight__MASK, 0x01
- 859              	.set MotorDirRight__PORT, 0
- 860              	.set MotorDirRight__PRT, CYREG_PRT0_PRT
- 861              	.set MotorDirRight__PRTDSI__CAPS_SEL, CYREG_PRT0_CAPS_SEL
- 862              	.set MotorDirRight__PRTDSI__DBL_SYNC_IN, CYREG_PRT0_DBL_SYNC_IN
- 863              	.set MotorDirRight__PRTDSI__OE_SEL0, CYREG_PRT0_OE_SEL0
- 864              	.set MotorDirRight__PRTDSI__OE_SEL1, CYREG_PRT0_OE_SEL1
- 865              	.set MotorDirRight__PRTDSI__OUT_SEL0, CYREG_PRT0_OUT_SEL0
- 866              	.set MotorDirRight__PRTDSI__OUT_SEL1, CYREG_PRT0_OUT_SEL1
- 867              	.set MotorDirRight__PRTDSI__SYNC_OUT, CYREG_PRT0_SYNC_OUT
- 868              	.set MotorDirRight__PS, CYREG_PRT0_PS
+ 859              	.set MotorDirRight__PORT, 15
+ 860              	.set MotorDirRight__PRT, CYREG_PRT15_PRT
+ 861              	.set MotorDirRight__PRTDSI__CAPS_SEL, CYREG_PRT15_CAPS_SEL
+ 862              	.set MotorDirRight__PRTDSI__DBL_SYNC_IN, CYREG_PRT15_DBL_SYNC_IN
+ 863              	.set MotorDirRight__PRTDSI__OE_SEL0, CYREG_PRT15_OE_SEL0
+ 864              	.set MotorDirRight__PRTDSI__OE_SEL1, CYREG_PRT15_OE_SEL1
+ 865              	.set MotorDirRight__PRTDSI__OUT_SEL0, CYREG_PRT15_OUT_SEL0
+ 866              	.set MotorDirRight__PRTDSI__OUT_SEL1, CYREG_PRT15_OUT_SEL1
+ 867              	.set MotorDirRight__PRTDSI__SYNC_OUT, CYREG_PRT15_SYNC_OUT
+ 868              	.set MotorDirRight__PS, CYREG_PRT15_PS
  869              	.set MotorDirRight__SHIFT, 0
- 870              	.set MotorDirRight__SLW, CYREG_PRT0_SLW
+ 870              	.set MotorDirRight__SLW, CYREG_PRT15_SLW
  871              	
  872              	/* MotorPwmRight */
  873              	.set MotorPwmRight__0__INTTYPE, CYREG_PICU3_INTTYPE6

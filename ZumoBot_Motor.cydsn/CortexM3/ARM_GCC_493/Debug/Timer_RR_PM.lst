@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
   29:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *     Save the current user configuration
   30:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *
   31:.\Generated_Source\PSoC5/Timer_RR_PM.c **** * Parameters:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *  void
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
   69:.\Generated_Source\PSoC5/Timer_RR_PM.c **** * Return:
   70:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *  void
   71:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 3
 
 
   72:.\Generated_Source\PSoC5/Timer_RR_PM.c **** * Global variables:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  109:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *  enable state of the block before entering sleep mode.
  110:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *
  111:.\Generated_Source\PSoC5/Timer_RR_PM.c **** *******************************************************************************/
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 4
 
 
  112:.\Generated_Source\PSoC5/Timer_RR_PM.c **** void Timer_RR_Sleep(void) 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
   99              		.align	2
  100              		.global	Timer_RR_Wakeup
  101              		.thumb
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 5
 
 
  102              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  127 0010 00000000 		.word	.LANCHOR0
  128              		.cfi_endproc
  129              	.LFE3:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 6
 
 
  130              		.size	Timer_RR_Wakeup, .-Timer_RR_Wakeup
@@ -320,25 +320,25 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  146 0006 00000000 		.4byte	.Ldebug_abbrev0
  147 000a 04       		.byte	0x4
  148 000b 01       		.uleb128 0x1
- 149 000c 8C010000 		.4byte	.LASF22
+ 149 000c 85010000 		.4byte	.LASF22
  150 0010 01       		.byte	0x1
  151 0011 6F000000 		.4byte	.LASF23
- 152 0015 48010000 		.4byte	.LASF24
+ 152 0015 AD000000 		.4byte	.LASF24
  153 0019 00000000 		.4byte	.Ldebug_ranges0+0
  154 001d 00000000 		.4byte	0
  155 0021 00000000 		.4byte	.Ldebug_line0
  156 0025 02       		.uleb128 0x2
  157 0026 01       		.byte	0x1
  158 0027 06       		.byte	0x6
- 159 0028 3C010000 		.4byte	.LASF0
+ 159 0028 79010000 		.4byte	.LASF0
  160 002c 02       		.uleb128 0x2
  161 002d 01       		.byte	0x1
  162 002e 08       		.byte	0x8
- 163 002f EF000000 		.4byte	.LASF1
+ 163 002f 2C010000 		.4byte	.LASF1
  164 0033 02       		.uleb128 0x2
  165 0034 02       		.byte	0x2
  166 0035 05       		.byte	0x5
- 167 0036 23020000 		.4byte	.LASF2
+ 167 0036 1C020000 		.4byte	.LASF2
  168 003a 02       		.uleb128 0x2
  169 003b 02       		.byte	0x2
  170 003c 07       		.byte	0x7
@@ -346,7 +346,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  172 0041 02       		.uleb128 0x2
  173 0042 04       		.byte	0x4
  174 0043 05       		.byte	0x5
- 175 0044 18010000 		.4byte	.LASF4
+ 175 0044 55010000 		.4byte	.LASF4
  176 0048 02       		.uleb128 0x2
  177 0049 04       		.byte	0x4
  178 004a 07       		.byte	0x7
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  184 0056 02       		.uleb128 0x2
  185 0057 08       		.byte	0x8
  186 0058 07       		.byte	0x7
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 7
 
 
  187 0059 96000000 		.4byte	.LASF7
@@ -371,24 +371,24 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  194 0066 07       		.byte	0x7
  195 0067 21000000 		.4byte	.LASF8
  196 006b 04       		.uleb128 0x4
- 197 006c 36010000 		.4byte	.LASF12
+ 197 006c 73010000 		.4byte	.LASF12
  198 0070 02       		.byte	0x2
  199 0071 3801     		.2byte	0x138
  200 0073 2C000000 		.4byte	0x2c
  201 0077 02       		.uleb128 0x2
  202 0078 04       		.byte	0x4
  203 0079 04       		.byte	0x4
- 204 007a C4000000 		.4byte	.LASF9
+ 204 007a 01010000 		.4byte	.LASF9
  205 007e 02       		.uleb128 0x2
  206 007f 08       		.byte	0x8
  207 0080 04       		.byte	0x4
- 208 0081 2F010000 		.4byte	.LASF10
+ 208 0081 6C010000 		.4byte	.LASF10
  209 0085 02       		.uleb128 0x2
  210 0086 01       		.byte	0x1
  211 0087 08       		.byte	0x8
- 212 0088 FD000000 		.4byte	.LASF11
+ 212 0088 3A010000 		.4byte	.LASF11
  213 008c 04       		.uleb128 0x4
- 214 008d 2D020000 		.4byte	.LASF13
+ 214 008d 26020000 		.4byte	.LASF13
  215 0091 02       		.byte	0x2
  216 0092 E201     		.2byte	0x1e2
  217 0094 98000000 		.4byte	0x98
@@ -397,28 +397,28 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  220 009d 02       		.uleb128 0x2
  221 009e 04       		.byte	0x4
  222 009f 07       		.byte	0x7
- 223 00a0 1A020000 		.4byte	.LASF14
+ 223 00a0 13020000 		.4byte	.LASF14
  224 00a4 06       		.uleb128 0x6
  225 00a5 01       		.byte	0x1
  226 00a6 03       		.byte	0x3
  227 00a7 43       		.byte	0x43
  228 00a8 B9000000 		.4byte	0xb9
  229 00ac 07       		.uleb128 0x7
- 230 00ad DE000000 		.4byte	.LASF25
+ 230 00ad 1B010000 		.4byte	.LASF25
  231 00b1 03       		.byte	0x3
  232 00b2 45       		.byte	0x45
  233 00b3 6B000000 		.4byte	0x6b
  234 00b7 00       		.byte	0
  235 00b8 00       		.byte	0
  236 00b9 08       		.uleb128 0x8
- 237 00ba 02010000 		.4byte	.LASF15
+ 237 00ba 3F010000 		.4byte	.LASF15
  238 00be 03       		.byte	0x3
  239 00bf 53       		.byte	0x53
  240 00c0 A4000000 		.4byte	0xa4
  241 00c4 09       		.uleb128 0x9
- 242 00c5 CA000000 		.4byte	.LASF16
+ 242 00c5 07010000 		.4byte	.LASF16
  243 00c9 01       		.byte	0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 8
 
 
  244 00ca 2B       		.byte	0x2b
@@ -427,7 +427,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  247 00d3 01       		.uleb128 0x1
  248 00d4 9C       		.byte	0x9c
  249 00d5 09       		.uleb128 0x9
- 250 00d6 AD000000 		.4byte	.LASF17
+ 250 00d6 EA000000 		.4byte	.LASF17
  251 00da 01       		.byte	0x1
  252 00db 4D       		.byte	0x4d
  253 00dc 00000000 		.4byte	.LFB1
@@ -461,7 +461,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  281 011f 3C010000 		.4byte	0x13c
  282 0123 00       		.byte	0
  283 0124 0C       		.uleb128 0xc
- 284 0125 32020000 		.4byte	.LASF26
+ 284 0125 2B020000 		.4byte	.LASF26
  285 0129 01       		.byte	0x1
  286 012a 15       		.byte	0x15
  287 012b B9000000 		.4byte	0xb9
@@ -469,7 +469,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  289 0130 03       		.byte	0x3
  290 0131 00000000 		.4byte	Timer_RR_backup
  291 0135 0D       		.uleb128 0xd
- 292 0136 21010000 		.4byte	.LASF20
+ 292 0136 5E010000 		.4byte	.LASF20
  293 013a 03       		.byte	0x3
  294 013b 5B       		.byte	0x5b
  295 013c 0D       		.uleb128 0xd
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  298 0142 8B       		.byte	0x8b
  299 0143 00       		.byte	0
  300              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 9
 
 
  301              	.Ldebug_abbrev0:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  355 0035 00       		.byte	0
  356 0036 05       		.uleb128 0x5
  357 0037 35       		.uleb128 0x35
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 10
 
 
  358 0038 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  412 006e 0B       		.uleb128 0xb
  413 006f 3B       		.uleb128 0x3b
  414 0070 0B       		.uleb128 0xb
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 11
 
 
  415 0071 27       		.uleb128 0x27
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  469 00ab 0B       		.uleb128 0xb
  470 00ac 49       		.uleb128 0x49
  471 00ad 13       		.uleb128 0x13
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 12
 
 
  472 00ae 02       		.uleb128 0x2
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  526 0000 A4000000 		.section	.debug_str,"MS",%progbits,1
  526      02005800 
  526      00000201 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 13
 
 
  526      FB0E0D00 
@@ -772,106 +772,105 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 1
  544      6720756E 
  544      7369676E 
  544      65642069 
- 545              	.LASF17:
- 546 00ad 54696D65 		.ascii	"Timer_RR_RestoreConfig\000"
- 546      725F5252 
- 546      5F526573 
- 546      746F7265 
- 546      436F6E66 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 14
+ 545              	.LASF24:
+ 546 00ad 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 546      73657273 
+ 546      5C647566 
+ 546      6D615C44 
+ 546      65736B74 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 14
 
 
- 547              	.LASF9:
- 548 00c4 666C6F61 		.ascii	"float\000"
- 548      7400
- 549              	.LASF16:
- 550 00ca 54696D65 		.ascii	"Timer_RR_SaveConfig\000"
- 550      725F5252 
- 550      5F536176 
- 550      65436F6E 
- 550      66696700 
- 551              	.LASF25:
- 552 00de 54696D65 		.ascii	"TimerEnableState\000"
- 552      72456E61 
- 552      626C6553 
- 552      74617465 
- 552      00
- 553              	.LASF1:
- 554 00ef 756E7369 		.ascii	"unsigned char\000"
- 554      676E6564 
- 554      20636861 
- 554      7200
- 555              	.LASF11:
- 556 00fd 63686172 		.ascii	"char\000"
- 556      00
- 557              	.LASF15:
- 558 0102 54696D65 		.ascii	"Timer_RR_backupStruct\000"
- 558      725F5252 
- 558      5F626163 
- 558      6B757053 
- 558      74727563 
- 559              	.LASF4:
- 560 0118 6C6F6E67 		.ascii	"long int\000"
- 560      20696E74 
- 560      00
- 561              	.LASF20:
- 562 0121 54696D65 		.ascii	"Timer_RR_Stop\000"
- 562      725F5252 
- 562      5F53746F 
- 562      7000
- 563              	.LASF10:
- 564 012f 646F7562 		.ascii	"double\000"
- 564      6C6500
- 565              	.LASF12:
- 566 0136 75696E74 		.ascii	"uint8\000"
- 566      3800
- 567              	.LASF0:
- 568 013c 7369676E 		.ascii	"signed char\000"
- 568      65642063 
- 568      68617200 
- 569              	.LASF24:
- 570 0148 433A5C55 		.ascii	"C:\\Users\\suminh\\project\\ZumoBot.cyprj.Archive01"
- 570      73657273 
- 570      5C73756D 
- 570      696E685C 
- 570      70726F6A 
- 571 0177 5C5A756D 		.ascii	"\\ZumoBot_Motor.cydsn\000"
- 571      6F426F74 
- 571      5F4D6F74 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccQj3gtc.s 			page 15
+ 547 00da 426F745F 		.ascii	"Bot_Motor.cydsn\000"
+ 547      4D6F746F 
+ 547      722E6379 
+ 547      64736E00 
+ 548              	.LASF17:
+ 549 00ea 54696D65 		.ascii	"Timer_RR_RestoreConfig\000"
+ 549      725F5252 
+ 549      5F526573 
+ 549      746F7265 
+ 549      436F6E66 
+ 550              	.LASF9:
+ 551 0101 666C6F61 		.ascii	"float\000"
+ 551      7400
+ 552              	.LASF16:
+ 553 0107 54696D65 		.ascii	"Timer_RR_SaveConfig\000"
+ 553      725F5252 
+ 553      5F536176 
+ 553      65436F6E 
+ 553      66696700 
+ 554              	.LASF25:
+ 555 011b 54696D65 		.ascii	"TimerEnableState\000"
+ 555      72456E61 
+ 555      626C6553 
+ 555      74617465 
+ 555      00
+ 556              	.LASF1:
+ 557 012c 756E7369 		.ascii	"unsigned char\000"
+ 557      676E6564 
+ 557      20636861 
+ 557      7200
+ 558              	.LASF11:
+ 559 013a 63686172 		.ascii	"char\000"
+ 559      00
+ 560              	.LASF15:
+ 561 013f 54696D65 		.ascii	"Timer_RR_backupStruct\000"
+ 561      725F5252 
+ 561      5F626163 
+ 561      6B757053 
+ 561      74727563 
+ 562              	.LASF4:
+ 563 0155 6C6F6E67 		.ascii	"long int\000"
+ 563      20696E74 
+ 563      00
+ 564              	.LASF20:
+ 565 015e 54696D65 		.ascii	"Timer_RR_Stop\000"
+ 565      725F5252 
+ 565      5F53746F 
+ 565      7000
+ 566              	.LASF10:
+ 567 016c 646F7562 		.ascii	"double\000"
+ 567      6C6500
+ 568              	.LASF12:
+ 569 0173 75696E74 		.ascii	"uint8\000"
+ 569      3800
+ 570              	.LASF0:
+ 571 0179 7369676E 		.ascii	"signed char\000"
+ 571      65642063 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccZgikCK.s 			page 15
 
 
- 571      6F722E63 
- 571      7964736E 
+ 571      68617200 
  572              	.LASF22:
- 573 018c 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 573 0185 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
  573      4320342E 
  573      392E3320 
  573      32303135 
  573      30333033 
- 574 01bf 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 574 01b8 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
  574      20726576 
  574      6973696F 
  574      6E203232 
  574      31323230 
- 575 01f2 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 575 01eb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  575      66756E63 
  575      74696F6E 
  575      2D736563 
  575      74696F6E 
  576              	.LASF14:
- 577 021a 73697A65 		.ascii	"sizetype\000"
+ 577 0213 73697A65 		.ascii	"sizetype\000"
  577      74797065 
  577      00
  578              	.LASF2:
- 579 0223 73686F72 		.ascii	"short int\000"
+ 579 021c 73686F72 		.ascii	"short int\000"
  579      7420696E 
  579      7400
  580              	.LASF13:
- 581 022d 72656738 		.ascii	"reg8\000"
+ 581 0226 72656738 		.ascii	"reg8\000"
  581      00
  582              	.LASF26:
- 583 0232 54696D65 		.ascii	"Timer_RR_backup\000"
+ 583 022b 54696D65 		.ascii	"Timer_RR_backup\000"
  583      725F5252 
  583      5F626163 
  583      6B757000 
