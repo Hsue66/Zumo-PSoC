@@ -1,5 +1,5 @@
 # ZumoBot_Motor
-# 2016-06-14 13:10:07Z
+# 2016-07-06 10:59:02Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -15,8 +15,8 @@ set_io "SDA_1(0)" iocell 12 1
 set_io "SCL_1(0)" iocell 12 0
 set_io "Rx_1(0)" iocell 12 6
 set_io "Tx_1(0)" iocell 12 7
-set_io "MotorDirLeft(0)" iocell 15 5
-set_io "MotorDirRight(0)" iocell 0 0
+set_io "MotorDirLeft(0)" iocell 3 7
+set_io "MotorDirRight(0)" iocell 15 0
 set_io "LL(0)" iocell 3 3
 set_io "IR_led(0)" iocell 2 3
 set_io "RL(0)" iocell 2 7

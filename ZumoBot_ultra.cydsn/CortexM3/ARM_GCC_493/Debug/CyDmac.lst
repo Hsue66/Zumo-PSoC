@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
   29:.\Generated_Source\PSoC5/CyDmac.c **** 
   30:.\Generated_Source\PSoC5/CyDmac.c **** #include "CyDmac.h"
   31:.\Generated_Source\PSoC5/CyDmac.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/CyDmac.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
   42              	.LVL1:
   43              	.L3:
   71:.\Generated_Source\PSoC5/CyDmac.c ****     {
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 3
 
 
   72:.\Generated_Source\PSoC5/CyDmac.c ****         CY_DMA_TDMEM_STRUCT_PTR[dmaIndex].TD0[0u] = (uint8)(dmaIndex - 1u);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
   89:.\Generated_Source\PSoC5/CyDmac.c **** *
   90:.\Generated_Source\PSoC5/CyDmac.c **** * Return:
   91:.\Generated_Source\PSoC5/CyDmac.c **** *  Errors of the last failed DMA transaction.
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 4
 
 
   92:.\Generated_Source\PSoC5/CyDmac.c **** *
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  120:.\Generated_Source\PSoC5/CyDmac.c **** *  Clears the error bits in the error register of the DMAC.
  121:.\Generated_Source\PSoC5/CyDmac.c **** *
  122:.\Generated_Source\PSoC5/CyDmac.c **** * Parameters:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 5
 
 
  123:.\Generated_Source\PSoC5/CyDmac.c **** * error:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  150:.\Generated_Source\PSoC5/CyDmac.c **** 
  151:.\Generated_Source\PSoC5/CyDmac.c **** /*******************************************************************************
  152:.\Generated_Source\PSoC5/CyDmac.c **** * Function Name: CyDmacErrorAddress
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 6
 
 
  153:.\Generated_Source\PSoC5/CyDmac.c **** ********************************************************************************
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  182:.\Generated_Source\PSoC5/CyDmac.c **** *
  183:.\Generated_Source\PSoC5/CyDmac.c **** * Parameters:
  184:.\Generated_Source\PSoC5/CyDmac.c **** *  None
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 7
 
 
  185:.\Generated_Source\PSoC5/CyDmac.c **** *
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  187              		.loc 1 208 0
  188 001a 04E0     		b	.L18
  189              	.LVL11:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 8
 
 
  190              	.L17:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  227              		.align	2
  228              		.global	CyDmaChFree
  229              		.thumb
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 9
 
 
  230              		.thumb_func
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  253 000e 03FA04F2 		lsl	r2, r3, r4
  254 0012 0549     		ldr	r1, .L30
  255 0014 0B68     		ldr	r3, [r1]
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 10
 
 
  256 0016 23EA0203 		bic	r3, r3, r2
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  275:.\Generated_Source\PSoC5/CyDmac.c **** *
  276:.\Generated_Source\PSoC5/CyDmac.c **** *  uint8 preserveTds:
  277:.\Generated_Source\PSoC5/CyDmac.c **** *   Preserves the original TD state when the TD has completed. This parameter
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 11
 
 
  278:.\Generated_Source\PSoC5/CyDmac.c **** *   applies to all TDs in the channel.
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  304 000c 42F02002 		orr	r2, r2, #32
  305 0010 5A54     		strb	r2, [r3, r1]
  306 0012 05E0     		b	.L35
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 12
 
 
  307              	.LVL26:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  345              		.thumb
  346              		.thumb_func
  347              		.type	CyDmaChDisable, %function
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 13
 
 
  348              	CyDmaChDisable:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  367:.\Generated_Source\PSoC5/CyDmac.c **** 
  368:.\Generated_Source\PSoC5/CyDmac.c ****         /* Store intermediate and final TD states on top of original TD chain */
  369:.\Generated_Source\PSoC5/CyDmac.c ****         CY_DMA_CH_STRUCT_PTR[chHandle].basic_cfg[0] &= ((uint8) (~CY_DMA_CH_BASIC_CFG_WORK_SEP));
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 14
 
 
  366              		.loc 1 369 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  393:.\Generated_Source\PSoC5/CyDmac.c **** cystatus CyDmaClearPendingDrq(uint8 chHandle) 
  394:.\Generated_Source\PSoC5/CyDmac.c **** {
  396              		.loc 1 394 0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 15
 
 
  397              		.cfi_startproc
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  439              		.thumb_func
  440              		.type	CyDmaChPriority, %function
  441              	CyDmaChPriority:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 16
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 16
 
 
  442              	.LFB9:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  463 0016 8154     		strb	r1, [r0, r2]
  464              	.LVL46:
  439:.\Generated_Source\PSoC5/CyDmac.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 17
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 17
 
 
  440:.\Generated_Source\PSoC5/CyDmac.c ****         status = CYRET_SUCCESS;
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  468:.\Generated_Source\PSoC5/CyDmac.c **** *
  469:.\Generated_Source\PSoC5/CyDmac.c **** *******************************************************************************/
  470:.\Generated_Source\PSoC5/CyDmac.c **** cystatus CyDmaChSetExtendedAddress(uint8 chHandle, uint16 source, uint16 destination) \
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 18
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 18
 
 
  471:.\Generated_Source\PSoC5/CyDmac.c ****     
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  519 0022 00F5EC40 		add	r0, r0, #30208
  520              	.LVL53:
  496:.\Generated_Source\PSoC5/CyDmac.c ****         CY_SET_REG16(convert, source);
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 19
 
 
  521              		.loc 1 496 0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  522:.\Generated_Source\PSoC5/CyDmac.c **** *   a valid TD index.
  523:.\Generated_Source\PSoC5/CyDmac.c **** *
  524:.\Generated_Source\PSoC5/CyDmac.c **** * Return:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 20
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 20
 
 
  525:.\Generated_Source\PSoC5/CyDmac.c **** *  CYRET_SUCCESS if successful.
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  586              		.type	CyDmaChSetRequest, %function
  587              	CyDmaChSetRequest:
  588              	.LFB12:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 21
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 21
 
 
  541:.\Generated_Source\PSoC5/CyDmac.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  609 0014 0020     		movs	r0, #0
  610 0016 7047     		bx	lr
  611              	.LVL68:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 22
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 22
 
 
  612              	.L68:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  638              	.LVL70:
  602:.\Generated_Source\PSoC5/CyDmac.c ****     cystatus status = CY_DMA_INVALID_CHANNEL;
  603:.\Generated_Source\PSoC5/CyDmac.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 23
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 23
 
 
  604:.\Generated_Source\PSoC5/CyDmac.c ****     if(chHandle < CY_DMA_NUMBEROF_CHANNELS)
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  624:.\Generated_Source\PSoC5/CyDmac.c **** *
  625:.\Generated_Source\PSoC5/CyDmac.c **** *  uint8 * currentTd:
  626:.\Generated_Source\PSoC5/CyDmac.c **** *   The address to store the index of the current TD. Can be NULL if the value
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 24
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 24
 
 
  627:.\Generated_Source\PSoC5/CyDmac.c **** *   is not needed.
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  691 0014 42B1     		cbz	r2, .L80
  662:.\Generated_Source\PSoC5/CyDmac.c ****         {
  663:.\Generated_Source\PSoC5/CyDmac.c ****             *state= CY_DMA_CH_STRUCT_PTR[chHandle].basic_status[0];
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 25
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 25
 
 
  692              		.loc 1 663 0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  680:.\Generated_Source\PSoC5/CyDmac.c **** * Parameters:
  681:.\Generated_Source\PSoC5/CyDmac.c **** *  uint8 chHandle:
  682:.\Generated_Source\PSoC5/CyDmac.c **** *   A handle previously returned by CyDmaChAlloc() or DMA_DmaInitialize().
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 26
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 26
 
 
  683:.\Generated_Source\PSoC5/CyDmac.c **** *
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  723:.\Generated_Source\PSoC5/CyDmac.c ****         CY_DMA_CFGMEM_STRUCT_PTR[chHandle].CFG0[0] = (burstCount & 0x7Fu) | ((uint8)((requestPerBur
  742              		.loc 1 723 0
  743 0006 C000     		lsls	r0, r0, #3
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 27
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 27
 
 
  744              	.LVL82:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  788 0044 7047     		bx	lr
  789              		.cfi_endproc
  790              	.LFE15:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 28
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 28
 
 
  791              		.size	CyDmaChSetConfiguration, .-CyDmaChSetConfiguration
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  761:.\Generated_Source\PSoC5/CyDmac.c ****     {
  762:.\Generated_Source\PSoC5/CyDmac.c ****         /* Get pointer to Next available. */
  763:.\Generated_Source\PSoC5/CyDmac.c ****         element = CyDmaTdFreeIndex;
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 29
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 29
 
 
  817              		.loc 1 763 0
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  857              	CyDmaTdFree:
  858              	.LFB17:
  777:.\Generated_Source\PSoC5/CyDmac.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 30
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 30
 
 
  778:.\Generated_Source\PSoC5/CyDmac.c **** 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  806:.\Generated_Source\PSoC5/CyDmac.c **** 
  807:.\Generated_Source\PSoC5/CyDmac.c ****         /* Keep track of how many left. */
  808:.\Generated_Source\PSoC5/CyDmac.c ****         CyDmaTdCurrentNumber++;
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 31
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 31
 
 
  885              		.loc 1 808 0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  915              		.loc 1 832 0
  916 0000 024B     		ldr	r3, .L100
  917 0002 5878     		ldrb	r0, [r3, #1]	@ zero_extendqisi2
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 32
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 32
 
 
  918 0004 1838     		subs	r0, r0, #24
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  868:.\Generated_Source\PSoC5/CyDmac.c **** *
  869:.\Generated_Source\PSoC5/CyDmac.c **** *   CY_DMA_TD_TERMIN_EN      - Terminate this TD if a positive edge on the trq
  870:.\Generated_Source\PSoC5/CyDmac.c **** *                              input line occurs. The positive edge must occur
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 33
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 33
 
 
  871:.\Generated_Source\PSoC5/CyDmac.c **** *                              during a burst. That is the only time the DMAC
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  958              		.loc 1 903 0
  959 0018 8270     		strb	r2, [r0, #2]
  904:.\Generated_Source\PSoC5/CyDmac.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 34
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 34
 
 
  905:.\Generated_Source\PSoC5/CyDmac.c ****         /* Configure the TD */
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  927:.\Generated_Source\PSoC5/CyDmac.c **** *
  928:.\Generated_Source\PSoC5/CyDmac.c **** *  uint16 * transferCount:
  929:.\Generated_Source\PSoC5/CyDmac.c **** *   The address to store the size of the data transfer (in bytes) for this TD.
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 35
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 35
 
 
  930:.\Generated_Source\PSoC5/CyDmac.c **** *   A size of zero could indicate that the TD has completed its transfer, or
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1011              	.LVL111:
  963:.\Generated_Source\PSoC5/CyDmac.c ****             *transferCount = 0x0FFFu & CY_GET_REG16(convert);
  1012              		.loc 1 963 0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 36
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 36
 
 
  1013 0014 2488     		ldrh	r4, [r4]
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1049              	.LVL118:
  981:.\Generated_Source\PSoC5/CyDmac.c ****     }
  982:.\Generated_Source\PSoC5/CyDmac.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 37
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 37
 
 
  983:.\Generated_Source\PSoC5/CyDmac.c ****     return(status);
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
 1010:.\Generated_Source\PSoC5/CyDmac.c **** cystatus CyDmaTdSetAddress(uint8 tdHandle, uint16 source, uint16 destination) 
 1011:.\Generated_Source\PSoC5/CyDmac.c **** {
  1076              		.loc 1 1011 0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 38
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 38
 
 
  1077              		.cfi_startproc
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1112              		.align	2
  1113              		.global	CyDmaTdGetAddress
  1114              		.thumb
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 39
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 39
 
 
  1115              		.thumb_func
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
 1069:.\Generated_Source\PSoC5/CyDmac.c ****             convert = (reg16 *) &CY_DMA_TDMEM_STRUCT_PTR[tdHandle].TD1[0u];
  1130              		.loc 1 1069 0
  1131 0008 C300     		lsls	r3, r0, #3
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 40
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 40
 
 
  1132 000a 03F18043 		add	r3, r3, #1073741824
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1169              		.cfi_endproc
  1170              	.LFE22:
  1171              		.size	CyDmaTdGetAddress, .-CyDmaTdGetAddress
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 41
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 41
 
 
  1172 0032 00BF     		.section	.text.CyDmaChRoundRobin,"ax",%progbits
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1194 0008 084A     		ldr	r2, .L125
  1195 000a 835C     		ldrb	r3, [r0, r2]	@ zero_extendqisi2
  1196 000c 43F01003 		orr	r3, r3, #16
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 42
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 42
 
 
  1197 0010 8354     		strb	r3, [r0, r2]
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1238              		.align	2
  1239              		.set	.LANCHOR1,. + 0
  1240              		.type	CyDmaChannels, %object
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 43
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 43
 
 
  1241              		.size	CyDmaChannels, 4
@@ -2536,10 +2536,10 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1253 0006 00000000 		.4byte	.Ldebug_abbrev0
  1254 000a 04       		.byte	0x4
  1255 000b 01       		.uleb128 0x1
- 1256 000c 70040000 		.4byte	.LASF85
+ 1256 000c 0D040000 		.4byte	.LASF85
  1257 0010 01       		.byte	0x1
  1258 0011 AE010000 		.4byte	.LASF86
- 1259 0015 D5030000 		.4byte	.LASF87
+ 1259 0015 B5040000 		.4byte	.LASF87
  1260 0019 00000000 		.4byte	.Ldebug_ranges0+0
  1261 001d 00000000 		.4byte	0
  1262 0021 00000000 		.4byte	.Ldebug_line0
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1295 005d 03       		.uleb128 0x3
  1296 005e 04       		.byte	0x4
  1297 005f 05       		.byte	0x5
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 44
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 44
 
 
  1298 0060 696E7400 		.ascii	"int\000"
@@ -2612,9 +2612,9 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1326 009d 02       		.uleb128 0x2
  1327 009e 01       		.byte	0x1
  1328 009f 08       		.byte	0x8
- 1329 00a0 89030000 		.4byte	.LASF14
+ 1329 00a0 7E030000 		.4byte	.LASF14
  1330 00a4 04       		.uleb128 0x4
- 1331 00a5 2C050000 		.4byte	.LASF15
+ 1331 00a5 06050000 		.4byte	.LASF15
  1332 00a9 02       		.byte	0x2
  1333 00aa DA01     		.2byte	0x1da
  1334 00ac 48000000 		.4byte	0x48
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1352 00d5 78020000 		.4byte	.LASF18
  1353 00d9 06       		.uleb128 0x6
  1354 00da 0B030000 		.4byte	.LASF24
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 45
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 45
 
 
  1355 00de 10       		.byte	0x10
@@ -2686,7 +2686,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1397 0135 05       		.uleb128 0x5
  1398 0136 16010000 		.4byte	0x116
  1399 013a 0A       		.uleb128 0xa
- 1400 013b A9030000 		.4byte	.LASF23
+ 1400 013b 9E030000 		.4byte	.LASF23
  1401 013f 03       		.byte	0x3
  1402 0140 4F       		.byte	0x4f
  1403 0141 D9000000 		.4byte	0xd9
@@ -2697,8 +2697,8 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1408 014c 52       		.byte	0x52
  1409 014d 6A010000 		.4byte	0x16a
  1410 0151 07       		.uleb128 0x7
- 1411 0152 5F040000 		.4byte	.LASF26
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 46
+ 1411 0152 FC030000 		.4byte	.LASF26
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 46
 
 
  1412 0156 03       		.byte	0x3
@@ -2706,7 +2706,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1414 0158 6A010000 		.4byte	0x16a
  1415 015c 00       		.byte	0
  1416 015d 07       		.uleb128 0x7
- 1417 015e 64040000 		.4byte	.LASF27
+ 1417 015e 01040000 		.4byte	.LASF27
  1418 0162 03       		.byte	0x3
  1419 0163 55       		.byte	0x55
  1420 0164 6F010000 		.4byte	0x16f
@@ -2745,7 +2745,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1453 01a9 05       		.uleb128 0x5
  1454 01aa 16010000 		.4byte	0x116
  1455 01ae 0A       		.uleb128 0xa
- 1456 01af 32030000 		.4byte	.LASF30
+ 1456 01af CA030000 		.4byte	.LASF30
  1457 01b3 03       		.byte	0x3
  1458 01b4 5F       		.byte	0x5f
  1459 01b5 7F010000 		.4byte	0x17f
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1466 01c8 01       		.uleb128 0x1
  1467 01c9 9C       		.byte	0x9c
  1468 01ca DE010000 		.4byte	0x1de
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 47
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 47
 
 
  1469 01ce 0D       		.uleb128 0xd
@@ -2803,7 +2803,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1508 022b 01       		.uleb128 0x1
  1509 022c 9C       		.byte	0x9c
  1510 022d 10       		.uleb128 0x10
- 1511 022e 72030000 		.4byte	.LASF38
+ 1511 022e 67030000 		.4byte	.LASF38
  1512 0232 01       		.byte	0x1
  1513 0233 BF       		.byte	0xbf
  1514 0234 6B000000 		.4byte	0x6b
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1523 024c C1       		.byte	0xc1
  1524 024d 6B000000 		.4byte	0x6b
  1525 0251 4C000000 		.4byte	.LLST2
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 48
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 48
 
 
  1526 0255 0D       		.uleb128 0xd
@@ -2828,7 +2828,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1530 025c 6B000000 		.4byte	0x6b
  1531 0260 5F000000 		.4byte	.LLST3
  1532 0264 0D       		.uleb128 0xd
- 1533 0265 4D030000 		.4byte	.LASF37
+ 1533 0265 42030000 		.4byte	.LASF37
  1534 0269 01       		.byte	0x1
  1535 026a C3       		.byte	0xc3
  1536 026b 83000000 		.4byte	0x83
@@ -2841,7 +2841,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1543 0281 36090000 		.4byte	0x936
  1544 0285 00       		.byte	0
  1545 0286 10       		.uleb128 0x10
- 1546 0287 55050000 		.4byte	.LASF39
+ 1546 0287 2F050000 		.4byte	.LASF39
  1547 028b 01       		.byte	0x1
  1548 028c F2       		.byte	0xf2
  1549 028d A4000000 		.4byte	0xa4
@@ -2851,13 +2851,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1553 029a 9C       		.byte	0x9c
  1554 029b DF020000 		.4byte	0x2df
  1555 029f 0F       		.uleb128 0xf
- 1556 02a0 44030000 		.4byte	.LASF41
+ 1556 02a0 39030000 		.4byte	.LASF41
  1557 02a4 01       		.byte	0x1
  1558 02a5 F2       		.byte	0xf2
  1559 02a6 6B000000 		.4byte	0x6b
  1560 02aa B3000000 		.4byte	.LLST5
  1561 02ae 0D       		.uleb128 0xd
- 1562 02af 69040000 		.4byte	.LASF42
+ 1562 02af 06040000 		.4byte	.LASF42
  1563 02b3 01       		.byte	0x1
  1564 02b4 F4       		.byte	0xf4
  1565 02b5 A4000000 		.4byte	0xa4
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1580 02df 12       		.uleb128 0x12
  1581 02e0 58000000 		.4byte	.LASF43
  1582 02e4 01       		.byte	0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 49
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 49
 
 
  1583 02e5 3001     		.2byte	0x130
@@ -2889,26 +2889,26 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1588 02f4 9C       		.byte	0x9c
  1589 02f5 2A030000 		.4byte	0x32a
  1590 02f9 13       		.uleb128 0x13
- 1591 02fa 44030000 		.4byte	.LASF41
+ 1591 02fa 39030000 		.4byte	.LASF41
  1592 02fe 01       		.byte	0x1
  1593 02ff 3001     		.2byte	0x130
  1594 0301 6B000000 		.4byte	0x6b
  1595 0305 2C010000 		.4byte	.LLST8
  1596 0309 13       		.uleb128 0x13
- 1597 030a C1030000 		.4byte	.LASF44
+ 1597 030a B6030000 		.4byte	.LASF44
  1598 030e 01       		.byte	0x1
  1599 030f 3001     		.2byte	0x130
  1600 0311 6B000000 		.4byte	0x6b
  1601 0315 66010000 		.4byte	.LLST9
  1602 0319 14       		.uleb128 0x14
- 1603 031a 69040000 		.4byte	.LASF42
+ 1603 031a 06040000 		.4byte	.LASF42
  1604 031e 01       		.byte	0x1
  1605 031f 3201     		.2byte	0x132
  1606 0321 A4000000 		.4byte	0xa4
  1607 0325 AB010000 		.4byte	.LLST10
  1608 0329 00       		.byte	0
  1609 032a 12       		.uleb128 0x12
- 1610 032b 63030000 		.4byte	.LASF45
+ 1610 032b 58030000 		.4byte	.LASF45
  1611 032f 01       		.byte	0x1
  1612 0330 6201     		.2byte	0x162
  1613 0332 A4000000 		.4byte	0xa4
@@ -2918,13 +2918,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1617 033f 9C       		.byte	0x9c
  1618 0340 65030000 		.4byte	0x365
  1619 0344 13       		.uleb128 0x13
- 1620 0345 44030000 		.4byte	.LASF41
+ 1620 0345 39030000 		.4byte	.LASF41
  1621 0349 01       		.byte	0x1
  1622 034a 6201     		.2byte	0x162
  1623 034c 6B000000 		.4byte	0x6b
  1624 0350 E2010000 		.4byte	.LLST11
  1625 0354 14       		.uleb128 0x14
- 1626 0355 69040000 		.4byte	.LASF42
+ 1626 0355 06040000 		.4byte	.LASF42
  1627 0359 01       		.byte	0x1
  1628 035a 6401     		.2byte	0x164
  1629 035c A4000000 		.4byte	0xa4
@@ -2938,19 +2938,19 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1637 0371 00000000 		.4byte	.LFB8
  1638 0375 28000000 		.4byte	.LFE8-.LFB8
  1639 0379 01       		.uleb128 0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 50
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 50
 
 
  1640 037a 9C       		.byte	0x9c
  1641 037b A0030000 		.4byte	0x3a0
  1642 037f 13       		.uleb128 0x13
- 1643 0380 44030000 		.4byte	.LASF41
+ 1643 0380 39030000 		.4byte	.LASF41
  1644 0384 01       		.byte	0x1
  1645 0385 8901     		.2byte	0x189
  1646 0387 6B000000 		.4byte	0x6b
  1647 038b 53020000 		.4byte	.LLST13
  1648 038f 14       		.uleb128 0x14
- 1649 0390 69040000 		.4byte	.LASF42
+ 1649 0390 06040000 		.4byte	.LASF42
  1650 0394 01       		.byte	0x1
  1651 0395 8B01     		.2byte	0x18b
  1652 0397 A4000000 		.4byte	0xa4
@@ -2967,13 +2967,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1663 03b5 9C       		.byte	0x9c
  1664 03b6 FB030000 		.4byte	0x3fb
  1665 03ba 13       		.uleb128 0x13
- 1666 03bb 44030000 		.4byte	.LASF41
+ 1666 03bb 39030000 		.4byte	.LASF41
  1667 03bf 01       		.byte	0x1
  1668 03c0 AD01     		.2byte	0x1ad
  1669 03c2 6B000000 		.4byte	0x6b
  1670 03c6 C4020000 		.4byte	.LLST15
  1671 03ca 13       		.uleb128 0x13
- 1672 03cb 8E030000 		.4byte	.LASF48
+ 1672 03cb 83030000 		.4byte	.LASF48
  1673 03cf 01       		.byte	0x1
  1674 03d0 AD01     		.2byte	0x1ad
  1675 03d2 6B000000 		.4byte	0x6b
@@ -2985,7 +2985,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1681 03e2 6B000000 		.4byte	0x6b
  1682 03e6 2A030000 		.4byte	.LLST17
  1683 03ea 14       		.uleb128 0x14
- 1684 03eb 69040000 		.4byte	.LASF42
+ 1684 03eb 06040000 		.4byte	.LASF42
  1685 03ef 01       		.byte	0x1
  1686 03f0 B001     		.2byte	0x1b0
  1687 03f2 A4000000 		.4byte	0xa4
@@ -2998,14 +2998,14 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1694 0403 A4000000 		.4byte	0xa4
  1695 0407 00000000 		.4byte	.LFB10
  1696 040b 32000000 		.4byte	.LFE10-.LFB10
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 51
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 51
 
 
  1697 040f 01       		.uleb128 0x1
  1698 0410 9C       		.byte	0x9c
  1699 0411 66040000 		.4byte	0x466
  1700 0415 13       		.uleb128 0x13
- 1701 0416 44030000 		.4byte	.LASF41
+ 1701 0416 39030000 		.4byte	.LASF41
  1702 041a 01       		.byte	0x1
  1703 041b D601     		.2byte	0x1d6
  1704 041d 6B000000 		.4byte	0x6b
@@ -3023,13 +3023,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1716 043d 77000000 		.4byte	0x77
  1717 0441 CC030000 		.4byte	.LLST21
  1718 0445 14       		.uleb128 0x14
- 1719 0446 69040000 		.4byte	.LASF42
+ 1719 0446 06040000 		.4byte	.LASF42
  1720 044a 01       		.byte	0x1
  1721 044b D901     		.2byte	0x1d9
  1722 044d A4000000 		.4byte	0xa4
  1723 0451 EA030000 		.4byte	.LLST22
  1724 0455 14       		.uleb128 0x14
- 1725 0456 CD030000 		.4byte	.LASF53
+ 1725 0456 C2030000 		.4byte	.LASF53
  1726 045a 01       		.byte	0x1
  1727 045b DA01     		.2byte	0x1da
  1728 045d 66040000 		.4byte	0x466
@@ -3039,7 +3039,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1732 0467 04       		.byte	0x4
  1733 0468 B0000000 		.4byte	0xb0
  1734 046c 12       		.uleb128 0x12
- 1735 046d 18050000 		.4byte	.LASF54
+ 1735 046d F2040000 		.4byte	.LASF54
  1736 0471 01       		.byte	0x1
  1737 0472 1102     		.2byte	0x211
  1738 0474 A4000000 		.4byte	0xa4
@@ -3049,23 +3049,23 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1742 0481 9C       		.byte	0x9c
  1743 0482 B5040000 		.4byte	0x4b5
  1744 0486 13       		.uleb128 0x13
- 1745 0487 44030000 		.4byte	.LASF41
+ 1745 0487 39030000 		.4byte	.LASF41
  1746 048b 01       		.byte	0x1
  1747 048c 1102     		.2byte	0x211
  1748 048e 6B000000 		.4byte	0x6b
  1749 0492 43040000 		.4byte	.LLST24
  1750 0496 16       		.uleb128 0x16
- 1751 0497 38040000 		.4byte	.LASF55
+ 1751 0497 D5030000 		.4byte	.LASF55
  1752 049b 01       		.byte	0x1
  1753 049c 1102     		.2byte	0x211
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 52
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 52
 
 
  1754 049e 6B000000 		.4byte	0x6b
  1755 04a2 01       		.uleb128 0x1
  1756 04a3 51       		.byte	0x51
  1757 04a4 14       		.uleb128 0x14
- 1758 04a5 69040000 		.4byte	.LASF42
+ 1758 04a5 06040000 		.4byte	.LASF42
  1759 04a9 01       		.byte	0x1
  1760 04aa 1302     		.2byte	0x213
  1761 04ac A4000000 		.4byte	0xa4
@@ -3082,26 +3082,26 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1772 04ca 9C       		.byte	0x9c
  1773 04cb 00050000 		.4byte	0x500
  1774 04cf 13       		.uleb128 0x13
- 1775 04d0 44030000 		.4byte	.LASF41
+ 1775 04d0 39030000 		.4byte	.LASF41
  1776 04d4 01       		.byte	0x1
  1777 04d5 3702     		.2byte	0x237
  1778 04d7 6B000000 		.4byte	0x6b
  1779 04db B4040000 		.4byte	.LLST26
  1780 04df 13       		.uleb128 0x13
- 1781 04e0 10050000 		.4byte	.LASF57
+ 1781 04e0 AD040000 		.4byte	.LASF57
  1782 04e4 01       		.byte	0x1
  1783 04e5 3702     		.2byte	0x237
  1784 04e7 6B000000 		.4byte	0x6b
  1785 04eb EE040000 		.4byte	.LLST27
  1786 04ef 14       		.uleb128 0x14
- 1787 04f0 69040000 		.4byte	.LASF42
+ 1787 04f0 06040000 		.4byte	.LASF42
  1788 04f4 01       		.byte	0x1
  1789 04f5 3902     		.2byte	0x239
  1790 04f7 A4000000 		.4byte	0xa4
  1791 04fb 1A050000 		.4byte	.LLST28
  1792 04ff 00       		.byte	0
  1793 0500 12       		.uleb128 0x12
- 1794 0501 FE040000 		.4byte	.LASF58
+ 1794 0501 9B040000 		.4byte	.LASF58
  1795 0505 01       		.byte	0x1
  1796 0506 5802     		.2byte	0x258
  1797 0508 A4000000 		.4byte	0xa4
@@ -3111,14 +3111,14 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1801 0515 9C       		.byte	0x9c
  1802 0516 3B050000 		.4byte	0x53b
  1803 051a 13       		.uleb128 0x13
- 1804 051b 44030000 		.4byte	.LASF41
+ 1804 051b 39030000 		.4byte	.LASF41
  1805 051f 01       		.byte	0x1
  1806 0520 5802     		.2byte	0x258
  1807 0522 6B000000 		.4byte	0x6b
  1808 0526 51050000 		.4byte	.LLST29
  1809 052a 14       		.uleb128 0x14
- 1810 052b 69040000 		.4byte	.LASF42
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 53
+ 1810 052b 06040000 		.4byte	.LASF42
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 53
 
 
  1811 052f 01       		.byte	0x1
@@ -3127,7 +3127,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1814 0536 8B050000 		.4byte	.LLST30
  1815 053a 00       		.byte	0
  1816 053b 12       		.uleb128 0x12
- 1817 053c 55030000 		.4byte	.LASF59
+ 1817 053c 4A030000 		.4byte	.LASF59
  1818 0540 01       		.byte	0x1
  1819 0541 8A02     		.2byte	0x28a
  1820 0543 A4000000 		.4byte	0xa4
@@ -3137,13 +3137,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1824 0550 9C       		.byte	0x9c
  1825 0551 92050000 		.4byte	0x592
  1826 0555 13       		.uleb128 0x13
- 1827 0556 44030000 		.4byte	.LASF41
+ 1827 0556 39030000 		.4byte	.LASF41
  1828 055a 01       		.byte	0x1
  1829 055b 8A02     		.2byte	0x28a
  1830 055d 6B000000 		.4byte	0x6b
  1831 0561 C3050000 		.4byte	.LLST31
  1832 0565 16       		.uleb128 0x16
- 1833 0566 7F030000 		.4byte	.LASF60
+ 1833 0566 74030000 		.4byte	.LASF60
  1834 056a 01       		.byte	0x1
  1835 056b 8A02     		.2byte	0x28a
  1836 056d 92050000 		.4byte	0x592
@@ -3157,7 +3157,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1844 057f 01       		.uleb128 0x1
  1845 0580 52       		.byte	0x52
  1846 0581 14       		.uleb128 0x14
- 1847 0582 69040000 		.4byte	.LASF42
+ 1847 0582 06040000 		.4byte	.LASF42
  1848 0586 01       		.byte	0x1
  1849 0587 8C02     		.2byte	0x28c
  1850 0589 A4000000 		.4byte	0xa4
@@ -3167,7 +3167,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1854 0593 04       		.byte	0x4
  1855 0594 6B000000 		.4byte	0x6b
  1856 0598 12       		.uleb128 0x12
- 1857 0599 35050000 		.4byte	.LASF62
+ 1857 0599 0F050000 		.4byte	.LASF62
  1858 059d 01       		.byte	0x1
  1859 059e CC02     		.2byte	0x2cc
  1860 05a0 A4000000 		.4byte	0xa4
@@ -3177,8 +3177,8 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1864 05ad 9C       		.byte	0x9c
  1865 05ae 23060000 		.4byte	0x623
  1866 05b2 13       		.uleb128 0x13
- 1867 05b3 44030000 		.4byte	.LASF41
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 54
+ 1867 05b3 39030000 		.4byte	.LASF41
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 54
 
 
  1868 05b7 01       		.byte	0x1
@@ -3192,7 +3192,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1876 05ca 6B000000 		.4byte	0x6b
  1877 05ce 6F060000 		.4byte	.LLST34
  1878 05d2 13       		.uleb128 0x13
- 1879 05d3 B1030000 		.4byte	.LASF64
+ 1879 05d3 A6030000 		.4byte	.LASF64
  1880 05d7 01       		.byte	0x1
  1881 05d8 CC02     		.2byte	0x2cc
  1882 05da 6B000000 		.4byte	0x6b
@@ -3210,13 +3210,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1894 05fa 6B000000 		.4byte	0x6b
  1895 05fe 1D070000 		.4byte	.LLST37
  1896 0602 13       		.uleb128 0x13
- 1897 0603 3D030000 		.4byte	.LASF67
+ 1897 0603 32030000 		.4byte	.LASF67
  1898 0607 01       		.byte	0x1
  1899 0608 CD02     		.2byte	0x2cd
  1900 060a 6B000000 		.4byte	0x6b
  1901 060e 3D070000 		.4byte	.LLST38
  1902 0612 14       		.uleb128 0x14
- 1903 0613 69040000 		.4byte	.LASF42
+ 1903 0613 06040000 		.4byte	.LASF42
  1904 0617 01       		.byte	0x1
  1905 0618 CF02     		.2byte	0x2cf
  1906 061a A4000000 		.4byte	0xa4
@@ -3238,11 +3238,11 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1922 0643 F202     		.2byte	0x2f2
  1923 0645 6B000000 		.4byte	0x6b
  1924 0649 94070000 		.4byte	.LLST40
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 55
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 55
 
 
  1925 064d 14       		.uleb128 0x14
- 1926 064e 4D050000 		.4byte	.LASF69
+ 1926 064e 27050000 		.4byte	.LASF69
  1927 0652 01       		.byte	0x1
  1928 0653 F302     		.2byte	0x2f3
  1929 0655 6B000000 		.4byte	0x6b
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1979 06d9 12       		.uleb128 0x12
  1980 06da 9E000000 		.4byte	.LASF73
  1981 06de 01       		.byte	0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 56
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 56
 
 
  1982 06df 7B03     		.2byte	0x37b
@@ -3315,7 +3315,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  1993 06fb 6B000000 		.4byte	0x6b
  1994 06ff 13080000 		.4byte	.LLST44
  1995 0703 16       		.uleb128 0x16
- 1996 0704 51040000 		.4byte	.LASF74
+ 1996 0704 EE030000 		.4byte	.LASF74
  1997 0708 01       		.byte	0x1
  1998 0709 7B03     		.2byte	0x37b
  1999 070b 77000000 		.4byte	0x77
@@ -3336,7 +3336,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2014 072b 01       		.uleb128 0x1
  2015 072c 53       		.byte	0x53
  2016 072d 14       		.uleb128 0x14
- 2017 072e 69040000 		.4byte	.LASF42
+ 2017 072e 06040000 		.4byte	.LASF42
  2018 0732 01       		.byte	0x1
  2019 0733 7E03     		.2byte	0x37e
  2020 0735 A4000000 		.4byte	0xa4
@@ -3345,7 +3345,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2023 073e 0C000000 		.4byte	.LBB3
  2024 0742 14000000 		.4byte	.LBE3-.LBB3
  2025 0746 14       		.uleb128 0x14
- 2026 0747 CD030000 		.4byte	.LASF53
+ 2026 0747 C2030000 		.4byte	.LASF53
  2027 074b 01       		.byte	0x1
  2028 074c 8303     		.2byte	0x383
  2029 074e 66040000 		.4byte	0x466
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2036 075e B703     		.2byte	0x3b7
  2037 0760 A4000000 		.4byte	0xa4
  2038 0764 00000000 		.4byte	.LFB20
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 57
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 57
 
 
  2039 0768 4C000000 		.4byte	.LFE20-.LFB20
@@ -3372,7 +3372,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2047 077a 6B000000 		.4byte	0x6b
  2048 077e B0080000 		.4byte	.LLST47
  2049 0782 13       		.uleb128 0x13
- 2050 0783 51040000 		.4byte	.LASF74
+ 2050 0783 EE030000 		.4byte	.LASF74
  2051 0787 01       		.byte	0x1
  2052 0788 B703     		.2byte	0x3b7
  2053 078a DB070000 		.4byte	0x7db
@@ -3391,7 +3391,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2066 07ae 01       		.uleb128 0x1
  2067 07af 53       		.byte	0x53
  2068 07b0 14       		.uleb128 0x14
- 2069 07b1 69040000 		.4byte	.LASF42
+ 2069 07b1 06040000 		.4byte	.LASF42
  2070 07b5 01       		.byte	0x1
  2071 07b6 BA03     		.2byte	0x3ba
  2072 07b8 A4000000 		.4byte	0xa4
@@ -3400,7 +3400,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2075 07c1 0A000000 		.4byte	.LBB4
  2076 07c5 12000000 		.4byte	.LBE4-.LBB4
  2077 07c9 14       		.uleb128 0x14
- 2078 07ca CD030000 		.4byte	.LASF53
+ 2078 07ca C2030000 		.4byte	.LASF53
  2079 07ce 01       		.byte	0x1
  2080 07cf C203     		.2byte	0x3c2
  2081 07d1 66040000 		.4byte	0x466
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2093 07ed 00000000 		.4byte	.LFB21
  2094 07f1 1C000000 		.4byte	.LFE21-.LFB21
  2095 07f5 01       		.uleb128 0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 58
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 58
 
 
  2096 07f6 9C       		.byte	0x9c
@@ -3444,20 +3444,20 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2116 0825 01       		.uleb128 0x1
  2117 0826 52       		.byte	0x52
  2118 0827 14       		.uleb128 0x14
- 2119 0828 69040000 		.4byte	.LASF42
+ 2119 0828 06040000 		.4byte	.LASF42
  2120 082c 01       		.byte	0x1
  2121 082d F403     		.2byte	0x3f4
  2122 082f A4000000 		.4byte	0xa4
  2123 0833 0F0A0000 		.4byte	.LLST53
  2124 0837 14       		.uleb128 0x14
- 2125 0838 CD030000 		.4byte	.LASF53
+ 2125 0838 C2030000 		.4byte	.LASF53
  2126 083c 01       		.byte	0x1
  2127 083d F503     		.2byte	0x3f5
  2128 083f 66040000 		.4byte	0x466
  2129 0843 460A0000 		.4byte	.LLST54
  2130 0847 00       		.byte	0
  2131 0848 12       		.uleb128 0x12
- 2132 0849 97030000 		.4byte	.LASF79
+ 2132 0849 8C030000 		.4byte	.LASF79
  2133 084d 01       		.byte	0x1
  2134 084e 2204     		.2byte	0x422
  2135 0850 A4000000 		.4byte	0xa4
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2150 0878 2204     		.2byte	0x422
  2151 087a DB070000 		.4byte	0x7db
  2152 087e 01       		.uleb128 0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 59
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 59
 
 
  2153 087f 51       		.byte	0x51
@@ -3490,13 +3490,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2159 088c 01       		.uleb128 0x1
  2160 088d 52       		.byte	0x52
  2161 088e 14       		.uleb128 0x14
- 2162 088f 69040000 		.4byte	.LASF42
+ 2162 088f 06040000 		.4byte	.LASF42
  2163 0893 01       		.byte	0x1
  2164 0894 2404     		.2byte	0x424
  2165 0896 A4000000 		.4byte	0xa4
  2166 089a BB0A0000 		.4byte	.LLST56
  2167 089e 14       		.uleb128 0x14
- 2168 089f CD030000 		.4byte	.LASF53
+ 2168 089f C2030000 		.4byte	.LASF53
  2169 08a3 01       		.byte	0x1
  2170 08a4 2504     		.2byte	0x425
  2171 08a6 66040000 		.4byte	0x466
@@ -3513,7 +3513,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2182 08c4 9C       		.byte	0x9c
  2183 08c5 F8080000 		.4byte	0x8f8
  2184 08c9 13       		.uleb128 0x13
- 2185 08ca 44030000 		.4byte	.LASF41
+ 2185 08ca 39030000 		.4byte	.LASF41
  2186 08ce 01       		.byte	0x1
  2187 08cf 5504     		.2byte	0x455
  2188 08d1 6B000000 		.4byte	0x6b
@@ -3526,7 +3526,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2195 08e5 01       		.uleb128 0x1
  2196 08e6 51       		.byte	0x51
  2197 08e7 14       		.uleb128 0x14
- 2198 08e8 69040000 		.4byte	.LASF42
+ 2198 08e8 06040000 		.4byte	.LASF42
  2199 08ec 01       		.byte	0x1
  2200 08ed 5704     		.2byte	0x457
  2201 08ef A4000000 		.4byte	0xa4
@@ -3538,13 +3538,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2207 08fe 28       		.byte	0x28
  2208 08ff 6B000000 		.4byte	0x6b
  2209 0903 05       		.uleb128 0x5
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 60
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 60
 
 
  2210 0904 03       		.byte	0x3
  2211 0905 01000000 		.4byte	CyDmaTdCurrentNumber
  2212 0909 1A       		.uleb128 0x1a
- 2213 090a 40040000 		.4byte	.LASF83
+ 2213 090a DD030000 		.4byte	.LASF83
  2214 090e 01       		.byte	0x1
  2215 090f 29       		.byte	0x29
  2216 0910 6B000000 		.4byte	0x6b
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2264 0015 00       		.byte	0
  2265 0016 0B       		.uleb128 0xb
  2266 0017 0B       		.uleb128 0xb
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 61
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 61
 
 
  2267 0018 3E       		.uleb128 0x3e
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2321 004e 00       		.byte	0
  2322 004f 03       		.uleb128 0x3
  2323 0050 0E       		.uleb128 0xe
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 62
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 62
 
 
  2324 0051 3A       		.uleb128 0x3a
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2378 0087 00       		.byte	0
  2379 0088 00       		.byte	0
  2380 0089 0C       		.uleb128 0xc
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 63
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 63
 
 
  2381 008a 2E       		.uleb128 0x2e
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2435 00c1 11       		.uleb128 0x11
  2436 00c2 01       		.uleb128 0x1
  2437 00c3 12       		.uleb128 0x12
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 64
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 64
 
 
  2438 00c4 06       		.uleb128 0x6
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2492 00fe 31       		.uleb128 0x31
  2493 00ff 13       		.uleb128 0x13
  2494 0100 00       		.byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 65
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 65
 
 
  2495 0101 00       		.byte	0
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2549 0138 02       		.uleb128 0x2
  2550 0139 17       		.uleb128 0x17
  2551 013a 00       		.byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 66
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 66
 
 
  2552 013b 00       		.byte	0
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2606 0172 01       		.uleb128 0x1
  2607 0173 12       		.uleb128 0x12
  2608 0174 06       		.uleb128 0x6
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 67
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 67
 
 
  2609 0175 00       		.byte	0
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2663 01ac 19       		.uleb128 0x19
  2664 01ad 49       		.uleb128 0x49
  2665 01ae 13       		.uleb128 0x13
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 68
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 68
 
 
  2666 01af 3C       		.uleb128 0x3c
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2720 003a 10000000 		.4byte	.LFE2
  2721 003e 0400     		.2byte	0x4
  2722 0040 F3       		.byte	0xf3
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 69
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 69
 
 
  2723 0041 01       		.uleb128 0x1
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2777 00ca 50       		.byte	0x50
  2778 00cb 9F       		.byte	0x9f
  2779 00cc 24000000 		.4byte	.LVL22
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 70
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 70
 
 
  2780 00d0 26000000 		.4byte	.LVL23
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2834 0154 38000000 		.4byte	.LFE6
  2835 0158 0400     		.2byte	0x4
  2836 015a F3       		.byte	0xf3
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 71
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 71
 
 
  2837 015b 01       		.uleb128 0x1
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2891 01da 00000000 		.4byte	0
  2892 01de 00000000 		.4byte	0
  2893              	.LLST11:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 72
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 72
 
 
  2894 01e2 00000000 		.4byte	.LVL32
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  2948 0268 F3       		.byte	0xf3
  2949 0269 01       		.uleb128 0x1
  2950 026a 50       		.byte	0x50
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 73
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 73
 
 
  2951 026b 9F       		.byte	0x9f
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3005 02f0 0400     		.2byte	0x4
  3006 02f2 F3       		.byte	0xf3
  3007 02f3 01       		.uleb128 0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 74
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 74
 
 
  3008 02f4 50       		.byte	0x50
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3062 037c 0100     		.2byte	0x1
  3063 037e 50       		.byte	0x50
  3064 037f 1E000000 		.4byte	.LVL52
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 75
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 75
 
 
  3065 0383 2E000000 		.4byte	.LVL57
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3119 040a 0200     		.2byte	0x2
  3120 040c 31       		.byte	0x31
  3121 040d 9F       		.byte	0x9f
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 76
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 76
 
 
  3122 040e 30000000 		.4byte	.LVL58
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3176 0491 0200     		.2byte	0x2
  3177 0493 30       		.byte	0x30
  3178 0494 9F       		.byte	0x9f
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 77
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 77
 
 
  3179 0495 10000000 		.4byte	.LVL62
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3233              	.LLST28:
  3234 051a 00000000 		.4byte	.LVL64
  3235 051e 14000000 		.4byte	.LVL67
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 78
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 78
 
 
  3236 0522 0200     		.2byte	0x2
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3290 05a2 50       		.byte	0x50
  3291 05a3 12000000 		.4byte	.LVL73
  3292 05a7 14000000 		.4byte	.LVL74
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 79
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 79
 
 
  3293 05ab 0300     		.2byte	0x3
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3347 062a 0100     		.2byte	0x1
  3348 062c 50       		.byte	0x50
  3349 062d 00000000 		.4byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 80
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 80
 
 
  3350 0631 00000000 		.4byte	0
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3404 06b1 0100     		.2byte	0x1
  3405 06b3 52       		.byte	0x52
  3406 06b4 12000000 		.4byte	.LVL83
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 81
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 81
 
 
  3407 06b8 3C000000 		.4byte	.LVL87
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3461 0734 00       		.sleb128 0
  3462 0735 00000000 		.4byte	0
  3463 0739 00000000 		.4byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 82
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 82
 
 
  3464              	.LLST38:
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3518 07c3 28000000 		.4byte	.LVL95
  3519 07c7 0300     		.2byte	0x3
  3520 07c9 09       		.byte	0x9
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 83
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 83
 
 
  3521 07ca FF       		.byte	0xff
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3575 084d 0100     		.2byte	0x1
  3576 084f 50       		.byte	0x50
  3577 0850 26000000 		.4byte	.LVL109
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 84
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 84
 
 
  3578 0854 28000000 		.4byte	.LFE19
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3632 08d8 44000000 		.4byte	.LVL119
  3633 08dc 0400     		.2byte	0x4
  3634 08de F3       		.byte	0xf3
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 85
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 85
 
 
  3635 08df 01       		.uleb128 0x1
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3689 095a 46000000 		.4byte	.LVL120
  3690 095e 0100     		.2byte	0x1
  3691 0960 52       		.byte	0x52
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 86
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 86
 
 
  3692 0961 46000000 		.4byte	.LVL120
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3745 09e4 18000000 		.4byte	.LVL127
  3746 09e8 0400     		.2byte	0x4
  3747 09ea F3       		.byte	0xf3
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 87
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 87
 
 
  3748 09eb 01       		.uleb128 0x1
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3802 0a68 00000000 		.4byte	.LVL129
  3803 0a6c 1A000000 		.4byte	.LVL133
  3804 0a70 0100     		.2byte	0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 88
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 88
 
 
  3805 0a72 50       		.byte	0x50
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3859 0af1 70       		.byte	0x70
  3860 0af2 00       		.sleb128 0
  3861 0af3 33       		.byte	0x33
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 89
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 89
 
 
  3862 0af4 24       		.byte	0x24
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3915 0b6f 9F       		.byte	0x9f
  3916 0b70 28000000 		.4byte	.LVL145
  3917 0b74 30000000 		.4byte	.LFE23
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 90
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 90
 
 
  3918 0b78 0100     		.2byte	0x1
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  3972 00b8 00000000 		.4byte	.LFB21
  3973 00bc 1C000000 		.4byte	.LFE21-.LFB21
  3974 00c0 00000000 		.4byte	.LFB22
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 91
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 91
 
 
  3975 00c4 32000000 		.4byte	.LFE22-.LFB22
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  4029 00bc 30000000 		.4byte	.LFE23
  4030 00c0 00000000 		.4byte	0
  4031 00c4 00000000 		.4byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 92
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 92
 
 
  4032              		.section	.debug_line,"",%progbits
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  4054      6720756E 
  4054      7369676E 
  4054      65642069 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 93
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 93
 
 
  4055              	.LASF73:
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  4082 012e 646F7562 		.ascii	"double\000"
  4082      6C6500
  4083              	.LASF84:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 94
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 94
 
 
  4084 0135 4379446D 		.ascii	"CyDmaChannels\000"
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  4106      65644164 
  4107              	.LASF82:
  4108 01ea 4379446D 		.ascii	"CyDmaTdCurrentNumber\000"
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 95
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 95
 
 
  4108      61546443 
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  4130      526F6269 
  4130      6E00
  4131              	.LASF78:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 96
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 96
 
 
  4132 0293 4379446D 		.ascii	"CyDmaTdSetAddress\000"
@@ -5755,157 +5755,155 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 1
  4154 0328 73686F72 		.ascii	"short int\000"
  4154      7420696E 
  4154      7400
- 4155              	.LASF30:
- 4156 0332 646D6163 		.ascii	"dmac_tdmem\000"
- 4156      5F74646D 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 97
+ 4155              	.LASF67:
+ 4156 0332 74645374 		.ascii	"tdStop\000"
+ 4156      6F7000
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 97
 
 
- 4156      656D00
- 4157              	.LASF67:
- 4158 033d 74645374 		.ascii	"tdStop\000"
- 4158      6F7000
- 4159              	.LASF41:
- 4160 0344 63684861 		.ascii	"chHandle\000"
- 4160      6E646C65 
- 4160      00
- 4161              	.LASF37:
- 4162 034d 6368616E 		.ascii	"channel\000"
- 4162      6E656C00 
- 4163              	.LASF59:
- 4164 0355 4379446D 		.ascii	"CyDmaChStatus\000"
- 4164      61436853 
- 4164      74617475 
- 4164      7300
- 4165              	.LASF45:
- 4166 0363 4379446D 		.ascii	"CyDmaChDisable\000"
- 4166      61436844 
- 4166      69736162 
- 4166      6C6500
- 4167              	.LASF38:
- 4168 0372 4379446D 		.ascii	"CyDmaChAlloc\000"
- 4168      61436841 
- 4168      6C6C6F63 
- 4168      00
- 4169              	.LASF60:
- 4170 037f 63757272 		.ascii	"currentTd\000"
- 4170      656E7454 
- 4170      6400
- 4171              	.LASF14:
- 4172 0389 63686172 		.ascii	"char\000"
+ 4157              	.LASF41:
+ 4158 0339 63684861 		.ascii	"chHandle\000"
+ 4158      6E646C65 
+ 4158      00
+ 4159              	.LASF37:
+ 4160 0342 6368616E 		.ascii	"channel\000"
+ 4160      6E656C00 
+ 4161              	.LASF59:
+ 4162 034a 4379446D 		.ascii	"CyDmaChStatus\000"
+ 4162      61436853 
+ 4162      74617475 
+ 4162      7300
+ 4163              	.LASF45:
+ 4164 0358 4379446D 		.ascii	"CyDmaChDisable\000"
+ 4164      61436844 
+ 4164      69736162 
+ 4164      6C6500
+ 4165              	.LASF38:
+ 4166 0367 4379446D 		.ascii	"CyDmaChAlloc\000"
+ 4166      61436841 
+ 4166      6C6C6F63 
+ 4166      00
+ 4167              	.LASF60:
+ 4168 0374 63757272 		.ascii	"currentTd\000"
+ 4168      656E7454 
+ 4168      6400
+ 4169              	.LASF14:
+ 4170 037e 63686172 		.ascii	"char\000"
+ 4170      00
+ 4171              	.LASF48:
+ 4172 0383 7072696F 		.ascii	"priority\000"
+ 4172      72697479 
  4172      00
- 4173              	.LASF48:
- 4174 038e 7072696F 		.ascii	"priority\000"
- 4174      72697479 
- 4174      00
- 4175              	.LASF79:
- 4176 0397 4379446D 		.ascii	"CyDmaTdGetAddress\000"
- 4176      61546447 
- 4176      65744164 
- 4176      64726573 
- 4176      7300
- 4177              	.LASF23:
- 4178 03a9 646D6163 		.ascii	"dmac_ch\000"
- 4178      5F636800 
- 4179              	.LASF64:
- 4180 03b1 72657175 		.ascii	"requestPerBurst\000"
- 4180      65737450 
- 4180      65724275 
- 4180      72737400 
- 4181              	.LASF44:
- 4182 03c1 70726573 		.ascii	"preserveTds\000"
- 4182      65727665 
- 4182      54647300 
- 4183              	.LASF53:
- 4184 03cd 636F6E76 		.ascii	"convert\000"
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 98
+ 4173              	.LASF79:
+ 4174 038c 4379446D 		.ascii	"CyDmaTdGetAddress\000"
+ 4174      61546447 
+ 4174      65744164 
+ 4174      64726573 
+ 4174      7300
+ 4175              	.LASF23:
+ 4176 039e 646D6163 		.ascii	"dmac_ch\000"
+ 4176      5F636800 
+ 4177              	.LASF64:
+ 4178 03a6 72657175 		.ascii	"requestPerBurst\000"
+ 4178      65737450 
+ 4178      65724275 
+ 4178      72737400 
+ 4179              	.LASF44:
+ 4180 03b6 70726573 		.ascii	"preserveTds\000"
+ 4180      65727665 
+ 4180      54647300 
+ 4181              	.LASF53:
+ 4182 03c2 636F6E76 		.ascii	"convert\000"
+ 4182      65727400 
+ 4183              	.LASF30:
+ 4184 03ca 646D6163 		.ascii	"dmac_tdmem\000"
+ 4184      5F74646D 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 98
 
 
- 4184      65727400 
- 4185              	.LASF87:
- 4186 03d5 433A5C55 		.ascii	"C:\\Users\\suminh\\project\\ZumoBot.cyprj.Archive01"
- 4186      73657273 
- 4186      5C73756D 
- 4186      696E685C 
- 4186      70726F6A 
- 4187 0404 5C4E6577 		.ascii	"\\New folder\\ZumoBot_ultra.cydsn\\ZumoBot_ultra.cy"
- 4187      20666F6C 
- 4187      6465725C 
- 4187      5A756D6F 
- 4187      426F745F 
- 4188 0434 64736E00 		.ascii	"dsn\000"
- 4189              	.LASF55:
- 4190 0438 73746172 		.ascii	"startTd\000"
- 4190      74546400 
- 4191              	.LASF83:
- 4192 0440 4379446D 		.ascii	"CyDmaTdFreeIndex\000"
- 4192      61546446 
- 4192      72656549 
- 4192      6E646578 
+ 4184      656D00
+ 4185              	.LASF55:
+ 4186 03d5 73746172 		.ascii	"startTd\000"
+ 4186      74546400 
+ 4187              	.LASF83:
+ 4188 03dd 4379446D 		.ascii	"CyDmaTdFreeIndex\000"
+ 4188      61546446 
+ 4188      72656549 
+ 4188      6E646578 
+ 4188      00
+ 4189              	.LASF74:
+ 4190 03ee 7472616E 		.ascii	"transferCount\000"
+ 4190      73666572 
+ 4190      436F756E 
+ 4190      7400
+ 4191              	.LASF26:
+ 4192 03fc 43464730 		.ascii	"CFG0\000"
  4192      00
- 4193              	.LASF74:
- 4194 0451 7472616E 		.ascii	"transferCount\000"
- 4194      73666572 
- 4194      436F756E 
- 4194      7400
- 4195              	.LASF26:
- 4196 045f 43464730 		.ascii	"CFG0\000"
- 4196      00
- 4197              	.LASF27:
- 4198 0464 43464731 		.ascii	"CFG1\000"
- 4198      00
- 4199              	.LASF42:
- 4200 0469 73746174 		.ascii	"status\000"
- 4200      757300
- 4201              	.LASF85:
- 4202 0470 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 4202      4320342E 
- 4202      392E3320 
- 4202      32303135 
- 4202      30333033 
- 4203 04a3 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 4203      20726576 
- 4203      6973696F 
- 4203      6E203232 
- 4203      31323230 
- 4204 04d6 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 4204      66756E63 
- 4204      74696F6E 
- 4204      2D736563 
- 4204      74696F6E 
- 4205              	.LASF58:
- 4206 04fe 4379446D 		.ascii	"CyDmaChGetRequest\000"
- 4206      61436847 
- 4206      65745265 
- 4206      71756573 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\cc8VjvsU.s 			page 99
+ 4193              	.LASF27:
+ 4194 0401 43464731 		.ascii	"CFG1\000"
+ 4194      00
+ 4195              	.LASF42:
+ 4196 0406 73746174 		.ascii	"status\000"
+ 4196      757300
+ 4197              	.LASF85:
+ 4198 040d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 4198      4320342E 
+ 4198      392E3320 
+ 4198      32303135 
+ 4198      30333033 
+ 4199 0440 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 4199      20726576 
+ 4199      6973696F 
+ 4199      6E203232 
+ 4199      31323230 
+ 4200 0473 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 4200      66756E63 
+ 4200      74696F6E 
+ 4200      2D736563 
+ 4200      74696F6E 
+ 4201              	.LASF58:
+ 4202 049b 4379446D 		.ascii	"CyDmaChGetRequest\000"
+ 4202      61436847 
+ 4202      65745265 
+ 4202      71756573 
+ 4202      7400
+ 4203              	.LASF57:
+ 4204 04ad 72657175 		.ascii	"request\000"
+ 4204      65737400 
+ 4205              	.LASF87:
+ 4206 04b5 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 4206      73657273 
+ 4206      5C647566 
+ 4206      6D615C44 
+ 4206      65736B74 
+ 4207 04e2 426F745F 		.ascii	"Bot_ultra.cydsn\000"
+ 4207      756C7472 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccCEo98c.s 			page 99
 
 
- 4206      7400
- 4207              	.LASF57:
- 4208 0510 72657175 		.ascii	"request\000"
- 4208      65737400 
- 4209              	.LASF54:
- 4210 0518 4379446D 		.ascii	"CyDmaChSetInitialTd\000"
- 4210      61436853 
- 4210      6574496E 
- 4210      69746961 
- 4210      6C546400 
- 4211              	.LASF15:
- 4212 052c 63797374 		.ascii	"cystatus\000"
- 4212      61747573 
- 4212      00
- 4213              	.LASF62:
- 4214 0535 4379446D 		.ascii	"CyDmaChSetConfiguration\000"
- 4214      61436853 
- 4214      6574436F 
- 4214      6E666967 
- 4214      75726174 
- 4215              	.LASF69:
- 4216 054d 656C656D 		.ascii	"element\000"
- 4216      656E7400 
- 4217              	.LASF39:
- 4218 0555 4379446D 		.ascii	"CyDmaChFree\000"
- 4218      61436846 
- 4218      72656500 
- 4219              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 4207      612E6379 
+ 4207      64736E00 
+ 4208              	.LASF54:
+ 4209 04f2 4379446D 		.ascii	"CyDmaChSetInitialTd\000"
+ 4209      61436853 
+ 4209      6574496E 
+ 4209      69746961 
+ 4209      6C546400 
+ 4210              	.LASF15:
+ 4211 0506 63797374 		.ascii	"cystatus\000"
+ 4211      61747573 
+ 4211      00
+ 4212              	.LASF62:
+ 4213 050f 4379446D 		.ascii	"CyDmaChSetConfiguration\000"
+ 4213      61436853 
+ 4213      6574436F 
+ 4213      6E666967 
+ 4213      75726174 
+ 4214              	.LASF69:
+ 4215 0527 656C656D 		.ascii	"element\000"
+ 4215      656E7400 
+ 4216              	.LASF39:
+ 4217 052f 4379446D 		.ascii	"CyDmaChFree\000"
+ 4217      61436846 
+ 4217      72656500 
+ 4218              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

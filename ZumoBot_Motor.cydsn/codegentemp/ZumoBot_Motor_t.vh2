@@ -1,5 +1,5 @@
--- Project:   C:\Users\suminh\project\ZumoBot.cyprj.Archive01\ZumoBot_Motor.cydsn\ZumoBot_Motor.cyprj
--- Generated: 06/14/2016 16:10:11
+-- Project:   C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Motor.cydsn\ZumoBot_Motor.cyprj
+-- Generated: 07/06/2016 13:59:08
 -- PSoC Creator  3.3 CP3
 
 ENTITY ZumoBot_Motor IS
@@ -301,9 +301,9 @@ ARCHITECTURE __DEFAULT__ OF ZumoBot_Motor IS
     ATTRIBUTE lib_model OF Tx_1(0) : LABEL IS "iocell6";
     ATTRIBUTE Location OF Tx_1(0) : LABEL IS "P12[7]";
     ATTRIBUTE lib_model OF MotorDirLeft(0) : LABEL IS "iocell7";
-    ATTRIBUTE Location OF MotorDirLeft(0) : LABEL IS "P15[5]";
+    ATTRIBUTE Location OF MotorDirLeft(0) : LABEL IS "P3[7]";
     ATTRIBUTE lib_model OF MotorDirRight(0) : LABEL IS "iocell8";
-    ATTRIBUTE Location OF MotorDirRight(0) : LABEL IS "P0[0]";
+    ATTRIBUTE Location OF MotorDirRight(0) : LABEL IS "P15[0]";
     ATTRIBUTE lib_model OF LL(0) : LABEL IS "iocell9";
     ATTRIBUTE Location OF LL(0) : LABEL IS "P3[3]";
     ATTRIBUTE lib_model OF IR_led(0) : LABEL IS "iocell10";

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
   29:.\Generated_Source\PSoC5/I2C_2.c **** /*******************************************************************************
   30:.\Generated_Source\PSoC5/I2C_2.c **** * Function Name: I2C_2_Init
   31:.\Generated_Source\PSoC5/I2C_2.c **** ********************************************************************************
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/I2C_2.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
   45              		.loc 1 67 0
   46 000e FFF7FEFF 		bl	CyEnterCriticalSection
   47              	.LVL0:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 3
 
 
   68:.\Generated_Source\PSoC5/I2C_2.c ****     I2C_2_INT_ENABLE_REG |= I2C_2_INTR_ENABLE;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
   93:.\Generated_Source\PSoC5/I2C_2.c **** 
   94:.\Generated_Source\PSoC5/I2C_2.c ****     /* Set FSM to default state */
   95:.\Generated_Source\PSoC5/I2C_2.c ****     I2C_2_state = I2C_2_SM_IDLE;
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 4
 
 
   77              		.loc 1 95 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  113:.\Generated_Source\PSoC5/I2C_2.c **** }
  114:.\Generated_Source\PSoC5/I2C_2.c **** 
  115:.\Generated_Source\PSoC5/I2C_2.c **** 
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 5
 
 
  116:.\Generated_Source\PSoC5/I2C_2.c **** /*******************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  131              		.size	I2C_2_Enable, .-I2C_2_Enable
  132              		.section	.text.I2C_2_Start,"ax",%progbits
  133              		.align	2
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 6
 
 
  134              		.global	I2C_2_Start
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  149 0002 074B     		ldr	r3, .L11
  150 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  151 0006 23B9     		cbnz	r3, .L9
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 7
 
 
  192:.\Generated_Source\PSoC5/I2C_2.c ****     {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  214:.\Generated_Source\PSoC5/I2C_2.c **** *  None.
  215:.\Generated_Source\PSoC5/I2C_2.c **** *
  216:.\Generated_Source\PSoC5/I2C_2.c **** *******************************************************************************/
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 8
 
 
  217:.\Generated_Source\PSoC5/I2C_2.c **** void I2C_2_Stop(void) 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  193              		.loc 1 261 0
  194 0006 0A49     		ldr	r1, .L14+4
  195 0008 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 9
 
 
  196 000a 03F0FD03 		and	r3, r3, #253
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  230              		.size	I2C_2_initVar, 1
  231              	I2C_2_initVar:
  232 0000 00       		.space	1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 10
 
 
  233              		.text
@@ -553,17 +553,17 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  242 0006 00000000 		.4byte	.Ldebug_abbrev0
  243 000a 04       		.byte	0x4
  244 000b 01       		.uleb128 0x1
- 245 000c 3E010000 		.4byte	.LASF30
+ 245 000c 18010000 		.4byte	.LASF30
  246 0010 01       		.byte	0x1
- 247 0011 55020000 		.4byte	.LASF31
- 248 0015 BF000000 		.4byte	.LASF32
+ 247 0011 2F020000 		.4byte	.LASF31
+ 248 0015 AB000000 		.4byte	.LASF32
  249 0019 00000000 		.4byte	.Ldebug_ranges0+0
  250 001d 00000000 		.4byte	0
  251 0021 00000000 		.4byte	.Ldebug_line0
  252 0025 02       		.uleb128 0x2
  253 0026 01       		.byte	0x1
  254 0027 06       		.byte	0x6
- 255 0028 A4020000 		.4byte	.LASF0
+ 255 0028 7E020000 		.4byte	.LASF0
  256 002c 02       		.uleb128 0x2
  257 002d 01       		.byte	0x1
  258 002e 08       		.byte	0x8
@@ -571,7 +571,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  260 0033 02       		.uleb128 0x2
  261 0034 02       		.byte	0x2
  262 0035 05       		.byte	0x5
- 263 0036 22010000 		.4byte	.LASF2
+ 263 0036 FC000000 		.4byte	.LASF2
  264 003a 02       		.uleb128 0x2
  265 003b 02       		.byte	0x2
  266 003c 07       		.byte	0x7
@@ -579,7 +579,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  268 0041 02       		.uleb128 0x2
  269 0042 04       		.byte	0x4
  270 0043 05       		.byte	0x5
- 271 0044 81020000 		.4byte	.LASF4
+ 271 0044 5B020000 		.4byte	.LASF4
  272 0048 02       		.uleb128 0x2
  273 0049 04       		.byte	0x4
  274 004a 07       		.byte	0x7
@@ -587,7 +587,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  276 004f 02       		.uleb128 0x2
  277 0050 08       		.byte	0x8
  278 0051 05       		.byte	0x5
- 279 0052 42020000 		.4byte	.LASF6
+ 279 0052 1C020000 		.4byte	.LASF6
  280 0056 02       		.uleb128 0x2
  281 0057 08       		.byte	0x8
  282 0058 07       		.byte	0x7
@@ -598,18 +598,18 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  287 0060 696E7400 		.ascii	"int\000"
  288 0064 02       		.uleb128 0x2
  289 0065 04       		.byte	0x4
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 11
 
 
  290 0066 07       		.byte	0x7
- 291 0067 D5010000 		.4byte	.LASF8
+ 291 0067 AF010000 		.4byte	.LASF8
  292 006b 04       		.uleb128 0x4
  293 006c A5000000 		.4byte	.LASF9
  294 0070 02       		.byte	0x2
  295 0071 3801     		.2byte	0x138
  296 0073 2C000000 		.4byte	0x2c
  297 0077 04       		.uleb128 0x4
- 298 0078 37010000 		.4byte	.LASF10
+ 298 0078 11010000 		.4byte	.LASF10
  299 007c 02       		.byte	0x2
  300 007d 3A01     		.2byte	0x13a
  301 007f 48000000 		.4byte	0x48
@@ -620,11 +620,11 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  306 008a 02       		.uleb128 0x2
  307 008b 08       		.byte	0x8
  308 008c 04       		.byte	0x4
- 309 008d B8000000 		.4byte	.LASF12
+ 309 008d F5000000 		.4byte	.LASF12
  310 0091 02       		.uleb128 0x2
  311 0092 01       		.byte	0x1
  312 0093 08       		.byte	0x8
- 313 0094 50020000 		.4byte	.LASF13
+ 313 0094 2A020000 		.4byte	.LASF13
  314 0098 04       		.uleb128 0x4
  315 0099 79000000 		.4byte	.LASF14
  316 009d 02       		.byte	0x2
@@ -640,7 +640,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  326 00b5 05       		.uleb128 0x5
  327 00b6 77000000 		.4byte	0x77
  328 00ba 04       		.uleb128 0x4
- 329 00bb 2C020000 		.4byte	.LASF16
+ 329 00bb 06020000 		.4byte	.LASF16
  330 00bf 02       		.byte	0x2
  331 00c0 F401     		.2byte	0x1f4
  332 00c2 C6000000 		.4byte	0xc6
@@ -651,21 +651,21 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  337 00cd 02       		.uleb128 0x2
  338 00ce 04       		.byte	0x4
  339 00cf 07       		.byte	0x7
- 340 00d0 39020000 		.4byte	.LASF17
+ 340 00d0 13020000 		.4byte	.LASF17
  341 00d4 08       		.uleb128 0x8
- 342 00d5 2C010000 		.4byte	.LASF18
+ 342 00d5 06010000 		.4byte	.LASF18
  343 00d9 01       		.byte	0x1
  344 00da 31       		.byte	0x31
  345 00db 00000000 		.4byte	.LFB0
  346 00df 78000000 		.4byte	.LFE0-.LFB0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 12
 
 
  347 00e3 01       		.uleb128 0x1
  348 00e4 9C       		.byte	0x9c
  349 00e5 34010000 		.4byte	0x134
  350 00e9 09       		.uleb128 0x9
- 351 00ea CC010000 		.4byte	.LASF33
+ 351 00ea A6010000 		.4byte	.LASF33
  352 00ee 01       		.byte	0x1
  353 00ef 3C       		.byte	0x3c
  354 00f0 6B000000 		.4byte	0x6b
@@ -704,7 +704,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  387 0132 00       		.byte	0
  388 0133 00       		.byte	0
  389 0134 0E       		.uleb128 0xe
- 390 0135 AB000000 		.4byte	.LASF20
+ 390 0135 E8000000 		.4byte	.LASF20
  391 0139 01       		.byte	0x1
  392 013a 85       		.byte	0x85
  393 013b 00000000 		.4byte	.LFB1
@@ -712,13 +712,13 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  395 0143 01       		.uleb128 0x1
  396 0144 9C       		.byte	0x9c
  397 0145 08       		.uleb128 0x8
- 398 0146 8A020000 		.4byte	.LASF19
+ 398 0146 64020000 		.4byte	.LASF19
  399 014a 01       		.byte	0x1
  400 014b BD       		.byte	0xbd
  401 014c 00000000 		.4byte	.LFB2
  402 0150 28000000 		.4byte	.LFE2-.LFB2
  403 0154 01       		.uleb128 0x1
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 13
 
 
  404 0155 9C       		.byte	0x9c
@@ -731,7 +731,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  411 0168 34010000 		.4byte	0x134
  412 016c 00       		.byte	0
  413 016d 0E       		.uleb128 0xe
- 414 016e 76020000 		.4byte	.LASF21
+ 414 016e 50020000 		.4byte	.LASF21
  415 0172 01       		.byte	0x1
  416 0173 D9       		.byte	0xd9
  417 0174 00000000 		.4byte	.LFB3
@@ -739,7 +739,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  419 017c 01       		.uleb128 0x1
  420 017d 9C       		.byte	0x9c
  421 017e 0F       		.uleb128 0xf
- 422 017f 96020000 		.4byte	.LASF22
+ 422 017f 70020000 		.4byte	.LASF22
  423 0183 01       		.byte	0x1
  424 0184 18       		.byte	0x18
  425 0185 6B000000 		.4byte	0x6b
@@ -747,7 +747,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  427 018a 03       		.byte	0x3
  428 018b 00000000 		.4byte	I2C_2_initVar
  429 018f 0F       		.uleb128 0xf
- 430 0190 20020000 		.4byte	.LASF23
+ 430 0190 FA010000 		.4byte	.LASF23
  431 0194 01       		.byte	0x1
  432 0195 1A       		.byte	0x1a
  433 0196 A4000000 		.4byte	0xa4
@@ -770,15 +770,15 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  450 01bc 32       		.byte	0x32
  451 01bd A4000000 		.4byte	0xa4
  452 01c1 11       		.uleb128 0x11
- 453 01c2 09020000 		.4byte	.LASF34
+ 453 01c2 E3010000 		.4byte	.LASF34
  454 01c6 04       		.byte	0x4
  455 01c7 7E       		.byte	0x7e
  456 01c8 6B000000 		.4byte	0x6b
  457 01cc 12       		.uleb128 0x12
- 458 01cd E2010000 		.4byte	.LASF27
+ 458 01cd BC010000 		.4byte	.LASF27
  459 01d1 04       		.byte	0x4
  460 01d2 7F       		.byte	0x7f
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 14
 
 
  461 01d3 DD010000 		.4byte	0x1dd
@@ -786,7 +786,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  463 01d8 6B000000 		.4byte	0x6b
  464 01dc 00       		.byte	0
  465 01dd 12       		.uleb128 0x12
- 466 01de F8010000 		.4byte	.LASF28
+ 466 01de D2010000 		.4byte	.LASF28
  467 01e2 04       		.byte	0x4
  468 01e3 8C       		.byte	0x8c
  469 01e4 F3010000 		.4byte	0x1f3
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  515 001b 0E       		.uleb128 0xe
  516 001c 00       		.byte	0
  517 001d 00       		.byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 15
 
 
  518 001e 03       		.uleb128 0x3
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  572 0054 3A       		.uleb128 0x3a
  573 0055 0B       		.uleb128 0xb
  574 0056 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 16
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 16
 
 
  575 0057 0B       		.uleb128 0xb
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  629 0094 18       		.uleb128 0x18
  630 0095 9142     		.uleb128 0x2111
  631 0097 18       		.uleb128 0x18
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 17
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 17
 
 
  632 0098 00       		.byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  686 00d1 03       		.uleb128 0x3
  687 00d2 0E       		.uleb128 0xe
  688 00d3 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 18
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 18
 
 
  689 00d4 0B       		.uleb128 0xb
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  743 010a 00       		.byte	0
  744 010b 00       		.byte	0
  745 010c 14       		.uleb128 0x14
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 19
 
 
  746 010d 2E       		.uleb128 0x2e
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  800 0018 00000000 		.4byte	.LFB3
  801 001c 40000000 		.4byte	.LFE3
  802 0020 00000000 		.4byte	0
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 20
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 20
 
 
  803 0024 00000000 		.4byte	0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  826      69676E65 
  826      6420696E 
  826      7400
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 21
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 21
 
 
  827              	.LASF25:
@@ -1210,132 +1210,130 @@ ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 1
  829              	.LASF9:
  830 00a5 75696E74 		.ascii	"uint8\000"
  830      3800
- 831              	.LASF20:
- 832 00ab 4932435F 		.ascii	"I2C_2_Enable\000"
- 832      325F456E 
- 832      61626C65 
- 832      00
- 833              	.LASF12:
- 834 00b8 646F7562 		.ascii	"double\000"
- 834      6C6500
- 835              	.LASF32:
- 836 00bf 433A5C55 		.ascii	"C:\\Users\\suminh\\project\\ZumoBot.cyprj.Archive01"
- 836      73657273 
- 836      5C73756D 
- 836      696E685C 
- 836      70726F6A 
- 837 00ee 5C4E6577 		.ascii	"\\New folder\\ZumoBot_ultra.cydsn\\ZumoBot_ultra.cy"
- 837      20666F6C 
- 837      6465725C 
- 837      5A756D6F 
- 837      426F745F 
- 838 011e 64736E00 		.ascii	"dsn\000"
- 839              	.LASF2:
- 840 0122 73686F72 		.ascii	"short int\000"
- 840      7420696E 
- 840      7400
- 841              	.LASF18:
- 842 012c 4932435F 		.ascii	"I2C_2_Init\000"
- 842      325F496E 
- 842      697400
- 843              	.LASF10:
- 844 0137 75696E74 		.ascii	"uint32\000"
- 844      333200
- 845              	.LASF30:
- 846 013e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 846      4320342E 
- 846      392E3320 
- 846      32303135 
- 846      30333033 
- 847 0171 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 847      20726576 
- 847      6973696F 
- 847      6E203232 
- 847      31323230 
- 848 01a4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 848      66756E63 
- 848      74696F6E 
- 848      2D736563 
- 848      74696F6E 
- 849              	.LASF33:
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 22
+ 831              	.LASF32:
+ 832 00ab 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 832      73657273 
+ 832      5C647566 
+ 832      6D615C44 
+ 832      65736B74 
+ 833 00d8 426F745F 		.ascii	"Bot_ultra.cydsn\000"
+ 833      756C7472 
+ 833      612E6379 
+ 833      64736E00 
+ 834              	.LASF20:
+ 835 00e8 4932435F 		.ascii	"I2C_2_Enable\000"
+ 835      325F456E 
+ 835      61626C65 
+ 835      00
+ 836              	.LASF12:
+ 837 00f5 646F7562 		.ascii	"double\000"
+ 837      6C6500
+ 838              	.LASF2:
+ 839 00fc 73686F72 		.ascii	"short int\000"
+ 839      7420696E 
+ 839      7400
+ 840              	.LASF18:
+ 841 0106 4932435F 		.ascii	"I2C_2_Init\000"
+ 841      325F496E 
+ 841      697400
+ 842              	.LASF10:
+ 843 0111 75696E74 		.ascii	"uint32\000"
+ 843      333200
+ 844              	.LASF30:
+ 845 0118 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 845      4320342E 
+ 845      392E3320 
+ 845      32303135 
+ 845      30333033 
+ 846 014b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 846      20726576 
+ 846      6973696F 
+ 846      6E203232 
+ 846      31323230 
+ 847 017e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 847      66756E63 
+ 847      74696F6E 
+ 847      2D736563 
+ 847      74696F6E 
+ 848              	.LASF33:
+ 849 01a6 696E7453 		.ascii	"intState\000"
+ 849      74617465 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 22
 
 
- 850 01cc 696E7453 		.ascii	"intState\000"
- 850      74617465 
- 850      00
- 851              	.LASF8:
- 852 01d5 756E7369 		.ascii	"unsigned int\000"
- 852      676E6564 
- 852      20696E74 
- 852      00
- 853              	.LASF27:
- 854 01e2 43794578 		.ascii	"CyExitCriticalSection\000"
- 854      69744372 
- 854      69746963 
- 854      616C5365 
- 854      6374696F 
- 855              	.LASF28:
- 856 01f8 4379496E 		.ascii	"CyIntSetPriority\000"
- 856      74536574 
- 856      5072696F 
- 856      72697479 
- 856      00
- 857              	.LASF34:
- 858 0209 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 858      74657243 
- 858      72697469 
- 858      63616C53 
- 858      65637469 
- 859              	.LASF23:
- 860 0220 4932435F 		.ascii	"I2C_2_state\000"
- 860      325F7374 
- 860      61746500 
- 861              	.LASF16:
- 862 022c 63796973 		.ascii	"cyisraddress\000"
- 862      72616464 
- 862      72657373 
- 862      00
- 863              	.LASF17:
- 864 0239 73697A65 		.ascii	"sizetype\000"
- 864      74797065 
- 864      00
- 865              	.LASF6:
- 866 0242 6C6F6E67 		.ascii	"long long int\000"
- 866      206C6F6E 
- 866      6720696E 
- 866      7400
- 867              	.LASF13:
- 868 0250 63686172 		.ascii	"char\000"
- 868      00
- 869              	.LASF31:
- 870 0255 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\I2C_2.c\000"
- 870      6E657261 
- 870      7465645F 
- 870      536F7572 
- 870      63655C50 
- 871              	.LASF21:
- 872 0276 4932435F 		.ascii	"I2C_2_Stop\000"
- 872      325F5374 
- 872      6F7000
-ARM GAS  C:\Users\suminh\AppData\Local\Temp\ccVtRHMS.s 			page 23
+ 849      00
+ 850              	.LASF8:
+ 851 01af 756E7369 		.ascii	"unsigned int\000"
+ 851      676E6564 
+ 851      20696E74 
+ 851      00
+ 852              	.LASF27:
+ 853 01bc 43794578 		.ascii	"CyExitCriticalSection\000"
+ 853      69744372 
+ 853      69746963 
+ 853      616C5365 
+ 853      6374696F 
+ 854              	.LASF28:
+ 855 01d2 4379496E 		.ascii	"CyIntSetPriority\000"
+ 855      74536574 
+ 855      5072696F 
+ 855      72697479 
+ 855      00
+ 856              	.LASF34:
+ 857 01e3 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 857      74657243 
+ 857      72697469 
+ 857      63616C53 
+ 857      65637469 
+ 858              	.LASF23:
+ 859 01fa 4932435F 		.ascii	"I2C_2_state\000"
+ 859      325F7374 
+ 859      61746500 
+ 860              	.LASF16:
+ 861 0206 63796973 		.ascii	"cyisraddress\000"
+ 861      72616464 
+ 861      72657373 
+ 861      00
+ 862              	.LASF17:
+ 863 0213 73697A65 		.ascii	"sizetype\000"
+ 863      74797065 
+ 863      00
+ 864              	.LASF6:
+ 865 021c 6C6F6E67 		.ascii	"long long int\000"
+ 865      206C6F6E 
+ 865      6720696E 
+ 865      7400
+ 866              	.LASF13:
+ 867 022a 63686172 		.ascii	"char\000"
+ 867      00
+ 868              	.LASF31:
+ 869 022f 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\I2C_2.c\000"
+ 869      6E657261 
+ 869      7465645F 
+ 869      536F7572 
+ 869      63655C50 
+ 870              	.LASF21:
+ 871 0250 4932435F 		.ascii	"I2C_2_Stop\000"
+ 871      325F5374 
+ 871      6F7000
+ 872              	.LASF4:
+ 873 025b 6C6F6E67 		.ascii	"long int\000"
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwyDoIr.s 			page 23
 
 
- 873              	.LASF4:
- 874 0281 6C6F6E67 		.ascii	"long int\000"
- 874      20696E74 
- 874      00
- 875              	.LASF19:
- 876 028a 4932435F 		.ascii	"I2C_2_Start\000"
- 876      325F5374 
- 876      61727400 
- 877              	.LASF22:
- 878 0296 4932435F 		.ascii	"I2C_2_initVar\000"
- 878      325F696E 
- 878      69745661 
- 878      7200
- 879              	.LASF0:
- 880 02a4 7369676E 		.ascii	"signed char\000"
- 880      65642063 
- 880      68617200 
- 881              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 873      20696E74 
+ 873      00
+ 874              	.LASF19:
+ 875 0264 4932435F 		.ascii	"I2C_2_Start\000"
+ 875      325F5374 
+ 875      61727400 
+ 876              	.LASF22:
+ 877 0270 4932435F 		.ascii	"I2C_2_initVar\000"
+ 877      325F696E 
+ 877      69745661 
+ 877      7200
+ 878              	.LASF0:
+ 879 027e 7369676E 		.ascii	"signed char\000"
+ 879      65642063 
+ 879      68617200 
+ 880              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
