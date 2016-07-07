@@ -413,6 +413,8 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\main.c" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\ZumoBot_Lib_Reflectance.cydwr" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
