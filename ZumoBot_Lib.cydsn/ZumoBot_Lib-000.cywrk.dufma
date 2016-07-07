@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib-000\ZumoBot_Lib_WiiTest">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib-000\ZumoBot_Lib_WiiTest\Source Files\main.c">
 <ExpandedNodeIds>
 <v>ZumoBot_Lib-000</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\TopDesign</v>
@@ -768,10 +768,15 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\main.c" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\Reflectance.c" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\Reflectance.h" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\Motor.h" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\Motor.c" />
 <name v=".\main.c" />
-<name v=".\TopDesign\TopDesign.cysch" />
-<name v=".\ZumoBot_Lib.cydwr" />
-<name v=".\Motor.c" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\nunchuk.c" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\nunchuk.h" />
+<name v="..\ZumoBot_Lib_WiiTest.cydsn\TopDesign\TopDesign.cysch" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
