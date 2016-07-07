@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib_Reflectance-000\ZumoBot_Lib_Reflectance\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib_Reflectance-000\ZumoBot_Lib_Reflectance\ZumoBot_Lib_Reflectance.cydwr">
 <ExpandedNodeIds>
 <v>ZumoBot_Lib_Reflectance-000</v>
 <v>ZumoBot_Lib_Reflectance-000\ZumoBot_Lib_Reflectance</v>
@@ -413,6 +413,8 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\main.c" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\ZumoBot_Lib_Reflectance.cydwr" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
