@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Motor.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib-000\ZumoBot_Lib">
 <ExpandedNodeIds>
 <v>ZumoBot_Lib-000</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib</v>
@@ -21,7 +21,13 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\ZumoBot_Lib.cydwr</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Header Files</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Header Files\cyapicallbacks.h</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\accel.c</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\accel_magnet.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\gyro.c</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\gyro.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\I2C_made.c</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\I2C_made.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\magnet.c</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\main.c</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Motor.c</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Motor.h</v>
@@ -213,15 +219,6 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Header Files</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Header Files\cyapicallbacks.h</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\main.c</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Motor.c</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Motor.h</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\nunchuk.c</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\nunchuk.h</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Reflectance.c</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Reflectance.h</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Ultra.c</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Source Files\Ultra.h</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\Clock_1</v>
@@ -243,6 +240,15 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -267,6 +273,7 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\accel.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -279,6 +286,7 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Echo.lst</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\gyro.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_BOOT.lst</v>
@@ -289,12 +297,14 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_SLAVE.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_BOOT.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_INT.lst</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_made.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_MASTER.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_PM.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_SLAVE.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\IR_led.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\LL.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\LR.lst</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\magnet.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Motor.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\MotorDirLeft.lst</v>
@@ -345,6 +355,7 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\accel.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -357,6 +368,7 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Echo.lst</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\gyro.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_BOOT.lst</v>
@@ -367,15 +379,13 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_SLAVE.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_BOOT.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_INT.lst</v>
+<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_made.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_MASTER.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_PM.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_SLAVE.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\IR_led.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\LL.lst</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\LR.lst</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\Motor.lst</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\CortexM3\ARM_GCC_493\Debug\Listing Files\MotorDirLeft.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -390,24 +400,6 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\PSoC 5 Architecture TRM</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CY8C58LP Family Datasheet</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\System Reference Guides</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\System Reference Guides\cy_boot_v5_30</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\and_v1_0.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_clock_v2_20</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_isr_v1_70</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_pins_v2_20</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\I2C_v3_50</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\I2C_v3_50\I2C_v3_50.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\not_v1_0</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\not_v1_0\not_v1_0.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\PWM_v3_30.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Timer_v2_70</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Timer_v2_70\Timer_v2_70.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\UART_v2_50.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\ZeroTerminal</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\ZeroTerminal\ZeroTerminal.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>ZumoBot_Lib-000</v>
@@ -415,24 +407,6 @@
 <v>ZumoBot_Lib-000\ZumoBot_Lib\PSoC 5 Architecture TRM</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\CY8C58LP Family Datasheet</v>
 <v>ZumoBot_Lib-000\ZumoBot_Lib\System Reference Guides</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\System Reference Guides\cy_boot_v5_30</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\and_v1_0.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_clock_v2_20</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_isr_v1_70</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_pins_v2_20</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\I2C_v3_50</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\I2C_v3_50\I2C_v3_50.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\not_v1_0</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\not_v1_0\not_v1_0.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\PWM_v3_30.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Timer_v2_70</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\Timer_v2_70\Timer_v2_70.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\UART_v2_50.pdf</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\ZeroTerminal</v>
-<v>ZumoBot_Lib-000\ZumoBot_Lib\ZeroTerminal\ZeroTerminal.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -448,9 +422,6 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\main.c" />
-<name v=".\TopDesign\TopDesign.cysch" />
-<name v=".\ZumoBot_Lib.cydwr" />
-<name v=".\Motor.c" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

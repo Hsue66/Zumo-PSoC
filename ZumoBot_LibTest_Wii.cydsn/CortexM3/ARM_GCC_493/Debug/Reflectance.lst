@@ -1,0 +1,2389 @@
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Reflectance.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.sensor_isr_handler,"ax",%progbits
+  19              		.align	2
+  20              		.global	sensor_isr_handler
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	sensor_isr_handler, %function
+  24              	sensor_isr_handler:
+  25              	.LFB63:
+  26              		.file 1 ".\\Reflectance.c"
+   1:.\Reflectance.c **** /* ========================================
+   2:.\Reflectance.c ****  *
+   3:.\Reflectance.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\Reflectance.c ****  * All Rights Reserved
+   5:.\Reflectance.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\Reflectance.c ****  *
+   7:.\Reflectance.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\Reflectance.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\Reflectance.c ****  *
+  10:.\Reflectance.c ****  * ========================================
+  11:.\Reflectance.c **** */
+  12:.\Reflectance.c **** 
+  13:.\Reflectance.c **** #include "Reflectance.h"
+  14:.\Reflectance.c **** 
+  15:.\Reflectance.c **** 
+  16:.\Reflectance.c **** CY_ISR(sensor_isr_handler)
+  17:.\Reflectance.c **** {
+  27              		.loc 1 17 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  32              		.cfi_def_cfa_offset 24
+  33              		.cfi_offset 3, -24
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  18:.\Reflectance.c ****     uint32_t statusRL = Timer_RL_ReadStatusRegister();
+  39              		.loc 1 18 0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 2
+
+
+  40 0002 FFF7FEFF 		bl	Timer_RL_ReadStatusRegister
+  41              	.LVL0:
+  42 0006 0446     		mov	r4, r0
+  43              	.LVL1:
+  19:.\Reflectance.c ****     uint32_t statusRR = Timer_RR_ReadStatusRegister();
+  44              		.loc 1 19 0
+  45 0008 FFF7FEFF 		bl	Timer_RR_ReadStatusRegister
+  46              	.LVL2:
+  47 000c 0746     		mov	r7, r0
+  48              	.LVL3:
+  20:.\Reflectance.c ****     uint32_t statusLL = Timer_LL_ReadStatusRegister();
+  49              		.loc 1 20 0
+  50 000e FFF7FEFF 		bl	Timer_LL_ReadStatusRegister
+  51              	.LVL4:
+  52 0012 0646     		mov	r6, r0
+  53              	.LVL5:
+  21:.\Reflectance.c ****     uint32_t statusLR = Timer_LR_ReadStatusRegister();
+  54              		.loc 1 21 0
+  55 0014 FFF7FEFF 		bl	Timer_LR_ReadStatusRegister
+  56              	.LVL6:
+  57 0018 0546     		mov	r5, r0
+  58              	.LVL7:
+  22:.\Reflectance.c **** 
+  23:.\Reflectance.c ****     if(statusRL & Timer_RL_STATUS_CAPTURE) {
+  59              		.loc 1 23 0
+  60 001a 14F0400F 		tst	r4, #64
+  61 001e 09D0     		beq	.L2
+  24:.\Reflectance.c ****         sensors.rl = Timer_RL_ReadPeriod() - Timer_RL_ReadCapture();
+  62              		.loc 1 24 0
+  63 0020 FFF7FEFF 		bl	Timer_RL_ReadPeriod
+  64              	.LVL8:
+  65 0024 0446     		mov	r4, r0
+  66              	.LVL9:
+  67 0026 FFF7FEFF 		bl	Timer_RL_ReadCapture
+  68              	.LVL10:
+  69 002a 201A     		subs	r0, r4, r0
+  70 002c 80B2     		uxth	r0, r0
+  71 002e 314B     		ldr	r3, .L11
+  72 0030 9880     		strh	r0, [r3, #4]	@ movhi
+  73 0032 03E0     		b	.L3
+  74              	.LVL11:
+  75              	.L2:
+  25:.\Reflectance.c ****     }
+  26:.\Reflectance.c ****     else {
+  27:.\Reflectance.c ****         sensors.rl = Timer_RL_ReadPeriod();
+  76              		.loc 1 27 0
+  77 0034 FFF7FEFF 		bl	Timer_RL_ReadPeriod
+  78              	.LVL12:
+  79 0038 2E4B     		ldr	r3, .L11
+  80 003a 9880     		strh	r0, [r3, #4]	@ movhi
+  81              	.LVL13:
+  82              	.L3:
+  28:.\Reflectance.c ****     }
+  29:.\Reflectance.c ****     
+  30:.\Reflectance.c ****     if(statusRR & Timer_RR_STATUS_CAPTURE) {
+  83              		.loc 1 30 0
+  84 003c 17F0400F 		tst	r7, #64
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 3
+
+
+  85 0040 09D0     		beq	.L4
+  31:.\Reflectance.c ****         sensors.rr = Timer_RR_ReadPeriod() - Timer_RR_ReadCapture();
+  86              		.loc 1 31 0
+  87 0042 FFF7FEFF 		bl	Timer_RR_ReadPeriod
+  88              	.LVL14:
+  89 0046 0446     		mov	r4, r0
+  90 0048 FFF7FEFF 		bl	Timer_RR_ReadCapture
+  91              	.LVL15:
+  92 004c 201A     		subs	r0, r4, r0
+  93 004e 80B2     		uxth	r0, r0
+  94 0050 284B     		ldr	r3, .L11
+  95 0052 D880     		strh	r0, [r3, #6]	@ movhi
+  96 0054 03E0     		b	.L5
+  97              	.L4:
+  32:.\Reflectance.c ****     }
+  33:.\Reflectance.c ****     else {
+  34:.\Reflectance.c ****         sensors.rr = Timer_RR_ReadPeriod();
+  98              		.loc 1 34 0
+  99 0056 FFF7FEFF 		bl	Timer_RR_ReadPeriod
+ 100              	.LVL16:
+ 101 005a 264B     		ldr	r3, .L11
+ 102 005c D880     		strh	r0, [r3, #6]	@ movhi
+ 103              	.L5:
+  35:.\Reflectance.c ****     }
+  36:.\Reflectance.c ****     
+  37:.\Reflectance.c ****     if(statusLL & Timer_LL_STATUS_CAPTURE) {
+ 104              		.loc 1 37 0
+ 105 005e 16F0400F 		tst	r6, #64
+ 106 0062 09D0     		beq	.L6
+  38:.\Reflectance.c ****         sensors.ll = Timer_LL_ReadPeriod() - Timer_LL_ReadCapture();
+ 107              		.loc 1 38 0
+ 108 0064 FFF7FEFF 		bl	Timer_LL_ReadPeriod
+ 109              	.LVL17:
+ 110 0068 0446     		mov	r4, r0
+ 111 006a FFF7FEFF 		bl	Timer_LL_ReadCapture
+ 112              	.LVL18:
+ 113 006e 201A     		subs	r0, r4, r0
+ 114 0070 80B2     		uxth	r0, r0
+ 115 0072 204B     		ldr	r3, .L11
+ 116 0074 1880     		strh	r0, [r3]	@ movhi
+ 117 0076 03E0     		b	.L7
+ 118              	.L6:
+  39:.\Reflectance.c ****     }
+  40:.\Reflectance.c ****     else {
+  41:.\Reflectance.c ****         sensors.ll = Timer_LL_ReadPeriod();
+ 119              		.loc 1 41 0
+ 120 0078 FFF7FEFF 		bl	Timer_LL_ReadPeriod
+ 121              	.LVL19:
+ 122 007c 1D4B     		ldr	r3, .L11
+ 123 007e 1880     		strh	r0, [r3]	@ movhi
+ 124              	.L7:
+  42:.\Reflectance.c ****     }
+  43:.\Reflectance.c ****     
+  44:.\Reflectance.c ****     if(statusLR & Timer_LR_STATUS_CAPTURE) {
+ 125              		.loc 1 44 0
+ 126 0080 15F0400F 		tst	r5, #64
+ 127 0084 09D0     		beq	.L8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 4
+
+
+  45:.\Reflectance.c ****         sensors.lr = Timer_LR_ReadPeriod() - Timer_LR_ReadCapture();
+ 128              		.loc 1 45 0
+ 129 0086 FFF7FEFF 		bl	Timer_LR_ReadPeriod
+ 130              	.LVL20:
+ 131 008a 0446     		mov	r4, r0
+ 132 008c FFF7FEFF 		bl	Timer_LR_ReadCapture
+ 133              	.LVL21:
+ 134 0090 201A     		subs	r0, r4, r0
+ 135 0092 80B2     		uxth	r0, r0
+ 136 0094 174B     		ldr	r3, .L11
+ 137 0096 5880     		strh	r0, [r3, #2]	@ movhi
+ 138 0098 03E0     		b	.L9
+ 139              	.L8:
+  46:.\Reflectance.c ****     }
+  47:.\Reflectance.c ****     else {
+  48:.\Reflectance.c ****         sensors.lr = Timer_LR_ReadPeriod();
+ 140              		.loc 1 48 0
+ 141 009a FFF7FEFF 		bl	Timer_LR_ReadPeriod
+ 142              	.LVL22:
+ 143 009e 154B     		ldr	r3, .L11
+ 144 00a0 5880     		strh	r0, [r3, #2]	@ movhi
+ 145              	.L9:
+  49:.\Reflectance.c ****     }
+  50:.\Reflectance.c ****     
+  51:.\Reflectance.c ****     RL_SetDriveMode(PIN_DM_STRONG);
+ 146              		.loc 1 51 0
+ 147 00a2 0C20     		movs	r0, #12
+ 148 00a4 FFF7FEFF 		bl	RL_SetDriveMode
+ 149              	.LVL23:
+  52:.\Reflectance.c ****     RL_Write(1);
+ 150              		.loc 1 52 0
+ 151 00a8 0120     		movs	r0, #1
+ 152 00aa FFF7FEFF 		bl	RL_Write
+ 153              	.LVL24:
+  53:.\Reflectance.c ****     RR_SetDriveMode(PIN_DM_STRONG);
+ 154              		.loc 1 53 0
+ 155 00ae 0C20     		movs	r0, #12
+ 156 00b0 FFF7FEFF 		bl	RR_SetDriveMode
+ 157              	.LVL25:
+  54:.\Reflectance.c ****     RR_Write(1);
+ 158              		.loc 1 54 0
+ 159 00b4 0120     		movs	r0, #1
+ 160 00b6 FFF7FEFF 		bl	RR_Write
+ 161              	.LVL26:
+  55:.\Reflectance.c ****     LL_SetDriveMode(PIN_DM_STRONG);
+ 162              		.loc 1 55 0
+ 163 00ba 0C20     		movs	r0, #12
+ 164 00bc FFF7FEFF 		bl	LL_SetDriveMode
+ 165              	.LVL27:
+  56:.\Reflectance.c ****     LL_Write(1);
+ 166              		.loc 1 56 0
+ 167 00c0 0120     		movs	r0, #1
+ 168 00c2 FFF7FEFF 		bl	LL_Write
+ 169              	.LVL28:
+  57:.\Reflectance.c ****     LR_SetDriveMode(PIN_DM_STRONG);
+ 170              		.loc 1 57 0
+ 171 00c6 0C20     		movs	r0, #12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 5
+
+
+ 172 00c8 FFF7FEFF 		bl	LR_SetDriveMode
+ 173              	.LVL29:
+  58:.\Reflectance.c ****     LR_Write(1);
+ 174              		.loc 1 58 0
+ 175 00cc 0120     		movs	r0, #1
+ 176 00ce FFF7FEFF 		bl	LR_Write
+ 177              	.LVL30:
+  59:.\Reflectance.c ****     CyDelayUs(10);
+ 178              		.loc 1 59 0
+ 179 00d2 0A20     		movs	r0, #10
+ 180 00d4 FFF7FEFF 		bl	CyDelayUs
+ 181              	.LVL31:
+  60:.\Reflectance.c ****     RL_SetDriveMode(PIN_DM_DIG_HIZ);
+ 182              		.loc 1 60 0
+ 183 00d8 0220     		movs	r0, #2
+ 184 00da FFF7FEFF 		bl	RL_SetDriveMode
+ 185              	.LVL32:
+  61:.\Reflectance.c ****     RR_SetDriveMode(PIN_DM_DIG_HIZ);
+ 186              		.loc 1 61 0
+ 187 00de 0220     		movs	r0, #2
+ 188 00e0 FFF7FEFF 		bl	RR_SetDriveMode
+ 189              	.LVL33:
+  62:.\Reflectance.c ****     LL_SetDriveMode(PIN_DM_DIG_HIZ);
+ 190              		.loc 1 62 0
+ 191 00e4 0220     		movs	r0, #2
+ 192 00e6 FFF7FEFF 		bl	LL_SetDriveMode
+ 193              	.LVL34:
+  63:.\Reflectance.c ****     LR_SetDriveMode(PIN_DM_DIG_HIZ);
+ 194              		.loc 1 63 0
+ 195 00ea 0220     		movs	r0, #2
+ 196 00ec FFF7FEFF 		bl	LR_SetDriveMode
+ 197              	.LVL35:
+ 198 00f0 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 199              	.LVL36:
+ 200              	.L12:
+ 201 00f2 00BF     		.align	2
+ 202              	.L11:
+ 203 00f4 00000000 		.word	sensors
+ 204              		.cfi_endproc
+ 205              	.LFE63:
+ 206              		.size	sensor_isr_handler, .-sensor_isr_handler
+ 207              		.section	.text.Refelctance_Start,"ax",%progbits
+ 208              		.align	2
+ 209              		.global	Refelctance_Start
+ 210              		.thumb
+ 211              		.thumb_func
+ 212              		.type	Refelctance_Start, %function
+ 213              	Refelctance_Start:
+ 214              	.LFB64:
+  64:.\Reflectance.c ****         
+  65:.\Reflectance.c **** }
+  66:.\Reflectance.c **** void Refelctance_Start()
+  67:.\Reflectance.c **** {
+ 215              		.loc 1 67 0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 0
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 6
+
+
+ 219 0000 08B5     		push	{r3, lr}
+ 220              		.cfi_def_cfa_offset 8
+ 221              		.cfi_offset 3, -8
+ 222              		.cfi_offset 14, -4
+  68:.\Reflectance.c ****     Timer_RL_Start();
+ 223              		.loc 1 68 0
+ 224 0002 FFF7FEFF 		bl	Timer_RL_Start
+ 225              	.LVL37:
+  69:.\Reflectance.c ****     Timer_RR_Start();
+ 226              		.loc 1 69 0
+ 227 0006 FFF7FEFF 		bl	Timer_RR_Start
+ 228              	.LVL38:
+  70:.\Reflectance.c ****     Timer_LL_Start();
+ 229              		.loc 1 70 0
+ 230 000a FFF7FEFF 		bl	Timer_LL_Start
+ 231              	.LVL39:
+  71:.\Reflectance.c ****     Timer_LR_Start();
+ 232              		.loc 1 71 0
+ 233 000e FFF7FEFF 		bl	Timer_LR_Start
+ 234              	.LVL40:
+ 235 0012 08BD     		pop	{r3, pc}
+ 236              		.cfi_endproc
+ 237              	.LFE64:
+ 238              		.size	Refelctance_Start, .-Refelctance_Start
+ 239              		.section	.text.reflectance_period,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	reflectance_period
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.type	reflectance_period, %function
+ 245              	reflectance_period:
+ 246              	.LFB65:
+  72:.\Reflectance.c **** }
+  73:.\Reflectance.c **** 
+  74:.\Reflectance.c **** void reflectance_period()
+  75:.\Reflectance.c **** {
+ 247              		.loc 1 75 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251 0000 00B5     		push	{lr}
+ 252              		.cfi_def_cfa_offset 4
+ 253              		.cfi_offset 14, -4
+ 254 0002 83B0     		sub	sp, sp, #12
+ 255              		.cfi_def_cfa_offset 16
+  76:.\Reflectance.c ****      printf("%d %d %d %d \t", sensors.ll, sensors.lr, sensors.rl, sensors.rr); 
+ 256              		.loc 1 76 0
+ 257 0004 0748     		ldr	r0, .L17
+ 258 0006 0188     		ldrh	r1, [r0]
+ 259 0008 4288     		ldrh	r2, [r0, #2]
+ 260 000a 8388     		ldrh	r3, [r0, #4]
+ 261 000c C088     		ldrh	r0, [r0, #6]
+ 262 000e 80B2     		uxth	r0, r0
+ 263 0010 0090     		str	r0, [sp]
+ 264 0012 0548     		ldr	r0, .L17+4
+ 265 0014 89B2     		uxth	r1, r1
+ 266 0016 92B2     		uxth	r2, r2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 7
+
+
+ 267 0018 9BB2     		uxth	r3, r3
+ 268 001a FFF7FEFF 		bl	printf
+ 269              	.LVL41:
+  77:.\Reflectance.c **** }
+ 270              		.loc 1 77 0
+ 271 001e 03B0     		add	sp, sp, #12
+ 272              		.cfi_def_cfa_offset 4
+ 273              		@ sp needed
+ 274 0020 5DF804FB 		ldr	pc, [sp], #4
+ 275              	.L18:
+ 276              		.align	2
+ 277              	.L17:
+ 278 0024 00000000 		.word	sensors
+ 279 0028 00000000 		.word	.LC0
+ 280              		.cfi_endproc
+ 281              	.LFE65:
+ 282              		.size	reflectance_period, .-reflectance_period
+ 283              		.section	.text.reflectance_digital,"ax",%progbits
+ 284              		.align	2
+ 285              		.global	reflectance_digital
+ 286              		.thumb
+ 287              		.thumb_func
+ 288              		.type	reflectance_digital, %function
+ 289              	reflectance_digital:
+ 290              	.LFB66:
+  78:.\Reflectance.c **** 
+  79:.\Reflectance.c **** void reflectance_digital()
+  80:.\Reflectance.c **** {
+ 291              		.loc 1 80 0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              		@ link register save eliminated.
+  81:.\Reflectance.c ****     //if the results of reflectance_period function is over 10000, set digital_sensor_value to 0, w
+  82:.\Reflectance.c ****     if(sensors.ll > 10000)
+ 296              		.loc 1 82 0
+ 297 0000 1C4B     		ldr	r3, .L28
+ 298 0002 1B88     		ldrh	r3, [r3]
+ 299 0004 9BB2     		uxth	r3, r3
+ 300 0006 42F21072 		movw	r2, #10000
+ 301 000a 9342     		cmp	r3, r2
+ 302 000c 03D9     		bls	.L20
+  83:.\Reflectance.c ****         digital_sensor_value.ll  = 0;
+ 303              		.loc 1 83 0
+ 304 000e 0022     		movs	r2, #0
+ 305 0010 194B     		ldr	r3, .L28+4
+ 306 0012 1A80     		strh	r2, [r3]	@ movhi
+ 307 0014 02E0     		b	.L21
+ 308              	.L20:
+  84:.\Reflectance.c ****     else
+  85:.\Reflectance.c ****         digital_sensor_value.ll  = 1;
+ 309              		.loc 1 85 0
+ 310 0016 0122     		movs	r2, #1
+ 311 0018 174B     		ldr	r3, .L28+4
+ 312 001a 1A80     		strh	r2, [r3]	@ movhi
+ 313              	.L21:
+  86:.\Reflectance.c ****     if(sensors.lr > 10000)
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 8
+
+
+ 314              		.loc 1 86 0
+ 315 001c 154B     		ldr	r3, .L28
+ 316 001e 5B88     		ldrh	r3, [r3, #2]
+ 317 0020 9BB2     		uxth	r3, r3
+ 318 0022 42F21072 		movw	r2, #10000
+ 319 0026 9342     		cmp	r3, r2
+ 320 0028 03D9     		bls	.L22
+  87:.\Reflectance.c ****         digital_sensor_value.lr  = 0;
+ 321              		.loc 1 87 0
+ 322 002a 0022     		movs	r2, #0
+ 323 002c 124B     		ldr	r3, .L28+4
+ 324 002e 5A80     		strh	r2, [r3, #2]	@ movhi
+ 325 0030 02E0     		b	.L23
+ 326              	.L22:
+  88:.\Reflectance.c ****     else
+  89:.\Reflectance.c ****         digital_sensor_value.lr  = 1;
+ 327              		.loc 1 89 0
+ 328 0032 0122     		movs	r2, #1
+ 329 0034 104B     		ldr	r3, .L28+4
+ 330 0036 5A80     		strh	r2, [r3, #2]	@ movhi
+ 331              	.L23:
+  90:.\Reflectance.c ****     if(sensors.rl > 10000)
+ 332              		.loc 1 90 0
+ 333 0038 0E4B     		ldr	r3, .L28
+ 334 003a 9B88     		ldrh	r3, [r3, #4]
+ 335 003c 9BB2     		uxth	r3, r3
+ 336 003e 42F21072 		movw	r2, #10000
+ 337 0042 9342     		cmp	r3, r2
+ 338 0044 03D9     		bls	.L24
+  91:.\Reflectance.c ****         digital_sensor_value.rl  = 0;
+ 339              		.loc 1 91 0
+ 340 0046 0022     		movs	r2, #0
+ 341 0048 0B4B     		ldr	r3, .L28+4
+ 342 004a 9A80     		strh	r2, [r3, #4]	@ movhi
+ 343 004c 02E0     		b	.L25
+ 344              	.L24:
+  92:.\Reflectance.c ****     else
+  93:.\Reflectance.c ****         digital_sensor_value.rl  = 1;
+ 345              		.loc 1 93 0
+ 346 004e 0122     		movs	r2, #1
+ 347 0050 094B     		ldr	r3, .L28+4
+ 348 0052 9A80     		strh	r2, [r3, #4]	@ movhi
+ 349              	.L25:
+  94:.\Reflectance.c ****     if(sensors.rr > 10000)
+ 350              		.loc 1 94 0
+ 351 0054 074B     		ldr	r3, .L28
+ 352 0056 DB88     		ldrh	r3, [r3, #6]
+ 353 0058 9BB2     		uxth	r3, r3
+ 354 005a 42F21072 		movw	r2, #10000
+ 355 005e 9342     		cmp	r3, r2
+ 356 0060 03D9     		bls	.L26
+  95:.\Reflectance.c ****         digital_sensor_value.rr  = 0;
+ 357              		.loc 1 95 0
+ 358 0062 0022     		movs	r2, #0
+ 359 0064 044B     		ldr	r3, .L28+4
+ 360 0066 DA80     		strh	r2, [r3, #6]	@ movhi
+ 361 0068 7047     		bx	lr
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 9
+
+
+ 362              	.L26:
+  96:.\Reflectance.c ****     else
+  97:.\Reflectance.c ****         digital_sensor_value.rr  = 1;
+ 363              		.loc 1 97 0
+ 364 006a 0122     		movs	r2, #1
+ 365 006c 024B     		ldr	r3, .L28+4
+ 366 006e DA80     		strh	r2, [r3, #6]	@ movhi
+ 367 0070 7047     		bx	lr
+ 368              	.L29:
+ 369 0072 00BF     		.align	2
+ 370              	.L28:
+ 371 0074 00000000 		.word	sensors
+ 372 0078 00000000 		.word	digital_sensor_value
+ 373              		.cfi_endproc
+ 374              	.LFE66:
+ 375              		.size	reflectance_digital, .-reflectance_digital
+ 376              		.section	.text.ref_calibration,"ax",%progbits
+ 377              		.align	2
+ 378              		.global	ref_calibration
+ 379              		.thumb
+ 380              		.thumb_func
+ 381              		.type	ref_calibration, %function
+ 382              	ref_calibration:
+ 383              	.LFB67:
+  98:.\Reflectance.c ****         
+  99:.\Reflectance.c ****    //print out the results
+ 100:.\Reflectance.c **** // printf("%d %d %d %d \t", digital_sensor_value.ll, digital_sensor_value.lr, digital_sensor_value.
+ 101:.\Reflectance.c **** }
+ 102:.\Reflectance.c **** 
+ 103:.\Reflectance.c **** /////////////////////////////////////////////////////////////////////
+ 104:.\Reflectance.c **** 
+ 105:.\Reflectance.c **** void ref_calibration(int dark)
+ 106:.\Reflectance.c **** {
+ 384              		.loc 1 106 0
+ 385              		.cfi_startproc
+ 386              		@ args = 0, pretend = 0, frame = 0
+ 387              		@ frame_needed = 0, uses_anonymous_args = 0
+ 388              		@ link register save eliminated.
+ 389              	.LVL42:
+ 107:.\Reflectance.c ****     if(sensors.ll > dark)
+ 390              		.loc 1 107 0
+ 391 0000 184B     		ldr	r3, .L39
+ 392 0002 1B88     		ldrh	r3, [r3]
+ 393 0004 9BB2     		uxth	r3, r3
+ 394 0006 8342     		cmp	r3, r0
+ 395 0008 03DD     		ble	.L31
+ 108:.\Reflectance.c ****         digital_sensor_value.ll  = 0;
+ 396              		.loc 1 108 0
+ 397 000a 0022     		movs	r2, #0
+ 398 000c 164B     		ldr	r3, .L39+4
+ 399 000e 1A80     		strh	r2, [r3]	@ movhi
+ 400 0010 02E0     		b	.L32
+ 401              	.L31:
+ 109:.\Reflectance.c ****     else
+ 110:.\Reflectance.c ****         digital_sensor_value.ll  = 1;
+ 402              		.loc 1 110 0
+ 403 0012 0122     		movs	r2, #1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 10
+
+
+ 404 0014 144B     		ldr	r3, .L39+4
+ 405 0016 1A80     		strh	r2, [r3]	@ movhi
+ 406              	.L32:
+ 111:.\Reflectance.c ****     if(sensors.lr > dark)
+ 407              		.loc 1 111 0
+ 408 0018 124B     		ldr	r3, .L39
+ 409 001a 5B88     		ldrh	r3, [r3, #2]
+ 410 001c 9BB2     		uxth	r3, r3
+ 411 001e 8342     		cmp	r3, r0
+ 412 0020 03DD     		ble	.L33
+ 112:.\Reflectance.c ****         digital_sensor_value.lr  = 0;
+ 413              		.loc 1 112 0
+ 414 0022 0022     		movs	r2, #0
+ 415 0024 104B     		ldr	r3, .L39+4
+ 416 0026 5A80     		strh	r2, [r3, #2]	@ movhi
+ 417 0028 02E0     		b	.L34
+ 418              	.L33:
+ 113:.\Reflectance.c ****     else
+ 114:.\Reflectance.c ****         digital_sensor_value.lr  = 1;
+ 419              		.loc 1 114 0
+ 420 002a 0122     		movs	r2, #1
+ 421 002c 0E4B     		ldr	r3, .L39+4
+ 422 002e 5A80     		strh	r2, [r3, #2]	@ movhi
+ 423              	.L34:
+ 115:.\Reflectance.c ****     if(sensors.rl > dark)
+ 424              		.loc 1 115 0
+ 425 0030 0C4B     		ldr	r3, .L39
+ 426 0032 9B88     		ldrh	r3, [r3, #4]
+ 427 0034 9BB2     		uxth	r3, r3
+ 428 0036 8342     		cmp	r3, r0
+ 429 0038 03DD     		ble	.L35
+ 116:.\Reflectance.c ****         digital_sensor_value.rl  = 0;
+ 430              		.loc 1 116 0
+ 431 003a 0022     		movs	r2, #0
+ 432 003c 0A4B     		ldr	r3, .L39+4
+ 433 003e 9A80     		strh	r2, [r3, #4]	@ movhi
+ 434 0040 02E0     		b	.L36
+ 435              	.L35:
+ 117:.\Reflectance.c ****     else
+ 118:.\Reflectance.c ****         digital_sensor_value.rl  = 1;
+ 436              		.loc 1 118 0
+ 437 0042 0122     		movs	r2, #1
+ 438 0044 084B     		ldr	r3, .L39+4
+ 439 0046 9A80     		strh	r2, [r3, #4]	@ movhi
+ 440              	.L36:
+ 119:.\Reflectance.c ****     if(sensors.rr > dark)
+ 441              		.loc 1 119 0
+ 442 0048 064B     		ldr	r3, .L39
+ 443 004a DB88     		ldrh	r3, [r3, #6]
+ 444 004c 9BB2     		uxth	r3, r3
+ 445 004e 8342     		cmp	r3, r0
+ 446 0050 03DD     		ble	.L37
+ 120:.\Reflectance.c ****         digital_sensor_value.rr  = 0;
+ 447              		.loc 1 120 0
+ 448 0052 0022     		movs	r2, #0
+ 449 0054 044B     		ldr	r3, .L39+4
+ 450 0056 DA80     		strh	r2, [r3, #6]	@ movhi
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 11
+
+
+ 451 0058 7047     		bx	lr
+ 452              	.L37:
+ 121:.\Reflectance.c ****     else
+ 122:.\Reflectance.c ****         digital_sensor_value.rr  = 1;
+ 453              		.loc 1 122 0
+ 454 005a 0122     		movs	r2, #1
+ 455 005c 024B     		ldr	r3, .L39+4
+ 456 005e DA80     		strh	r2, [r3, #6]	@ movhi
+ 457 0060 7047     		bx	lr
+ 458              	.L40:
+ 459 0062 00BF     		.align	2
+ 460              	.L39:
+ 461 0064 00000000 		.word	sensors
+ 462 0068 00000000 		.word	digital_sensor_value
+ 463              		.cfi_endproc
+ 464              	.LFE67:
+ 465              		.size	ref_calibration, .-ref_calibration
+ 466              		.section	.text.getDLL,"ax",%progbits
+ 467              		.align	2
+ 468              		.global	getDLL
+ 469              		.thumb
+ 470              		.thumb_func
+ 471              		.type	getDLL, %function
+ 472              	getDLL:
+ 473              	.LFB68:
+ 123:.\Reflectance.c **** }
+ 124:.\Reflectance.c **** 
+ 125:.\Reflectance.c **** int getDLL()
+ 126:.\Reflectance.c **** {
+ 474              		.loc 1 126 0
+ 475              		.cfi_startproc
+ 476              		@ args = 0, pretend = 0, frame = 0
+ 477              		@ frame_needed = 0, uses_anonymous_args = 0
+ 478              		@ link register save eliminated.
+ 127:.\Reflectance.c ****     return digital_sensor_value.ll;
+ 479              		.loc 1 127 0
+ 480 0000 014B     		ldr	r3, .L42
+ 481 0002 1888     		ldrh	r0, [r3]
+ 128:.\Reflectance.c **** }
+ 482              		.loc 1 128 0
+ 483 0004 80B2     		uxth	r0, r0
+ 484 0006 7047     		bx	lr
+ 485              	.L43:
+ 486              		.align	2
+ 487              	.L42:
+ 488 0008 00000000 		.word	digital_sensor_value
+ 489              		.cfi_endproc
+ 490              	.LFE68:
+ 491              		.size	getDLL, .-getDLL
+ 492              		.section	.text.getDLR,"ax",%progbits
+ 493              		.align	2
+ 494              		.global	getDLR
+ 495              		.thumb
+ 496              		.thumb_func
+ 497              		.type	getDLR, %function
+ 498              	getDLR:
+ 499              	.LFB69:
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 12
+
+
+ 129:.\Reflectance.c **** int getDLR()
+ 130:.\Reflectance.c **** {
+ 500              		.loc 1 130 0
+ 501              		.cfi_startproc
+ 502              		@ args = 0, pretend = 0, frame = 0
+ 503              		@ frame_needed = 0, uses_anonymous_args = 0
+ 504              		@ link register save eliminated.
+ 131:.\Reflectance.c ****     return digital_sensor_value.lr;
+ 505              		.loc 1 131 0
+ 506 0000 014B     		ldr	r3, .L45
+ 507 0002 5888     		ldrh	r0, [r3, #2]
+ 132:.\Reflectance.c **** }
+ 508              		.loc 1 132 0
+ 509 0004 80B2     		uxth	r0, r0
+ 510 0006 7047     		bx	lr
+ 511              	.L46:
+ 512              		.align	2
+ 513              	.L45:
+ 514 0008 00000000 		.word	digital_sensor_value
+ 515              		.cfi_endproc
+ 516              	.LFE69:
+ 517              		.size	getDLR, .-getDLR
+ 518              		.section	.text.getDRL,"ax",%progbits
+ 519              		.align	2
+ 520              		.global	getDRL
+ 521              		.thumb
+ 522              		.thumb_func
+ 523              		.type	getDRL, %function
+ 524              	getDRL:
+ 525              	.LFB70:
+ 133:.\Reflectance.c **** int getDRL()
+ 134:.\Reflectance.c **** {
+ 526              		.loc 1 134 0
+ 527              		.cfi_startproc
+ 528              		@ args = 0, pretend = 0, frame = 0
+ 529              		@ frame_needed = 0, uses_anonymous_args = 0
+ 530              		@ link register save eliminated.
+ 135:.\Reflectance.c ****     return digital_sensor_value.rl;
+ 531              		.loc 1 135 0
+ 532 0000 014B     		ldr	r3, .L48
+ 533 0002 9888     		ldrh	r0, [r3, #4]
+ 136:.\Reflectance.c **** }
+ 534              		.loc 1 136 0
+ 535 0004 80B2     		uxth	r0, r0
+ 536 0006 7047     		bx	lr
+ 537              	.L49:
+ 538              		.align	2
+ 539              	.L48:
+ 540 0008 00000000 		.word	digital_sensor_value
+ 541              		.cfi_endproc
+ 542              	.LFE70:
+ 543              		.size	getDRL, .-getDRL
+ 544              		.section	.text.getDRR,"ax",%progbits
+ 545              		.align	2
+ 546              		.global	getDRR
+ 547              		.thumb
+ 548              		.thumb_func
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 13
+
+
+ 549              		.type	getDRR, %function
+ 550              	getDRR:
+ 551              	.LFB71:
+ 137:.\Reflectance.c **** int getDRR()
+ 138:.\Reflectance.c **** {
+ 552              		.loc 1 138 0
+ 553              		.cfi_startproc
+ 554              		@ args = 0, pretend = 0, frame = 0
+ 555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 556              		@ link register save eliminated.
+ 139:.\Reflectance.c ****     return digital_sensor_value.rr;
+ 557              		.loc 1 139 0
+ 558 0000 014B     		ldr	r3, .L51
+ 559 0002 D888     		ldrh	r0, [r3, #6]
+ 140:.\Reflectance.c **** }
+ 560              		.loc 1 140 0
+ 561 0004 80B2     		uxth	r0, r0
+ 562 0006 7047     		bx	lr
+ 563              	.L52:
+ 564              		.align	2
+ 565              	.L51:
+ 566 0008 00000000 		.word	digital_sensor_value
+ 567              		.cfi_endproc
+ 568              	.LFE71:
+ 569              		.size	getDRR, .-getDRR
+ 570              		.comm	digital_sensor_value,8,4
+ 571              		.comm	sensors,8,4
+ 572              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 573              		.align	2
+ 574              	.LC0:
+ 575 0000 25642025 		.ascii	"%d %d %d %d \011\000"
+ 575      64202564 
+ 575      20256420 
+ 575      0900
+ 576 000e 0000     		.text
+ 577              	.Letext0:
+ 578              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 579              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 580              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 581              		.file 5 ".\\Reflectance.h"
+ 582              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 583              		.file 7 "Generated_Source\\PSoC5/Timer_RL.h"
+ 584              		.file 8 "Generated_Source\\PSoC5/Timer_RR.h"
+ 585              		.file 9 "Generated_Source\\PSoC5/Timer_LL.h"
+ 586              		.file 10 "Generated_Source\\PSoC5/Timer_LR.h"
+ 587              		.file 11 "Generated_Source\\PSoC5/RL.h"
+ 588              		.file 12 "Generated_Source\\PSoC5/RR.h"
+ 589              		.file 13 "Generated_Source\\PSoC5/LL.h"
+ 590              		.file 14 "Generated_Source\\PSoC5/LR.h"
+ 591              		.file 15 "Generated_Source\\PSoC5/CyLib.h"
+ 592              		.file 16 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9
+ 593              		.section	.debug_info,"",%progbits
+ 594              	.Ldebug_info0:
+ 595 0000 A3050000 		.4byte	0x5a3
+ 596 0004 0400     		.2byte	0x4
+ 597 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 598 000a 04       		.byte	0x4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 14
+
+
+ 599 000b 01       		.uleb128 0x1
+ 600 000c 22030000 		.4byte	.LASF64
+ 601 0010 01       		.byte	0x1
+ 602 0011 31020000 		.4byte	.LASF65
+ 603 0015 F9030000 		.4byte	.LASF66
+ 604 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 605 001d 00000000 		.4byte	0
+ 606 0021 00000000 		.4byte	.Ldebug_line0
+ 607 0025 02       		.uleb128 0x2
+ 608 0026 01       		.byte	0x1
+ 609 0027 06       		.byte	0x6
+ 610 0028 A5010000 		.4byte	.LASF0
+ 611 002c 02       		.uleb128 0x2
+ 612 002d 01       		.byte	0x1
+ 613 002e 08       		.byte	0x8
+ 614 002f 97010000 		.4byte	.LASF1
+ 615 0033 02       		.uleb128 0x2
+ 616 0034 02       		.byte	0x2
+ 617 0035 05       		.byte	0x5
+ 618 0036 35000000 		.4byte	.LASF2
+ 619 003a 03       		.uleb128 0x3
+ 620 003b 89000000 		.4byte	.LASF4
+ 621 003f 02       		.byte	0x2
+ 622 0040 2B       		.byte	0x2b
+ 623 0041 45000000 		.4byte	0x45
+ 624 0045 02       		.uleb128 0x2
+ 625 0046 02       		.byte	0x2
+ 626 0047 07       		.byte	0x7
+ 627 0048 41020000 		.4byte	.LASF3
+ 628 004c 03       		.uleb128 0x3
+ 629 004d 11030000 		.4byte	.LASF5
+ 630 0051 02       		.byte	0x2
+ 631 0052 3F       		.byte	0x3f
+ 632 0053 57000000 		.4byte	0x57
+ 633 0057 02       		.uleb128 0x2
+ 634 0058 04       		.byte	0x4
+ 635 0059 05       		.byte	0x5
+ 636 005a 22010000 		.4byte	.LASF6
+ 637 005e 03       		.uleb128 0x3
+ 638 005f CF020000 		.4byte	.LASF7
+ 639 0063 02       		.byte	0x2
+ 640 0064 41       		.byte	0x41
+ 641 0065 69000000 		.4byte	0x69
+ 642 0069 02       		.uleb128 0x2
+ 643 006a 04       		.byte	0x4
+ 644 006b 07       		.byte	0x7
+ 645 006c 3B010000 		.4byte	.LASF8
+ 646 0070 02       		.uleb128 0x2
+ 647 0071 08       		.byte	0x8
+ 648 0072 05       		.byte	0x5
+ 649 0073 E6000000 		.4byte	.LASF9
+ 650 0077 02       		.uleb128 0x2
+ 651 0078 08       		.byte	0x8
+ 652 0079 07       		.byte	0x7
+ 653 007a B1010000 		.4byte	.LASF10
+ 654 007e 04       		.uleb128 0x4
+ 655 007f 04       		.byte	0x4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 15
+
+
+ 656 0080 05       		.byte	0x5
+ 657 0081 696E7400 		.ascii	"int\000"
+ 658 0085 02       		.uleb128 0x2
+ 659 0086 04       		.byte	0x4
+ 660 0087 07       		.byte	0x7
+ 661 0088 E3010000 		.4byte	.LASF11
+ 662 008c 02       		.uleb128 0x2
+ 663 008d 04       		.byte	0x4
+ 664 008e 07       		.byte	0x7
+ 665 008f DC030000 		.4byte	.LASF12
+ 666 0093 02       		.uleb128 0x2
+ 667 0094 01       		.byte	0x1
+ 668 0095 08       		.byte	0x8
+ 669 0096 1D010000 		.4byte	.LASF13
+ 670 009a 05       		.uleb128 0x5
+ 671 009b 04       		.byte	0x4
+ 672 009c A0000000 		.4byte	0xa0
+ 673 00a0 06       		.uleb128 0x6
+ 674 00a1 93000000 		.4byte	0x93
+ 675 00a5 03       		.uleb128 0x3
+ 676 00a6 AD020000 		.4byte	.LASF14
+ 677 00aa 03       		.byte	0x3
+ 678 00ab 21       		.byte	0x21
+ 679 00ac 3A000000 		.4byte	0x3a
+ 680 00b0 03       		.uleb128 0x3
+ 681 00b1 81020000 		.4byte	.LASF15
+ 682 00b5 03       		.byte	0x3
+ 683 00b6 2C       		.byte	0x2c
+ 684 00b7 4C000000 		.4byte	0x4c
+ 685 00bb 03       		.uleb128 0x3
+ 686 00bc C8010000 		.4byte	.LASF16
+ 687 00c0 03       		.byte	0x3
+ 688 00c1 2D       		.byte	0x2d
+ 689 00c2 5E000000 		.4byte	0x5e
+ 690 00c6 07       		.uleb128 0x7
+ 691 00c7 CB000000 		.4byte	.LASF17
+ 692 00cb 04       		.byte	0x4
+ 693 00cc 3801     		.2byte	0x138
+ 694 00ce 2C000000 		.4byte	0x2c
+ 695 00d2 07       		.uleb128 0x7
+ 696 00d3 BB000000 		.4byte	.LASF18
+ 697 00d7 04       		.byte	0x4
+ 698 00d8 3901     		.2byte	0x139
+ 699 00da 45000000 		.4byte	0x45
+ 700 00de 02       		.uleb128 0x2
+ 701 00df 04       		.byte	0x4
+ 702 00e0 04       		.byte	0x4
+ 703 00e1 D1000000 		.4byte	.LASF19
+ 704 00e5 02       		.uleb128 0x2
+ 705 00e6 08       		.byte	0x8
+ 706 00e7 04       		.byte	0x4
+ 707 00e8 BF020000 		.4byte	.LASF20
+ 708 00ec 08       		.uleb128 0x8
+ 709 00ed C2000000 		.4byte	.LASF21
+ 710 00f1 08       		.byte	0x8
+ 711 00f2 05       		.byte	0x5
+ 712 00f3 10       		.byte	0x10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 16
+
+
+ 713 00f4 25010000 		.4byte	0x125
+ 714 00f8 09       		.uleb128 0x9
+ 715 00f9 6C6C00   		.ascii	"ll\000"
+ 716 00fc 05       		.byte	0x5
+ 717 00fd 11       		.byte	0x11
+ 718 00fe A5000000 		.4byte	0xa5
+ 719 0102 00       		.byte	0
+ 720 0103 09       		.uleb128 0x9
+ 721 0104 6C7200   		.ascii	"lr\000"
+ 722 0107 05       		.byte	0x5
+ 723 0108 13       		.byte	0x13
+ 724 0109 A5000000 		.4byte	0xa5
+ 725 010d 02       		.byte	0x2
+ 726 010e 09       		.uleb128 0x9
+ 727 010f 726C00   		.ascii	"rl\000"
+ 728 0112 05       		.byte	0x5
+ 729 0113 14       		.byte	0x14
+ 730 0114 A5000000 		.4byte	0xa5
+ 731 0118 04       		.byte	0x4
+ 732 0119 09       		.uleb128 0x9
+ 733 011a 727200   		.ascii	"rr\000"
+ 734 011d 05       		.byte	0x5
+ 735 011e 16       		.byte	0x16
+ 736 011f A5000000 		.4byte	0xa5
+ 737 0123 06       		.byte	0x6
+ 738 0124 00       		.byte	0
+ 739 0125 08       		.uleb128 0x8
+ 740 0126 10000000 		.4byte	.LASF22
+ 741 012a 08       		.byte	0x8
+ 742 012b 05       		.byte	0x5
+ 743 012c 19       		.byte	0x19
+ 744 012d 5E010000 		.4byte	0x15e
+ 745 0131 09       		.uleb128 0x9
+ 746 0132 6C6C00   		.ascii	"ll\000"
+ 747 0135 05       		.byte	0x5
+ 748 0136 1A       		.byte	0x1a
+ 749 0137 A5000000 		.4byte	0xa5
+ 750 013b 00       		.byte	0
+ 751 013c 09       		.uleb128 0x9
+ 752 013d 6C7200   		.ascii	"lr\000"
+ 753 0140 05       		.byte	0x5
+ 754 0141 1C       		.byte	0x1c
+ 755 0142 A5000000 		.4byte	0xa5
+ 756 0146 02       		.byte	0x2
+ 757 0147 09       		.uleb128 0x9
+ 758 0148 726C00   		.ascii	"rl\000"
+ 759 014b 05       		.byte	0x5
+ 760 014c 1D       		.byte	0x1d
+ 761 014d A5000000 		.4byte	0xa5
+ 762 0151 04       		.byte	0x4
+ 763 0152 09       		.uleb128 0x9
+ 764 0153 727200   		.ascii	"rr\000"
+ 765 0156 05       		.byte	0x5
+ 766 0157 1F       		.byte	0x1f
+ 767 0158 A5000000 		.4byte	0xa5
+ 768 015c 06       		.byte	0x6
+ 769 015d 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 17
+
+
+ 770 015e 0A       		.uleb128 0xa
+ 771 015f 76000000 		.4byte	.LASF29
+ 772 0163 01       		.byte	0x1
+ 773 0164 10       		.byte	0x10
+ 774 0165 00000000 		.4byte	.LFB63
+ 775 0169 F8000000 		.4byte	.LFE63-.LFB63
+ 776 016d 01       		.uleb128 0x1
+ 777 016e 9C       		.byte	0x9c
+ 778 016f 33030000 		.4byte	0x333
+ 779 0173 0B       		.uleb128 0xb
+ 780 0174 A4000000 		.4byte	.LASF23
+ 781 0178 01       		.byte	0x1
+ 782 0179 12       		.byte	0x12
+ 783 017a BB000000 		.4byte	0xbb
+ 784 017e 00000000 		.4byte	.LLST0
+ 785 0182 0B       		.uleb128 0xb
+ 786 0183 2B010000 		.4byte	.LASF24
+ 787 0187 01       		.byte	0x1
+ 788 0188 13       		.byte	0x13
+ 789 0189 BB000000 		.4byte	0xbb
+ 790 018d 28000000 		.4byte	.LLST1
+ 791 0191 0B       		.uleb128 0xb
+ 792 0192 B6020000 		.4byte	.LASF25
+ 793 0196 01       		.byte	0x1
+ 794 0197 14       		.byte	0x14
+ 795 0198 BB000000 		.4byte	0xbb
+ 796 019c 40000000 		.4byte	.LLST2
+ 797 01a0 0B       		.uleb128 0xb
+ 798 01a1 C6020000 		.4byte	.LASF26
+ 799 01a5 01       		.byte	0x1
+ 800 01a6 15       		.byte	0x15
+ 801 01a7 BB000000 		.4byte	0xbb
+ 802 01ab 58000000 		.4byte	.LLST3
+ 803 01af 0C       		.uleb128 0xc
+ 804 01b0 06000000 		.4byte	.LVL0
+ 805 01b4 5B040000 		.4byte	0x45b
+ 806 01b8 0C       		.uleb128 0xc
+ 807 01b9 0C000000 		.4byte	.LVL2
+ 808 01bd 66040000 		.4byte	0x466
+ 809 01c1 0C       		.uleb128 0xc
+ 810 01c2 12000000 		.4byte	.LVL4
+ 811 01c6 71040000 		.4byte	0x471
+ 812 01ca 0C       		.uleb128 0xc
+ 813 01cb 18000000 		.4byte	.LVL6
+ 814 01cf 7C040000 		.4byte	0x47c
+ 815 01d3 0C       		.uleb128 0xc
+ 816 01d4 24000000 		.4byte	.LVL8
+ 817 01d8 87040000 		.4byte	0x487
+ 818 01dc 0C       		.uleb128 0xc
+ 819 01dd 2A000000 		.4byte	.LVL10
+ 820 01e1 92040000 		.4byte	0x492
+ 821 01e5 0C       		.uleb128 0xc
+ 822 01e6 38000000 		.4byte	.LVL12
+ 823 01ea 87040000 		.4byte	0x487
+ 824 01ee 0C       		.uleb128 0xc
+ 825 01ef 46000000 		.4byte	.LVL14
+ 826 01f3 9D040000 		.4byte	0x49d
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 18
+
+
+ 827 01f7 0C       		.uleb128 0xc
+ 828 01f8 4C000000 		.4byte	.LVL15
+ 829 01fc A8040000 		.4byte	0x4a8
+ 830 0200 0C       		.uleb128 0xc
+ 831 0201 5A000000 		.4byte	.LVL16
+ 832 0205 9D040000 		.4byte	0x49d
+ 833 0209 0C       		.uleb128 0xc
+ 834 020a 68000000 		.4byte	.LVL17
+ 835 020e B3040000 		.4byte	0x4b3
+ 836 0212 0C       		.uleb128 0xc
+ 837 0213 6E000000 		.4byte	.LVL18
+ 838 0217 BE040000 		.4byte	0x4be
+ 839 021b 0C       		.uleb128 0xc
+ 840 021c 7C000000 		.4byte	.LVL19
+ 841 0220 B3040000 		.4byte	0x4b3
+ 842 0224 0C       		.uleb128 0xc
+ 843 0225 8A000000 		.4byte	.LVL20
+ 844 0229 C9040000 		.4byte	0x4c9
+ 845 022d 0C       		.uleb128 0xc
+ 846 022e 90000000 		.4byte	.LVL21
+ 847 0232 D4040000 		.4byte	0x4d4
+ 848 0236 0C       		.uleb128 0xc
+ 849 0237 9E000000 		.4byte	.LVL22
+ 850 023b C9040000 		.4byte	0x4c9
+ 851 023f 0D       		.uleb128 0xd
+ 852 0240 A8000000 		.4byte	.LVL23
+ 853 0244 DF040000 		.4byte	0x4df
+ 854 0248 52020000 		.4byte	0x252
+ 855 024c 0E       		.uleb128 0xe
+ 856 024d 01       		.uleb128 0x1
+ 857 024e 50       		.byte	0x50
+ 858 024f 01       		.uleb128 0x1
+ 859 0250 3C       		.byte	0x3c
+ 860 0251 00       		.byte	0
+ 861 0252 0D       		.uleb128 0xd
+ 862 0253 AE000000 		.4byte	.LVL24
+ 863 0257 F0040000 		.4byte	0x4f0
+ 864 025b 65020000 		.4byte	0x265
+ 865 025f 0E       		.uleb128 0xe
+ 866 0260 01       		.uleb128 0x1
+ 867 0261 50       		.byte	0x50
+ 868 0262 01       		.uleb128 0x1
+ 869 0263 31       		.byte	0x31
+ 870 0264 00       		.byte	0
+ 871 0265 0D       		.uleb128 0xd
+ 872 0266 B4000000 		.4byte	.LVL25
+ 873 026a 01050000 		.4byte	0x501
+ 874 026e 78020000 		.4byte	0x278
+ 875 0272 0E       		.uleb128 0xe
+ 876 0273 01       		.uleb128 0x1
+ 877 0274 50       		.byte	0x50
+ 878 0275 01       		.uleb128 0x1
+ 879 0276 3C       		.byte	0x3c
+ 880 0277 00       		.byte	0
+ 881 0278 0D       		.uleb128 0xd
+ 882 0279 BA000000 		.4byte	.LVL26
+ 883 027d 12050000 		.4byte	0x512
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 19
+
+
+ 884 0281 8B020000 		.4byte	0x28b
+ 885 0285 0E       		.uleb128 0xe
+ 886 0286 01       		.uleb128 0x1
+ 887 0287 50       		.byte	0x50
+ 888 0288 01       		.uleb128 0x1
+ 889 0289 31       		.byte	0x31
+ 890 028a 00       		.byte	0
+ 891 028b 0D       		.uleb128 0xd
+ 892 028c C0000000 		.4byte	.LVL27
+ 893 0290 23050000 		.4byte	0x523
+ 894 0294 9E020000 		.4byte	0x29e
+ 895 0298 0E       		.uleb128 0xe
+ 896 0299 01       		.uleb128 0x1
+ 897 029a 50       		.byte	0x50
+ 898 029b 01       		.uleb128 0x1
+ 899 029c 3C       		.byte	0x3c
+ 900 029d 00       		.byte	0
+ 901 029e 0D       		.uleb128 0xd
+ 902 029f C6000000 		.4byte	.LVL28
+ 903 02a3 34050000 		.4byte	0x534
+ 904 02a7 B1020000 		.4byte	0x2b1
+ 905 02ab 0E       		.uleb128 0xe
+ 906 02ac 01       		.uleb128 0x1
+ 907 02ad 50       		.byte	0x50
+ 908 02ae 01       		.uleb128 0x1
+ 909 02af 31       		.byte	0x31
+ 910 02b0 00       		.byte	0
+ 911 02b1 0D       		.uleb128 0xd
+ 912 02b2 CC000000 		.4byte	.LVL29
+ 913 02b6 45050000 		.4byte	0x545
+ 914 02ba C4020000 		.4byte	0x2c4
+ 915 02be 0E       		.uleb128 0xe
+ 916 02bf 01       		.uleb128 0x1
+ 917 02c0 50       		.byte	0x50
+ 918 02c1 01       		.uleb128 0x1
+ 919 02c2 3C       		.byte	0x3c
+ 920 02c3 00       		.byte	0
+ 921 02c4 0D       		.uleb128 0xd
+ 922 02c5 D2000000 		.4byte	.LVL30
+ 923 02c9 56050000 		.4byte	0x556
+ 924 02cd D7020000 		.4byte	0x2d7
+ 925 02d1 0E       		.uleb128 0xe
+ 926 02d2 01       		.uleb128 0x1
+ 927 02d3 50       		.byte	0x50
+ 928 02d4 01       		.uleb128 0x1
+ 929 02d5 31       		.byte	0x31
+ 930 02d6 00       		.byte	0
+ 931 02d7 0D       		.uleb128 0xd
+ 932 02d8 D8000000 		.4byte	.LVL31
+ 933 02dc 67050000 		.4byte	0x567
+ 934 02e0 EA020000 		.4byte	0x2ea
+ 935 02e4 0E       		.uleb128 0xe
+ 936 02e5 01       		.uleb128 0x1
+ 937 02e6 50       		.byte	0x50
+ 938 02e7 01       		.uleb128 0x1
+ 939 02e8 3A       		.byte	0x3a
+ 940 02e9 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 20
+
+
+ 941 02ea 0D       		.uleb128 0xd
+ 942 02eb DE000000 		.4byte	.LVL32
+ 943 02ef DF040000 		.4byte	0x4df
+ 944 02f3 FD020000 		.4byte	0x2fd
+ 945 02f7 0E       		.uleb128 0xe
+ 946 02f8 01       		.uleb128 0x1
+ 947 02f9 50       		.byte	0x50
+ 948 02fa 01       		.uleb128 0x1
+ 949 02fb 32       		.byte	0x32
+ 950 02fc 00       		.byte	0
+ 951 02fd 0D       		.uleb128 0xd
+ 952 02fe E4000000 		.4byte	.LVL33
+ 953 0302 01050000 		.4byte	0x501
+ 954 0306 10030000 		.4byte	0x310
+ 955 030a 0E       		.uleb128 0xe
+ 956 030b 01       		.uleb128 0x1
+ 957 030c 50       		.byte	0x50
+ 958 030d 01       		.uleb128 0x1
+ 959 030e 32       		.byte	0x32
+ 960 030f 00       		.byte	0
+ 961 0310 0D       		.uleb128 0xd
+ 962 0311 EA000000 		.4byte	.LVL34
+ 963 0315 23050000 		.4byte	0x523
+ 964 0319 23030000 		.4byte	0x323
+ 965 031d 0E       		.uleb128 0xe
+ 966 031e 01       		.uleb128 0x1
+ 967 031f 50       		.byte	0x50
+ 968 0320 01       		.uleb128 0x1
+ 969 0321 32       		.byte	0x32
+ 970 0322 00       		.byte	0
+ 971 0323 0F       		.uleb128 0xf
+ 972 0324 F0000000 		.4byte	.LVL35
+ 973 0328 45050000 		.4byte	0x545
+ 974 032c 0E       		.uleb128 0xe
+ 975 032d 01       		.uleb128 0x1
+ 976 032e 50       		.byte	0x50
+ 977 032f 01       		.uleb128 0x1
+ 978 0330 32       		.byte	0x32
+ 979 0331 00       		.byte	0
+ 980 0332 00       		.byte	0
+ 981 0333 10       		.uleb128 0x10
+ 982 0334 D1010000 		.4byte	.LASF27
+ 983 0338 01       		.byte	0x1
+ 984 0339 42       		.byte	0x42
+ 985 033a 00000000 		.4byte	.LFB64
+ 986 033e 14000000 		.4byte	.LFE64-.LFB64
+ 987 0342 01       		.uleb128 0x1
+ 988 0343 9C       		.byte	0x9c
+ 989 0344 6D030000 		.4byte	0x36d
+ 990 0348 0C       		.uleb128 0xc
+ 991 0349 06000000 		.4byte	.LVL37
+ 992 034d 78050000 		.4byte	0x578
+ 993 0351 0C       		.uleb128 0xc
+ 994 0352 0A000000 		.4byte	.LVL38
+ 995 0356 7F050000 		.4byte	0x57f
+ 996 035a 0C       		.uleb128 0xc
+ 997 035b 0E000000 		.4byte	.LVL39
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 21
+
+
+ 998 035f 86050000 		.4byte	0x586
+ 999 0363 0C       		.uleb128 0xc
+ 1000 0364 12000000 		.4byte	.LVL40
+ 1001 0368 8D050000 		.4byte	0x58d
+ 1002 036c 00       		.byte	0
+ 1003 036d 10       		.uleb128 0x10
+ 1004 036e 5B000000 		.4byte	.LASF28
+ 1005 0372 01       		.byte	0x1
+ 1006 0373 4A       		.byte	0x4a
+ 1007 0374 00000000 		.4byte	.LFB65
+ 1008 0378 2C000000 		.4byte	.LFE65-.LFB65
+ 1009 037c 01       		.uleb128 0x1
+ 1010 037d 9C       		.byte	0x9c
+ 1011 037e 96030000 		.4byte	0x396
+ 1012 0382 0F       		.uleb128 0xf
+ 1013 0383 1E000000 		.4byte	.LVL41
+ 1014 0387 94050000 		.4byte	0x594
+ 1015 038b 0E       		.uleb128 0xe
+ 1016 038c 01       		.uleb128 0x1
+ 1017 038d 50       		.byte	0x50
+ 1018 038e 05       		.uleb128 0x5
+ 1019 038f 03       		.byte	0x3
+ 1020 0390 00000000 		.4byte	.LC0
+ 1021 0394 00       		.byte	0
+ 1022 0395 00       		.byte	0
+ 1023 0396 11       		.uleb128 0x11
+ 1024 0397 09010000 		.4byte	.LASF67
+ 1025 039b 01       		.byte	0x1
+ 1026 039c 4F       		.byte	0x4f
+ 1027 039d 00000000 		.4byte	.LFB66
+ 1028 03a1 7C000000 		.4byte	.LFE66-.LFB66
+ 1029 03a5 01       		.uleb128 0x1
+ 1030 03a6 9C       		.byte	0x9c
+ 1031 03a7 0A       		.uleb128 0xa
+ 1032 03a8 B0030000 		.4byte	.LASF30
+ 1033 03ac 01       		.byte	0x1
+ 1034 03ad 69       		.byte	0x69
+ 1035 03ae 00000000 		.4byte	.LFB67
+ 1036 03b2 6C000000 		.4byte	.LFE67-.LFB67
+ 1037 03b6 01       		.uleb128 0x1
+ 1038 03b7 9C       		.byte	0x9c
+ 1039 03b8 CA030000 		.4byte	0x3ca
+ 1040 03bc 12       		.uleb128 0x12
+ 1041 03bd B6000000 		.4byte	.LASF68
+ 1042 03c1 01       		.byte	0x1
+ 1043 03c2 69       		.byte	0x69
+ 1044 03c3 7E000000 		.4byte	0x7e
+ 1045 03c7 01       		.uleb128 0x1
+ 1046 03c8 50       		.byte	0x50
+ 1047 03c9 00       		.byte	0
+ 1048 03ca 13       		.uleb128 0x13
+ 1049 03cb F6020000 		.4byte	.LASF31
+ 1050 03cf 01       		.byte	0x1
+ 1051 03d0 7D       		.byte	0x7d
+ 1052 03d1 7E000000 		.4byte	0x7e
+ 1053 03d5 00000000 		.4byte	.LFB68
+ 1054 03d9 0C000000 		.4byte	.LFE68-.LFB68
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 22
+
+
+ 1055 03dd 01       		.uleb128 0x1
+ 1056 03de 9C       		.byte	0x9c
+ 1057 03df 13       		.uleb128 0x13
+ 1058 03e0 1B030000 		.4byte	.LASF32
+ 1059 03e4 01       		.byte	0x1
+ 1060 03e5 81       		.byte	0x81
+ 1061 03e6 7E000000 		.4byte	0x7e
+ 1062 03ea 00000000 		.4byte	.LFB69
+ 1063 03ee 0C000000 		.4byte	.LFE69-.LFB69
+ 1064 03f2 01       		.uleb128 0x1
+ 1065 03f3 9C       		.byte	0x9c
+ 1066 03f4 13       		.uleb128 0x13
+ 1067 03f5 4D010000 		.4byte	.LASF33
+ 1068 03f9 01       		.byte	0x1
+ 1069 03fa 85       		.byte	0x85
+ 1070 03fb 7E000000 		.4byte	0x7e
+ 1071 03ff 00000000 		.4byte	.LFB70
+ 1072 0403 0C000000 		.4byte	.LFE70-.LFB70
+ 1073 0407 01       		.uleb128 0x1
+ 1074 0408 9C       		.byte	0x9c
+ 1075 0409 13       		.uleb128 0x13
+ 1076 040a 68010000 		.4byte	.LASF34
+ 1077 040e 01       		.byte	0x1
+ 1078 040f 89       		.byte	0x89
+ 1079 0410 7E000000 		.4byte	0x7e
+ 1080 0414 00000000 		.4byte	.LFB71
+ 1081 0418 0C000000 		.4byte	.LFE71-.LFB71
+ 1082 041c 01       		.uleb128 0x1
+ 1083 041d 9C       		.byte	0x9c
+ 1084 041e 14       		.uleb128 0x14
+ 1085 041f 45040000 		.4byte	.LASF35
+ 1086 0423 06       		.byte	0x6
+ 1087 0424 5506     		.2byte	0x655
+ 1088 0426 2A040000 		.4byte	0x42a
+ 1089 042a 15       		.uleb128 0x15
+ 1090 042b B0000000 		.4byte	0xb0
+ 1091 042f 16       		.uleb128 0x16
+ 1092 0430 6E000000 		.4byte	.LASF36
+ 1093 0434 05       		.byte	0x5
+ 1094 0435 17       		.byte	0x17
+ 1095 0436 40040000 		.4byte	0x440
+ 1096 043a 05       		.uleb128 0x5
+ 1097 043b 03       		.byte	0x3
+ 1098 043c 00000000 		.4byte	sensors
+ 1099 0440 15       		.uleb128 0x15
+ 1100 0441 EC000000 		.4byte	0xec
+ 1101 0445 16       		.uleb128 0x16
+ 1102 0446 54020000 		.4byte	.LASF37
+ 1103 044a 05       		.byte	0x5
+ 1104 044b 20       		.byte	0x20
+ 1105 044c 56040000 		.4byte	0x456
+ 1106 0450 05       		.uleb128 0x5
+ 1107 0451 03       		.byte	0x3
+ 1108 0452 00000000 		.4byte	digital_sensor_value
+ 1109 0456 15       		.uleb128 0x15
+ 1110 0457 25010000 		.4byte	0x125
+ 1111 045b 17       		.uleb128 0x17
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 23
+
+
+ 1112 045c DA020000 		.4byte	.LASF38
+ 1113 0460 07       		.byte	0x7
+ 1114 0461 5E       		.byte	0x5e
+ 1115 0462 C6000000 		.4byte	0xc6
+ 1116 0466 17       		.uleb128 0x17
+ 1117 0467 C0030000 		.4byte	.LASF39
+ 1118 046b 08       		.byte	0x8
+ 1119 046c 5E       		.byte	0x5e
+ 1120 046d C6000000 		.4byte	0xc6
+ 1121 0471 17       		.uleb128 0x17
+ 1122 0472 15020000 		.4byte	.LASF40
+ 1123 0476 09       		.byte	0x9
+ 1124 0477 5E       		.byte	0x5e
+ 1125 0478 C6000000 		.4byte	0xc6
+ 1126 047c 17       		.uleb128 0x17
+ 1127 047d 3F000000 		.4byte	.LASF41
+ 1128 0481 0A       		.byte	0xa
+ 1129 0482 5E       		.byte	0x5e
+ 1130 0483 C6000000 		.4byte	0xc6
+ 1131 0487 17       		.uleb128 0x17
+ 1132 0488 99020000 		.4byte	.LASF42
+ 1133 048c 07       		.byte	0x7
+ 1134 048d 67       		.byte	0x67
+ 1135 048e D2000000 		.4byte	0xd2
+ 1136 0492 17       		.uleb128 0x17
+ 1137 0493 52040000 		.4byte	.LASF43
+ 1138 0497 07       		.byte	0x7
+ 1139 0498 6B       		.byte	0x6b
+ 1140 0499 D2000000 		.4byte	0xd2
+ 1141 049d 17       		.uleb128 0x17
+ 1142 049e 54010000 		.4byte	.LASF44
+ 1143 04a2 08       		.byte	0x8
+ 1144 04a3 67       		.byte	0x67
+ 1145 04a4 D2000000 		.4byte	0xd2
+ 1146 04a8 17       		.uleb128 0x17
+ 1147 04a9 00020000 		.4byte	.LASF45
+ 1148 04ad 08       		.byte	0x8
+ 1149 04ae 6B       		.byte	0x6b
+ 1150 04af D2000000 		.4byte	0xd2
+ 1151 04b3 17       		.uleb128 0x17
+ 1152 04b4 E5030000 		.4byte	.LASF46
+ 1153 04b8 09       		.byte	0x9
+ 1154 04b9 67       		.byte	0x67
+ 1155 04ba D2000000 		.4byte	0xd2
+ 1156 04be 17       		.uleb128 0x17
+ 1157 04bf F4000000 		.4byte	.LASF47
+ 1158 04c3 09       		.byte	0x9
+ 1159 04c4 6B       		.byte	0x6b
+ 1160 04c5 D2000000 		.4byte	0xd2
+ 1161 04c9 17       		.uleb128 0x17
+ 1162 04ca FD020000 		.4byte	.LASF48
+ 1163 04ce 0A       		.byte	0xa
+ 1164 04cf 67       		.byte	0x67
+ 1165 04d0 D2000000 		.4byte	0xd2
+ 1166 04d4 17       		.uleb128 0x17
+ 1167 04d5 6F010000 		.4byte	.LASF49
+ 1168 04d9 0A       		.byte	0xa
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 24
+
+
+ 1169 04da 6B       		.byte	0x6b
+ 1170 04db D2000000 		.4byte	0xd2
+ 1171 04df 18       		.uleb128 0x18
+ 1172 04e0 F0010000 		.4byte	.LASF50
+ 1173 04e4 0B       		.byte	0xb
+ 1174 04e5 27       		.byte	0x27
+ 1175 04e6 F0040000 		.4byte	0x4f0
+ 1176 04ea 19       		.uleb128 0x19
+ 1177 04eb C6000000 		.4byte	0xc6
+ 1178 04ef 00       		.byte	0
+ 1179 04f0 18       		.uleb128 0x18
+ 1180 04f1 AD000000 		.4byte	.LASF51
+ 1181 04f5 0B       		.byte	0xb
+ 1182 04f6 26       		.byte	0x26
+ 1183 04f7 01050000 		.4byte	0x501
+ 1184 04fb 19       		.uleb128 0x19
+ 1185 04fc C6000000 		.4byte	0xc6
+ 1186 0500 00       		.byte	0
+ 1187 0501 18       		.uleb128 0x18
+ 1188 0502 94000000 		.4byte	.LASF52
+ 1189 0506 0C       		.byte	0xc
+ 1190 0507 27       		.byte	0x27
+ 1191 0508 12050000 		.4byte	0x512
+ 1192 050c 19       		.uleb128 0x19
+ 1193 050d C6000000 		.4byte	0xc6
+ 1194 0511 00       		.byte	0
+ 1195 0512 18       		.uleb128 0x18
+ 1196 0513 84010000 		.4byte	.LASF53
+ 1197 0517 0C       		.byte	0xc
+ 1198 0518 26       		.byte	0x26
+ 1199 0519 23050000 		.4byte	0x523
+ 1200 051d 19       		.uleb128 0x19
+ 1201 051e C6000000 		.4byte	0xc6
+ 1202 0522 00       		.byte	0
+ 1203 0523 18       		.uleb128 0x18
+ 1204 0524 00000000 		.4byte	.LASF54
+ 1205 0528 0D       		.byte	0xd
+ 1206 0529 27       		.byte	0x27
+ 1207 052a 34050000 		.4byte	0x534
+ 1208 052e 19       		.uleb128 0x19
+ 1209 052f C6000000 		.4byte	0xc6
+ 1210 0533 00       		.byte	0
+ 1211 0534 18       		.uleb128 0x18
+ 1212 0535 78020000 		.4byte	.LASF55
+ 1213 0539 0D       		.byte	0xd
+ 1214 053a 26       		.byte	0x26
+ 1215 053b 45050000 		.4byte	0x545
+ 1216 053f 19       		.uleb128 0x19
+ 1217 0540 C6000000 		.4byte	0xc6
+ 1218 0544 00       		.byte	0
+ 1219 0545 18       		.uleb128 0x18
+ 1220 0546 89020000 		.4byte	.LASF56
+ 1221 054a 0E       		.byte	0xe
+ 1222 054b 27       		.byte	0x27
+ 1223 054c 56050000 		.4byte	0x556
+ 1224 0550 19       		.uleb128 0x19
+ 1225 0551 C6000000 		.4byte	0xc6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 25
+
+
+ 1226 0555 00       		.byte	0
+ 1227 0556 18       		.uleb128 0x18
+ 1228 0557 3C040000 		.4byte	.LASF57
+ 1229 055b 0E       		.byte	0xe
+ 1230 055c 26       		.byte	0x26
+ 1231 055d 67050000 		.4byte	0x567
+ 1232 0561 19       		.uleb128 0x19
+ 1233 0562 C6000000 		.4byte	0xc6
+ 1234 0566 00       		.byte	0
+ 1235 0567 18       		.uleb128 0x18
+ 1236 0568 8D010000 		.4byte	.LASF58
+ 1237 056c 0F       		.byte	0xf
+ 1238 056d 78       		.byte	0x78
+ 1239 056e 78050000 		.4byte	0x578
+ 1240 0572 19       		.uleb128 0x19
+ 1241 0573 D2000000 		.4byte	0xd2
+ 1242 0577 00       		.byte	0
+ 1243 0578 1A       		.uleb128 0x1a
+ 1244 0579 69020000 		.4byte	.LASF59
+ 1245 057d 07       		.byte	0x7
+ 1246 057e 5A       		.byte	0x5a
+ 1247 057f 1A       		.uleb128 0x1a
+ 1248 0580 67040000 		.4byte	.LASF60
+ 1249 0584 08       		.byte	0x8
+ 1250 0585 5A       		.byte	0x5a
+ 1251 0586 1A       		.uleb128 0x1a
+ 1252 0587 26000000 		.4byte	.LASF61
+ 1253 058b 09       		.byte	0x9
+ 1254 058c 5A       		.byte	0x5a
+ 1255 058d 1A       		.uleb128 0x1a
+ 1256 058e D7000000 		.4byte	.LASF62
+ 1257 0592 0A       		.byte	0xa
+ 1258 0593 5A       		.byte	0x5a
+ 1259 0594 1B       		.uleb128 0x1b
+ 1260 0595 34010000 		.4byte	.LASF63
+ 1261 0599 10       		.byte	0x10
+ 1262 059a B2       		.byte	0xb2
+ 1263 059b 7E000000 		.4byte	0x7e
+ 1264 059f 19       		.uleb128 0x19
+ 1265 05a0 9A000000 		.4byte	0x9a
+ 1266 05a4 1C       		.uleb128 0x1c
+ 1267 05a5 00       		.byte	0
+ 1268 05a6 00       		.byte	0
+ 1269              		.section	.debug_abbrev,"",%progbits
+ 1270              	.Ldebug_abbrev0:
+ 1271 0000 01       		.uleb128 0x1
+ 1272 0001 11       		.uleb128 0x11
+ 1273 0002 01       		.byte	0x1
+ 1274 0003 25       		.uleb128 0x25
+ 1275 0004 0E       		.uleb128 0xe
+ 1276 0005 13       		.uleb128 0x13
+ 1277 0006 0B       		.uleb128 0xb
+ 1278 0007 03       		.uleb128 0x3
+ 1279 0008 0E       		.uleb128 0xe
+ 1280 0009 1B       		.uleb128 0x1b
+ 1281 000a 0E       		.uleb128 0xe
+ 1282 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 26
+
+
+ 1283 000c 17       		.uleb128 0x17
+ 1284 000d 11       		.uleb128 0x11
+ 1285 000e 01       		.uleb128 0x1
+ 1286 000f 10       		.uleb128 0x10
+ 1287 0010 17       		.uleb128 0x17
+ 1288 0011 00       		.byte	0
+ 1289 0012 00       		.byte	0
+ 1290 0013 02       		.uleb128 0x2
+ 1291 0014 24       		.uleb128 0x24
+ 1292 0015 00       		.byte	0
+ 1293 0016 0B       		.uleb128 0xb
+ 1294 0017 0B       		.uleb128 0xb
+ 1295 0018 3E       		.uleb128 0x3e
+ 1296 0019 0B       		.uleb128 0xb
+ 1297 001a 03       		.uleb128 0x3
+ 1298 001b 0E       		.uleb128 0xe
+ 1299 001c 00       		.byte	0
+ 1300 001d 00       		.byte	0
+ 1301 001e 03       		.uleb128 0x3
+ 1302 001f 16       		.uleb128 0x16
+ 1303 0020 00       		.byte	0
+ 1304 0021 03       		.uleb128 0x3
+ 1305 0022 0E       		.uleb128 0xe
+ 1306 0023 3A       		.uleb128 0x3a
+ 1307 0024 0B       		.uleb128 0xb
+ 1308 0025 3B       		.uleb128 0x3b
+ 1309 0026 0B       		.uleb128 0xb
+ 1310 0027 49       		.uleb128 0x49
+ 1311 0028 13       		.uleb128 0x13
+ 1312 0029 00       		.byte	0
+ 1313 002a 00       		.byte	0
+ 1314 002b 04       		.uleb128 0x4
+ 1315 002c 24       		.uleb128 0x24
+ 1316 002d 00       		.byte	0
+ 1317 002e 0B       		.uleb128 0xb
+ 1318 002f 0B       		.uleb128 0xb
+ 1319 0030 3E       		.uleb128 0x3e
+ 1320 0031 0B       		.uleb128 0xb
+ 1321 0032 03       		.uleb128 0x3
+ 1322 0033 08       		.uleb128 0x8
+ 1323 0034 00       		.byte	0
+ 1324 0035 00       		.byte	0
+ 1325 0036 05       		.uleb128 0x5
+ 1326 0037 0F       		.uleb128 0xf
+ 1327 0038 00       		.byte	0
+ 1328 0039 0B       		.uleb128 0xb
+ 1329 003a 0B       		.uleb128 0xb
+ 1330 003b 49       		.uleb128 0x49
+ 1331 003c 13       		.uleb128 0x13
+ 1332 003d 00       		.byte	0
+ 1333 003e 00       		.byte	0
+ 1334 003f 06       		.uleb128 0x6
+ 1335 0040 26       		.uleb128 0x26
+ 1336 0041 00       		.byte	0
+ 1337 0042 49       		.uleb128 0x49
+ 1338 0043 13       		.uleb128 0x13
+ 1339 0044 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 27
+
+
+ 1340 0045 00       		.byte	0
+ 1341 0046 07       		.uleb128 0x7
+ 1342 0047 16       		.uleb128 0x16
+ 1343 0048 00       		.byte	0
+ 1344 0049 03       		.uleb128 0x3
+ 1345 004a 0E       		.uleb128 0xe
+ 1346 004b 3A       		.uleb128 0x3a
+ 1347 004c 0B       		.uleb128 0xb
+ 1348 004d 3B       		.uleb128 0x3b
+ 1349 004e 05       		.uleb128 0x5
+ 1350 004f 49       		.uleb128 0x49
+ 1351 0050 13       		.uleb128 0x13
+ 1352 0051 00       		.byte	0
+ 1353 0052 00       		.byte	0
+ 1354 0053 08       		.uleb128 0x8
+ 1355 0054 13       		.uleb128 0x13
+ 1356 0055 01       		.byte	0x1
+ 1357 0056 03       		.uleb128 0x3
+ 1358 0057 0E       		.uleb128 0xe
+ 1359 0058 0B       		.uleb128 0xb
+ 1360 0059 0B       		.uleb128 0xb
+ 1361 005a 3A       		.uleb128 0x3a
+ 1362 005b 0B       		.uleb128 0xb
+ 1363 005c 3B       		.uleb128 0x3b
+ 1364 005d 0B       		.uleb128 0xb
+ 1365 005e 01       		.uleb128 0x1
+ 1366 005f 13       		.uleb128 0x13
+ 1367 0060 00       		.byte	0
+ 1368 0061 00       		.byte	0
+ 1369 0062 09       		.uleb128 0x9
+ 1370 0063 0D       		.uleb128 0xd
+ 1371 0064 00       		.byte	0
+ 1372 0065 03       		.uleb128 0x3
+ 1373 0066 08       		.uleb128 0x8
+ 1374 0067 3A       		.uleb128 0x3a
+ 1375 0068 0B       		.uleb128 0xb
+ 1376 0069 3B       		.uleb128 0x3b
+ 1377 006a 0B       		.uleb128 0xb
+ 1378 006b 49       		.uleb128 0x49
+ 1379 006c 13       		.uleb128 0x13
+ 1380 006d 38       		.uleb128 0x38
+ 1381 006e 0B       		.uleb128 0xb
+ 1382 006f 00       		.byte	0
+ 1383 0070 00       		.byte	0
+ 1384 0071 0A       		.uleb128 0xa
+ 1385 0072 2E       		.uleb128 0x2e
+ 1386 0073 01       		.byte	0x1
+ 1387 0074 3F       		.uleb128 0x3f
+ 1388 0075 19       		.uleb128 0x19
+ 1389 0076 03       		.uleb128 0x3
+ 1390 0077 0E       		.uleb128 0xe
+ 1391 0078 3A       		.uleb128 0x3a
+ 1392 0079 0B       		.uleb128 0xb
+ 1393 007a 3B       		.uleb128 0x3b
+ 1394 007b 0B       		.uleb128 0xb
+ 1395 007c 27       		.uleb128 0x27
+ 1396 007d 19       		.uleb128 0x19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 28
+
+
+ 1397 007e 11       		.uleb128 0x11
+ 1398 007f 01       		.uleb128 0x1
+ 1399 0080 12       		.uleb128 0x12
+ 1400 0081 06       		.uleb128 0x6
+ 1401 0082 40       		.uleb128 0x40
+ 1402 0083 18       		.uleb128 0x18
+ 1403 0084 9742     		.uleb128 0x2117
+ 1404 0086 19       		.uleb128 0x19
+ 1405 0087 01       		.uleb128 0x1
+ 1406 0088 13       		.uleb128 0x13
+ 1407 0089 00       		.byte	0
+ 1408 008a 00       		.byte	0
+ 1409 008b 0B       		.uleb128 0xb
+ 1410 008c 34       		.uleb128 0x34
+ 1411 008d 00       		.byte	0
+ 1412 008e 03       		.uleb128 0x3
+ 1413 008f 0E       		.uleb128 0xe
+ 1414 0090 3A       		.uleb128 0x3a
+ 1415 0091 0B       		.uleb128 0xb
+ 1416 0092 3B       		.uleb128 0x3b
+ 1417 0093 0B       		.uleb128 0xb
+ 1418 0094 49       		.uleb128 0x49
+ 1419 0095 13       		.uleb128 0x13
+ 1420 0096 02       		.uleb128 0x2
+ 1421 0097 17       		.uleb128 0x17
+ 1422 0098 00       		.byte	0
+ 1423 0099 00       		.byte	0
+ 1424 009a 0C       		.uleb128 0xc
+ 1425 009b 898201   		.uleb128 0x4109
+ 1426 009e 00       		.byte	0
+ 1427 009f 11       		.uleb128 0x11
+ 1428 00a0 01       		.uleb128 0x1
+ 1429 00a1 31       		.uleb128 0x31
+ 1430 00a2 13       		.uleb128 0x13
+ 1431 00a3 00       		.byte	0
+ 1432 00a4 00       		.byte	0
+ 1433 00a5 0D       		.uleb128 0xd
+ 1434 00a6 898201   		.uleb128 0x4109
+ 1435 00a9 01       		.byte	0x1
+ 1436 00aa 11       		.uleb128 0x11
+ 1437 00ab 01       		.uleb128 0x1
+ 1438 00ac 31       		.uleb128 0x31
+ 1439 00ad 13       		.uleb128 0x13
+ 1440 00ae 01       		.uleb128 0x1
+ 1441 00af 13       		.uleb128 0x13
+ 1442 00b0 00       		.byte	0
+ 1443 00b1 00       		.byte	0
+ 1444 00b2 0E       		.uleb128 0xe
+ 1445 00b3 8A8201   		.uleb128 0x410a
+ 1446 00b6 00       		.byte	0
+ 1447 00b7 02       		.uleb128 0x2
+ 1448 00b8 18       		.uleb128 0x18
+ 1449 00b9 9142     		.uleb128 0x2111
+ 1450 00bb 18       		.uleb128 0x18
+ 1451 00bc 00       		.byte	0
+ 1452 00bd 00       		.byte	0
+ 1453 00be 0F       		.uleb128 0xf
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 29
+
+
+ 1454 00bf 898201   		.uleb128 0x4109
+ 1455 00c2 01       		.byte	0x1
+ 1456 00c3 11       		.uleb128 0x11
+ 1457 00c4 01       		.uleb128 0x1
+ 1458 00c5 31       		.uleb128 0x31
+ 1459 00c6 13       		.uleb128 0x13
+ 1460 00c7 00       		.byte	0
+ 1461 00c8 00       		.byte	0
+ 1462 00c9 10       		.uleb128 0x10
+ 1463 00ca 2E       		.uleb128 0x2e
+ 1464 00cb 01       		.byte	0x1
+ 1465 00cc 3F       		.uleb128 0x3f
+ 1466 00cd 19       		.uleb128 0x19
+ 1467 00ce 03       		.uleb128 0x3
+ 1468 00cf 0E       		.uleb128 0xe
+ 1469 00d0 3A       		.uleb128 0x3a
+ 1470 00d1 0B       		.uleb128 0xb
+ 1471 00d2 3B       		.uleb128 0x3b
+ 1472 00d3 0B       		.uleb128 0xb
+ 1473 00d4 11       		.uleb128 0x11
+ 1474 00d5 01       		.uleb128 0x1
+ 1475 00d6 12       		.uleb128 0x12
+ 1476 00d7 06       		.uleb128 0x6
+ 1477 00d8 40       		.uleb128 0x40
+ 1478 00d9 18       		.uleb128 0x18
+ 1479 00da 9742     		.uleb128 0x2117
+ 1480 00dc 19       		.uleb128 0x19
+ 1481 00dd 01       		.uleb128 0x1
+ 1482 00de 13       		.uleb128 0x13
+ 1483 00df 00       		.byte	0
+ 1484 00e0 00       		.byte	0
+ 1485 00e1 11       		.uleb128 0x11
+ 1486 00e2 2E       		.uleb128 0x2e
+ 1487 00e3 00       		.byte	0
+ 1488 00e4 3F       		.uleb128 0x3f
+ 1489 00e5 19       		.uleb128 0x19
+ 1490 00e6 03       		.uleb128 0x3
+ 1491 00e7 0E       		.uleb128 0xe
+ 1492 00e8 3A       		.uleb128 0x3a
+ 1493 00e9 0B       		.uleb128 0xb
+ 1494 00ea 3B       		.uleb128 0x3b
+ 1495 00eb 0B       		.uleb128 0xb
+ 1496 00ec 11       		.uleb128 0x11
+ 1497 00ed 01       		.uleb128 0x1
+ 1498 00ee 12       		.uleb128 0x12
+ 1499 00ef 06       		.uleb128 0x6
+ 1500 00f0 40       		.uleb128 0x40
+ 1501 00f1 18       		.uleb128 0x18
+ 1502 00f2 9742     		.uleb128 0x2117
+ 1503 00f4 19       		.uleb128 0x19
+ 1504 00f5 00       		.byte	0
+ 1505 00f6 00       		.byte	0
+ 1506 00f7 12       		.uleb128 0x12
+ 1507 00f8 05       		.uleb128 0x5
+ 1508 00f9 00       		.byte	0
+ 1509 00fa 03       		.uleb128 0x3
+ 1510 00fb 0E       		.uleb128 0xe
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 30
+
+
+ 1511 00fc 3A       		.uleb128 0x3a
+ 1512 00fd 0B       		.uleb128 0xb
+ 1513 00fe 3B       		.uleb128 0x3b
+ 1514 00ff 0B       		.uleb128 0xb
+ 1515 0100 49       		.uleb128 0x49
+ 1516 0101 13       		.uleb128 0x13
+ 1517 0102 02       		.uleb128 0x2
+ 1518 0103 18       		.uleb128 0x18
+ 1519 0104 00       		.byte	0
+ 1520 0105 00       		.byte	0
+ 1521 0106 13       		.uleb128 0x13
+ 1522 0107 2E       		.uleb128 0x2e
+ 1523 0108 00       		.byte	0
+ 1524 0109 3F       		.uleb128 0x3f
+ 1525 010a 19       		.uleb128 0x19
+ 1526 010b 03       		.uleb128 0x3
+ 1527 010c 0E       		.uleb128 0xe
+ 1528 010d 3A       		.uleb128 0x3a
+ 1529 010e 0B       		.uleb128 0xb
+ 1530 010f 3B       		.uleb128 0x3b
+ 1531 0110 0B       		.uleb128 0xb
+ 1532 0111 49       		.uleb128 0x49
+ 1533 0112 13       		.uleb128 0x13
+ 1534 0113 11       		.uleb128 0x11
+ 1535 0114 01       		.uleb128 0x1
+ 1536 0115 12       		.uleb128 0x12
+ 1537 0116 06       		.uleb128 0x6
+ 1538 0117 40       		.uleb128 0x40
+ 1539 0118 18       		.uleb128 0x18
+ 1540 0119 9742     		.uleb128 0x2117
+ 1541 011b 19       		.uleb128 0x19
+ 1542 011c 00       		.byte	0
+ 1543 011d 00       		.byte	0
+ 1544 011e 14       		.uleb128 0x14
+ 1545 011f 34       		.uleb128 0x34
+ 1546 0120 00       		.byte	0
+ 1547 0121 03       		.uleb128 0x3
+ 1548 0122 0E       		.uleb128 0xe
+ 1549 0123 3A       		.uleb128 0x3a
+ 1550 0124 0B       		.uleb128 0xb
+ 1551 0125 3B       		.uleb128 0x3b
+ 1552 0126 05       		.uleb128 0x5
+ 1553 0127 49       		.uleb128 0x49
+ 1554 0128 13       		.uleb128 0x13
+ 1555 0129 3F       		.uleb128 0x3f
+ 1556 012a 19       		.uleb128 0x19
+ 1557 012b 3C       		.uleb128 0x3c
+ 1558 012c 19       		.uleb128 0x19
+ 1559 012d 00       		.byte	0
+ 1560 012e 00       		.byte	0
+ 1561 012f 15       		.uleb128 0x15
+ 1562 0130 35       		.uleb128 0x35
+ 1563 0131 00       		.byte	0
+ 1564 0132 49       		.uleb128 0x49
+ 1565 0133 13       		.uleb128 0x13
+ 1566 0134 00       		.byte	0
+ 1567 0135 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 31
+
+
+ 1568 0136 16       		.uleb128 0x16
+ 1569 0137 34       		.uleb128 0x34
+ 1570 0138 00       		.byte	0
+ 1571 0139 03       		.uleb128 0x3
+ 1572 013a 0E       		.uleb128 0xe
+ 1573 013b 3A       		.uleb128 0x3a
+ 1574 013c 0B       		.uleb128 0xb
+ 1575 013d 3B       		.uleb128 0x3b
+ 1576 013e 0B       		.uleb128 0xb
+ 1577 013f 49       		.uleb128 0x49
+ 1578 0140 13       		.uleb128 0x13
+ 1579 0141 3F       		.uleb128 0x3f
+ 1580 0142 19       		.uleb128 0x19
+ 1581 0143 02       		.uleb128 0x2
+ 1582 0144 18       		.uleb128 0x18
+ 1583 0145 00       		.byte	0
+ 1584 0146 00       		.byte	0
+ 1585 0147 17       		.uleb128 0x17
+ 1586 0148 2E       		.uleb128 0x2e
+ 1587 0149 00       		.byte	0
+ 1588 014a 3F       		.uleb128 0x3f
+ 1589 014b 19       		.uleb128 0x19
+ 1590 014c 03       		.uleb128 0x3
+ 1591 014d 0E       		.uleb128 0xe
+ 1592 014e 3A       		.uleb128 0x3a
+ 1593 014f 0B       		.uleb128 0xb
+ 1594 0150 3B       		.uleb128 0x3b
+ 1595 0151 0B       		.uleb128 0xb
+ 1596 0152 27       		.uleb128 0x27
+ 1597 0153 19       		.uleb128 0x19
+ 1598 0154 49       		.uleb128 0x49
+ 1599 0155 13       		.uleb128 0x13
+ 1600 0156 3C       		.uleb128 0x3c
+ 1601 0157 19       		.uleb128 0x19
+ 1602 0158 00       		.byte	0
+ 1603 0159 00       		.byte	0
+ 1604 015a 18       		.uleb128 0x18
+ 1605 015b 2E       		.uleb128 0x2e
+ 1606 015c 01       		.byte	0x1
+ 1607 015d 3F       		.uleb128 0x3f
+ 1608 015e 19       		.uleb128 0x19
+ 1609 015f 03       		.uleb128 0x3
+ 1610 0160 0E       		.uleb128 0xe
+ 1611 0161 3A       		.uleb128 0x3a
+ 1612 0162 0B       		.uleb128 0xb
+ 1613 0163 3B       		.uleb128 0x3b
+ 1614 0164 0B       		.uleb128 0xb
+ 1615 0165 27       		.uleb128 0x27
+ 1616 0166 19       		.uleb128 0x19
+ 1617 0167 3C       		.uleb128 0x3c
+ 1618 0168 19       		.uleb128 0x19
+ 1619 0169 01       		.uleb128 0x1
+ 1620 016a 13       		.uleb128 0x13
+ 1621 016b 00       		.byte	0
+ 1622 016c 00       		.byte	0
+ 1623 016d 19       		.uleb128 0x19
+ 1624 016e 05       		.uleb128 0x5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 32
+
+
+ 1625 016f 00       		.byte	0
+ 1626 0170 49       		.uleb128 0x49
+ 1627 0171 13       		.uleb128 0x13
+ 1628 0172 00       		.byte	0
+ 1629 0173 00       		.byte	0
+ 1630 0174 1A       		.uleb128 0x1a
+ 1631 0175 2E       		.uleb128 0x2e
+ 1632 0176 00       		.byte	0
+ 1633 0177 3F       		.uleb128 0x3f
+ 1634 0178 19       		.uleb128 0x19
+ 1635 0179 03       		.uleb128 0x3
+ 1636 017a 0E       		.uleb128 0xe
+ 1637 017b 3A       		.uleb128 0x3a
+ 1638 017c 0B       		.uleb128 0xb
+ 1639 017d 3B       		.uleb128 0x3b
+ 1640 017e 0B       		.uleb128 0xb
+ 1641 017f 27       		.uleb128 0x27
+ 1642 0180 19       		.uleb128 0x19
+ 1643 0181 3C       		.uleb128 0x3c
+ 1644 0182 19       		.uleb128 0x19
+ 1645 0183 00       		.byte	0
+ 1646 0184 00       		.byte	0
+ 1647 0185 1B       		.uleb128 0x1b
+ 1648 0186 2E       		.uleb128 0x2e
+ 1649 0187 01       		.byte	0x1
+ 1650 0188 3F       		.uleb128 0x3f
+ 1651 0189 19       		.uleb128 0x19
+ 1652 018a 03       		.uleb128 0x3
+ 1653 018b 0E       		.uleb128 0xe
+ 1654 018c 3A       		.uleb128 0x3a
+ 1655 018d 0B       		.uleb128 0xb
+ 1656 018e 3B       		.uleb128 0x3b
+ 1657 018f 0B       		.uleb128 0xb
+ 1658 0190 27       		.uleb128 0x27
+ 1659 0191 19       		.uleb128 0x19
+ 1660 0192 49       		.uleb128 0x49
+ 1661 0193 13       		.uleb128 0x13
+ 1662 0194 3C       		.uleb128 0x3c
+ 1663 0195 19       		.uleb128 0x19
+ 1664 0196 00       		.byte	0
+ 1665 0197 00       		.byte	0
+ 1666 0198 1C       		.uleb128 0x1c
+ 1667 0199 18       		.uleb128 0x18
+ 1668 019a 00       		.byte	0
+ 1669 019b 00       		.byte	0
+ 1670 019c 00       		.byte	0
+ 1671 019d 00       		.byte	0
+ 1672              		.section	.debug_loc,"",%progbits
+ 1673              	.Ldebug_loc0:
+ 1674              	.LLST0:
+ 1675 0000 08000000 		.4byte	.LVL1
+ 1676 0004 26000000 		.4byte	.LVL9
+ 1677 0008 0600     		.2byte	0x6
+ 1678 000a 74       		.byte	0x74
+ 1679 000b 00       		.sleb128 0
+ 1680 000c 08       		.byte	0x8
+ 1681 000d FF       		.byte	0xff
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 33
+
+
+ 1682 000e 1A       		.byte	0x1a
+ 1683 000f 9F       		.byte	0x9f
+ 1684 0010 34000000 		.4byte	.LVL11
+ 1685 0014 3C000000 		.4byte	.LVL13
+ 1686 0018 0600     		.2byte	0x6
+ 1687 001a 74       		.byte	0x74
+ 1688 001b 00       		.sleb128 0
+ 1689 001c 08       		.byte	0x8
+ 1690 001d FF       		.byte	0xff
+ 1691 001e 1A       		.byte	0x1a
+ 1692 001f 9F       		.byte	0x9f
+ 1693 0020 00000000 		.4byte	0
+ 1694 0024 00000000 		.4byte	0
+ 1695              	.LLST1:
+ 1696 0028 0E000000 		.4byte	.LVL3
+ 1697 002c F2000000 		.4byte	.LVL36
+ 1698 0030 0600     		.2byte	0x6
+ 1699 0032 77       		.byte	0x77
+ 1700 0033 00       		.sleb128 0
+ 1701 0034 08       		.byte	0x8
+ 1702 0035 FF       		.byte	0xff
+ 1703 0036 1A       		.byte	0x1a
+ 1704 0037 9F       		.byte	0x9f
+ 1705 0038 00000000 		.4byte	0
+ 1706 003c 00000000 		.4byte	0
+ 1707              	.LLST2:
+ 1708 0040 14000000 		.4byte	.LVL5
+ 1709 0044 F2000000 		.4byte	.LVL36
+ 1710 0048 0600     		.2byte	0x6
+ 1711 004a 76       		.byte	0x76
+ 1712 004b 00       		.sleb128 0
+ 1713 004c 08       		.byte	0x8
+ 1714 004d FF       		.byte	0xff
+ 1715 004e 1A       		.byte	0x1a
+ 1716 004f 9F       		.byte	0x9f
+ 1717 0050 00000000 		.4byte	0
+ 1718 0054 00000000 		.4byte	0
+ 1719              	.LLST3:
+ 1720 0058 1A000000 		.4byte	.LVL7
+ 1721 005c F2000000 		.4byte	.LVL36
+ 1722 0060 0600     		.2byte	0x6
+ 1723 0062 75       		.byte	0x75
+ 1724 0063 00       		.sleb128 0
+ 1725 0064 08       		.byte	0x8
+ 1726 0065 FF       		.byte	0xff
+ 1727 0066 1A       		.byte	0x1a
+ 1728 0067 9F       		.byte	0x9f
+ 1729 0068 00000000 		.4byte	0
+ 1730 006c 00000000 		.4byte	0
+ 1731              		.section	.debug_aranges,"",%progbits
+ 1732 0000 5C000000 		.4byte	0x5c
+ 1733 0004 0200     		.2byte	0x2
+ 1734 0006 00000000 		.4byte	.Ldebug_info0
+ 1735 000a 04       		.byte	0x4
+ 1736 000b 00       		.byte	0
+ 1737 000c 0000     		.2byte	0
+ 1738 000e 0000     		.2byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 34
+
+
+ 1739 0010 00000000 		.4byte	.LFB63
+ 1740 0014 F8000000 		.4byte	.LFE63-.LFB63
+ 1741 0018 00000000 		.4byte	.LFB64
+ 1742 001c 14000000 		.4byte	.LFE64-.LFB64
+ 1743 0020 00000000 		.4byte	.LFB65
+ 1744 0024 2C000000 		.4byte	.LFE65-.LFB65
+ 1745 0028 00000000 		.4byte	.LFB66
+ 1746 002c 7C000000 		.4byte	.LFE66-.LFB66
+ 1747 0030 00000000 		.4byte	.LFB67
+ 1748 0034 6C000000 		.4byte	.LFE67-.LFB67
+ 1749 0038 00000000 		.4byte	.LFB68
+ 1750 003c 0C000000 		.4byte	.LFE68-.LFB68
+ 1751 0040 00000000 		.4byte	.LFB69
+ 1752 0044 0C000000 		.4byte	.LFE69-.LFB69
+ 1753 0048 00000000 		.4byte	.LFB70
+ 1754 004c 0C000000 		.4byte	.LFE70-.LFB70
+ 1755 0050 00000000 		.4byte	.LFB71
+ 1756 0054 0C000000 		.4byte	.LFE71-.LFB71
+ 1757 0058 00000000 		.4byte	0
+ 1758 005c 00000000 		.4byte	0
+ 1759              		.section	.debug_ranges,"",%progbits
+ 1760              	.Ldebug_ranges0:
+ 1761 0000 00000000 		.4byte	.LFB63
+ 1762 0004 F8000000 		.4byte	.LFE63
+ 1763 0008 00000000 		.4byte	.LFB64
+ 1764 000c 14000000 		.4byte	.LFE64
+ 1765 0010 00000000 		.4byte	.LFB65
+ 1766 0014 2C000000 		.4byte	.LFE65
+ 1767 0018 00000000 		.4byte	.LFB66
+ 1768 001c 7C000000 		.4byte	.LFE66
+ 1769 0020 00000000 		.4byte	.LFB67
+ 1770 0024 6C000000 		.4byte	.LFE67
+ 1771 0028 00000000 		.4byte	.LFB68
+ 1772 002c 0C000000 		.4byte	.LFE68
+ 1773 0030 00000000 		.4byte	.LFB69
+ 1774 0034 0C000000 		.4byte	.LFE69
+ 1775 0038 00000000 		.4byte	.LFB70
+ 1776 003c 0C000000 		.4byte	.LFE70
+ 1777 0040 00000000 		.4byte	.LFB71
+ 1778 0044 0C000000 		.4byte	.LFE71
+ 1779 0048 00000000 		.4byte	0
+ 1780 004c 00000000 		.4byte	0
+ 1781              		.section	.debug_line,"",%progbits
+ 1782              	.Ldebug_line0:
+ 1783 0000 A9020000 		.section	.debug_str,"MS",%progbits,1
+ 1783      0200D101 
+ 1783      00000201 
+ 1783      FB0E0D00 
+ 1783      01010101 
+ 1784              	.LASF54:
+ 1785 0000 4C4C5F53 		.ascii	"LL_SetDriveMode\000"
+ 1785      65744472 
+ 1785      6976654D 
+ 1785      6F646500 
+ 1786              	.LASF22:
+ 1787 0010 64696769 		.ascii	"digital_sensor_value_\000"
+ 1787      74616C5F 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 35
+
+
+ 1787      73656E73 
+ 1787      6F725F76 
+ 1787      616C7565 
+ 1788              	.LASF61:
+ 1789 0026 54696D65 		.ascii	"Timer_LL_Start\000"
+ 1789      725F4C4C 
+ 1789      5F537461 
+ 1789      727400
+ 1790              	.LASF2:
+ 1791 0035 73686F72 		.ascii	"short int\000"
+ 1791      7420696E 
+ 1791      7400
+ 1792              	.LASF41:
+ 1793 003f 54696D65 		.ascii	"Timer_LR_ReadStatusRegister\000"
+ 1793      725F4C52 
+ 1793      5F526561 
+ 1793      64537461 
+ 1793      74757352 
+ 1794              	.LASF28:
+ 1795 005b 7265666C 		.ascii	"reflectance_period\000"
+ 1795      65637461 
+ 1795      6E63655F 
+ 1795      70657269 
+ 1795      6F6400
+ 1796              	.LASF36:
+ 1797 006e 73656E73 		.ascii	"sensors\000"
+ 1797      6F727300 
+ 1798              	.LASF29:
+ 1799 0076 73656E73 		.ascii	"sensor_isr_handler\000"
+ 1799      6F725F69 
+ 1799      73725F68 
+ 1799      616E646C 
+ 1799      657200
+ 1800              	.LASF4:
+ 1801 0089 5F5F7569 		.ascii	"__uint16_t\000"
+ 1801      6E743136 
+ 1801      5F7400
+ 1802              	.LASF52:
+ 1803 0094 52525F53 		.ascii	"RR_SetDriveMode\000"
+ 1803      65744472 
+ 1803      6976654D 
+ 1803      6F646500 
+ 1804              	.LASF23:
+ 1805 00a4 73746174 		.ascii	"statusRL\000"
+ 1805      7573524C 
+ 1805      00
+ 1806              	.LASF51:
+ 1807 00ad 524C5F57 		.ascii	"RL_Write\000"
+ 1807      72697465 
+ 1807      00
+ 1808              	.LASF68:
+ 1809 00b6 6461726B 		.ascii	"dark\000"
+ 1809      00
+ 1810              	.LASF18:
+ 1811 00bb 75696E74 		.ascii	"uint16\000"
+ 1811      313600
+ 1812              	.LASF21:
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 36
+
+
+ 1813 00c2 73656E73 		.ascii	"sensors_\000"
+ 1813      6F72735F 
+ 1813      00
+ 1814              	.LASF17:
+ 1815 00cb 75696E74 		.ascii	"uint8\000"
+ 1815      3800
+ 1816              	.LASF19:
+ 1817 00d1 666C6F61 		.ascii	"float\000"
+ 1817      7400
+ 1818              	.LASF62:
+ 1819 00d7 54696D65 		.ascii	"Timer_LR_Start\000"
+ 1819      725F4C52 
+ 1819      5F537461 
+ 1819      727400
+ 1820              	.LASF9:
+ 1821 00e6 6C6F6E67 		.ascii	"long long int\000"
+ 1821      206C6F6E 
+ 1821      6720696E 
+ 1821      7400
+ 1822              	.LASF47:
+ 1823 00f4 54696D65 		.ascii	"Timer_LL_ReadCapture\000"
+ 1823      725F4C4C 
+ 1823      5F526561 
+ 1823      64436170 
+ 1823      74757265 
+ 1824              	.LASF67:
+ 1825 0109 7265666C 		.ascii	"reflectance_digital\000"
+ 1825      65637461 
+ 1825      6E63655F 
+ 1825      64696769 
+ 1825      74616C00 
+ 1826              	.LASF13:
+ 1827 011d 63686172 		.ascii	"char\000"
+ 1827      00
+ 1828              	.LASF6:
+ 1829 0122 6C6F6E67 		.ascii	"long int\000"
+ 1829      20696E74 
+ 1829      00
+ 1830              	.LASF24:
+ 1831 012b 73746174 		.ascii	"statusRR\000"
+ 1831      75735252 
+ 1831      00
+ 1832              	.LASF63:
+ 1833 0134 7072696E 		.ascii	"printf\000"
+ 1833      746600
+ 1834              	.LASF8:
+ 1835 013b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1835      20756E73 
+ 1835      69676E65 
+ 1835      6420696E 
+ 1835      7400
+ 1836              	.LASF33:
+ 1837 014d 67657444 		.ascii	"getDRL\000"
+ 1837      524C00
+ 1838              	.LASF44:
+ 1839 0154 54696D65 		.ascii	"Timer_RR_ReadPeriod\000"
+ 1839      725F5252 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 37
+
+
+ 1839      5F526561 
+ 1839      64506572 
+ 1839      696F6400 
+ 1840              	.LASF34:
+ 1841 0168 67657444 		.ascii	"getDRR\000"
+ 1841      525200
+ 1842              	.LASF49:
+ 1843 016f 54696D65 		.ascii	"Timer_LR_ReadCapture\000"
+ 1843      725F4C52 
+ 1843      5F526561 
+ 1843      64436170 
+ 1843      74757265 
+ 1844              	.LASF53:
+ 1845 0184 52525F57 		.ascii	"RR_Write\000"
+ 1845      72697465 
+ 1845      00
+ 1846              	.LASF58:
+ 1847 018d 43794465 		.ascii	"CyDelayUs\000"
+ 1847      6C617955 
+ 1847      7300
+ 1848              	.LASF1:
+ 1849 0197 756E7369 		.ascii	"unsigned char\000"
+ 1849      676E6564 
+ 1849      20636861 
+ 1849      7200
+ 1850              	.LASF0:
+ 1851 01a5 7369676E 		.ascii	"signed char\000"
+ 1851      65642063 
+ 1851      68617200 
+ 1852              	.LASF10:
+ 1853 01b1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1853      206C6F6E 
+ 1853      6720756E 
+ 1853      7369676E 
+ 1853      65642069 
+ 1854              	.LASF16:
+ 1855 01c8 75696E74 		.ascii	"uint32_t\000"
+ 1855      33325F74 
+ 1855      00
+ 1856              	.LASF27:
+ 1857 01d1 52656665 		.ascii	"Refelctance_Start\000"
+ 1857      6C637461 
+ 1857      6E63655F 
+ 1857      53746172 
+ 1857      7400
+ 1858              	.LASF11:
+ 1859 01e3 756E7369 		.ascii	"unsigned int\000"
+ 1859      676E6564 
+ 1859      20696E74 
+ 1859      00
+ 1860              	.LASF50:
+ 1861 01f0 524C5F53 		.ascii	"RL_SetDriveMode\000"
+ 1861      65744472 
+ 1861      6976654D 
+ 1861      6F646500 
+ 1862              	.LASF45:
+ 1863 0200 54696D65 		.ascii	"Timer_RR_ReadCapture\000"
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 38
+
+
+ 1863      725F5252 
+ 1863      5F526561 
+ 1863      64436170 
+ 1863      74757265 
+ 1864              	.LASF40:
+ 1865 0215 54696D65 		.ascii	"Timer_LL_ReadStatusRegister\000"
+ 1865      725F4C4C 
+ 1865      5F526561 
+ 1865      64537461 
+ 1865      74757352 
+ 1866              	.LASF65:
+ 1867 0231 2E5C5265 		.ascii	".\\Reflectance.c\000"
+ 1867      666C6563 
+ 1867      74616E63 
+ 1867      652E6300 
+ 1868              	.LASF3:
+ 1869 0241 73686F72 		.ascii	"short unsigned int\000"
+ 1869      7420756E 
+ 1869      7369676E 
+ 1869      65642069 
+ 1869      6E7400
+ 1870              	.LASF37:
+ 1871 0254 64696769 		.ascii	"digital_sensor_value\000"
+ 1871      74616C5F 
+ 1871      73656E73 
+ 1871      6F725F76 
+ 1871      616C7565 
+ 1872              	.LASF59:
+ 1873 0269 54696D65 		.ascii	"Timer_RL_Start\000"
+ 1873      725F524C 
+ 1873      5F537461 
+ 1873      727400
+ 1874              	.LASF55:
+ 1875 0278 4C4C5F57 		.ascii	"LL_Write\000"
+ 1875      72697465 
+ 1875      00
+ 1876              	.LASF15:
+ 1877 0281 696E7433 		.ascii	"int32_t\000"
+ 1877      325F7400 
+ 1878              	.LASF56:
+ 1879 0289 4C525F53 		.ascii	"LR_SetDriveMode\000"
+ 1879      65744472 
+ 1879      6976654D 
+ 1879      6F646500 
+ 1880              	.LASF42:
+ 1881 0299 54696D65 		.ascii	"Timer_RL_ReadPeriod\000"
+ 1881      725F524C 
+ 1881      5F526561 
+ 1881      64506572 
+ 1881      696F6400 
+ 1882              	.LASF14:
+ 1883 02ad 75696E74 		.ascii	"uint16_t\000"
+ 1883      31365F74 
+ 1883      00
+ 1884              	.LASF25:
+ 1885 02b6 73746174 		.ascii	"statusLL\000"
+ 1885      75734C4C 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 39
+
+
+ 1885      00
+ 1886              	.LASF20:
+ 1887 02bf 646F7562 		.ascii	"double\000"
+ 1887      6C6500
+ 1888              	.LASF26:
+ 1889 02c6 73746174 		.ascii	"statusLR\000"
+ 1889      75734C52 
+ 1889      00
+ 1890              	.LASF7:
+ 1891 02cf 5F5F7569 		.ascii	"__uint32_t\000"
+ 1891      6E743332 
+ 1891      5F7400
+ 1892              	.LASF38:
+ 1893 02da 54696D65 		.ascii	"Timer_RL_ReadStatusRegister\000"
+ 1893      725F524C 
+ 1893      5F526561 
+ 1893      64537461 
+ 1893      74757352 
+ 1894              	.LASF31:
+ 1895 02f6 67657444 		.ascii	"getDLL\000"
+ 1895      4C4C00
+ 1896              	.LASF48:
+ 1897 02fd 54696D65 		.ascii	"Timer_LR_ReadPeriod\000"
+ 1897      725F4C52 
+ 1897      5F526561 
+ 1897      64506572 
+ 1897      696F6400 
+ 1898              	.LASF5:
+ 1899 0311 5F5F696E 		.ascii	"__int32_t\000"
+ 1899      7433325F 
+ 1899      7400
+ 1900              	.LASF32:
+ 1901 031b 67657444 		.ascii	"getDLR\000"
+ 1901      4C5200
+ 1902              	.LASF64:
+ 1903 0322 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1903      4320342E 
+ 1903      392E3320 
+ 1903      32303135 
+ 1903      30333033 
+ 1904 0355 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1904      20726576 
+ 1904      6973696F 
+ 1904      6E203232 
+ 1904      31323230 
+ 1905 0388 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1905      66756E63 
+ 1905      74696F6E 
+ 1905      2D736563 
+ 1905      74696F6E 
+ 1906              	.LASF30:
+ 1907 03b0 7265665F 		.ascii	"ref_calibration\000"
+ 1907      63616C69 
+ 1907      62726174 
+ 1907      696F6E00 
+ 1908              	.LASF39:
+ 1909 03c0 54696D65 		.ascii	"Timer_RR_ReadStatusRegister\000"
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDh9sEr.s 			page 40
+
+
+ 1909      725F5252 
+ 1909      5F526561 
+ 1909      64537461 
+ 1909      74757352 
+ 1910              	.LASF12:
+ 1911 03dc 73697A65 		.ascii	"sizetype\000"
+ 1911      74797065 
+ 1911      00
+ 1912              	.LASF46:
+ 1913 03e5 54696D65 		.ascii	"Timer_LL_ReadPeriod\000"
+ 1913      725F4C4C 
+ 1913      5F526561 
+ 1913      64506572 
+ 1913      696F6400 
+ 1914              	.LASF66:
+ 1915 03f9 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 1915      73657273 
+ 1915      5C647566 
+ 1915      6D615C44 
+ 1915      65736B74 
+ 1916 0426 426F745F 		.ascii	"Bot_Lib_WiiTest.cydsn\000"
+ 1916      4C69625F 
+ 1916      57696954 
+ 1916      6573742E 
+ 1916      63796473 
+ 1917              	.LASF57:
+ 1918 043c 4C525F57 		.ascii	"LR_Write\000"
+ 1918      72697465 
+ 1918      00
+ 1919              	.LASF35:
+ 1920 0445 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1920      52784275 
+ 1920      66666572 
+ 1920      00
+ 1921              	.LASF43:
+ 1922 0452 54696D65 		.ascii	"Timer_RL_ReadCapture\000"
+ 1922      725F524C 
+ 1922      5F526561 
+ 1922      64436170 
+ 1922      74757265 
+ 1923              	.LASF60:
+ 1924 0467 54696D65 		.ascii	"Timer_RR_Start\000"
+ 1924      725F5252 
+ 1924      5F537461 
+ 1924      727400
+ 1925              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
