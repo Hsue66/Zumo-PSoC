@@ -3,12 +3,11 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="3" name="ZumoBot_Lib-000" persistent="" platform="NOT_USED">
-<current_project name="..\ZumoBot_Lib_WiiTest.cydsn\ZumoBot_Lib_WiiTest.cyprj" />
+<current_project name=".\ZumoBot_Lib.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
 <v>.\ZumoBot_Lib.cyprj</v>
-<v>..\ZumoBot_Lib_WiiTest.cydsn\ZumoBot_Lib_WiiTest.cyprj</v>
 </projects>
 <workspace_id v="7ed0b5c8-cf9d-413d-ac0b-f14ff77e7fe0" />
 <WriteAppVersionLastSavedWith v="3.3.0.9604" />

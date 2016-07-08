@@ -45,6 +45,13 @@
           <File BuildType="BUILD" Toolchain="">.\Ultra.h</File>
           <File BuildType="BUILD" Toolchain="">.\Reflectance.c</File>
           <File BuildType="BUILD" Toolchain="">.\Reflectance.h</File>
+          <File BuildType="BUILD" Toolchain="">.\accel.c</File>
+          <File BuildType="BUILD" Toolchain="">.\accel_magnet.h</File>
+          <File BuildType="BUILD" Toolchain="">.\gyro.c</File>
+          <File BuildType="BUILD" Toolchain="">.\gyro.h</File>
+          <File BuildType="BUILD" Toolchain="">.\I2C_made.c</File>
+          <File BuildType="BUILD" Toolchain="">.\I2C_made.h</File>
+          <File BuildType="BUILD" Toolchain="">.\magnet.c</File>
           <File BuildType="BUILD" Toolchain="">.\cyapicallbacks.h</File>
         </Files>
       </Folder>

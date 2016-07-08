@@ -87,68 +87,6 @@ int main()
         */
     }
     
-    /* //reflectance//
-    ----------------------------------------------------
-    sensor_isr_StartEx(sensor_isr_handler);
-    
-    Refelctance_Start();
-
-    IR_led_Write(1);
-    for(;;)
-    {
-        reflectance_period();      //print out each period of reflectance sensors
-        reflectance_digital();      //print out 0 or 1 according to results of reflectance period
-        
-        CyDelay(500);
-    }
-    ----------------------------------------------------*/
-    
-     /* //ultra//
-    ----------------------------------------------------
-    ultra_isr_StartEx(ultra_isr_handler);   // Ultra Sonic Interrupt
-    Ultra_Start();                          // Ultra Sonic Start function
-   
-    for(;;)
-    {       
-        CyDelay(100); 
-        Trig_Write(1);           // Trigger High
-        CyDelayUs(10);              // 10 micro seconds for trigger input signals
-        Trig_Write(0);           // Trigger Low
-    }
-    ----------------------------------------------------*/
-    
-     /* //motor//
-    ----------------------------------------------------
-    motor_Start();              // motor start
-
-    motor_forward(50,2000);     // moving forward
-    motor_turn(20,50,2000);     // turn
-    motor_turn(50,20,2000);     // turn
-    motor_backward(50,2000);    // movinb backward
-       
-    motor_Stop();               // motor stop
-    
-    for(;;)
-    {
-
-    }
-    ----------------------------------------------------*/
-    
-    
-    /*  //nunchuk//
-    ----------------------------------------------------
-    nunchuk_start();
-    nunchuk_init();
-    
-    for(;;)
-    {    
-        nunchuk_read();
-    }
-    ----------------------------------------------------*/
-    
-   
-    
-   
 }
 
 
