@@ -1,0 +1,2510 @@
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_ui2f
+  19              		.global	__aeabi_fmul
+  20              		.global	__aeabi_f2d
+  21              		.global	__aeabi_dmul
+  22              		.global	__aeabi_dadd
+  23              		.global	__aeabi_d2f
+  24              		.global	__aeabi_f2uiz
+  25              		.section	.text.value_convert_gyro,"ax",%progbits
+  26              		.align	2
+  27              		.global	value_convert_gyro
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	value_convert_gyro, %function
+  31              	value_convert_gyro:
+  32              	.LFB64:
+  33              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <stdio.h>
+  14:.\main.c      **** #include "Motor.h"
+  15:.\main.c      **** #include "Ultra.h"
+  16:.\main.c      **** #include "nunchuk.h"
+  17:.\main.c      **** #include "Reflectance.h"
+  18:.\main.c      **** #include "I2C_made.h"
+  19:.\main.c      **** #include "gyro.h"
+  20:.\main.c      **** #include "accel_magnet.h"
+  21:.\main.c      **** 
+  22:.\main.c      **** int rread(void);
+  23:.\main.c      **** 
+  24:.\main.c      **** int main()
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 2
+
+
+  25:.\main.c      **** {
+  26:.\main.c      ****     CyGlobalIntEnable; 
+  27:.\main.c      ****     UART_Start();
+  28:.\main.c      ****     printf("Start\r\n");
+  29:.\main.c      ****     
+  30:.\main.c      ****     
+  31:.\main.c      ****     /* //gyroscope//
+  32:.\main.c      ****      //-----------------------------------------------------*/
+  33:.\main.c      ****     I2C_Start();
+  34:.\main.c      ****   
+  35:.\main.c      ****     uint8 X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, Z_AXIS_H;
+  36:.\main.c      ****     int16 X_AXIS, Y_AXIS, Z_AXIS;
+  37:.\main.c      ****     
+  38:.\main.c      ****     I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+  39:.\main.c      ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps 
+  40:.\main.c      ****     
+  41:.\main.c      ****     for(;;)
+  42:.\main.c      ****     {
+  43:.\main.c      ****         GyroTimer_Start();
+  44:.\main.c      ****         //print out gyroscope output
+  45:.\main.c      ****         X_AXIS_L = I2C_read(GYRO_ADDR, OUT_X_AXIS_L);
+  46:.\main.c      ****         X_AXIS_H = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
+  47:.\main.c      ****         Y_AXIS_L = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
+  48:.\main.c      ****         Y_AXIS_H = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
+  49:.\main.c      ****         Z_AXIS_L = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
+  50:.\main.c      ****         Z_AXIS_H = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
+  51:.\main.c      ****      
+  52:.\main.c      ****         printf("%d\r\n",GyroTimer_ReadCounter());
+  53:.\main.c      ****         
+  54:.\main.c      ****         X_AXIS = convert_raw(X_AXIS_H, X_AXIS_L);
+  55:.\main.c      ****         Y_AXIS = convert_raw(Y_AXIS_H, Y_AXIS_L);
+  56:.\main.c      ****         Z_AXIS = convert_raw(Z_AXIS_H, Z_AXIS_L);
+  57:.\main.c      ****         
+  58:.\main.c      ****         
+  59:.\main.c      ****         //printf("X_AXIS_L: %d, X_AXIS_H: %d, average: %d \r\n", X_AXIS_L, X_AXIS_H, (X_AXIS_H+X_AX
+  60:.\main.c      ****         //printf("Y_AXIS_L: %d, Y_AXIS_H: %d, average: %d \r\n", Y_AXIS_L, Y_AXIS_H, (Y_AXIS_H+Y_AX
+  61:.\main.c      ****         //printf("Z_AXIS_L: %d, Z_AXIS_H: %d, average: %d \r\n", Z_AXIS_L, Z_AXIS_H, (Z_AXIS_H+Z_AX
+  62:.\main.c      ****         
+  63:.\main.c      ****         //printf("H L : %d %d %d %d %d %d \r\n", X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, 
+  64:.\main.c      ****         //printf("%d %d %d \r\n", X_AXIS, Y_AXIS, Z_AXIS);
+  65:.\main.c      ****         printf("%d %d %d \r\n", value_convert_gyro(X_AXIS), value_convert_gyro(Y_AXIS), value_conve
+  66:.\main.c      ****         
+  67:.\main.c      ****         printf("%d\r\n\n",GyroTimer_ReadCounter());
+  68:.\main.c      ****         CyDelay(20);
+  69:.\main.c      ****          GyroTimer_Stop();
+  70:.\main.c      ****         GyroTimer_WriteCounter(0xFFFF);
+  71:.\main.c      ****     }
+  72:.\main.c      ****     ///-----------------------------------------------------------------*/ 
+  73:.\main.c      ****    
+  74:.\main.c      ****     
+  75:.\main.c      ****     /* //accelerometer//
+  76:.\main.c      ****     //--------------------------------------------------------------
+  77:.\main.c      ****     I2C_Start();
+  78:.\main.c      ****   
+  79:.\main.c      ****     uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
+  80:.\main.c      ****     int16 X_AXIS, Y_AXIS, Z_AXIS;
+  81:.\main.c      ****     
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 3
+
+
+  82:.\main.c      ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer
+  83:.\main.c      ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
+  84:.\main.c      ****     
+  85:.\main.c      ****     
+  86:.\main.c      ****     for(;;)
+  87:.\main.c      ****     {
+  88:.\main.c      ****         //print out accelerometer output
+  89:.\main.c      ****         X_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_A);
+  90:.\main.c      ****         X_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_A);
+  91:.\main.c      ****         X_AXIS = convert_raw(X_L_A, X_H_A);
+  92:.\main.c      ****         
+  93:.\main.c      ****         Y_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_A);
+  94:.\main.c      ****         Y_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_A);
+  95:.\main.c      ****         Y_AXIS = convert_raw(Y_L_A, Y_H_A);
+  96:.\main.c      ****         
+  97:.\main.c      ****         Z_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_A);
+  98:.\main.c      ****         Z_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_A);
+  99:.\main.c      ****         Z_AXIS = convert_raw(Z_L_A, Z_H_A);
+ 100:.\main.c      ****         
+ 101:.\main.c      ****         printf("ACCEL: %d %d %d %d %d %d \r\n", X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A);
+ 102:.\main.c      ****         value_convert_accel(X_AXIS, Y_AXIS, Z_AXIS);
+ 103:.\main.c      ****         printf("\n");
+ 104:.\main.c      ****         
+ 105:.\main.c      ****         CyDelay(50);
+ 106:.\main.c      ****     }
+ 107:.\main.c      ****     ///---------------------------------------------------------- */
+ 108:.\main.c      ****     
+ 109:.\main.c      ****     /* //reflectance//
+ 110:.\main.c      ****     ----------------------------------------------------
+ 111:.\main.c      ****     sensor_isr_StartEx(sensor_isr_handler);
+ 112:.\main.c      ****     
+ 113:.\main.c      ****     Refelctance_Start();
+ 114:.\main.c      **** 
+ 115:.\main.c      ****     IR_led_Write(1);
+ 116:.\main.c      ****     for(;;)
+ 117:.\main.c      ****     {
+ 118:.\main.c      ****         reflectance_period();      //print out each period of reflectance sensors
+ 119:.\main.c      ****         reflectance_digital();      //print out 0 or 1 according to results of reflectance period
+ 120:.\main.c      ****         
+ 121:.\main.c      ****         CyDelay(500);
+ 122:.\main.c      ****     }
+ 123:.\main.c      ****     ----------------------------------------------------*/
+ 124:.\main.c      ****     
+ 125:.\main.c      ****      /* //ultra//
+ 126:.\main.c      ****     ----------------------------------------------------
+ 127:.\main.c      ****     ultra_isr_StartEx(ultra_isr_handler);   // Ultra Sonic Interrupt
+ 128:.\main.c      ****     Ultra_Start();                          // Ultra Sonic Start function
+ 129:.\main.c      ****    
+ 130:.\main.c      ****     for(;;)
+ 131:.\main.c      ****     {       
+ 132:.\main.c      ****         CyDelay(100); 
+ 133:.\main.c      ****         Trig_Write(1);           // Trigger High
+ 134:.\main.c      ****         CyDelayUs(10);              // 10 micro seconds for trigger input signals
+ 135:.\main.c      ****         Trig_Write(0);           // Trigger Low
+ 136:.\main.c      ****     }
+ 137:.\main.c      ****     ----------------------------------------------------*/
+ 138:.\main.c      ****     
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 4
+
+
+ 139:.\main.c      ****      /* //motor//
+ 140:.\main.c      ****     ----------------------------------------------------
+ 141:.\main.c      ****     motor_Start();              // motor start
+ 142:.\main.c      **** 
+ 143:.\main.c      ****     motor_forward(50,2000);     // moving forward
+ 144:.\main.c      ****     motor_turn(20,50,2000);     // turn
+ 145:.\main.c      ****     motor_turn(50,20,2000);     // turn
+ 146:.\main.c      ****     motor_backward(50,2000);    // movinb backward
+ 147:.\main.c      ****        
+ 148:.\main.c      ****     motor_Stop();               // motor stop
+ 149:.\main.c      ****     
+ 150:.\main.c      ****     for(;;)
+ 151:.\main.c      ****     {
+ 152:.\main.c      **** 
+ 153:.\main.c      ****     }
+ 154:.\main.c      ****     ----------------------------------------------------*/
+ 155:.\main.c      ****      
+ 156:.\main.c      ****     /*  //nunchuk//
+ 157:.\main.c      ****     ----------------------------------------------------
+ 158:.\main.c      ****     nunchuk_start();
+ 159:.\main.c      ****     nunchuk_init();
+ 160:.\main.c      ****     
+ 161:.\main.c      ****     for(;;)
+ 162:.\main.c      ****     {    
+ 163:.\main.c      ****         nunchuk_read();
+ 164:.\main.c      ****     }
+ 165:.\main.c      ****     ----------------------------------------------------*/
+ 166:.\main.c      ****     
+ 167:.\main.c      ****     /* //magnetometer//
+ 168:.\main.c      ****      //--------------------------------------------------------------
+ 169:.\main.c      ****     I2C_Start();
+ 170:.\main.c      ****    
+ 171:.\main.c      ****     uint8 X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M;
+ 172:.\main.c      ****     int16 X_AXIS, Y_AXIS, Z_AXIS;
+ 173:.\main.c      ****     
+ 174:.\main.c      ****     I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+ 175:.\main.c      ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps
+ 176:.\main.c      ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer
+ 177:.\main.c      ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
+ 178:.\main.c      ****     
+ 179:.\main.c      ****     
+ 180:.\main.c      ****     for(;;)
+ 181:.\main.c      ****     {
+ 182:.\main.c      ****         X_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_M);
+ 183:.\main.c      ****         X_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_M);
+ 184:.\main.c      ****         X_AXIS = convert_raw(X_L_M, X_H_M);
+ 185:.\main.c      ****         
+ 186:.\main.c      ****         Y_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_M);
+ 187:.\main.c      ****         Y_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_M);
+ 188:.\main.c      ****         Y_AXIS = convert_raw(Y_L_M, Y_H_M);
+ 189:.\main.c      ****         
+ 190:.\main.c      ****         Z_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_M);
+ 191:.\main.c      ****         Z_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_M);
+ 192:.\main.c      ****         Z_AXIS = convert_raw(Z_L_M, Z_H_M);
+ 193:.\main.c      ****         
+ 194:.\main.c      ****         heading(X_AXIS, Y_AXIS);
+ 195:.\main.c      ****         printf("MAGNET: %d %d %d %d %d %d \r\n", X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M);
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 5
+
+
+ 196:.\main.c      ****         printf("%d %d %d \r\n", X_AXIS,Y_AXIS, Z_AXIS);
+ 197:.\main.c      ****         CyDelay(50);
+ 198:.\main.c      ****           
+ 199:.\main.c      ****     }
+ 200:.\main.c      ****     ----------------------------------------------------------*/
+ 201:.\main.c      **** }
+ 202:.\main.c      **** 
+ 203:.\main.c      **** uint16 value_convert_gyro(uint16 raw)            // ****THING TO DO : converting to angle!!!****
+ 204:.\main.c      **** {
+  34              		.loc 1 204 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              	.LVL0:
+  39 0000 38B5     		push	{r3, r4, r5, lr}
+  40              		.cfi_def_cfa_offset 16
+  41              		.cfi_offset 3, -16
+  42              		.cfi_offset 4, -12
+  43              		.cfi_offset 5, -8
+  44              		.cfi_offset 14, -4
+  45              	.LVL1:
+ 205:.\main.c      ****     float rate_result;
+ 206:.\main.c      ****     float angle_result;
+ 207:.\main.c      ****     float G_GAIN = 0.07;             //FS = 245 dps
+ 208:.\main.c      ****     
+ 209:.\main.c      ****   
+ 210:.\main.c      ****     rate_result = (float)raw * G_GAIN;          // degrees per second for Gyroscope
+  46              		.loc 1 210 0
+  47 0002 FFF7FEFF 		bl	__aeabi_ui2f
+  48              	.LVL2:
+  49 0006 0E49     		ldr	r1, .L3+8
+  50 0008 FFF7FEFF 		bl	__aeabi_fmul
+  51              	.LVL3:
+ 211:.\main.c      ****     angle_result += (float)rate_result * 0.02;
+  52              		.loc 1 211 0
+  53 000c FFF7FEFF 		bl	__aeabi_f2d
+  54              	.LVL4:
+  55 0010 09A3     		adr	r3, .L3
+  56 0012 D3E90023 		ldrd	r2, [r3]
+  57 0016 FFF7FEFF 		bl	__aeabi_dmul
+  58              	.LVL5:
+  59 001a 0446     		mov	r4, r0
+  60 001c 0D46     		mov	r5, r1
+  61 001e 0020     		movs	r0, #0
+  62 0020 FFF7FEFF 		bl	__aeabi_f2d
+  63              	.LVL6:
+  64 0024 2246     		mov	r2, r4
+  65 0026 2B46     		mov	r3, r5
+  66 0028 FFF7FEFF 		bl	__aeabi_dadd
+  67              	.LVL7:
+  68 002c FFF7FEFF 		bl	__aeabi_d2f
+  69              	.LVL8:
+ 212:.\main.c      ****     //angle_result = (float)rate_result*(0.017453293F);
+ 213:.\main.c      ****     //return rate_result;
+ 214:.\main.c      ****     return angle_result;
+  70              		.loc 1 214 0
+  71 0030 FFF7FEFF 		bl	__aeabi_f2uiz
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 6
+
+
+  72              	.LVL9:
+ 215:.\main.c      **** }
+  73              		.loc 1 215 0
+  74 0034 80B2     		uxth	r0, r0
+  75 0036 38BD     		pop	{r3, r4, r5, pc}
+  76              	.L4:
+  77              		.align	3
+  78              	.L3:
+  79 0038 7B14AE47 		.word	1202590843
+  80 003c E17A943F 		.word	1066695393
+  81 0040 295C8F3D 		.word	1032805417
+  82              		.cfi_endproc
+  83              	.LFE64:
+  84              		.size	value_convert_gyro, .-value_convert_gyro
+  85 0044 AFF30080 		.section	.text.convert_raw,"ax",%progbits
+  86              		.align	2
+  87              		.global	convert_raw
+  88              		.thumb
+  89              		.thumb_func
+  90              		.type	convert_raw, %function
+  91              	convert_raw:
+  92              	.LFB65:
+ 216:.\main.c      **** 
+ 217:.\main.c      **** uint16 convert_raw(uint8 L, uint8 H)            // concatenation
+ 218:.\main.c      **** {
+  93              		.loc 1 218 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              		@ link register save eliminated.
+  98              	.LVL10:
+ 219:.\main.c      ****     uint16 raw;
+ 220:.\main.c      ****     raw = (int16)(L | H << 8);
+ 221:.\main.c      ****     
+ 222:.\main.c      ****     return raw;
+ 223:.\main.c      **** }
+  99              		.loc 1 223 0
+ 100 0000 40EA0120 		orr	r0, r0, r1, lsl #8
+ 101              	.LVL11:
+ 102 0004 7047     		bx	lr
+ 103              		.cfi_endproc
+ 104              	.LFE65:
+ 105              		.size	convert_raw, .-convert_raw
+ 106 0006 00BF     		.section	.text.main,"ax",%progbits
+ 107              		.align	2
+ 108              		.global	main
+ 109              		.thumb
+ 110              		.thumb_func
+ 111              		.type	main, %function
+ 112              	main:
+ 113              	.LFB63:
+  25:.\main.c      ****     CyGlobalIntEnable; 
+ 114              		.loc 1 25 0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 7
+
+
+ 119              		.cfi_def_cfa_offset 32
+ 120              		.cfi_offset 3, -32
+ 121              		.cfi_offset 4, -28
+ 122              		.cfi_offset 5, -24
+ 123              		.cfi_offset 6, -20
+ 124              		.cfi_offset 7, -16
+ 125              		.cfi_offset 8, -12
+ 126              		.cfi_offset 9, -8
+ 127              		.cfi_offset 14, -4
+  26:.\main.c      ****     UART_Start();
+ 128              		.loc 1 26 0
+ 129              	@ 26 ".\main.c" 1
+ 130 0004 62B6     		CPSIE   i
+ 131              	@ 0 "" 2
+  27:.\main.c      ****     printf("Start\r\n");
+ 132              		.loc 1 27 0
+ 133              		.thumb
+ 134 0006 FFF7FEFF 		bl	UART_Start
+ 135              	.LVL12:
+  28:.\main.c      ****     
+ 136              		.loc 1 28 0
+ 137 000a 3248     		ldr	r0, .L9
+ 138 000c FFF7FEFF 		bl	puts
+ 139              	.LVL13:
+  33:.\main.c      ****   
+ 140              		.loc 1 33 0
+ 141 0010 FFF7FEFF 		bl	I2C_Start
+ 142              	.LVL14:
+  38:.\main.c      ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps 
+ 143              		.loc 1 38 0
+ 144 0014 6B20     		movs	r0, #107
+ 145 0016 2021     		movs	r1, #32
+ 146 0018 0F22     		movs	r2, #15
+ 147 001a FFF7FEFF 		bl	I2C_write
+ 148              	.LVL15:
+  39:.\main.c      ****     
+ 149              		.loc 1 39 0
+ 150 001e 6B20     		movs	r0, #107
+ 151 0020 2321     		movs	r1, #35
+ 152 0022 3022     		movs	r2, #48
+ 153 0024 FFF7FEFF 		bl	I2C_write
+ 154              	.LVL16:
+ 155              	.L7:
+  43:.\main.c      ****         //print out gyroscope output
+ 156              		.loc 1 43 0 discriminator 1
+ 157 0028 FFF7FEFF 		bl	GyroTimer_Start
+ 158              	.LVL17:
+  45:.\main.c      ****         X_AXIS_H = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
+ 159              		.loc 1 45 0 discriminator 1
+ 160 002c 6B20     		movs	r0, #107
+ 161 002e 2821     		movs	r1, #40
+ 162 0030 FFF7FEFF 		bl	I2C_read
+ 163              	.LVL18:
+ 164 0034 0546     		mov	r5, r0
+ 165              	.LVL19:
+  46:.\main.c      ****         Y_AXIS_L = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
+ 166              		.loc 1 46 0 discriminator 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 8
+
+
+ 167 0036 6B20     		movs	r0, #107
+ 168 0038 2921     		movs	r1, #41
+ 169 003a FFF7FEFF 		bl	I2C_read
+ 170              	.LVL20:
+ 171 003e 8146     		mov	r9, r0
+ 172              	.LVL21:
+  47:.\main.c      ****         Y_AXIS_H = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
+ 173              		.loc 1 47 0 discriminator 1
+ 174 0040 6B20     		movs	r0, #107
+ 175 0042 2A21     		movs	r1, #42
+ 176 0044 FFF7FEFF 		bl	I2C_read
+ 177              	.LVL22:
+ 178 0048 0446     		mov	r4, r0
+ 179              	.LVL23:
+  48:.\main.c      ****         Z_AXIS_L = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
+ 180              		.loc 1 48 0 discriminator 1
+ 181 004a 6B20     		movs	r0, #107
+ 182 004c 2B21     		movs	r1, #43
+ 183 004e FFF7FEFF 		bl	I2C_read
+ 184              	.LVL24:
+ 185 0052 8046     		mov	r8, r0
+ 186              	.LVL25:
+  49:.\main.c      ****         Z_AXIS_H = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
+ 187              		.loc 1 49 0 discriminator 1
+ 188 0054 6B20     		movs	r0, #107
+ 189 0056 2C21     		movs	r1, #44
+ 190 0058 FFF7FEFF 		bl	I2C_read
+ 191              	.LVL26:
+ 192 005c 0646     		mov	r6, r0
+ 193              	.LVL27:
+  50:.\main.c      ****      
+ 194              		.loc 1 50 0 discriminator 1
+ 195 005e 6B20     		movs	r0, #107
+ 196 0060 2D21     		movs	r1, #45
+ 197 0062 FFF7FEFF 		bl	I2C_read
+ 198              	.LVL28:
+ 199 0066 0746     		mov	r7, r0
+ 200              	.LVL29:
+  52:.\main.c      ****         
+ 201              		.loc 1 52 0 discriminator 1
+ 202 0068 FFF7FEFF 		bl	GyroTimer_ReadCounter
+ 203              	.LVL30:
+ 204 006c 0146     		mov	r1, r0
+ 205 006e 1A48     		ldr	r0, .L9+4
+ 206 0070 FFF7FEFF 		bl	printf
+ 207              	.LVL31:
+  54:.\main.c      ****         Y_AXIS = convert_raw(Y_AXIS_H, Y_AXIS_L);
+ 208              		.loc 1 54 0 discriminator 1
+ 209 0074 4846     		mov	r0, r9
+ 210 0076 2946     		mov	r1, r5
+ 211 0078 FFF7FEFF 		bl	convert_raw
+ 212              	.LVL32:
+ 213 007c 0546     		mov	r5, r0
+ 214              	.LVL33:
+  55:.\main.c      ****         Z_AXIS = convert_raw(Z_AXIS_H, Z_AXIS_L);
+ 215              		.loc 1 55 0 discriminator 1
+ 216 007e 4046     		mov	r0, r8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 9
+
+
+ 217 0080 2146     		mov	r1, r4
+ 218 0082 FFF7FEFF 		bl	convert_raw
+ 219              	.LVL34:
+ 220 0086 0446     		mov	r4, r0
+ 221              	.LVL35:
+  56:.\main.c      ****         
+ 222              		.loc 1 56 0 discriminator 1
+ 223 0088 3846     		mov	r0, r7
+ 224 008a 3146     		mov	r1, r6
+ 225 008c FFF7FEFF 		bl	convert_raw
+ 226              	.LVL36:
+ 227 0090 0646     		mov	r6, r0
+ 228              	.LVL37:
+  65:.\main.c      ****         
+ 229              		.loc 1 65 0 discriminator 1
+ 230 0092 2846     		mov	r0, r5
+ 231 0094 FFF7FEFF 		bl	value_convert_gyro
+ 232              	.LVL38:
+ 233 0098 0546     		mov	r5, r0
+ 234              	.LVL39:
+ 235 009a 2046     		mov	r0, r4
+ 236 009c FFF7FEFF 		bl	value_convert_gyro
+ 237              	.LVL40:
+ 238 00a0 0446     		mov	r4, r0
+ 239              	.LVL41:
+ 240 00a2 3046     		mov	r0, r6
+ 241 00a4 FFF7FEFF 		bl	value_convert_gyro
+ 242              	.LVL42:
+ 243 00a8 0346     		mov	r3, r0
+ 244 00aa 0C48     		ldr	r0, .L9+8
+ 245 00ac 2946     		mov	r1, r5
+ 246 00ae 2246     		mov	r2, r4
+ 247 00b0 FFF7FEFF 		bl	printf
+ 248              	.LVL43:
+  67:.\main.c      ****         CyDelay(20);
+ 249              		.loc 1 67 0 discriminator 1
+ 250 00b4 FFF7FEFF 		bl	GyroTimer_ReadCounter
+ 251              	.LVL44:
+ 252 00b8 0146     		mov	r1, r0
+ 253 00ba 0948     		ldr	r0, .L9+12
+ 254 00bc FFF7FEFF 		bl	printf
+ 255              	.LVL45:
+  68:.\main.c      ****          GyroTimer_Stop();
+ 256              		.loc 1 68 0 discriminator 1
+ 257 00c0 1420     		movs	r0, #20
+ 258 00c2 FFF7FEFF 		bl	CyDelay
+ 259              	.LVL46:
+  69:.\main.c      ****         GyroTimer_WriteCounter(0xFFFF);
+ 260              		.loc 1 69 0 discriminator 1
+ 261 00c6 FFF7FEFF 		bl	GyroTimer_Stop
+ 262              	.LVL47:
+  70:.\main.c      ****     }
+ 263              		.loc 1 70 0 discriminator 1
+ 264 00ca 4FF6FF70 		movw	r0, #65535
+ 265 00ce FFF7FEFF 		bl	GyroTimer_WriteCounter
+ 266              	.LVL48:
+  71:.\main.c      ****     ///-----------------------------------------------------------------*/ 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 10
+
+
+ 267              		.loc 1 71 0 discriminator 1
+ 268 00d2 A9E7     		b	.L7
+ 269              	.L10:
+ 270              		.align	2
+ 271              	.L9:
+ 272 00d4 00000000 		.word	.LC0
+ 273 00d8 08000000 		.word	.LC1
+ 274 00dc 10000000 		.word	.LC2
+ 275 00e0 1C000000 		.word	.LC3
+ 276              		.cfi_endproc
+ 277              	.LFE63:
+ 278              		.size	main, .-main
+ 279              		.section	.text._write,"ax",%progbits
+ 280              		.align	2
+ 281              		.global	_write
+ 282              		.thumb
+ 283              		.thumb_func
+ 284              		.type	_write, %function
+ 285              	_write:
+ 286              	.LFB66:
+ 224:.\main.c      **** 
+ 225:.\main.c      **** 
+ 226:.\main.c      **** #if 0
+ 227:.\main.c      **** int rread(void)
+ 228:.\main.c      **** {
+ 229:.\main.c      ****     SC0_SetDriveMode(PIN_DM_STRONG);
+ 230:.\main.c      ****     SC0_Write(1);
+ 231:.\main.c      ****     CyDelayUs(10);
+ 232:.\main.c      ****     SC0_SetDriveMode(PIN_DM_DIG_HIZ);
+ 233:.\main.c      ****     Timer_1_Start();
+ 234:.\main.c      ****     uint16_t start = Timer_1_ReadCounter();
+ 235:.\main.c      ****     uint16_t end = 0;
+ 236:.\main.c      ****     while(!(Timer_1_ReadStatusRegister() & Timer_1_STATUS_TC)) {
+ 237:.\main.c      ****         if(SC0_Read() == 0 && end == 0) {
+ 238:.\main.c      ****             end = Timer_1_ReadCounter();
+ 239:.\main.c      ****         }
+ 240:.\main.c      ****     }
+ 241:.\main.c      ****     Timer_1_Stop();
+ 242:.\main.c      ****     
+ 243:.\main.c      ****     return (start - end);
+ 244:.\main.c      **** }
+ 245:.\main.c      **** #endif
+ 246:.\main.c      **** 
+ 247:.\main.c      **** int _write(int file, char *ptr, int len)
+ 248:.\main.c      **** {
+ 287              		.loc 1 248 0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              	.LVL49:
+ 292 0000 70B5     		push	{r4, r5, r6, lr}
+ 293              		.cfi_def_cfa_offset 16
+ 294              		.cfi_offset 4, -16
+ 295              		.cfi_offset 5, -12
+ 296              		.cfi_offset 6, -8
+ 297              		.cfi_offset 14, -4
+ 298 0002 1646     		mov	r6, r2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 11
+
+
+ 299              	.LVL50:
+ 249:.\main.c      ****     (void) file;
+ 250:.\main.c      **** 	int n;
+ 251:.\main.c      **** 	for(n = 0; n < len; n++) {
+ 300              		.loc 1 251 0
+ 301 0004 0024     		movs	r4, #0
+ 302 0006 05E0     		b	.L12
+ 303              	.LVL51:
+ 304              	.L13:
+ 252:.\main.c      **** 		UART_PutChar(*ptr++);
+ 305              		.loc 1 252 0 discriminator 3
+ 306 0008 4D1C     		adds	r5, r1, #1
+ 307              	.LVL52:
+ 308 000a 0878     		ldrb	r0, [r1]	@ zero_extendqisi2
+ 309 000c FFF7FEFF 		bl	UART_PutChar
+ 310              	.LVL53:
+ 251:.\main.c      **** 		UART_PutChar(*ptr++);
+ 311              		.loc 1 251 0 discriminator 3
+ 312 0010 0134     		adds	r4, r4, #1
+ 313              	.LVL54:
+ 314              		.loc 1 252 0 discriminator 3
+ 315 0012 2946     		mov	r1, r5
+ 316              	.LVL55:
+ 317              	.L12:
+ 251:.\main.c      **** 		UART_PutChar(*ptr++);
+ 318              		.loc 1 251 0 discriminator 1
+ 319 0014 B442     		cmp	r4, r6
+ 320 0016 F7DB     		blt	.L13
+ 253:.\main.c      **** 	}
+ 254:.\main.c      **** 	return len;
+ 255:.\main.c      **** }
+ 321              		.loc 1 255 0
+ 322 0018 3046     		mov	r0, r6
+ 323 001a 70BD     		pop	{r4, r5, r6, pc}
+ 324              		.cfi_endproc
+ 325              	.LFE66:
+ 326              		.size	_write, .-_write
+ 327              		.comm	digital_sensor_value,8,4
+ 328              		.comm	sensors,8,4
+ 329              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 330              		.align	2
+ 331              	.LC0:
+ 332 0000 53746172 		.ascii	"Start\015\000"
+ 332      740D00
+ 333 0007 00       		.space	1
+ 334              	.LC1:
+ 335 0008 25640D0A 		.ascii	"%d\015\012\000"
+ 335      00
+ 336 000d 000000   		.space	3
+ 337              	.LC2:
+ 338 0010 25642025 		.ascii	"%d %d %d \015\012\000"
+ 338      64202564 
+ 338      200D0A00 
+ 339              	.LC3:
+ 340 001c 25640D0A 		.ascii	"%d\015\012\012\000"
+ 340      0A00
+ 341 0022 0000     		.text
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 12
+
+
+ 342              	.Letext0:
+ 343              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 344              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 345              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 346              		.file 5 ".\\Reflectance.h"
+ 347              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 348              		.file 7 "Generated_Source\\PSoC5/UART.h"
+ 349              		.file 8 "Generated_Source\\PSoC5/I2C.h"
+ 350              		.file 9 "Generated_Source\\PSoC5/GyroTimer.h"
+ 351              		.file 10 ".\\I2C_made.h"
+ 352              		.file 11 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9
+ 353              		.file 12 "Generated_Source\\PSoC5/CyLib.h"
+ 354              		.file 13 "<built-in>"
+ 355              		.section	.debug_info,"",%progbits
+ 356              	.Ldebug_info0:
+ 357 0000 0E060000 		.4byte	0x60e
+ 358 0004 0400     		.2byte	0x4
+ 359 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 360 000a 04       		.byte	0x4
+ 361 000b 01       		.uleb128 0x1
+ 362 000c BA010000 		.4byte	.LASF51
+ 363 0010 01       		.byte	0x1
+ 364 0011 B5000000 		.4byte	.LASF52
+ 365 0015 BA020000 		.4byte	.LASF53
+ 366 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 367 001d 00000000 		.4byte	0
+ 368 0021 00000000 		.4byte	.Ldebug_line0
+ 369 0025 02       		.uleb128 0x2
+ 370 0026 01       		.byte	0x1
+ 371 0027 06       		.byte	0x6
+ 372 0028 2B010000 		.4byte	.LASF0
+ 373 002c 02       		.uleb128 0x2
+ 374 002d 01       		.byte	0x1
+ 375 002e 08       		.byte	0x8
+ 376 002f 16010000 		.4byte	.LASF1
+ 377 0033 02       		.uleb128 0x2
+ 378 0034 02       		.byte	0x2
+ 379 0035 05       		.byte	0x5
+ 380 0036 55000000 		.4byte	.LASF2
+ 381 003a 03       		.uleb128 0x3
+ 382 003b 92000000 		.4byte	.LASF4
+ 383 003f 02       		.byte	0x2
+ 384 0040 2B       		.byte	0x2b
+ 385 0041 45000000 		.4byte	0x45
+ 386 0045 02       		.uleb128 0x2
+ 387 0046 02       		.byte	0x2
+ 388 0047 07       		.byte	0x7
+ 389 0048 7F010000 		.4byte	.LASF3
+ 390 004c 03       		.uleb128 0x3
+ 391 004d 02030000 		.4byte	.LASF5
+ 392 0051 02       		.byte	0x2
+ 393 0052 3F       		.byte	0x3f
+ 394 0053 57000000 		.4byte	0x57
+ 395 0057 02       		.uleb128 0x2
+ 396 0058 04       		.byte	0x4
+ 397 0059 05       		.byte	0x5
+ 398 005a 04010000 		.4byte	.LASF6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 13
+
+
+ 399 005e 02       		.uleb128 0x2
+ 400 005f 04       		.byte	0x4
+ 401 0060 07       		.byte	0x7
+ 402 0061 A1020000 		.4byte	.LASF7
+ 403 0065 02       		.uleb128 0x2
+ 404 0066 08       		.byte	0x8
+ 405 0067 05       		.byte	0x5
+ 406 0068 DF000000 		.4byte	.LASF8
+ 407 006c 02       		.uleb128 0x2
+ 408 006d 08       		.byte	0x8
+ 409 006e 07       		.byte	0x7
+ 410 006f 37010000 		.4byte	.LASF9
+ 411 0073 04       		.uleb128 0x4
+ 412 0074 04       		.byte	0x4
+ 413 0075 05       		.byte	0x5
+ 414 0076 696E7400 		.ascii	"int\000"
+ 415 007a 02       		.uleb128 0x2
+ 416 007b 04       		.byte	0x4
+ 417 007c 07       		.byte	0x7
+ 418 007d 4E010000 		.4byte	.LASF10
+ 419 0081 03       		.uleb128 0x3
+ 420 0082 5B010000 		.4byte	.LASF11
+ 421 0086 03       		.byte	0x3
+ 422 0087 21       		.byte	0x21
+ 423 0088 3A000000 		.4byte	0x3a
+ 424 008c 03       		.uleb128 0x3
+ 425 008d 5A020000 		.4byte	.LASF12
+ 426 0091 03       		.byte	0x3
+ 427 0092 2C       		.byte	0x2c
+ 428 0093 4C000000 		.4byte	0x4c
+ 429 0097 05       		.uleb128 0x5
+ 430 0098 C4000000 		.4byte	.LASF13
+ 431 009c 04       		.byte	0x4
+ 432 009d 3801     		.2byte	0x138
+ 433 009f 2C000000 		.4byte	0x2c
+ 434 00a3 05       		.uleb128 0x5
+ 435 00a4 AE000000 		.4byte	.LASF14
+ 436 00a8 04       		.byte	0x4
+ 437 00a9 3901     		.2byte	0x139
+ 438 00ab 45000000 		.4byte	0x45
+ 439 00af 05       		.uleb128 0x5
+ 440 00b0 9A020000 		.4byte	.LASF15
+ 441 00b4 04       		.byte	0x4
+ 442 00b5 3A01     		.2byte	0x13a
+ 443 00b7 5E000000 		.4byte	0x5e
+ 444 00bb 05       		.uleb128 0x5
+ 445 00bc BE000000 		.4byte	.LASF16
+ 446 00c0 04       		.byte	0x4
+ 447 00c1 3C01     		.2byte	0x13c
+ 448 00c3 33000000 		.4byte	0x33
+ 449 00c7 02       		.uleb128 0x2
+ 450 00c8 04       		.byte	0x4
+ 451 00c9 04       		.byte	0x4
+ 452 00ca D9000000 		.4byte	.LASF17
+ 453 00ce 02       		.uleb128 0x2
+ 454 00cf 08       		.byte	0x8
+ 455 00d0 04       		.byte	0x4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 14
+
+
+ 456 00d1 B3020000 		.4byte	.LASF18
+ 457 00d5 02       		.uleb128 0x2
+ 458 00d6 01       		.byte	0x1
+ 459 00d7 08       		.byte	0x8
+ 460 00d8 FF000000 		.4byte	.LASF19
+ 461 00dc 02       		.uleb128 0x2
+ 462 00dd 04       		.byte	0x4
+ 463 00de 07       		.byte	0x7
+ 464 00df 5F000000 		.4byte	.LASF20
+ 465 00e3 06       		.uleb128 0x6
+ 466 00e4 04       		.byte	0x4
+ 467 00e5 D5000000 		.4byte	0xd5
+ 468 00e9 06       		.uleb128 0x6
+ 469 00ea 04       		.byte	0x4
+ 470 00eb EF000000 		.4byte	0xef
+ 471 00ef 07       		.uleb128 0x7
+ 472 00f0 D5000000 		.4byte	0xd5
+ 473 00f4 08       		.uleb128 0x8
+ 474 00f5 91020000 		.4byte	.LASF21
+ 475 00f9 08       		.byte	0x8
+ 476 00fa 05       		.byte	0x5
+ 477 00fb 10       		.byte	0x10
+ 478 00fc 2D010000 		.4byte	0x12d
+ 479 0100 09       		.uleb128 0x9
+ 480 0101 6C6C00   		.ascii	"ll\000"
+ 481 0104 05       		.byte	0x5
+ 482 0105 11       		.byte	0x11
+ 483 0106 81000000 		.4byte	0x81
+ 484 010a 00       		.byte	0
+ 485 010b 09       		.uleb128 0x9
+ 486 010c 6C7200   		.ascii	"lr\000"
+ 487 010f 05       		.byte	0x5
+ 488 0110 13       		.byte	0x13
+ 489 0111 81000000 		.4byte	0x81
+ 490 0115 02       		.byte	0x2
+ 491 0116 09       		.uleb128 0x9
+ 492 0117 726C00   		.ascii	"rl\000"
+ 493 011a 05       		.byte	0x5
+ 494 011b 14       		.byte	0x14
+ 495 011c 81000000 		.4byte	0x81
+ 496 0120 04       		.byte	0x4
+ 497 0121 09       		.uleb128 0x9
+ 498 0122 727200   		.ascii	"rr\000"
+ 499 0125 05       		.byte	0x5
+ 500 0126 16       		.byte	0x16
+ 501 0127 81000000 		.4byte	0x81
+ 502 012b 06       		.byte	0x6
+ 503 012c 00       		.byte	0
+ 504 012d 08       		.uleb128 0x8
+ 505 012e 28000000 		.4byte	.LASF22
+ 506 0132 08       		.byte	0x8
+ 507 0133 05       		.byte	0x5
+ 508 0134 19       		.byte	0x19
+ 509 0135 66010000 		.4byte	0x166
+ 510 0139 09       		.uleb128 0x9
+ 511 013a 6C6C00   		.ascii	"ll\000"
+ 512 013d 05       		.byte	0x5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 15
+
+
+ 513 013e 1A       		.byte	0x1a
+ 514 013f 81000000 		.4byte	0x81
+ 515 0143 00       		.byte	0
+ 516 0144 09       		.uleb128 0x9
+ 517 0145 6C7200   		.ascii	"lr\000"
+ 518 0148 05       		.byte	0x5
+ 519 0149 1C       		.byte	0x1c
+ 520 014a 81000000 		.4byte	0x81
+ 521 014e 02       		.byte	0x2
+ 522 014f 09       		.uleb128 0x9
+ 523 0150 726C00   		.ascii	"rl\000"
+ 524 0153 05       		.byte	0x5
+ 525 0154 1D       		.byte	0x1d
+ 526 0155 81000000 		.4byte	0x81
+ 527 0159 04       		.byte	0x4
+ 528 015a 09       		.uleb128 0x9
+ 529 015b 727200   		.ascii	"rr\000"
+ 530 015e 05       		.byte	0x5
+ 531 015f 1F       		.byte	0x1f
+ 532 0160 81000000 		.4byte	0x81
+ 533 0164 06       		.byte	0x6
+ 534 0165 00       		.byte	0
+ 535 0166 0A       		.uleb128 0xa
+ 536 0167 92010000 		.4byte	.LASF26
+ 537 016b 01       		.byte	0x1
+ 538 016c CB       		.byte	0xcb
+ 539 016d A3000000 		.4byte	0xa3
+ 540 0171 00000000 		.4byte	.LFB64
+ 541 0175 44000000 		.4byte	.LFE64-.LFB64
+ 542 0179 01       		.uleb128 0x1
+ 543 017a 9C       		.byte	0x9c
+ 544 017b BD010000 		.4byte	0x1bd
+ 545 017f 0B       		.uleb128 0xb
+ 546 0180 72617700 		.ascii	"raw\000"
+ 547 0184 01       		.byte	0x1
+ 548 0185 CB       		.byte	0xcb
+ 549 0186 A3000000 		.4byte	0xa3
+ 550 018a 00000000 		.4byte	.LLST0
+ 551 018e 0C       		.uleb128 0xc
+ 552 018f A2000000 		.4byte	.LASF23
+ 553 0193 01       		.byte	0x1
+ 554 0194 CD       		.byte	0xcd
+ 555 0195 C7000000 		.4byte	0xc7
+ 556 0199 21000000 		.4byte	.LLST1
+ 557 019d 0C       		.uleb128 0xc
+ 558 019e 62020000 		.4byte	.LASF24
+ 559 01a2 01       		.byte	0x1
+ 560 01a3 CE       		.byte	0xce
+ 561 01a4 C7000000 		.4byte	0xc7
+ 562 01a8 34000000 		.4byte	.LLST2
+ 563 01ac 0D       		.uleb128 0xd
+ 564 01ad FB020000 		.4byte	.LASF25
+ 565 01b1 01       		.byte	0x1
+ 566 01b2 CF       		.byte	0xcf
+ 567 01b3 C7000000 		.4byte	0xc7
+ 568 01b7 04       		.byte	0x4
+ 569 01b8 295C8F3D 		.4byte	0x3d8f5c29
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 16
+
+
+ 570 01bc 00       		.byte	0
+ 571 01bd 0E       		.uleb128 0xe
+ 572 01be 86000000 		.4byte	.LASF27
+ 573 01c2 01       		.byte	0x1
+ 574 01c3 D9       		.byte	0xd9
+ 575 01c4 A3000000 		.4byte	0xa3
+ 576 01c8 00000000 		.4byte	.LFB65
+ 577 01cc 06000000 		.4byte	.LFE65-.LFB65
+ 578 01d0 01       		.uleb128 0x1
+ 579 01d1 9C       		.byte	0x9c
+ 580 01d2 FE010000 		.4byte	0x1fe
+ 581 01d6 0B       		.uleb128 0xb
+ 582 01d7 4C00     		.ascii	"L\000"
+ 583 01d9 01       		.byte	0x1
+ 584 01da D9       		.byte	0xd9
+ 585 01db 97000000 		.4byte	0x97
+ 586 01df 47000000 		.4byte	.LLST3
+ 587 01e3 0F       		.uleb128 0xf
+ 588 01e4 4800     		.ascii	"H\000"
+ 589 01e6 01       		.byte	0x1
+ 590 01e7 D9       		.byte	0xd9
+ 591 01e8 97000000 		.4byte	0x97
+ 592 01ec 01       		.uleb128 0x1
+ 593 01ed 51       		.byte	0x51
+ 594 01ee 10       		.uleb128 0x10
+ 595 01ef 72617700 		.ascii	"raw\000"
+ 596 01f3 01       		.byte	0x1
+ 597 01f4 DB       		.byte	0xdb
+ 598 01f5 A3000000 		.4byte	0xa3
+ 599 01f9 68000000 		.4byte	.LLST4
+ 600 01fd 00       		.byte	0
+ 601 01fe 11       		.uleb128 0x11
+ 602 01ff 7A000000 		.4byte	.LASF54
+ 603 0203 01       		.byte	0x1
+ 604 0204 18       		.byte	0x18
+ 605 0205 73000000 		.4byte	0x73
+ 606 0209 00000000 		.4byte	.LFB63
+ 607 020d E4000000 		.4byte	.LFE63-.LFB63
+ 608 0211 01       		.uleb128 0x1
+ 609 0212 9C       		.byte	0x9c
+ 610 0213 BD040000 		.4byte	0x4bd
+ 611 0217 0C       		.uleb128 0xc
+ 612 0218 F6000000 		.4byte	.LASF28
+ 613 021c 01       		.byte	0x1
+ 614 021d 23       		.byte	0x23
+ 615 021e 97000000 		.4byte	0x97
+ 616 0222 82000000 		.4byte	.LLST5
+ 617 0226 12       		.uleb128 0x12
+ 618 0227 ED000000 		.4byte	.LASF29
+ 619 022b 01       		.byte	0x1
+ 620 022c 23       		.byte	0x23
+ 621 022d 97000000 		.4byte	0x97
+ 622 0231 01       		.uleb128 0x1
+ 623 0232 59       		.byte	0x59
+ 624 0233 0C       		.uleb128 0xc
+ 625 0234 88020000 		.4byte	.LASF30
+ 626 0238 01       		.byte	0x1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 17
+
+
+ 627 0239 23       		.byte	0x23
+ 628 023a 97000000 		.4byte	0x97
+ 629 023e 95000000 		.4byte	.LLST6
+ 630 0242 12       		.uleb128 0x12
+ 631 0243 6F020000 		.4byte	.LASF31
+ 632 0247 01       		.byte	0x1
+ 633 0248 23       		.byte	0x23
+ 634 0249 97000000 		.4byte	0x97
+ 635 024d 01       		.uleb128 0x1
+ 636 024e 58       		.byte	0x58
+ 637 024f 0C       		.uleb128 0xc
+ 638 0250 1F000000 		.4byte	.LASF32
+ 639 0254 01       		.byte	0x1
+ 640 0255 23       		.byte	0x23
+ 641 0256 97000000 		.4byte	0x97
+ 642 025a A8000000 		.4byte	.LLST7
+ 643 025e 12       		.uleb128 0x12
+ 644 025f 07000000 		.4byte	.LASF33
+ 645 0263 01       		.byte	0x1
+ 646 0264 23       		.byte	0x23
+ 647 0265 97000000 		.4byte	0x97
+ 648 0269 01       		.uleb128 0x1
+ 649 026a 57       		.byte	0x57
+ 650 026b 0C       		.uleb128 0xc
+ 651 026c 2B030000 		.4byte	.LASF34
+ 652 0270 01       		.byte	0x1
+ 653 0271 24       		.byte	0x24
+ 654 0272 BB000000 		.4byte	0xbb
+ 655 0276 BB000000 		.4byte	.LLST8
+ 656 027a 0C       		.uleb128 0xc
+ 657 027b 24010000 		.4byte	.LASF35
+ 658 027f 01       		.byte	0x1
+ 659 0280 24       		.byte	0x24
+ 660 0281 BB000000 		.4byte	0xbb
+ 661 0285 CE000000 		.4byte	.LLST9
+ 662 0289 12       		.uleb128 0x12
+ 663 028a 00000000 		.4byte	.LASF36
+ 664 028e 01       		.byte	0x1
+ 665 028f 24       		.byte	0x24
+ 666 0290 BB000000 		.4byte	0xbb
+ 667 0294 01       		.uleb128 0x1
+ 668 0295 56       		.byte	0x56
+ 669 0296 13       		.uleb128 0x13
+ 670 0297 0A000000 		.4byte	.LVL12
+ 671 029b 57050000 		.4byte	0x557
+ 672 029f 14       		.uleb128 0x14
+ 673 02a0 10000000 		.4byte	.LVL13
+ 674 02a4 5E050000 		.4byte	0x55e
+ 675 02a8 B6020000 		.4byte	0x2b6
+ 676 02ac 15       		.uleb128 0x15
+ 677 02ad 01       		.uleb128 0x1
+ 678 02ae 50       		.byte	0x50
+ 679 02af 05       		.uleb128 0x5
+ 680 02b0 03       		.byte	0x3
+ 681 02b1 00000000 		.4byte	.LC0
+ 682 02b5 00       		.byte	0
+ 683 02b6 13       		.uleb128 0x13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 18
+
+
+ 684 02b7 14000000 		.4byte	.LVL14
+ 685 02bb 77050000 		.4byte	0x577
+ 686 02bf 14       		.uleb128 0x14
+ 687 02c0 1E000000 		.4byte	.LVL15
+ 688 02c4 7E050000 		.4byte	0x57e
+ 689 02c8 DE020000 		.4byte	0x2de
+ 690 02cc 15       		.uleb128 0x15
+ 691 02cd 01       		.uleb128 0x1
+ 692 02ce 52       		.byte	0x52
+ 693 02cf 01       		.uleb128 0x1
+ 694 02d0 3F       		.byte	0x3f
+ 695 02d1 15       		.uleb128 0x15
+ 696 02d2 01       		.uleb128 0x1
+ 697 02d3 51       		.byte	0x51
+ 698 02d4 02       		.uleb128 0x2
+ 699 02d5 08       		.byte	0x8
+ 700 02d6 20       		.byte	0x20
+ 701 02d7 15       		.uleb128 0x15
+ 702 02d8 01       		.uleb128 0x1
+ 703 02d9 50       		.byte	0x50
+ 704 02da 02       		.uleb128 0x2
+ 705 02db 08       		.byte	0x8
+ 706 02dc 6B       		.byte	0x6b
+ 707 02dd 00       		.byte	0
+ 708 02de 14       		.uleb128 0x14
+ 709 02df 28000000 		.4byte	.LVL16
+ 710 02e3 7E050000 		.4byte	0x57e
+ 711 02e7 FE020000 		.4byte	0x2fe
+ 712 02eb 15       		.uleb128 0x15
+ 713 02ec 01       		.uleb128 0x1
+ 714 02ed 52       		.byte	0x52
+ 715 02ee 02       		.uleb128 0x2
+ 716 02ef 08       		.byte	0x8
+ 717 02f0 30       		.byte	0x30
+ 718 02f1 15       		.uleb128 0x15
+ 719 02f2 01       		.uleb128 0x1
+ 720 02f3 51       		.byte	0x51
+ 721 02f4 02       		.uleb128 0x2
+ 722 02f5 08       		.byte	0x8
+ 723 02f6 23       		.byte	0x23
+ 724 02f7 15       		.uleb128 0x15
+ 725 02f8 01       		.uleb128 0x1
+ 726 02f9 50       		.byte	0x50
+ 727 02fa 02       		.uleb128 0x2
+ 728 02fb 08       		.byte	0x8
+ 729 02fc 6B       		.byte	0x6b
+ 730 02fd 00       		.byte	0
+ 731 02fe 13       		.uleb128 0x13
+ 732 02ff 2C000000 		.4byte	.LVL17
+ 733 0303 99050000 		.4byte	0x599
+ 734 0307 14       		.uleb128 0x14
+ 735 0308 34000000 		.4byte	.LVL18
+ 736 030c A0050000 		.4byte	0x5a0
+ 737 0310 21030000 		.4byte	0x321
+ 738 0314 15       		.uleb128 0x15
+ 739 0315 01       		.uleb128 0x1
+ 740 0316 51       		.byte	0x51
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 19
+
+
+ 741 0317 02       		.uleb128 0x2
+ 742 0318 08       		.byte	0x8
+ 743 0319 28       		.byte	0x28
+ 744 031a 15       		.uleb128 0x15
+ 745 031b 01       		.uleb128 0x1
+ 746 031c 50       		.byte	0x50
+ 747 031d 02       		.uleb128 0x2
+ 748 031e 08       		.byte	0x8
+ 749 031f 6B       		.byte	0x6b
+ 750 0320 00       		.byte	0
+ 751 0321 14       		.uleb128 0x14
+ 752 0322 3E000000 		.4byte	.LVL20
+ 753 0326 A0050000 		.4byte	0x5a0
+ 754 032a 3B030000 		.4byte	0x33b
+ 755 032e 15       		.uleb128 0x15
+ 756 032f 01       		.uleb128 0x1
+ 757 0330 51       		.byte	0x51
+ 758 0331 02       		.uleb128 0x2
+ 759 0332 08       		.byte	0x8
+ 760 0333 29       		.byte	0x29
+ 761 0334 15       		.uleb128 0x15
+ 762 0335 01       		.uleb128 0x1
+ 763 0336 50       		.byte	0x50
+ 764 0337 02       		.uleb128 0x2
+ 765 0338 08       		.byte	0x8
+ 766 0339 6B       		.byte	0x6b
+ 767 033a 00       		.byte	0
+ 768 033b 14       		.uleb128 0x14
+ 769 033c 48000000 		.4byte	.LVL22
+ 770 0340 A0050000 		.4byte	0x5a0
+ 771 0344 55030000 		.4byte	0x355
+ 772 0348 15       		.uleb128 0x15
+ 773 0349 01       		.uleb128 0x1
+ 774 034a 51       		.byte	0x51
+ 775 034b 02       		.uleb128 0x2
+ 776 034c 08       		.byte	0x8
+ 777 034d 2A       		.byte	0x2a
+ 778 034e 15       		.uleb128 0x15
+ 779 034f 01       		.uleb128 0x1
+ 780 0350 50       		.byte	0x50
+ 781 0351 02       		.uleb128 0x2
+ 782 0352 08       		.byte	0x8
+ 783 0353 6B       		.byte	0x6b
+ 784 0354 00       		.byte	0
+ 785 0355 14       		.uleb128 0x14
+ 786 0356 52000000 		.4byte	.LVL24
+ 787 035a A0050000 		.4byte	0x5a0
+ 788 035e 6F030000 		.4byte	0x36f
+ 789 0362 15       		.uleb128 0x15
+ 790 0363 01       		.uleb128 0x1
+ 791 0364 51       		.byte	0x51
+ 792 0365 02       		.uleb128 0x2
+ 793 0366 08       		.byte	0x8
+ 794 0367 2B       		.byte	0x2b
+ 795 0368 15       		.uleb128 0x15
+ 796 0369 01       		.uleb128 0x1
+ 797 036a 50       		.byte	0x50
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 20
+
+
+ 798 036b 02       		.uleb128 0x2
+ 799 036c 08       		.byte	0x8
+ 800 036d 6B       		.byte	0x6b
+ 801 036e 00       		.byte	0
+ 802 036f 14       		.uleb128 0x14
+ 803 0370 5C000000 		.4byte	.LVL26
+ 804 0374 A0050000 		.4byte	0x5a0
+ 805 0378 89030000 		.4byte	0x389
+ 806 037c 15       		.uleb128 0x15
+ 807 037d 01       		.uleb128 0x1
+ 808 037e 51       		.byte	0x51
+ 809 037f 02       		.uleb128 0x2
+ 810 0380 08       		.byte	0x8
+ 811 0381 2C       		.byte	0x2c
+ 812 0382 15       		.uleb128 0x15
+ 813 0383 01       		.uleb128 0x1
+ 814 0384 50       		.byte	0x50
+ 815 0385 02       		.uleb128 0x2
+ 816 0386 08       		.byte	0x8
+ 817 0387 6B       		.byte	0x6b
+ 818 0388 00       		.byte	0
+ 819 0389 14       		.uleb128 0x14
+ 820 038a 66000000 		.4byte	.LVL28
+ 821 038e A0050000 		.4byte	0x5a0
+ 822 0392 A3030000 		.4byte	0x3a3
+ 823 0396 15       		.uleb128 0x15
+ 824 0397 01       		.uleb128 0x1
+ 825 0398 51       		.byte	0x51
+ 826 0399 02       		.uleb128 0x2
+ 827 039a 08       		.byte	0x8
+ 828 039b 2D       		.byte	0x2d
+ 829 039c 15       		.uleb128 0x15
+ 830 039d 01       		.uleb128 0x1
+ 831 039e 50       		.byte	0x50
+ 832 039f 02       		.uleb128 0x2
+ 833 03a0 08       		.byte	0x8
+ 834 03a1 6B       		.byte	0x6b
+ 835 03a2 00       		.byte	0
+ 836 03a3 13       		.uleb128 0x13
+ 837 03a4 6C000000 		.4byte	.LVL30
+ 838 03a8 BA050000 		.4byte	0x5ba
+ 839 03ac 14       		.uleb128 0x14
+ 840 03ad 74000000 		.4byte	.LVL31
+ 841 03b1 C5050000 		.4byte	0x5c5
+ 842 03b5 C3030000 		.4byte	0x3c3
+ 843 03b9 15       		.uleb128 0x15
+ 844 03ba 01       		.uleb128 0x1
+ 845 03bb 50       		.byte	0x50
+ 846 03bc 05       		.uleb128 0x5
+ 847 03bd 03       		.byte	0x3
+ 848 03be 08000000 		.4byte	.LC1
+ 849 03c2 00       		.byte	0
+ 850 03c3 14       		.uleb128 0x14
+ 851 03c4 7C000000 		.4byte	.LVL32
+ 852 03c8 BD010000 		.4byte	0x1bd
+ 853 03cc DD030000 		.4byte	0x3dd
+ 854 03d0 15       		.uleb128 0x15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 21
+
+
+ 855 03d1 01       		.uleb128 0x1
+ 856 03d2 51       		.byte	0x51
+ 857 03d3 02       		.uleb128 0x2
+ 858 03d4 75       		.byte	0x75
+ 859 03d5 00       		.sleb128 0
+ 860 03d6 15       		.uleb128 0x15
+ 861 03d7 01       		.uleb128 0x1
+ 862 03d8 50       		.byte	0x50
+ 863 03d9 02       		.uleb128 0x2
+ 864 03da 79       		.byte	0x79
+ 865 03db 00       		.sleb128 0
+ 866 03dc 00       		.byte	0
+ 867 03dd 14       		.uleb128 0x14
+ 868 03de 86000000 		.4byte	.LVL34
+ 869 03e2 BD010000 		.4byte	0x1bd
+ 870 03e6 F7030000 		.4byte	0x3f7
+ 871 03ea 15       		.uleb128 0x15
+ 872 03eb 01       		.uleb128 0x1
+ 873 03ec 51       		.byte	0x51
+ 874 03ed 02       		.uleb128 0x2
+ 875 03ee 74       		.byte	0x74
+ 876 03ef 00       		.sleb128 0
+ 877 03f0 15       		.uleb128 0x15
+ 878 03f1 01       		.uleb128 0x1
+ 879 03f2 50       		.byte	0x50
+ 880 03f3 02       		.uleb128 0x2
+ 881 03f4 78       		.byte	0x78
+ 882 03f5 00       		.sleb128 0
+ 883 03f6 00       		.byte	0
+ 884 03f7 14       		.uleb128 0x14
+ 885 03f8 90000000 		.4byte	.LVL36
+ 886 03fc BD010000 		.4byte	0x1bd
+ 887 0400 11040000 		.4byte	0x411
+ 888 0404 15       		.uleb128 0x15
+ 889 0405 01       		.uleb128 0x1
+ 890 0406 51       		.byte	0x51
+ 891 0407 02       		.uleb128 0x2
+ 892 0408 76       		.byte	0x76
+ 893 0409 00       		.sleb128 0
+ 894 040a 15       		.uleb128 0x15
+ 895 040b 01       		.uleb128 0x1
+ 896 040c 50       		.byte	0x50
+ 897 040d 02       		.uleb128 0x2
+ 898 040e 77       		.byte	0x77
+ 899 040f 00       		.sleb128 0
+ 900 0410 00       		.byte	0
+ 901 0411 14       		.uleb128 0x14
+ 902 0412 98000000 		.4byte	.LVL38
+ 903 0416 66010000 		.4byte	0x166
+ 904 041a 25040000 		.4byte	0x425
+ 905 041e 15       		.uleb128 0x15
+ 906 041f 01       		.uleb128 0x1
+ 907 0420 50       		.byte	0x50
+ 908 0421 02       		.uleb128 0x2
+ 909 0422 75       		.byte	0x75
+ 910 0423 00       		.sleb128 0
+ 911 0424 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 22
+
+
+ 912 0425 14       		.uleb128 0x14
+ 913 0426 A0000000 		.4byte	.LVL40
+ 914 042a 66010000 		.4byte	0x166
+ 915 042e 39040000 		.4byte	0x439
+ 916 0432 15       		.uleb128 0x15
+ 917 0433 01       		.uleb128 0x1
+ 918 0434 50       		.byte	0x50
+ 919 0435 02       		.uleb128 0x2
+ 920 0436 74       		.byte	0x74
+ 921 0437 00       		.sleb128 0
+ 922 0438 00       		.byte	0
+ 923 0439 14       		.uleb128 0x14
+ 924 043a A8000000 		.4byte	.LVL42
+ 925 043e 66010000 		.4byte	0x166
+ 926 0442 4D040000 		.4byte	0x44d
+ 927 0446 15       		.uleb128 0x15
+ 928 0447 01       		.uleb128 0x1
+ 929 0448 50       		.byte	0x50
+ 930 0449 02       		.uleb128 0x2
+ 931 044a 76       		.byte	0x76
+ 932 044b 00       		.sleb128 0
+ 933 044c 00       		.byte	0
+ 934 044d 14       		.uleb128 0x14
+ 935 044e B4000000 		.4byte	.LVL43
+ 936 0452 C5050000 		.4byte	0x5c5
+ 937 0456 70040000 		.4byte	0x470
+ 938 045a 15       		.uleb128 0x15
+ 939 045b 01       		.uleb128 0x1
+ 940 045c 52       		.byte	0x52
+ 941 045d 02       		.uleb128 0x2
+ 942 045e 74       		.byte	0x74
+ 943 045f 00       		.sleb128 0
+ 944 0460 15       		.uleb128 0x15
+ 945 0461 01       		.uleb128 0x1
+ 946 0462 51       		.byte	0x51
+ 947 0463 02       		.uleb128 0x2
+ 948 0464 75       		.byte	0x75
+ 949 0465 00       		.sleb128 0
+ 950 0466 15       		.uleb128 0x15
+ 951 0467 01       		.uleb128 0x1
+ 952 0468 50       		.byte	0x50
+ 953 0469 05       		.uleb128 0x5
+ 954 046a 03       		.byte	0x3
+ 955 046b 10000000 		.4byte	.LC2
+ 956 046f 00       		.byte	0
+ 957 0470 13       		.uleb128 0x13
+ 958 0471 B8000000 		.4byte	.LVL44
+ 959 0475 BA050000 		.4byte	0x5ba
+ 960 0479 14       		.uleb128 0x14
+ 961 047a C0000000 		.4byte	.LVL45
+ 962 047e C5050000 		.4byte	0x5c5
+ 963 0482 90040000 		.4byte	0x490
+ 964 0486 15       		.uleb128 0x15
+ 965 0487 01       		.uleb128 0x1
+ 966 0488 50       		.byte	0x50
+ 967 0489 05       		.uleb128 0x5
+ 968 048a 03       		.byte	0x3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 23
+
+
+ 969 048b 1C000000 		.4byte	.LC3
+ 970 048f 00       		.byte	0
+ 971 0490 14       		.uleb128 0x14
+ 972 0491 C6000000 		.4byte	.LVL46
+ 973 0495 DB050000 		.4byte	0x5db
+ 974 0499 A3040000 		.4byte	0x4a3
+ 975 049d 15       		.uleb128 0x15
+ 976 049e 01       		.uleb128 0x1
+ 977 049f 50       		.byte	0x50
+ 978 04a0 01       		.uleb128 0x1
+ 979 04a1 44       		.byte	0x44
+ 980 04a2 00       		.byte	0
+ 981 04a3 13       		.uleb128 0x13
+ 982 04a4 CA000000 		.4byte	.LVL47
+ 983 04a8 EC050000 		.4byte	0x5ec
+ 984 04ac 16       		.uleb128 0x16
+ 985 04ad D2000000 		.4byte	.LVL48
+ 986 04b1 F3050000 		.4byte	0x5f3
+ 987 04b5 15       		.uleb128 0x15
+ 988 04b6 01       		.uleb128 0x1
+ 989 04b7 50       		.byte	0x50
+ 990 04b8 02       		.uleb128 0x2
+ 991 04b9 09       		.byte	0x9
+ 992 04ba FF       		.byte	0xff
+ 993 04bb 00       		.byte	0
+ 994 04bc 00       		.byte	0
+ 995 04bd 0E       		.uleb128 0xe
+ 996 04be 7F000000 		.4byte	.LASF37
+ 997 04c2 01       		.byte	0x1
+ 998 04c3 F7       		.byte	0xf7
+ 999 04c4 73000000 		.4byte	0x73
+ 1000 04c8 00000000 		.4byte	.LFB66
+ 1001 04cc 1C000000 		.4byte	.LFE66-.LFB66
+ 1002 04d0 01       		.uleb128 0x1
+ 1003 04d1 9C       		.byte	0x9c
+ 1004 04d2 1A050000 		.4byte	0x51a
+ 1005 04d6 17       		.uleb128 0x17
+ 1006 04d7 9D000000 		.4byte	.LASF38
+ 1007 04db 01       		.byte	0x1
+ 1008 04dc F7       		.byte	0xf7
+ 1009 04dd 73000000 		.4byte	0x73
+ 1010 04e1 E1000000 		.4byte	.LLST10
+ 1011 04e5 0B       		.uleb128 0xb
+ 1012 04e6 70747200 		.ascii	"ptr\000"
+ 1013 04ea 01       		.byte	0x1
+ 1014 04eb F7       		.byte	0xf7
+ 1015 04ec E3000000 		.4byte	0xe3
+ 1016 04f0 02010000 		.4byte	.LLST11
+ 1017 04f4 0B       		.uleb128 0xb
+ 1018 04f5 6C656E00 		.ascii	"len\000"
+ 1019 04f9 01       		.byte	0x1
+ 1020 04fa F7       		.byte	0xf7
+ 1021 04fb 73000000 		.4byte	0x73
+ 1022 04ff 2B010000 		.4byte	.LLST12
+ 1023 0503 10       		.uleb128 0x10
+ 1024 0504 6E00     		.ascii	"n\000"
+ 1025 0506 01       		.byte	0x1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 24
+
+
+ 1026 0507 FA       		.byte	0xfa
+ 1027 0508 73000000 		.4byte	0x73
+ 1028 050c 49010000 		.4byte	.LLST13
+ 1029 0510 13       		.uleb128 0x13
+ 1030 0511 10000000 		.4byte	.LVL53
+ 1031 0515 04060000 		.4byte	0x604
+ 1032 0519 00       		.byte	0
+ 1033 051a 18       		.uleb128 0x18
+ 1034 051b 0C030000 		.4byte	.LASF39
+ 1035 051f 06       		.byte	0x6
+ 1036 0520 5506     		.2byte	0x655
+ 1037 0522 26050000 		.4byte	0x526
+ 1038 0526 19       		.uleb128 0x19
+ 1039 0527 8C000000 		.4byte	0x8c
+ 1040 052b 1A       		.uleb128 0x1a
+ 1041 052c 72000000 		.4byte	.LASF40
+ 1042 0530 05       		.byte	0x5
+ 1043 0531 17       		.byte	0x17
+ 1044 0532 3C050000 		.4byte	0x53c
+ 1045 0536 05       		.uleb128 0x5
+ 1046 0537 03       		.byte	0x3
+ 1047 0538 00000000 		.4byte	sensors
+ 1048 053c 19       		.uleb128 0x19
+ 1049 053d F4000000 		.4byte	0xf4
+ 1050 0541 1A       		.uleb128 0x1a
+ 1051 0542 A5010000 		.4byte	.LASF41
+ 1052 0546 05       		.byte	0x5
+ 1053 0547 20       		.byte	0x20
+ 1054 0548 52050000 		.4byte	0x552
+ 1055 054c 05       		.uleb128 0x5
+ 1056 054d 03       		.byte	0x3
+ 1057 054e 00000000 		.4byte	digital_sensor_value
+ 1058 0552 19       		.uleb128 0x19
+ 1059 0553 2D010000 		.4byte	0x12d
+ 1060 0557 1B       		.uleb128 0x1b
+ 1061 0558 4F020000 		.4byte	.LASF42
+ 1062 055c 07       		.byte	0x7
+ 1063 055d 54       		.byte	0x54
+ 1064 055e 1C       		.uleb128 0x1c
+ 1065 055f 10000000 		.4byte	.LASF55
+ 1066 0563 0D       		.byte	0xd
+ 1067 0564 00       		.byte	0
+ 1068 0565 7A010000 		.4byte	.LASF56
+ 1069 0569 73000000 		.4byte	0x73
+ 1070 056d 77050000 		.4byte	0x577
+ 1071 0571 1D       		.uleb128 0x1d
+ 1072 0572 E9000000 		.4byte	0xe9
+ 1073 0576 00       		.byte	0
+ 1074 0577 1B       		.uleb128 0x1b
+ 1075 0578 21030000 		.4byte	.LASF43
+ 1076 057c 08       		.byte	0x8
+ 1077 057d 93       		.byte	0x93
+ 1078 057e 1E       		.uleb128 0x1e
+ 1079 057f 68000000 		.4byte	.LASF47
+ 1080 0583 0A       		.byte	0xa
+ 1081 0584 15       		.byte	0x15
+ 1082 0585 99050000 		.4byte	0x599
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 25
+
+
+ 1083 0589 1D       		.uleb128 0x1d
+ 1084 058a 97000000 		.4byte	0x97
+ 1085 058e 1D       		.uleb128 0x1d
+ 1086 058f 97000000 		.4byte	0x97
+ 1087 0593 1D       		.uleb128 0x1d
+ 1088 0594 97000000 		.4byte	0x97
+ 1089 0598 00       		.byte	0
+ 1090 0599 1B       		.uleb128 0x1b
+ 1091 059a 78020000 		.4byte	.LASF44
+ 1092 059e 09       		.byte	0x9
+ 1093 059f 5A       		.byte	0x5a
+ 1094 05a0 1F       		.uleb128 0x1f
+ 1095 05a1 0D010000 		.4byte	.LASF45
+ 1096 05a5 0A       		.byte	0xa
+ 1097 05a6 14       		.byte	0x14
+ 1098 05a7 97000000 		.4byte	0x97
+ 1099 05ab BA050000 		.4byte	0x5ba
+ 1100 05af 1D       		.uleb128 0x1d
+ 1101 05b0 97000000 		.4byte	0x97
+ 1102 05b4 1D       		.uleb128 0x1d
+ 1103 05b5 97000000 		.4byte	0x97
+ 1104 05b9 00       		.byte	0
+ 1105 05ba 20       		.uleb128 0x20
+ 1106 05bb 64010000 		.4byte	.LASF57
+ 1107 05bf 09       		.byte	0x9
+ 1108 05c0 69       		.byte	0x69
+ 1109 05c1 A3000000 		.4byte	0xa3
+ 1110 05c5 1F       		.uleb128 0x1f
+ 1111 05c6 48020000 		.4byte	.LASF46
+ 1112 05ca 0B       		.byte	0xb
+ 1113 05cb B2       		.byte	0xb2
+ 1114 05cc 73000000 		.4byte	0x73
+ 1115 05d0 DB050000 		.4byte	0x5db
+ 1116 05d4 1D       		.uleb128 0x1d
+ 1117 05d5 E9000000 		.4byte	0xe9
+ 1118 05d9 21       		.uleb128 0x21
+ 1119 05da 00       		.byte	0
+ 1120 05db 1E       		.uleb128 0x1e
+ 1121 05dc 19030000 		.4byte	.LASF48
+ 1122 05e0 0C       		.byte	0xc
+ 1123 05e1 77       		.byte	0x77
+ 1124 05e2 EC050000 		.4byte	0x5ec
+ 1125 05e6 1D       		.uleb128 0x1d
+ 1126 05e7 AF000000 		.4byte	0xaf
+ 1127 05eb 00       		.byte	0
+ 1128 05ec 1B       		.uleb128 0x1b
+ 1129 05ed CA000000 		.4byte	.LASF49
+ 1130 05f1 09       		.byte	0x9
+ 1131 05f2 5B       		.byte	0x5b
+ 1132 05f3 1E       		.uleb128 0x1e
+ 1133 05f4 3E000000 		.4byte	.LASF50
+ 1134 05f8 09       		.byte	0x9
+ 1135 05f9 6A       		.byte	0x6a
+ 1136 05fa 04060000 		.4byte	0x604
+ 1137 05fe 1D       		.uleb128 0x1d
+ 1138 05ff A3000000 		.4byte	0xa3
+ 1139 0603 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 26
+
+
+ 1140 0604 22       		.uleb128 0x22
+ 1141 0605 32030000 		.4byte	.LASF58
+ 1142 0609 07       		.byte	0x7
+ 1143 060a 8A       		.byte	0x8a
+ 1144 060b 1D       		.uleb128 0x1d
+ 1145 060c 97000000 		.4byte	0x97
+ 1146 0610 00       		.byte	0
+ 1147 0611 00       		.byte	0
+ 1148              		.section	.debug_abbrev,"",%progbits
+ 1149              	.Ldebug_abbrev0:
+ 1150 0000 01       		.uleb128 0x1
+ 1151 0001 11       		.uleb128 0x11
+ 1152 0002 01       		.byte	0x1
+ 1153 0003 25       		.uleb128 0x25
+ 1154 0004 0E       		.uleb128 0xe
+ 1155 0005 13       		.uleb128 0x13
+ 1156 0006 0B       		.uleb128 0xb
+ 1157 0007 03       		.uleb128 0x3
+ 1158 0008 0E       		.uleb128 0xe
+ 1159 0009 1B       		.uleb128 0x1b
+ 1160 000a 0E       		.uleb128 0xe
+ 1161 000b 55       		.uleb128 0x55
+ 1162 000c 17       		.uleb128 0x17
+ 1163 000d 11       		.uleb128 0x11
+ 1164 000e 01       		.uleb128 0x1
+ 1165 000f 10       		.uleb128 0x10
+ 1166 0010 17       		.uleb128 0x17
+ 1167 0011 00       		.byte	0
+ 1168 0012 00       		.byte	0
+ 1169 0013 02       		.uleb128 0x2
+ 1170 0014 24       		.uleb128 0x24
+ 1171 0015 00       		.byte	0
+ 1172 0016 0B       		.uleb128 0xb
+ 1173 0017 0B       		.uleb128 0xb
+ 1174 0018 3E       		.uleb128 0x3e
+ 1175 0019 0B       		.uleb128 0xb
+ 1176 001a 03       		.uleb128 0x3
+ 1177 001b 0E       		.uleb128 0xe
+ 1178 001c 00       		.byte	0
+ 1179 001d 00       		.byte	0
+ 1180 001e 03       		.uleb128 0x3
+ 1181 001f 16       		.uleb128 0x16
+ 1182 0020 00       		.byte	0
+ 1183 0021 03       		.uleb128 0x3
+ 1184 0022 0E       		.uleb128 0xe
+ 1185 0023 3A       		.uleb128 0x3a
+ 1186 0024 0B       		.uleb128 0xb
+ 1187 0025 3B       		.uleb128 0x3b
+ 1188 0026 0B       		.uleb128 0xb
+ 1189 0027 49       		.uleb128 0x49
+ 1190 0028 13       		.uleb128 0x13
+ 1191 0029 00       		.byte	0
+ 1192 002a 00       		.byte	0
+ 1193 002b 04       		.uleb128 0x4
+ 1194 002c 24       		.uleb128 0x24
+ 1195 002d 00       		.byte	0
+ 1196 002e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 27
+
+
+ 1197 002f 0B       		.uleb128 0xb
+ 1198 0030 3E       		.uleb128 0x3e
+ 1199 0031 0B       		.uleb128 0xb
+ 1200 0032 03       		.uleb128 0x3
+ 1201 0033 08       		.uleb128 0x8
+ 1202 0034 00       		.byte	0
+ 1203 0035 00       		.byte	0
+ 1204 0036 05       		.uleb128 0x5
+ 1205 0037 16       		.uleb128 0x16
+ 1206 0038 00       		.byte	0
+ 1207 0039 03       		.uleb128 0x3
+ 1208 003a 0E       		.uleb128 0xe
+ 1209 003b 3A       		.uleb128 0x3a
+ 1210 003c 0B       		.uleb128 0xb
+ 1211 003d 3B       		.uleb128 0x3b
+ 1212 003e 05       		.uleb128 0x5
+ 1213 003f 49       		.uleb128 0x49
+ 1214 0040 13       		.uleb128 0x13
+ 1215 0041 00       		.byte	0
+ 1216 0042 00       		.byte	0
+ 1217 0043 06       		.uleb128 0x6
+ 1218 0044 0F       		.uleb128 0xf
+ 1219 0045 00       		.byte	0
+ 1220 0046 0B       		.uleb128 0xb
+ 1221 0047 0B       		.uleb128 0xb
+ 1222 0048 49       		.uleb128 0x49
+ 1223 0049 13       		.uleb128 0x13
+ 1224 004a 00       		.byte	0
+ 1225 004b 00       		.byte	0
+ 1226 004c 07       		.uleb128 0x7
+ 1227 004d 26       		.uleb128 0x26
+ 1228 004e 00       		.byte	0
+ 1229 004f 49       		.uleb128 0x49
+ 1230 0050 13       		.uleb128 0x13
+ 1231 0051 00       		.byte	0
+ 1232 0052 00       		.byte	0
+ 1233 0053 08       		.uleb128 0x8
+ 1234 0054 13       		.uleb128 0x13
+ 1235 0055 01       		.byte	0x1
+ 1236 0056 03       		.uleb128 0x3
+ 1237 0057 0E       		.uleb128 0xe
+ 1238 0058 0B       		.uleb128 0xb
+ 1239 0059 0B       		.uleb128 0xb
+ 1240 005a 3A       		.uleb128 0x3a
+ 1241 005b 0B       		.uleb128 0xb
+ 1242 005c 3B       		.uleb128 0x3b
+ 1243 005d 0B       		.uleb128 0xb
+ 1244 005e 01       		.uleb128 0x1
+ 1245 005f 13       		.uleb128 0x13
+ 1246 0060 00       		.byte	0
+ 1247 0061 00       		.byte	0
+ 1248 0062 09       		.uleb128 0x9
+ 1249 0063 0D       		.uleb128 0xd
+ 1250 0064 00       		.byte	0
+ 1251 0065 03       		.uleb128 0x3
+ 1252 0066 08       		.uleb128 0x8
+ 1253 0067 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 28
+
+
+ 1254 0068 0B       		.uleb128 0xb
+ 1255 0069 3B       		.uleb128 0x3b
+ 1256 006a 0B       		.uleb128 0xb
+ 1257 006b 49       		.uleb128 0x49
+ 1258 006c 13       		.uleb128 0x13
+ 1259 006d 38       		.uleb128 0x38
+ 1260 006e 0B       		.uleb128 0xb
+ 1261 006f 00       		.byte	0
+ 1262 0070 00       		.byte	0
+ 1263 0071 0A       		.uleb128 0xa
+ 1264 0072 2E       		.uleb128 0x2e
+ 1265 0073 01       		.byte	0x1
+ 1266 0074 3F       		.uleb128 0x3f
+ 1267 0075 19       		.uleb128 0x19
+ 1268 0076 03       		.uleb128 0x3
+ 1269 0077 0E       		.uleb128 0xe
+ 1270 0078 3A       		.uleb128 0x3a
+ 1271 0079 0B       		.uleb128 0xb
+ 1272 007a 3B       		.uleb128 0x3b
+ 1273 007b 0B       		.uleb128 0xb
+ 1274 007c 27       		.uleb128 0x27
+ 1275 007d 19       		.uleb128 0x19
+ 1276 007e 49       		.uleb128 0x49
+ 1277 007f 13       		.uleb128 0x13
+ 1278 0080 11       		.uleb128 0x11
+ 1279 0081 01       		.uleb128 0x1
+ 1280 0082 12       		.uleb128 0x12
+ 1281 0083 06       		.uleb128 0x6
+ 1282 0084 40       		.uleb128 0x40
+ 1283 0085 18       		.uleb128 0x18
+ 1284 0086 9642     		.uleb128 0x2116
+ 1285 0088 19       		.uleb128 0x19
+ 1286 0089 01       		.uleb128 0x1
+ 1287 008a 13       		.uleb128 0x13
+ 1288 008b 00       		.byte	0
+ 1289 008c 00       		.byte	0
+ 1290 008d 0B       		.uleb128 0xb
+ 1291 008e 05       		.uleb128 0x5
+ 1292 008f 00       		.byte	0
+ 1293 0090 03       		.uleb128 0x3
+ 1294 0091 08       		.uleb128 0x8
+ 1295 0092 3A       		.uleb128 0x3a
+ 1296 0093 0B       		.uleb128 0xb
+ 1297 0094 3B       		.uleb128 0x3b
+ 1298 0095 0B       		.uleb128 0xb
+ 1299 0096 49       		.uleb128 0x49
+ 1300 0097 13       		.uleb128 0x13
+ 1301 0098 02       		.uleb128 0x2
+ 1302 0099 17       		.uleb128 0x17
+ 1303 009a 00       		.byte	0
+ 1304 009b 00       		.byte	0
+ 1305 009c 0C       		.uleb128 0xc
+ 1306 009d 34       		.uleb128 0x34
+ 1307 009e 00       		.byte	0
+ 1308 009f 03       		.uleb128 0x3
+ 1309 00a0 0E       		.uleb128 0xe
+ 1310 00a1 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 29
+
+
+ 1311 00a2 0B       		.uleb128 0xb
+ 1312 00a3 3B       		.uleb128 0x3b
+ 1313 00a4 0B       		.uleb128 0xb
+ 1314 00a5 49       		.uleb128 0x49
+ 1315 00a6 13       		.uleb128 0x13
+ 1316 00a7 02       		.uleb128 0x2
+ 1317 00a8 17       		.uleb128 0x17
+ 1318 00a9 00       		.byte	0
+ 1319 00aa 00       		.byte	0
+ 1320 00ab 0D       		.uleb128 0xd
+ 1321 00ac 34       		.uleb128 0x34
+ 1322 00ad 00       		.byte	0
+ 1323 00ae 03       		.uleb128 0x3
+ 1324 00af 0E       		.uleb128 0xe
+ 1325 00b0 3A       		.uleb128 0x3a
+ 1326 00b1 0B       		.uleb128 0xb
+ 1327 00b2 3B       		.uleb128 0x3b
+ 1328 00b3 0B       		.uleb128 0xb
+ 1329 00b4 49       		.uleb128 0x49
+ 1330 00b5 13       		.uleb128 0x13
+ 1331 00b6 1C       		.uleb128 0x1c
+ 1332 00b7 0A       		.uleb128 0xa
+ 1333 00b8 00       		.byte	0
+ 1334 00b9 00       		.byte	0
+ 1335 00ba 0E       		.uleb128 0xe
+ 1336 00bb 2E       		.uleb128 0x2e
+ 1337 00bc 01       		.byte	0x1
+ 1338 00bd 3F       		.uleb128 0x3f
+ 1339 00be 19       		.uleb128 0x19
+ 1340 00bf 03       		.uleb128 0x3
+ 1341 00c0 0E       		.uleb128 0xe
+ 1342 00c1 3A       		.uleb128 0x3a
+ 1343 00c2 0B       		.uleb128 0xb
+ 1344 00c3 3B       		.uleb128 0x3b
+ 1345 00c4 0B       		.uleb128 0xb
+ 1346 00c5 27       		.uleb128 0x27
+ 1347 00c6 19       		.uleb128 0x19
+ 1348 00c7 49       		.uleb128 0x49
+ 1349 00c8 13       		.uleb128 0x13
+ 1350 00c9 11       		.uleb128 0x11
+ 1351 00ca 01       		.uleb128 0x1
+ 1352 00cb 12       		.uleb128 0x12
+ 1353 00cc 06       		.uleb128 0x6
+ 1354 00cd 40       		.uleb128 0x40
+ 1355 00ce 18       		.uleb128 0x18
+ 1356 00cf 9742     		.uleb128 0x2117
+ 1357 00d1 19       		.uleb128 0x19
+ 1358 00d2 01       		.uleb128 0x1
+ 1359 00d3 13       		.uleb128 0x13
+ 1360 00d4 00       		.byte	0
+ 1361 00d5 00       		.byte	0
+ 1362 00d6 0F       		.uleb128 0xf
+ 1363 00d7 05       		.uleb128 0x5
+ 1364 00d8 00       		.byte	0
+ 1365 00d9 03       		.uleb128 0x3
+ 1366 00da 08       		.uleb128 0x8
+ 1367 00db 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 30
+
+
+ 1368 00dc 0B       		.uleb128 0xb
+ 1369 00dd 3B       		.uleb128 0x3b
+ 1370 00de 0B       		.uleb128 0xb
+ 1371 00df 49       		.uleb128 0x49
+ 1372 00e0 13       		.uleb128 0x13
+ 1373 00e1 02       		.uleb128 0x2
+ 1374 00e2 18       		.uleb128 0x18
+ 1375 00e3 00       		.byte	0
+ 1376 00e4 00       		.byte	0
+ 1377 00e5 10       		.uleb128 0x10
+ 1378 00e6 34       		.uleb128 0x34
+ 1379 00e7 00       		.byte	0
+ 1380 00e8 03       		.uleb128 0x3
+ 1381 00e9 08       		.uleb128 0x8
+ 1382 00ea 3A       		.uleb128 0x3a
+ 1383 00eb 0B       		.uleb128 0xb
+ 1384 00ec 3B       		.uleb128 0x3b
+ 1385 00ed 0B       		.uleb128 0xb
+ 1386 00ee 49       		.uleb128 0x49
+ 1387 00ef 13       		.uleb128 0x13
+ 1388 00f0 02       		.uleb128 0x2
+ 1389 00f1 17       		.uleb128 0x17
+ 1390 00f2 00       		.byte	0
+ 1391 00f3 00       		.byte	0
+ 1392 00f4 11       		.uleb128 0x11
+ 1393 00f5 2E       		.uleb128 0x2e
+ 1394 00f6 01       		.byte	0x1
+ 1395 00f7 3F       		.uleb128 0x3f
+ 1396 00f8 19       		.uleb128 0x19
+ 1397 00f9 03       		.uleb128 0x3
+ 1398 00fa 0E       		.uleb128 0xe
+ 1399 00fb 3A       		.uleb128 0x3a
+ 1400 00fc 0B       		.uleb128 0xb
+ 1401 00fd 3B       		.uleb128 0x3b
+ 1402 00fe 0B       		.uleb128 0xb
+ 1403 00ff 49       		.uleb128 0x49
+ 1404 0100 13       		.uleb128 0x13
+ 1405 0101 11       		.uleb128 0x11
+ 1406 0102 01       		.uleb128 0x1
+ 1407 0103 12       		.uleb128 0x12
+ 1408 0104 06       		.uleb128 0x6
+ 1409 0105 40       		.uleb128 0x40
+ 1410 0106 18       		.uleb128 0x18
+ 1411 0107 9742     		.uleb128 0x2117
+ 1412 0109 19       		.uleb128 0x19
+ 1413 010a 01       		.uleb128 0x1
+ 1414 010b 13       		.uleb128 0x13
+ 1415 010c 00       		.byte	0
+ 1416 010d 00       		.byte	0
+ 1417 010e 12       		.uleb128 0x12
+ 1418 010f 34       		.uleb128 0x34
+ 1419 0110 00       		.byte	0
+ 1420 0111 03       		.uleb128 0x3
+ 1421 0112 0E       		.uleb128 0xe
+ 1422 0113 3A       		.uleb128 0x3a
+ 1423 0114 0B       		.uleb128 0xb
+ 1424 0115 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 31
+
+
+ 1425 0116 0B       		.uleb128 0xb
+ 1426 0117 49       		.uleb128 0x49
+ 1427 0118 13       		.uleb128 0x13
+ 1428 0119 02       		.uleb128 0x2
+ 1429 011a 18       		.uleb128 0x18
+ 1430 011b 00       		.byte	0
+ 1431 011c 00       		.byte	0
+ 1432 011d 13       		.uleb128 0x13
+ 1433 011e 898201   		.uleb128 0x4109
+ 1434 0121 00       		.byte	0
+ 1435 0122 11       		.uleb128 0x11
+ 1436 0123 01       		.uleb128 0x1
+ 1437 0124 31       		.uleb128 0x31
+ 1438 0125 13       		.uleb128 0x13
+ 1439 0126 00       		.byte	0
+ 1440 0127 00       		.byte	0
+ 1441 0128 14       		.uleb128 0x14
+ 1442 0129 898201   		.uleb128 0x4109
+ 1443 012c 01       		.byte	0x1
+ 1444 012d 11       		.uleb128 0x11
+ 1445 012e 01       		.uleb128 0x1
+ 1446 012f 31       		.uleb128 0x31
+ 1447 0130 13       		.uleb128 0x13
+ 1448 0131 01       		.uleb128 0x1
+ 1449 0132 13       		.uleb128 0x13
+ 1450 0133 00       		.byte	0
+ 1451 0134 00       		.byte	0
+ 1452 0135 15       		.uleb128 0x15
+ 1453 0136 8A8201   		.uleb128 0x410a
+ 1454 0139 00       		.byte	0
+ 1455 013a 02       		.uleb128 0x2
+ 1456 013b 18       		.uleb128 0x18
+ 1457 013c 9142     		.uleb128 0x2111
+ 1458 013e 18       		.uleb128 0x18
+ 1459 013f 00       		.byte	0
+ 1460 0140 00       		.byte	0
+ 1461 0141 16       		.uleb128 0x16
+ 1462 0142 898201   		.uleb128 0x4109
+ 1463 0145 01       		.byte	0x1
+ 1464 0146 11       		.uleb128 0x11
+ 1465 0147 01       		.uleb128 0x1
+ 1466 0148 31       		.uleb128 0x31
+ 1467 0149 13       		.uleb128 0x13
+ 1468 014a 00       		.byte	0
+ 1469 014b 00       		.byte	0
+ 1470 014c 17       		.uleb128 0x17
+ 1471 014d 05       		.uleb128 0x5
+ 1472 014e 00       		.byte	0
+ 1473 014f 03       		.uleb128 0x3
+ 1474 0150 0E       		.uleb128 0xe
+ 1475 0151 3A       		.uleb128 0x3a
+ 1476 0152 0B       		.uleb128 0xb
+ 1477 0153 3B       		.uleb128 0x3b
+ 1478 0154 0B       		.uleb128 0xb
+ 1479 0155 49       		.uleb128 0x49
+ 1480 0156 13       		.uleb128 0x13
+ 1481 0157 02       		.uleb128 0x2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 32
+
+
+ 1482 0158 17       		.uleb128 0x17
+ 1483 0159 00       		.byte	0
+ 1484 015a 00       		.byte	0
+ 1485 015b 18       		.uleb128 0x18
+ 1486 015c 34       		.uleb128 0x34
+ 1487 015d 00       		.byte	0
+ 1488 015e 03       		.uleb128 0x3
+ 1489 015f 0E       		.uleb128 0xe
+ 1490 0160 3A       		.uleb128 0x3a
+ 1491 0161 0B       		.uleb128 0xb
+ 1492 0162 3B       		.uleb128 0x3b
+ 1493 0163 05       		.uleb128 0x5
+ 1494 0164 49       		.uleb128 0x49
+ 1495 0165 13       		.uleb128 0x13
+ 1496 0166 3F       		.uleb128 0x3f
+ 1497 0167 19       		.uleb128 0x19
+ 1498 0168 3C       		.uleb128 0x3c
+ 1499 0169 19       		.uleb128 0x19
+ 1500 016a 00       		.byte	0
+ 1501 016b 00       		.byte	0
+ 1502 016c 19       		.uleb128 0x19
+ 1503 016d 35       		.uleb128 0x35
+ 1504 016e 00       		.byte	0
+ 1505 016f 49       		.uleb128 0x49
+ 1506 0170 13       		.uleb128 0x13
+ 1507 0171 00       		.byte	0
+ 1508 0172 00       		.byte	0
+ 1509 0173 1A       		.uleb128 0x1a
+ 1510 0174 34       		.uleb128 0x34
+ 1511 0175 00       		.byte	0
+ 1512 0176 03       		.uleb128 0x3
+ 1513 0177 0E       		.uleb128 0xe
+ 1514 0178 3A       		.uleb128 0x3a
+ 1515 0179 0B       		.uleb128 0xb
+ 1516 017a 3B       		.uleb128 0x3b
+ 1517 017b 0B       		.uleb128 0xb
+ 1518 017c 49       		.uleb128 0x49
+ 1519 017d 13       		.uleb128 0x13
+ 1520 017e 3F       		.uleb128 0x3f
+ 1521 017f 19       		.uleb128 0x19
+ 1522 0180 02       		.uleb128 0x2
+ 1523 0181 18       		.uleb128 0x18
+ 1524 0182 00       		.byte	0
+ 1525 0183 00       		.byte	0
+ 1526 0184 1B       		.uleb128 0x1b
+ 1527 0185 2E       		.uleb128 0x2e
+ 1528 0186 00       		.byte	0
+ 1529 0187 3F       		.uleb128 0x3f
+ 1530 0188 19       		.uleb128 0x19
+ 1531 0189 03       		.uleb128 0x3
+ 1532 018a 0E       		.uleb128 0xe
+ 1533 018b 3A       		.uleb128 0x3a
+ 1534 018c 0B       		.uleb128 0xb
+ 1535 018d 3B       		.uleb128 0x3b
+ 1536 018e 0B       		.uleb128 0xb
+ 1537 018f 27       		.uleb128 0x27
+ 1538 0190 19       		.uleb128 0x19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 33
+
+
+ 1539 0191 3C       		.uleb128 0x3c
+ 1540 0192 19       		.uleb128 0x19
+ 1541 0193 00       		.byte	0
+ 1542 0194 00       		.byte	0
+ 1543 0195 1C       		.uleb128 0x1c
+ 1544 0196 2E       		.uleb128 0x2e
+ 1545 0197 01       		.byte	0x1
+ 1546 0198 3F       		.uleb128 0x3f
+ 1547 0199 19       		.uleb128 0x19
+ 1548 019a 03       		.uleb128 0x3
+ 1549 019b 0E       		.uleb128 0xe
+ 1550 019c 3A       		.uleb128 0x3a
+ 1551 019d 0B       		.uleb128 0xb
+ 1552 019e 3B       		.uleb128 0x3b
+ 1553 019f 0B       		.uleb128 0xb
+ 1554 01a0 6E       		.uleb128 0x6e
+ 1555 01a1 0E       		.uleb128 0xe
+ 1556 01a2 27       		.uleb128 0x27
+ 1557 01a3 19       		.uleb128 0x19
+ 1558 01a4 49       		.uleb128 0x49
+ 1559 01a5 13       		.uleb128 0x13
+ 1560 01a6 3C       		.uleb128 0x3c
+ 1561 01a7 19       		.uleb128 0x19
+ 1562 01a8 01       		.uleb128 0x1
+ 1563 01a9 13       		.uleb128 0x13
+ 1564 01aa 00       		.byte	0
+ 1565 01ab 00       		.byte	0
+ 1566 01ac 1D       		.uleb128 0x1d
+ 1567 01ad 05       		.uleb128 0x5
+ 1568 01ae 00       		.byte	0
+ 1569 01af 49       		.uleb128 0x49
+ 1570 01b0 13       		.uleb128 0x13
+ 1571 01b1 00       		.byte	0
+ 1572 01b2 00       		.byte	0
+ 1573 01b3 1E       		.uleb128 0x1e
+ 1574 01b4 2E       		.uleb128 0x2e
+ 1575 01b5 01       		.byte	0x1
+ 1576 01b6 3F       		.uleb128 0x3f
+ 1577 01b7 19       		.uleb128 0x19
+ 1578 01b8 03       		.uleb128 0x3
+ 1579 01b9 0E       		.uleb128 0xe
+ 1580 01ba 3A       		.uleb128 0x3a
+ 1581 01bb 0B       		.uleb128 0xb
+ 1582 01bc 3B       		.uleb128 0x3b
+ 1583 01bd 0B       		.uleb128 0xb
+ 1584 01be 27       		.uleb128 0x27
+ 1585 01bf 19       		.uleb128 0x19
+ 1586 01c0 3C       		.uleb128 0x3c
+ 1587 01c1 19       		.uleb128 0x19
+ 1588 01c2 01       		.uleb128 0x1
+ 1589 01c3 13       		.uleb128 0x13
+ 1590 01c4 00       		.byte	0
+ 1591 01c5 00       		.byte	0
+ 1592 01c6 1F       		.uleb128 0x1f
+ 1593 01c7 2E       		.uleb128 0x2e
+ 1594 01c8 01       		.byte	0x1
+ 1595 01c9 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 34
+
+
+ 1596 01ca 19       		.uleb128 0x19
+ 1597 01cb 03       		.uleb128 0x3
+ 1598 01cc 0E       		.uleb128 0xe
+ 1599 01cd 3A       		.uleb128 0x3a
+ 1600 01ce 0B       		.uleb128 0xb
+ 1601 01cf 3B       		.uleb128 0x3b
+ 1602 01d0 0B       		.uleb128 0xb
+ 1603 01d1 27       		.uleb128 0x27
+ 1604 01d2 19       		.uleb128 0x19
+ 1605 01d3 49       		.uleb128 0x49
+ 1606 01d4 13       		.uleb128 0x13
+ 1607 01d5 3C       		.uleb128 0x3c
+ 1608 01d6 19       		.uleb128 0x19
+ 1609 01d7 01       		.uleb128 0x1
+ 1610 01d8 13       		.uleb128 0x13
+ 1611 01d9 00       		.byte	0
+ 1612 01da 00       		.byte	0
+ 1613 01db 20       		.uleb128 0x20
+ 1614 01dc 2E       		.uleb128 0x2e
+ 1615 01dd 00       		.byte	0
+ 1616 01de 3F       		.uleb128 0x3f
+ 1617 01df 19       		.uleb128 0x19
+ 1618 01e0 03       		.uleb128 0x3
+ 1619 01e1 0E       		.uleb128 0xe
+ 1620 01e2 3A       		.uleb128 0x3a
+ 1621 01e3 0B       		.uleb128 0xb
+ 1622 01e4 3B       		.uleb128 0x3b
+ 1623 01e5 0B       		.uleb128 0xb
+ 1624 01e6 27       		.uleb128 0x27
+ 1625 01e7 19       		.uleb128 0x19
+ 1626 01e8 49       		.uleb128 0x49
+ 1627 01e9 13       		.uleb128 0x13
+ 1628 01ea 3C       		.uleb128 0x3c
+ 1629 01eb 19       		.uleb128 0x19
+ 1630 01ec 00       		.byte	0
+ 1631 01ed 00       		.byte	0
+ 1632 01ee 21       		.uleb128 0x21
+ 1633 01ef 18       		.uleb128 0x18
+ 1634 01f0 00       		.byte	0
+ 1635 01f1 00       		.byte	0
+ 1636 01f2 00       		.byte	0
+ 1637 01f3 22       		.uleb128 0x22
+ 1638 01f4 2E       		.uleb128 0x2e
+ 1639 01f5 01       		.byte	0x1
+ 1640 01f6 3F       		.uleb128 0x3f
+ 1641 01f7 19       		.uleb128 0x19
+ 1642 01f8 03       		.uleb128 0x3
+ 1643 01f9 0E       		.uleb128 0xe
+ 1644 01fa 3A       		.uleb128 0x3a
+ 1645 01fb 0B       		.uleb128 0xb
+ 1646 01fc 3B       		.uleb128 0x3b
+ 1647 01fd 0B       		.uleb128 0xb
+ 1648 01fe 27       		.uleb128 0x27
+ 1649 01ff 19       		.uleb128 0x19
+ 1650 0200 3C       		.uleb128 0x3c
+ 1651 0201 19       		.uleb128 0x19
+ 1652 0202 00       		.byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 35
+
+
+ 1653 0203 00       		.byte	0
+ 1654 0204 00       		.byte	0
+ 1655              		.section	.debug_loc,"",%progbits
+ 1656              	.Ldebug_loc0:
+ 1657              	.LLST0:
+ 1658 0000 00000000 		.4byte	.LVL0
+ 1659 0004 05000000 		.4byte	.LVL2-1
+ 1660 0008 0100     		.2byte	0x1
+ 1661 000a 50       		.byte	0x50
+ 1662 000b 05000000 		.4byte	.LVL2-1
+ 1663 000f 44000000 		.4byte	.LFE64
+ 1664 0013 0400     		.2byte	0x4
+ 1665 0015 F3       		.byte	0xf3
+ 1666 0016 01       		.uleb128 0x1
+ 1667 0017 50       		.byte	0x50
+ 1668 0018 9F       		.byte	0x9f
+ 1669 0019 00000000 		.4byte	0
+ 1670 001d 00000000 		.4byte	0
+ 1671              	.LLST1:
+ 1672 0021 0C000000 		.4byte	.LVL3
+ 1673 0025 0F000000 		.4byte	.LVL4-1
+ 1674 0029 0100     		.2byte	0x1
+ 1675 002b 50       		.byte	0x50
+ 1676 002c 00000000 		.4byte	0
+ 1677 0030 00000000 		.4byte	0
+ 1678              	.LLST2:
+ 1679 0034 30000000 		.4byte	.LVL8
+ 1680 0038 33000000 		.4byte	.LVL9-1
+ 1681 003c 0100     		.2byte	0x1
+ 1682 003e 50       		.byte	0x50
+ 1683 003f 00000000 		.4byte	0
+ 1684 0043 00000000 		.4byte	0
+ 1685              	.LLST3:
+ 1686 0047 00000000 		.4byte	.LVL10
+ 1687 004b 04000000 		.4byte	.LVL11
+ 1688 004f 0100     		.2byte	0x1
+ 1689 0051 50       		.byte	0x50
+ 1690 0052 04000000 		.4byte	.LVL11
+ 1691 0056 06000000 		.4byte	.LFE65
+ 1692 005a 0400     		.2byte	0x4
+ 1693 005c F3       		.byte	0xf3
+ 1694 005d 01       		.uleb128 0x1
+ 1695 005e 50       		.byte	0x50
+ 1696 005f 9F       		.byte	0x9f
+ 1697 0060 00000000 		.4byte	0
+ 1698 0064 00000000 		.4byte	0
+ 1699              	.LLST4:
+ 1700 0068 00000000 		.4byte	.LVL10
+ 1701 006c 04000000 		.4byte	.LVL11
+ 1702 0070 0800     		.2byte	0x8
+ 1703 0072 71       		.byte	0x71
+ 1704 0073 00       		.sleb128 0
+ 1705 0074 38       		.byte	0x38
+ 1706 0075 24       		.byte	0x24
+ 1707 0076 70       		.byte	0x70
+ 1708 0077 00       		.sleb128 0
+ 1709 0078 21       		.byte	0x21
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 36
+
+
+ 1710 0079 9F       		.byte	0x9f
+ 1711 007a 00000000 		.4byte	0
+ 1712 007e 00000000 		.4byte	0
+ 1713              	.LLST5:
+ 1714 0082 36000000 		.4byte	.LVL19
+ 1715 0086 7E000000 		.4byte	.LVL33
+ 1716 008a 0100     		.2byte	0x1
+ 1717 008c 55       		.byte	0x55
+ 1718 008d 00000000 		.4byte	0
+ 1719 0091 00000000 		.4byte	0
+ 1720              	.LLST6:
+ 1721 0095 4A000000 		.4byte	.LVL23
+ 1722 0099 88000000 		.4byte	.LVL35
+ 1723 009d 0100     		.2byte	0x1
+ 1724 009f 54       		.byte	0x54
+ 1725 00a0 00000000 		.4byte	0
+ 1726 00a4 00000000 		.4byte	0
+ 1727              	.LLST7:
+ 1728 00a8 5E000000 		.4byte	.LVL27
+ 1729 00ac 92000000 		.4byte	.LVL37
+ 1730 00b0 0100     		.2byte	0x1
+ 1731 00b2 56       		.byte	0x56
+ 1732 00b3 00000000 		.4byte	0
+ 1733 00b7 00000000 		.4byte	0
+ 1734              	.LLST8:
+ 1735 00bb 7E000000 		.4byte	.LVL33
+ 1736 00bf 9A000000 		.4byte	.LVL39
+ 1737 00c3 0100     		.2byte	0x1
+ 1738 00c5 55       		.byte	0x55
+ 1739 00c6 00000000 		.4byte	0
+ 1740 00ca 00000000 		.4byte	0
+ 1741              	.LLST9:
+ 1742 00ce 88000000 		.4byte	.LVL35
+ 1743 00d2 A2000000 		.4byte	.LVL41
+ 1744 00d6 0100     		.2byte	0x1
+ 1745 00d8 54       		.byte	0x54
+ 1746 00d9 00000000 		.4byte	0
+ 1747 00dd 00000000 		.4byte	0
+ 1748              	.LLST10:
+ 1749 00e1 00000000 		.4byte	.LVL49
+ 1750 00e5 08000000 		.4byte	.LVL51
+ 1751 00e9 0100     		.2byte	0x1
+ 1752 00eb 50       		.byte	0x50
+ 1753 00ec 08000000 		.4byte	.LVL51
+ 1754 00f0 1C000000 		.4byte	.LFE66
+ 1755 00f4 0400     		.2byte	0x4
+ 1756 00f6 F3       		.byte	0xf3
+ 1757 00f7 01       		.uleb128 0x1
+ 1758 00f8 50       		.byte	0x50
+ 1759 00f9 9F       		.byte	0x9f
+ 1760 00fa 00000000 		.4byte	0
+ 1761 00fe 00000000 		.4byte	0
+ 1762              	.LLST11:
+ 1763 0102 00000000 		.4byte	.LVL49
+ 1764 0106 0A000000 		.4byte	.LVL52
+ 1765 010a 0100     		.2byte	0x1
+ 1766 010c 51       		.byte	0x51
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 37
+
+
+ 1767 010d 0A000000 		.4byte	.LVL52
+ 1768 0111 14000000 		.4byte	.LVL55
+ 1769 0115 0100     		.2byte	0x1
+ 1770 0117 55       		.byte	0x55
+ 1771 0118 14000000 		.4byte	.LVL55
+ 1772 011c 1C000000 		.4byte	.LFE66
+ 1773 0120 0100     		.2byte	0x1
+ 1774 0122 51       		.byte	0x51
+ 1775 0123 00000000 		.4byte	0
+ 1776 0127 00000000 		.4byte	0
+ 1777              	.LLST12:
+ 1778 012b 00000000 		.4byte	.LVL49
+ 1779 012f 08000000 		.4byte	.LVL51
+ 1780 0133 0100     		.2byte	0x1
+ 1781 0135 52       		.byte	0x52
+ 1782 0136 08000000 		.4byte	.LVL51
+ 1783 013a 1C000000 		.4byte	.LFE66
+ 1784 013e 0100     		.2byte	0x1
+ 1785 0140 56       		.byte	0x56
+ 1786 0141 00000000 		.4byte	0
+ 1787 0145 00000000 		.4byte	0
+ 1788              	.LLST13:
+ 1789 0149 04000000 		.4byte	.LVL50
+ 1790 014d 08000000 		.4byte	.LVL51
+ 1791 0151 0200     		.2byte	0x2
+ 1792 0153 30       		.byte	0x30
+ 1793 0154 9F       		.byte	0x9f
+ 1794 0155 08000000 		.4byte	.LVL51
+ 1795 0159 1C000000 		.4byte	.LFE66
+ 1796 015d 0100     		.2byte	0x1
+ 1797 015f 54       		.byte	0x54
+ 1798 0160 00000000 		.4byte	0
+ 1799 0164 00000000 		.4byte	0
+ 1800              		.section	.debug_aranges,"",%progbits
+ 1801 0000 34000000 		.4byte	0x34
+ 1802 0004 0200     		.2byte	0x2
+ 1803 0006 00000000 		.4byte	.Ldebug_info0
+ 1804 000a 04       		.byte	0x4
+ 1805 000b 00       		.byte	0
+ 1806 000c 0000     		.2byte	0
+ 1807 000e 0000     		.2byte	0
+ 1808 0010 00000000 		.4byte	.LFB64
+ 1809 0014 44000000 		.4byte	.LFE64-.LFB64
+ 1810 0018 00000000 		.4byte	.LFB65
+ 1811 001c 06000000 		.4byte	.LFE65-.LFB65
+ 1812 0020 00000000 		.4byte	.LFB63
+ 1813 0024 E4000000 		.4byte	.LFE63-.LFB63
+ 1814 0028 00000000 		.4byte	.LFB66
+ 1815 002c 1C000000 		.4byte	.LFE66-.LFB66
+ 1816 0030 00000000 		.4byte	0
+ 1817 0034 00000000 		.4byte	0
+ 1818              		.section	.debug_ranges,"",%progbits
+ 1819              	.Ldebug_ranges0:
+ 1820 0000 00000000 		.4byte	.LFB64
+ 1821 0004 44000000 		.4byte	.LFE64
+ 1822 0008 00000000 		.4byte	.LFB65
+ 1823 000c 06000000 		.4byte	.LFE65
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 38
+
+
+ 1824 0010 00000000 		.4byte	.LFB63
+ 1825 0014 E4000000 		.4byte	.LFE63
+ 1826 0018 00000000 		.4byte	.LFB66
+ 1827 001c 1C000000 		.4byte	.LFE66
+ 1828 0020 00000000 		.4byte	0
+ 1829 0024 00000000 		.4byte	0
+ 1830              		.section	.debug_line,"",%progbits
+ 1831              	.Ldebug_line0:
+ 1832 0000 71020000 		.section	.debug_str,"MS",%progbits,1
+ 1832      0200B201 
+ 1832      00000201 
+ 1832      FB0E0D00 
+ 1832      01010101 
+ 1833              	.LASF36:
+ 1834 0000 5A5F4158 		.ascii	"Z_AXIS\000"
+ 1834      495300
+ 1835              	.LASF33:
+ 1836 0007 5A5F4158 		.ascii	"Z_AXIS_H\000"
+ 1836      49535F48 
+ 1836      00
+ 1837              	.LASF55:
+ 1838 0010 5F5F6275 		.ascii	"__builtin_puts\000"
+ 1838      696C7469 
+ 1838      6E5F7075 
+ 1838      747300
+ 1839              	.LASF32:
+ 1840 001f 5A5F4158 		.ascii	"Z_AXIS_L\000"
+ 1840      49535F4C 
+ 1840      00
+ 1841              	.LASF22:
+ 1842 0028 64696769 		.ascii	"digital_sensor_value_\000"
+ 1842      74616C5F 
+ 1842      73656E73 
+ 1842      6F725F76 
+ 1842      616C7565 
+ 1843              	.LASF50:
+ 1844 003e 4779726F 		.ascii	"GyroTimer_WriteCounter\000"
+ 1844      54696D65 
+ 1844      725F5772 
+ 1844      69746543 
+ 1844      6F756E74 
+ 1845              	.LASF2:
+ 1846 0055 73686F72 		.ascii	"short int\000"
+ 1846      7420696E 
+ 1846      7400
+ 1847              	.LASF20:
+ 1848 005f 73697A65 		.ascii	"sizetype\000"
+ 1848      74797065 
+ 1848      00
+ 1849              	.LASF47:
+ 1850 0068 4932435F 		.ascii	"I2C_write\000"
+ 1850      77726974 
+ 1850      6500
+ 1851              	.LASF40:
+ 1852 0072 73656E73 		.ascii	"sensors\000"
+ 1852      6F727300 
+ 1853              	.LASF54:
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 39
+
+
+ 1854 007a 6D61696E 		.ascii	"main\000"
+ 1854      00
+ 1855              	.LASF37:
+ 1856 007f 5F777269 		.ascii	"_write\000"
+ 1856      746500
+ 1857              	.LASF27:
+ 1858 0086 636F6E76 		.ascii	"convert_raw\000"
+ 1858      6572745F 
+ 1858      72617700 
+ 1859              	.LASF4:
+ 1860 0092 5F5F7569 		.ascii	"__uint16_t\000"
+ 1860      6E743136 
+ 1860      5F7400
+ 1861              	.LASF38:
+ 1862 009d 66696C65 		.ascii	"file\000"
+ 1862      00
+ 1863              	.LASF23:
+ 1864 00a2 72617465 		.ascii	"rate_result\000"
+ 1864      5F726573 
+ 1864      756C7400 
+ 1865              	.LASF14:
+ 1866 00ae 75696E74 		.ascii	"uint16\000"
+ 1866      313600
+ 1867              	.LASF52:
+ 1868 00b5 2E5C6D61 		.ascii	".\\main.c\000"
+ 1868      696E2E63 
+ 1868      00
+ 1869              	.LASF16:
+ 1870 00be 696E7431 		.ascii	"int16\000"
+ 1870      3600
+ 1871              	.LASF13:
+ 1872 00c4 75696E74 		.ascii	"uint8\000"
+ 1872      3800
+ 1873              	.LASF49:
+ 1874 00ca 4779726F 		.ascii	"GyroTimer_Stop\000"
+ 1874      54696D65 
+ 1874      725F5374 
+ 1874      6F7000
+ 1875              	.LASF17:
+ 1876 00d9 666C6F61 		.ascii	"float\000"
+ 1876      7400
+ 1877              	.LASF8:
+ 1878 00df 6C6F6E67 		.ascii	"long long int\000"
+ 1878      206C6F6E 
+ 1878      6720696E 
+ 1878      7400
+ 1879              	.LASF29:
+ 1880 00ed 585F4158 		.ascii	"X_AXIS_H\000"
+ 1880      49535F48 
+ 1880      00
+ 1881              	.LASF28:
+ 1882 00f6 585F4158 		.ascii	"X_AXIS_L\000"
+ 1882      49535F4C 
+ 1882      00
+ 1883              	.LASF19:
+ 1884 00ff 63686172 		.ascii	"char\000"
+ 1884      00
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 40
+
+
+ 1885              	.LASF6:
+ 1886 0104 6C6F6E67 		.ascii	"long int\000"
+ 1886      20696E74 
+ 1886      00
+ 1887              	.LASF45:
+ 1888 010d 4932435F 		.ascii	"I2C_read\000"
+ 1888      72656164 
+ 1888      00
+ 1889              	.LASF1:
+ 1890 0116 756E7369 		.ascii	"unsigned char\000"
+ 1890      676E6564 
+ 1890      20636861 
+ 1890      7200
+ 1891              	.LASF35:
+ 1892 0124 595F4158 		.ascii	"Y_AXIS\000"
+ 1892      495300
+ 1893              	.LASF0:
+ 1894 012b 7369676E 		.ascii	"signed char\000"
+ 1894      65642063 
+ 1894      68617200 
+ 1895              	.LASF9:
+ 1896 0137 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1896      206C6F6E 
+ 1896      6720756E 
+ 1896      7369676E 
+ 1896      65642069 
+ 1897              	.LASF10:
+ 1898 014e 756E7369 		.ascii	"unsigned int\000"
+ 1898      676E6564 
+ 1898      20696E74 
+ 1898      00
+ 1899              	.LASF11:
+ 1900 015b 75696E74 		.ascii	"uint16_t\000"
+ 1900      31365F74 
+ 1900      00
+ 1901              	.LASF57:
+ 1902 0164 4779726F 		.ascii	"GyroTimer_ReadCounter\000"
+ 1902      54696D65 
+ 1902      725F5265 
+ 1902      6164436F 
+ 1902      756E7465 
+ 1903              	.LASF56:
+ 1904 017a 70757473 		.ascii	"puts\000"
+ 1904      00
+ 1905              	.LASF3:
+ 1906 017f 73686F72 		.ascii	"short unsigned int\000"
+ 1906      7420756E 
+ 1906      7369676E 
+ 1906      65642069 
+ 1906      6E7400
+ 1907              	.LASF26:
+ 1908 0192 76616C75 		.ascii	"value_convert_gyro\000"
+ 1908      655F636F 
+ 1908      6E766572 
+ 1908      745F6779 
+ 1908      726F00
+ 1909              	.LASF41:
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 41
+
+
+ 1910 01a5 64696769 		.ascii	"digital_sensor_value\000"
+ 1910      74616C5F 
+ 1910      73656E73 
+ 1910      6F725F76 
+ 1910      616C7565 
+ 1911              	.LASF51:
+ 1912 01ba 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1912      4320342E 
+ 1912      392E3320 
+ 1912      32303135 
+ 1912      30333033 
+ 1913 01ed 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1913      20726576 
+ 1913      6973696F 
+ 1913      6E203232 
+ 1913      31323230 
+ 1914 0220 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1914      66756E63 
+ 1914      74696F6E 
+ 1914      2D736563 
+ 1914      74696F6E 
+ 1915              	.LASF46:
+ 1916 0248 7072696E 		.ascii	"printf\000"
+ 1916      746600
+ 1917              	.LASF42:
+ 1918 024f 55415254 		.ascii	"UART_Start\000"
+ 1918      5F537461 
+ 1918      727400
+ 1919              	.LASF12:
+ 1920 025a 696E7433 		.ascii	"int32_t\000"
+ 1920      325F7400 
+ 1921              	.LASF24:
+ 1922 0262 616E676C 		.ascii	"angle_result\000"
+ 1922      655F7265 
+ 1922      73756C74 
+ 1922      00
+ 1923              	.LASF31:
+ 1924 026f 595F4158 		.ascii	"Y_AXIS_H\000"
+ 1924      49535F48 
+ 1924      00
+ 1925              	.LASF44:
+ 1926 0278 4779726F 		.ascii	"GyroTimer_Start\000"
+ 1926      54696D65 
+ 1926      725F5374 
+ 1926      61727400 
+ 1927              	.LASF30:
+ 1928 0288 595F4158 		.ascii	"Y_AXIS_L\000"
+ 1928      49535F4C 
+ 1928      00
+ 1929              	.LASF21:
+ 1930 0291 73656E73 		.ascii	"sensors_\000"
+ 1930      6F72735F 
+ 1930      00
+ 1931              	.LASF15:
+ 1932 029a 75696E74 		.ascii	"uint32\000"
+ 1932      333200
+ 1933              	.LASF7:
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccapBcpf.s 			page 42
+
+
+ 1934 02a1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1934      20756E73 
+ 1934      69676E65 
+ 1934      6420696E 
+ 1934      7400
+ 1935              	.LASF18:
+ 1936 02b3 646F7562 		.ascii	"double\000"
+ 1936      6C6500
+ 1937              	.LASF53:
+ 1938 02ba 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 1938      73657273 
+ 1938      5C647566 
+ 1938      6D615C44 
+ 1938      65736B74 
+ 1939 02e7 426F745F 		.ascii	"Bot_Lib_Gyro2.cydsn\000"
+ 1939      4C69625F 
+ 1939      4779726F 
+ 1939      322E6379 
+ 1939      64736E00 
+ 1940              	.LASF25:
+ 1941 02fb 475F4741 		.ascii	"G_GAIN\000"
+ 1941      494E00
+ 1942              	.LASF5:
+ 1943 0302 5F5F696E 		.ascii	"__int32_t\000"
+ 1943      7433325F 
+ 1943      7400
+ 1944              	.LASF39:
+ 1945 030c 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1945      52784275 
+ 1945      66666572 
+ 1945      00
+ 1946              	.LASF48:
+ 1947 0319 43794465 		.ascii	"CyDelay\000"
+ 1947      6C617900 
+ 1948              	.LASF43:
+ 1949 0321 4932435F 		.ascii	"I2C_Start\000"
+ 1949      53746172 
+ 1949      7400
+ 1950              	.LASF34:
+ 1951 032b 585F4158 		.ascii	"X_AXIS\000"
+ 1951      495300
+ 1952              	.LASF58:
+ 1953 0332 55415254 		.ascii	"UART_PutChar\000"
+ 1953      5F507574 
+ 1953      43686172 
+ 1953      00
+ 1954              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
