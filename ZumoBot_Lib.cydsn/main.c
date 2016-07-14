@@ -27,8 +27,19 @@ int main()
     UART_Start();
     printf("Start\r\n");
     
+       /*  //nunchuk//
+    ----------------------------------------------------
+    nunchuk_start();
+    nunchuk_init();
+    
+    for(;;)
+    {    
+        nunchuk_read();
+    }
+    //----------------------------------------------------*/
+    
     /* //accelerometer//
-    //--------------------------------------------------------------
+    //--------------------------------------------------------------*/
     I2C_Start();
   
     uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
@@ -60,6 +71,22 @@ int main()
         CyDelay(50);
     }
     ///---------------------------------------------------------- */
+     
+     /* //ultra//
+    ----------------------------------------------------
+    ultra_isr_StartEx(ultra_isr_handler);   // Ultra Sonic Interrupt
+    Ultra_Start();                          // Ultra Sonic Start function
+   
+    for(;;)
+    {       
+        CyDelay(100); 
+        Trig_Write(1);           // Trigger High
+        CyDelayUs(10);              // 10 micro seconds for trigger input signals
+        Trig_Write(0);           // Trigger Low
+    }
+    //----------------------------------------------------*/
+    
+    
     
     /* //reflectance//
     ----------------------------------------------------
@@ -75,29 +102,16 @@ int main()
         
         CyDelay(500);
     }
-    ----------------------------------------------------*/
-    
-     /* //ultra//
-    ----------------------------------------------------
-    ultra_isr_StartEx(ultra_isr_handler);   // Ultra Sonic Interrupt
-    Ultra_Start();                          // Ultra Sonic Start function
+    ///----------------------------------------------------*/
    
-    for(;;)
-    {       
-        CyDelay(100); 
-        Trig_Write(1);           // Trigger High
-        CyDelayUs(10);              // 10 micro seconds for trigger input signals
-        Trig_Write(0);           // Trigger Low
-    }
-    ----------------------------------------------------*/
     
      /* //motor//
     ----------------------------------------------------
     motor_Start();              // motor start
 
     motor_forward(50,2000);     // moving forward
-    motor_turn(20,50,2000);     // turn
-    motor_turn(50,20,2000);     // turn
+    motor_turn(10,50,2000);     // turn
+    motor_turn(50,10,2000);     // turn
     motor_backward(50,2000);    // movinb backward
        
     motor_Stop();               // motor stop
@@ -108,17 +122,6 @@ int main()
     }
     ///----------------------------------------------------*/
     
-    
-    /*  //nunchuk//
-    ----------------------------------------------------*/
-    nunchuk_start();
-    nunchuk_init();
-    
-    for(;;)
-    {    
-        nunchuk_read();
-    }
-    //----------------------------------------------------*/
     
    /* //gyroscope//
      //-----------------------------------------------------
@@ -160,7 +163,7 @@ int main()
         
        CyDelay(50);
     }
-    -----------------------------------------------------------------*/ 
+    ///-----------------------------------------------------------------*/ 
    
   
     
@@ -197,7 +200,7 @@ int main()
         CyDelay(50);
           
     }
-    ----------------------------------------------------------*/
+    ///----------------------------------------------------------*/
 }
 
 uint16 convert_raw(uint8 L, uint8 H)            // concatenation
