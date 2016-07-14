@@ -11,6 +11,7 @@
 <v>..\ZumoBot_Lib_Accel.cydsn\ZumoBot_Lib_Accel.cyprj</v>
 <v>..\ZumoBot_Lib_Gyro.cydsn\ZumoBot_Lib_Gyro.cyprj</v>
 <v>..\ZumoBot_Lib_Gyro2.cydsn\ZumoBot_Lib_Gyro2.cyprj</v>
+<v>..\ZumoBot_Lib_sysTickUltra.cydsn\ZumoBot_Lib_sysTickUltra.cyprj</v>
 </projects>
 <workspace_id v="7ed0b5c8-cf9d-413d-ac0b-f14ff77e7fe0" />
 <WriteAppVersionLastSavedWith v="3.3.0.9604" />
