@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   29:.\Generated_Source\PSoC5/Timer_ir_PM.c **** *     Save the current user configuration
   30:.\Generated_Source\PSoC5/Timer_ir_PM.c **** *
   31:.\Generated_Source\PSoC5/Timer_ir_PM.c **** * Parameters:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/Timer_ir_PM.c **** *  void
@@ -88,12 +88,12 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   36 0002 FFF7FEFF 		bl	Timer_ir_ReadCounter
   37              	.LVL0:
   38 0006 044C     		ldr	r4, .L3
-  39 0008 6070     		strb	r0, [r4, #1]
+  39 0008 6060     		str	r0, [r4, #4]
   47:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         Timer_ir_backup.InterruptMaskValue = Timer_ir_STATUS_MASK;
   40              		.loc 1 47 0
   41 000a 044B     		ldr	r3, .L3+4
   42 000c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-  43 000e A370     		strb	r3, [r4, #2]
+  43 000e 2372     		strb	r3, [r4, #8]
   48:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         #if (Timer_ir_UsingHWCaptureCounter)
   49:.\Generated_Source\PSoC5/Timer_ir_PM.c ****             Timer_ir_backup.TimerCaptureCounter = Timer_ir_ReadCaptureCount();
   50:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         #endif /* Back Up capture counter register  */
@@ -103,13 +103,13 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   44              		.loc 1 53 0
   45 0010 FFF7FEFF 		bl	Timer_ir_ReadControlRegister
   46              	.LVL1:
-  47 0014 E070     		strb	r0, [r4, #3]
+  47 0014 6072     		strb	r0, [r4, #9]
   48 0016 10BD     		pop	{r4, pc}
   49              	.L4:
   50              		.align	2
   51              	.L3:
   52 0018 00000000 		.word	.LANCHOR0
-  53 001c 8B650040 		.word	1073767819
+  53 001c 8C640040 		.word	1073767564
   54              		.cfi_endproc
   55              	.LFE0:
   56              		.size	Timer_ir_SaveConfig, .-Timer_ir_SaveConfig
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   59              		.global	Timer_ir_RestoreConfig
   60              		.thumb
   61              		.thumb_func
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 3
 
 
   62              		.type	Timer_ir_RestoreConfig, %function
@@ -162,12 +162,12 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   81:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         Timer_ir_WriteCounter(Timer_ir_backup.TimerUdb);
   73              		.loc 1 81 0
   74 0002 054C     		ldr	r4, .L7
-  75 0004 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+  75 0004 6068     		ldr	r0, [r4, #4]
   76 0006 FFF7FEFF 		bl	Timer_ir_WriteCounter
   77              	.LVL2:
   82:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         Timer_ir_STATUS_MASK =Timer_ir_backup.InterruptMaskValue;
   78              		.loc 1 82 0
-  79 000a A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
+  79 000a 227A     		ldrb	r2, [r4, #8]	@ zero_extendqisi2
   80 000c 034B     		ldr	r3, .L7+4
   81 000e 1A70     		strb	r2, [r3]
   83:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         #if (Timer_ir_UsingHWCaptureCounter)
@@ -177,8 +177,8 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   87:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         #if(!Timer_ir_UDB_CONTROL_REG_REMOVED)
   88:.\Generated_Source\PSoC5/Timer_ir_PM.c ****             Timer_ir_WriteControlRegister(Timer_ir_backup.TimerControlRegister);
   82              		.loc 1 88 0
-  83 0010 E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 4
+  83 0010 607A     		ldrb	r0, [r4, #9]	@ zero_extendqisi2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 4
 
 
   84 0012 FFF7FEFF 		bl	Timer_ir_WriteControlRegister
@@ -188,7 +188,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
   88              		.align	2
   89              	.L7:
   90 0018 00000000 		.word	.LANCHOR0
-  91 001c 8B650040 		.word	1073767819
+  91 001c 8C640040 		.word	1073767564
   92              		.cfi_endproc
   93              	.LFE1:
   94              		.size	Timer_ir_RestoreConfig, .-Timer_ir_RestoreConfig
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  116:.\Generated_Source\PSoC5/Timer_ir_PM.c ****         if(Timer_ir_CTRL_ENABLE == (Timer_ir_CONTROL & Timer_ir_CTRL_ENABLE))
  111              		.loc 1 116 0
  112 0002 084B     		ldr	r3, .L13
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 5
 
 
  113 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -277,7 +277,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  134              	.L14:
  135              		.align	2
  136              	.L13:
- 137 0024 7F640040 		.word	1073767551
+ 137 0024 7A640040 		.word	1073767546
  138 0028 00000000 		.word	.LANCHOR0
  139              		.cfi_endproc
  140              	.LFE2:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  134:.\Generated_Source\PSoC5/Timer_ir_PM.c **** ********************************************************************************
  135:.\Generated_Source\PSoC5/Timer_ir_PM.c **** *
  136:.\Generated_Source\PSoC5/Timer_ir_PM.c **** * Summary:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 6
 
 
  137:.\Generated_Source\PSoC5/Timer_ir_PM.c **** *  Restores and enables the user configuration
@@ -353,34 +353,36 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  179              		.align	2
  180              		.set	.LANCHOR0,. + 0
  181              		.type	Timer_ir_backup, %object
- 182              		.size	Timer_ir_backup, 4
+ 182              		.size	Timer_ir_backup, 12
  183              	Timer_ir_backup:
- 184 0000 00000000 		.space	4
+ 184 0000 00000000 		.space	12
+ 184      00000000 
+ 184      00000000 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 7
+
+
  185              		.text
  186              	.Letext0:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 7
-
-
  187              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
  188              		.file 3 ".\\Generated_Source\\PSoC5\\Timer_ir.h"
  189              		.section	.debug_info,"",%progbits
  190              	.Ldebug_info0:
- 191 0000 DC010000 		.4byte	0x1dc
+ 191 0000 E8010000 		.4byte	0x1e8
  192 0004 0400     		.2byte	0x4
  193 0006 00000000 		.4byte	.Ldebug_abbrev0
  194 000a 04       		.byte	0x4
  195 000b 01       		.uleb128 0x1
- 196 000c 5A010000 		.4byte	.LASF30
+ 196 000c 61010000 		.4byte	.LASF31
  197 0010 01       		.byte	0x1
- 198 0011 11000000 		.4byte	.LASF31
- 199 0015 3B020000 		.4byte	.LASF32
+ 198 0011 11000000 		.4byte	.LASF32
+ 199 0015 42020000 		.4byte	.LASF33
  200 0019 00000000 		.4byte	.Ldebug_ranges0+0
  201 001d 00000000 		.4byte	0
  202 0021 00000000 		.4byte	.Ldebug_line0
  203 0025 02       		.uleb128 0x2
  204 0026 01       		.byte	0x1
  205 0027 06       		.byte	0x6
- 206 0028 9F020000 		.4byte	.LASF0
+ 206 0028 A6020000 		.4byte	.LASF0
  207 002c 02       		.uleb128 0x2
  208 002d 01       		.byte	0x1
  209 002e 08       		.byte	0x8
@@ -388,7 +390,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  211 0033 02       		.uleb128 0x2
  212 0034 02       		.byte	0x2
  213 0035 05       		.byte	0x5
- 214 0036 8C020000 		.4byte	.LASF2
+ 214 0036 93020000 		.4byte	.LASF2
  215 003a 02       		.uleb128 0x2
  216 003b 02       		.byte	0x2
  217 003c 07       		.byte	0x7
@@ -396,7 +398,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  219 0041 02       		.uleb128 0x2
  220 0042 04       		.byte	0x4
  221 0043 05       		.byte	0x5
- 222 0044 96020000 		.4byte	.LASF4
+ 222 0044 9D020000 		.4byte	.LASF4
  223 0048 02       		.uleb128 0x2
  224 0049 04       		.byte	0x4
  225 004a 07       		.byte	0x7
@@ -404,11 +406,11 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  227 004f 02       		.uleb128 0x2
  228 0050 08       		.byte	0x8
  229 0051 05       		.byte	0x5
- 230 0052 79020000 		.4byte	.LASF6
+ 230 0052 80020000 		.4byte	.LASF6
  231 0056 02       		.uleb128 0x2
  232 0057 08       		.byte	0x8
  233 0058 07       		.byte	0x7
- 234 0059 1B020000 		.4byte	.LASF7
+ 234 0059 22020000 		.4byte	.LASF7
  235 005d 03       		.uleb128 0x3
  236 005e 04       		.byte	0x4
  237 005f 05       		.byte	0x5
@@ -416,647 +418,655 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 1
  239 0064 02       		.uleb128 0x2
  240 0065 04       		.byte	0x4
  241 0066 07       		.byte	0x7
- 242 0067 0E020000 		.4byte	.LASF8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 8
+
+
+ 242 0067 15020000 		.4byte	.LASF8
  243 006b 04       		.uleb128 0x4
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 8
-
-
- 244 006c 12010000 		.4byte	.LASF12
+ 244 006c 12010000 		.4byte	.LASF9
  245 0070 02       		.byte	0x2
  246 0071 3801     		.2byte	0x138
  247 0073 2C000000 		.4byte	0x2c
- 248 0077 02       		.uleb128 0x2
- 249 0078 04       		.byte	0x4
- 250 0079 04       		.byte	0x4
- 251 007a C5000000 		.4byte	.LASF9
- 252 007e 02       		.uleb128 0x2
- 253 007f 08       		.byte	0x8
- 254 0080 04       		.byte	0x4
- 255 0081 9E000000 		.4byte	.LASF10
- 256 0085 02       		.uleb128 0x2
- 257 0086 01       		.byte	0x1
- 258 0087 08       		.byte	0x8
- 259 0088 87020000 		.4byte	.LASF11
- 260 008c 04       		.uleb128 0x4
- 261 008d ED000000 		.4byte	.LASF13
- 262 0091 02       		.byte	0x2
- 263 0092 E201     		.2byte	0x1e2
- 264 0094 98000000 		.4byte	0x98
- 265 0098 05       		.uleb128 0x5
- 266 0099 6B000000 		.4byte	0x6b
- 267 009d 02       		.uleb128 0x2
- 268 009e 04       		.byte	0x4
- 269 009f 07       		.byte	0x7
- 270 00a0 32020000 		.4byte	.LASF14
- 271 00a4 06       		.uleb128 0x6
- 272 00a5 04       		.byte	0x4
- 273 00a6 03       		.byte	0x3
- 274 00a7 43       		.byte	0x43
- 275 00a8 DD000000 		.4byte	0xdd
- 276 00ac 07       		.uleb128 0x7
- 277 00ad 00000000 		.4byte	.LASF15
- 278 00b1 03       		.byte	0x3
- 279 00b2 45       		.byte	0x45
- 280 00b3 6B000000 		.4byte	0x6b
- 281 00b7 00       		.byte	0
- 282 00b8 07       		.uleb128 0x7
- 283 00b9 A5000000 		.4byte	.LASF16
- 284 00bd 03       		.byte	0x3
- 285 00be 48       		.byte	0x48
- 286 00bf 6B000000 		.4byte	0x6b
- 287 00c3 01       		.byte	0x1
- 288 00c4 07       		.uleb128 0x7
- 289 00c5 AB020000 		.4byte	.LASF17
- 290 00c9 03       		.byte	0x3
- 291 00ca 49       		.byte	0x49
- 292 00cb 6B000000 		.4byte	0x6b
- 293 00cf 02       		.byte	0x2
- 294 00d0 07       		.uleb128 0x7
- 295 00d1 BE020000 		.4byte	.LASF18
- 296 00d5 03       		.byte	0x3
- 297 00d6 4F       		.byte	0x4f
- 298 00d7 6B000000 		.4byte	0x6b
- 299 00db 03       		.byte	0x3
- 300 00dc 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 9
+ 248 0077 04       		.uleb128 0x4
+ 249 0078 5A010000 		.4byte	.LASF10
+ 250 007c 02       		.byte	0x2
+ 251 007d 3A01     		.2byte	0x13a
+ 252 007f 48000000 		.4byte	0x48
+ 253 0083 02       		.uleb128 0x2
+ 254 0084 04       		.byte	0x4
+ 255 0085 04       		.byte	0x4
+ 256 0086 C5000000 		.4byte	.LASF11
+ 257 008a 02       		.uleb128 0x2
+ 258 008b 08       		.byte	0x8
+ 259 008c 04       		.byte	0x4
+ 260 008d 9E000000 		.4byte	.LASF12
+ 261 0091 02       		.uleb128 0x2
+ 262 0092 01       		.byte	0x1
+ 263 0093 08       		.byte	0x8
+ 264 0094 8E020000 		.4byte	.LASF13
+ 265 0098 04       		.uleb128 0x4
+ 266 0099 ED000000 		.4byte	.LASF14
+ 267 009d 02       		.byte	0x2
+ 268 009e E201     		.2byte	0x1e2
+ 269 00a0 A4000000 		.4byte	0xa4
+ 270 00a4 05       		.uleb128 0x5
+ 271 00a5 6B000000 		.4byte	0x6b
+ 272 00a9 02       		.uleb128 0x2
+ 273 00aa 04       		.byte	0x4
+ 274 00ab 07       		.byte	0x7
+ 275 00ac 39020000 		.4byte	.LASF15
+ 276 00b0 06       		.uleb128 0x6
+ 277 00b1 0C       		.byte	0xc
+ 278 00b2 03       		.byte	0x3
+ 279 00b3 43       		.byte	0x43
+ 280 00b4 E9000000 		.4byte	0xe9
+ 281 00b8 07       		.uleb128 0x7
+ 282 00b9 00000000 		.4byte	.LASF16
+ 283 00bd 03       		.byte	0x3
+ 284 00be 45       		.byte	0x45
+ 285 00bf 6B000000 		.4byte	0x6b
+ 286 00c3 00       		.byte	0
+ 287 00c4 07       		.uleb128 0x7
+ 288 00c5 A5000000 		.4byte	.LASF17
+ 289 00c9 03       		.byte	0x3
+ 290 00ca 48       		.byte	0x48
+ 291 00cb 77000000 		.4byte	0x77
+ 292 00cf 04       		.byte	0x4
+ 293 00d0 07       		.uleb128 0x7
+ 294 00d1 B2020000 		.4byte	.LASF18
+ 295 00d5 03       		.byte	0x3
+ 296 00d6 49       		.byte	0x49
+ 297 00d7 6B000000 		.4byte	0x6b
+ 298 00db 08       		.byte	0x8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 9
 
 
- 301 00dd 08       		.uleb128 0x8
- 302 00de E8010000 		.4byte	.LASF19
- 303 00e2 03       		.byte	0x3
- 304 00e3 53       		.byte	0x53
- 305 00e4 A4000000 		.4byte	0xa4
- 306 00e8 09       		.uleb128 0x9
- 307 00e9 D9000000 		.4byte	.LASF20
- 308 00ed 01       		.byte	0x1
- 309 00ee 2B       		.byte	0x2b
- 310 00ef 00000000 		.4byte	.LFB0
- 311 00f3 20000000 		.4byte	.LFE0-.LFB0
- 312 00f7 01       		.uleb128 0x1
- 313 00f8 9C       		.byte	0x9c
- 314 00f9 10010000 		.4byte	0x110
- 315 00fd 0A       		.uleb128 0xa
- 316 00fe 06000000 		.4byte	.LVL0
- 317 0102 99010000 		.4byte	0x199
- 318 0106 0A       		.uleb128 0xa
- 319 0107 14000000 		.4byte	.LVL1
- 320 010b A4010000 		.4byte	0x1a4
- 321 010f 00       		.byte	0
- 322 0110 09       		.uleb128 0x9
- 323 0111 AE000000 		.4byte	.LASF21
- 324 0115 01       		.byte	0x1
- 325 0116 4D       		.byte	0x4d
- 326 0117 00000000 		.4byte	.LFB1
- 327 011b 20000000 		.4byte	.LFE1-.LFB1
- 328 011f 01       		.uleb128 0x1
- 329 0120 9C       		.byte	0x9c
- 330 0121 38010000 		.4byte	0x138
- 331 0125 0A       		.uleb128 0xa
- 332 0126 0A000000 		.4byte	.LVL2
- 333 012a AF010000 		.4byte	0x1af
- 334 012e 0A       		.uleb128 0xa
- 335 012f 16000000 		.4byte	.LVL3
- 336 0133 C0010000 		.4byte	0x1c0
- 337 0137 00       		.byte	0
- 338 0138 09       		.uleb128 0x9
- 339 0139 7C000000 		.4byte	.LASF22
- 340 013d 01       		.byte	0x1
- 341 013e 70       		.byte	0x70
- 342 013f 00000000 		.4byte	.LFB2
- 343 0143 2C000000 		.4byte	.LFE2-.LFB2
- 344 0147 01       		.uleb128 0x1
- 345 0148 9C       		.byte	0x9c
- 346 0149 60010000 		.4byte	0x160
- 347 014d 0A       		.uleb128 0xa
- 348 014e 1E000000 		.4byte	.LVL4
- 349 0152 D1010000 		.4byte	0x1d1
- 350 0156 0A       		.uleb128 0xa
- 351 0157 22000000 		.4byte	.LVL5
- 352 015b E8000000 		.4byte	0xe8
- 353 015f 00       		.byte	0
- 354 0160 09       		.uleb128 0x9
- 355 0161 FE010000 		.4byte	.LASF23
- 356 0165 01       		.byte	0x1
- 357 0166 96       		.byte	0x96
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 10
+ 299 00dc 07       		.uleb128 0x7
+ 300 00dd C5020000 		.4byte	.LASF19
+ 301 00e1 03       		.byte	0x3
+ 302 00e2 4F       		.byte	0x4f
+ 303 00e3 6B000000 		.4byte	0x6b
+ 304 00e7 09       		.byte	0x9
+ 305 00e8 00       		.byte	0
+ 306 00e9 08       		.uleb128 0x8
+ 307 00ea EF010000 		.4byte	.LASF20
+ 308 00ee 03       		.byte	0x3
+ 309 00ef 53       		.byte	0x53
+ 310 00f0 B0000000 		.4byte	0xb0
+ 311 00f4 09       		.uleb128 0x9
+ 312 00f5 D9000000 		.4byte	.LASF21
+ 313 00f9 01       		.byte	0x1
+ 314 00fa 2B       		.byte	0x2b
+ 315 00fb 00000000 		.4byte	.LFB0
+ 316 00ff 20000000 		.4byte	.LFE0-.LFB0
+ 317 0103 01       		.uleb128 0x1
+ 318 0104 9C       		.byte	0x9c
+ 319 0105 1C010000 		.4byte	0x11c
+ 320 0109 0A       		.uleb128 0xa
+ 321 010a 06000000 		.4byte	.LVL0
+ 322 010e A5010000 		.4byte	0x1a5
+ 323 0112 0A       		.uleb128 0xa
+ 324 0113 14000000 		.4byte	.LVL1
+ 325 0117 B0010000 		.4byte	0x1b0
+ 326 011b 00       		.byte	0
+ 327 011c 09       		.uleb128 0x9
+ 328 011d AE000000 		.4byte	.LASF22
+ 329 0121 01       		.byte	0x1
+ 330 0122 4D       		.byte	0x4d
+ 331 0123 00000000 		.4byte	.LFB1
+ 332 0127 20000000 		.4byte	.LFE1-.LFB1
+ 333 012b 01       		.uleb128 0x1
+ 334 012c 9C       		.byte	0x9c
+ 335 012d 44010000 		.4byte	0x144
+ 336 0131 0A       		.uleb128 0xa
+ 337 0132 0A000000 		.4byte	.LVL2
+ 338 0136 BB010000 		.4byte	0x1bb
+ 339 013a 0A       		.uleb128 0xa
+ 340 013b 16000000 		.4byte	.LVL3
+ 341 013f CC010000 		.4byte	0x1cc
+ 342 0143 00       		.byte	0
+ 343 0144 09       		.uleb128 0x9
+ 344 0145 7C000000 		.4byte	.LASF23
+ 345 0149 01       		.byte	0x1
+ 346 014a 70       		.byte	0x70
+ 347 014b 00000000 		.4byte	.LFB2
+ 348 014f 2C000000 		.4byte	.LFE2-.LFB2
+ 349 0153 01       		.uleb128 0x1
+ 350 0154 9C       		.byte	0x9c
+ 351 0155 6C010000 		.4byte	0x16c
+ 352 0159 0A       		.uleb128 0xa
+ 353 015a 1E000000 		.4byte	.LVL4
+ 354 015e DD010000 		.4byte	0x1dd
+ 355 0162 0A       		.uleb128 0xa
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 10
 
 
- 358 0167 00000000 		.4byte	.LFB3
- 359 016b 18000000 		.4byte	.LFE3-.LFB3
- 360 016f 01       		.uleb128 0x1
- 361 0170 9C       		.byte	0x9c
- 362 0171 88010000 		.4byte	0x188
- 363 0175 0A       		.uleb128 0xa
- 364 0176 06000000 		.4byte	.LVL6
- 365 017a 10010000 		.4byte	0x110
- 366 017e 0A       		.uleb128 0xa
- 367 017f 12000000 		.4byte	.LVL7
- 368 0183 D8010000 		.4byte	0x1d8
- 369 0187 00       		.byte	0
- 370 0188 0B       		.uleb128 0xb
- 371 0189 4A010000 		.4byte	.LASF33
- 372 018d 01       		.byte	0x1
- 373 018e 15       		.byte	0x15
- 374 018f DD000000 		.4byte	0xdd
- 375 0193 05       		.uleb128 0x5
- 376 0194 03       		.byte	0x3
- 377 0195 00000000 		.4byte	Timer_ir_backup
- 378 0199 0C       		.uleb128 0xc
- 379 019a 18010000 		.4byte	.LASF24
- 380 019e 03       		.byte	0x3
- 381 019f 69       		.byte	0x69
- 382 01a0 6B000000 		.4byte	0x6b
- 383 01a4 0C       		.uleb128 0xc
- 384 01a5 2D010000 		.4byte	.LASF25
- 385 01a9 03       		.byte	0x3
- 386 01aa 63       		.byte	0x63
- 387 01ab 6B000000 		.4byte	0x6b
- 388 01af 0D       		.uleb128 0xd
- 389 01b0 66000000 		.4byte	.LASF26
- 390 01b4 03       		.byte	0x3
- 391 01b5 6A       		.byte	0x6a
- 392 01b6 C0010000 		.4byte	0x1c0
- 393 01ba 0E       		.uleb128 0xe
- 394 01bb 6B000000 		.4byte	0x6b
- 395 01bf 00       		.byte	0
- 396 01c0 0D       		.uleb128 0xd
- 397 01c1 48000000 		.4byte	.LASF27
- 398 01c5 03       		.byte	0x3
- 399 01c6 64       		.byte	0x64
- 400 01c7 D1010000 		.4byte	0x1d1
- 401 01cb 0E       		.uleb128 0xe
- 402 01cc 6B000000 		.4byte	0x6b
- 403 01d0 00       		.byte	0
- 404 01d1 0F       		.uleb128 0xf
- 405 01d2 F2000000 		.4byte	.LASF28
- 406 01d6 03       		.byte	0x3
- 407 01d7 5B       		.byte	0x5b
- 408 01d8 0F       		.uleb128 0xf
- 409 01d9 38000000 		.4byte	.LASF29
- 410 01dd 03       		.byte	0x3
- 411 01de 8B       		.byte	0x8b
- 412 01df 00       		.byte	0
- 413              		.section	.debug_abbrev,"",%progbits
- 414              	.Ldebug_abbrev0:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 11
+ 356 0163 22000000 		.4byte	.LVL5
+ 357 0167 F4000000 		.4byte	0xf4
+ 358 016b 00       		.byte	0
+ 359 016c 09       		.uleb128 0x9
+ 360 016d 05020000 		.4byte	.LASF24
+ 361 0171 01       		.byte	0x1
+ 362 0172 96       		.byte	0x96
+ 363 0173 00000000 		.4byte	.LFB3
+ 364 0177 18000000 		.4byte	.LFE3-.LFB3
+ 365 017b 01       		.uleb128 0x1
+ 366 017c 9C       		.byte	0x9c
+ 367 017d 94010000 		.4byte	0x194
+ 368 0181 0A       		.uleb128 0xa
+ 369 0182 06000000 		.4byte	.LVL6
+ 370 0186 1C010000 		.4byte	0x11c
+ 371 018a 0A       		.uleb128 0xa
+ 372 018b 12000000 		.4byte	.LVL7
+ 373 018f E4010000 		.4byte	0x1e4
+ 374 0193 00       		.byte	0
+ 375 0194 0B       		.uleb128 0xb
+ 376 0195 4A010000 		.4byte	.LASF34
+ 377 0199 01       		.byte	0x1
+ 378 019a 15       		.byte	0x15
+ 379 019b E9000000 		.4byte	0xe9
+ 380 019f 05       		.uleb128 0x5
+ 381 01a0 03       		.byte	0x3
+ 382 01a1 00000000 		.4byte	Timer_ir_backup
+ 383 01a5 0C       		.uleb128 0xc
+ 384 01a6 18010000 		.4byte	.LASF25
+ 385 01aa 03       		.byte	0x3
+ 386 01ab 69       		.byte	0x69
+ 387 01ac 77000000 		.4byte	0x77
+ 388 01b0 0C       		.uleb128 0xc
+ 389 01b1 2D010000 		.4byte	.LASF26
+ 390 01b5 03       		.byte	0x3
+ 391 01b6 63       		.byte	0x63
+ 392 01b7 6B000000 		.4byte	0x6b
+ 393 01bb 0D       		.uleb128 0xd
+ 394 01bc 66000000 		.4byte	.LASF27
+ 395 01c0 03       		.byte	0x3
+ 396 01c1 6A       		.byte	0x6a
+ 397 01c2 CC010000 		.4byte	0x1cc
+ 398 01c6 0E       		.uleb128 0xe
+ 399 01c7 77000000 		.4byte	0x77
+ 400 01cb 00       		.byte	0
+ 401 01cc 0D       		.uleb128 0xd
+ 402 01cd 48000000 		.4byte	.LASF28
+ 403 01d1 03       		.byte	0x3
+ 404 01d2 64       		.byte	0x64
+ 405 01d3 DD010000 		.4byte	0x1dd
+ 406 01d7 0E       		.uleb128 0xe
+ 407 01d8 6B000000 		.4byte	0x6b
+ 408 01dc 00       		.byte	0
+ 409 01dd 0F       		.uleb128 0xf
+ 410 01de F2000000 		.4byte	.LASF29
+ 411 01e2 03       		.byte	0x3
+ 412 01e3 5B       		.byte	0x5b
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 11
 
 
- 415 0000 01       		.uleb128 0x1
- 416 0001 11       		.uleb128 0x11
- 417 0002 01       		.byte	0x1
- 418 0003 25       		.uleb128 0x25
- 419 0004 0E       		.uleb128 0xe
- 420 0005 13       		.uleb128 0x13
- 421 0006 0B       		.uleb128 0xb
- 422 0007 03       		.uleb128 0x3
- 423 0008 0E       		.uleb128 0xe
- 424 0009 1B       		.uleb128 0x1b
- 425 000a 0E       		.uleb128 0xe
- 426 000b 55       		.uleb128 0x55
- 427 000c 17       		.uleb128 0x17
- 428 000d 11       		.uleb128 0x11
- 429 000e 01       		.uleb128 0x1
- 430 000f 10       		.uleb128 0x10
- 431 0010 17       		.uleb128 0x17
- 432 0011 00       		.byte	0
- 433 0012 00       		.byte	0
- 434 0013 02       		.uleb128 0x2
- 435 0014 24       		.uleb128 0x24
- 436 0015 00       		.byte	0
- 437 0016 0B       		.uleb128 0xb
- 438 0017 0B       		.uleb128 0xb
- 439 0018 3E       		.uleb128 0x3e
- 440 0019 0B       		.uleb128 0xb
- 441 001a 03       		.uleb128 0x3
- 442 001b 0E       		.uleb128 0xe
- 443 001c 00       		.byte	0
- 444 001d 00       		.byte	0
- 445 001e 03       		.uleb128 0x3
- 446 001f 24       		.uleb128 0x24
- 447 0020 00       		.byte	0
- 448 0021 0B       		.uleb128 0xb
- 449 0022 0B       		.uleb128 0xb
- 450 0023 3E       		.uleb128 0x3e
- 451 0024 0B       		.uleb128 0xb
- 452 0025 03       		.uleb128 0x3
- 453 0026 08       		.uleb128 0x8
- 454 0027 00       		.byte	0
- 455 0028 00       		.byte	0
- 456 0029 04       		.uleb128 0x4
- 457 002a 16       		.uleb128 0x16
- 458 002b 00       		.byte	0
- 459 002c 03       		.uleb128 0x3
- 460 002d 0E       		.uleb128 0xe
- 461 002e 3A       		.uleb128 0x3a
- 462 002f 0B       		.uleb128 0xb
- 463 0030 3B       		.uleb128 0x3b
- 464 0031 05       		.uleb128 0x5
- 465 0032 49       		.uleb128 0x49
- 466 0033 13       		.uleb128 0x13
- 467 0034 00       		.byte	0
- 468 0035 00       		.byte	0
- 469 0036 05       		.uleb128 0x5
- 470 0037 35       		.uleb128 0x35
- 471 0038 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 12
+ 413 01e4 0F       		.uleb128 0xf
+ 414 01e5 38000000 		.4byte	.LASF30
+ 415 01e9 03       		.byte	0x3
+ 416 01ea 8B       		.byte	0x8b
+ 417 01eb 00       		.byte	0
+ 418              		.section	.debug_abbrev,"",%progbits
+ 419              	.Ldebug_abbrev0:
+ 420 0000 01       		.uleb128 0x1
+ 421 0001 11       		.uleb128 0x11
+ 422 0002 01       		.byte	0x1
+ 423 0003 25       		.uleb128 0x25
+ 424 0004 0E       		.uleb128 0xe
+ 425 0005 13       		.uleb128 0x13
+ 426 0006 0B       		.uleb128 0xb
+ 427 0007 03       		.uleb128 0x3
+ 428 0008 0E       		.uleb128 0xe
+ 429 0009 1B       		.uleb128 0x1b
+ 430 000a 0E       		.uleb128 0xe
+ 431 000b 55       		.uleb128 0x55
+ 432 000c 17       		.uleb128 0x17
+ 433 000d 11       		.uleb128 0x11
+ 434 000e 01       		.uleb128 0x1
+ 435 000f 10       		.uleb128 0x10
+ 436 0010 17       		.uleb128 0x17
+ 437 0011 00       		.byte	0
+ 438 0012 00       		.byte	0
+ 439 0013 02       		.uleb128 0x2
+ 440 0014 24       		.uleb128 0x24
+ 441 0015 00       		.byte	0
+ 442 0016 0B       		.uleb128 0xb
+ 443 0017 0B       		.uleb128 0xb
+ 444 0018 3E       		.uleb128 0x3e
+ 445 0019 0B       		.uleb128 0xb
+ 446 001a 03       		.uleb128 0x3
+ 447 001b 0E       		.uleb128 0xe
+ 448 001c 00       		.byte	0
+ 449 001d 00       		.byte	0
+ 450 001e 03       		.uleb128 0x3
+ 451 001f 24       		.uleb128 0x24
+ 452 0020 00       		.byte	0
+ 453 0021 0B       		.uleb128 0xb
+ 454 0022 0B       		.uleb128 0xb
+ 455 0023 3E       		.uleb128 0x3e
+ 456 0024 0B       		.uleb128 0xb
+ 457 0025 03       		.uleb128 0x3
+ 458 0026 08       		.uleb128 0x8
+ 459 0027 00       		.byte	0
+ 460 0028 00       		.byte	0
+ 461 0029 04       		.uleb128 0x4
+ 462 002a 16       		.uleb128 0x16
+ 463 002b 00       		.byte	0
+ 464 002c 03       		.uleb128 0x3
+ 465 002d 0E       		.uleb128 0xe
+ 466 002e 3A       		.uleb128 0x3a
+ 467 002f 0B       		.uleb128 0xb
+ 468 0030 3B       		.uleb128 0x3b
+ 469 0031 05       		.uleb128 0x5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 12
 
 
- 472 0039 49       		.uleb128 0x49
- 473 003a 13       		.uleb128 0x13
- 474 003b 00       		.byte	0
- 475 003c 00       		.byte	0
- 476 003d 06       		.uleb128 0x6
- 477 003e 13       		.uleb128 0x13
- 478 003f 01       		.byte	0x1
- 479 0040 0B       		.uleb128 0xb
- 480 0041 0B       		.uleb128 0xb
- 481 0042 3A       		.uleb128 0x3a
- 482 0043 0B       		.uleb128 0xb
- 483 0044 3B       		.uleb128 0x3b
- 484 0045 0B       		.uleb128 0xb
- 485 0046 01       		.uleb128 0x1
- 486 0047 13       		.uleb128 0x13
- 487 0048 00       		.byte	0
- 488 0049 00       		.byte	0
- 489 004a 07       		.uleb128 0x7
- 490 004b 0D       		.uleb128 0xd
- 491 004c 00       		.byte	0
- 492 004d 03       		.uleb128 0x3
- 493 004e 0E       		.uleb128 0xe
- 494 004f 3A       		.uleb128 0x3a
- 495 0050 0B       		.uleb128 0xb
- 496 0051 3B       		.uleb128 0x3b
- 497 0052 0B       		.uleb128 0xb
- 498 0053 49       		.uleb128 0x49
- 499 0054 13       		.uleb128 0x13
- 500 0055 38       		.uleb128 0x38
- 501 0056 0B       		.uleb128 0xb
- 502 0057 00       		.byte	0
- 503 0058 00       		.byte	0
- 504 0059 08       		.uleb128 0x8
- 505 005a 16       		.uleb128 0x16
- 506 005b 00       		.byte	0
- 507 005c 03       		.uleb128 0x3
- 508 005d 0E       		.uleb128 0xe
- 509 005e 3A       		.uleb128 0x3a
- 510 005f 0B       		.uleb128 0xb
- 511 0060 3B       		.uleb128 0x3b
- 512 0061 0B       		.uleb128 0xb
- 513 0062 49       		.uleb128 0x49
- 514 0063 13       		.uleb128 0x13
- 515 0064 00       		.byte	0
- 516 0065 00       		.byte	0
- 517 0066 09       		.uleb128 0x9
- 518 0067 2E       		.uleb128 0x2e
- 519 0068 01       		.byte	0x1
- 520 0069 3F       		.uleb128 0x3f
- 521 006a 19       		.uleb128 0x19
- 522 006b 03       		.uleb128 0x3
- 523 006c 0E       		.uleb128 0xe
- 524 006d 3A       		.uleb128 0x3a
- 525 006e 0B       		.uleb128 0xb
- 526 006f 3B       		.uleb128 0x3b
- 527 0070 0B       		.uleb128 0xb
- 528 0071 27       		.uleb128 0x27
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 13
+ 470 0032 49       		.uleb128 0x49
+ 471 0033 13       		.uleb128 0x13
+ 472 0034 00       		.byte	0
+ 473 0035 00       		.byte	0
+ 474 0036 05       		.uleb128 0x5
+ 475 0037 35       		.uleb128 0x35
+ 476 0038 00       		.byte	0
+ 477 0039 49       		.uleb128 0x49
+ 478 003a 13       		.uleb128 0x13
+ 479 003b 00       		.byte	0
+ 480 003c 00       		.byte	0
+ 481 003d 06       		.uleb128 0x6
+ 482 003e 13       		.uleb128 0x13
+ 483 003f 01       		.byte	0x1
+ 484 0040 0B       		.uleb128 0xb
+ 485 0041 0B       		.uleb128 0xb
+ 486 0042 3A       		.uleb128 0x3a
+ 487 0043 0B       		.uleb128 0xb
+ 488 0044 3B       		.uleb128 0x3b
+ 489 0045 0B       		.uleb128 0xb
+ 490 0046 01       		.uleb128 0x1
+ 491 0047 13       		.uleb128 0x13
+ 492 0048 00       		.byte	0
+ 493 0049 00       		.byte	0
+ 494 004a 07       		.uleb128 0x7
+ 495 004b 0D       		.uleb128 0xd
+ 496 004c 00       		.byte	0
+ 497 004d 03       		.uleb128 0x3
+ 498 004e 0E       		.uleb128 0xe
+ 499 004f 3A       		.uleb128 0x3a
+ 500 0050 0B       		.uleb128 0xb
+ 501 0051 3B       		.uleb128 0x3b
+ 502 0052 0B       		.uleb128 0xb
+ 503 0053 49       		.uleb128 0x49
+ 504 0054 13       		.uleb128 0x13
+ 505 0055 38       		.uleb128 0x38
+ 506 0056 0B       		.uleb128 0xb
+ 507 0057 00       		.byte	0
+ 508 0058 00       		.byte	0
+ 509 0059 08       		.uleb128 0x8
+ 510 005a 16       		.uleb128 0x16
+ 511 005b 00       		.byte	0
+ 512 005c 03       		.uleb128 0x3
+ 513 005d 0E       		.uleb128 0xe
+ 514 005e 3A       		.uleb128 0x3a
+ 515 005f 0B       		.uleb128 0xb
+ 516 0060 3B       		.uleb128 0x3b
+ 517 0061 0B       		.uleb128 0xb
+ 518 0062 49       		.uleb128 0x49
+ 519 0063 13       		.uleb128 0x13
+ 520 0064 00       		.byte	0
+ 521 0065 00       		.byte	0
+ 522 0066 09       		.uleb128 0x9
+ 523 0067 2E       		.uleb128 0x2e
+ 524 0068 01       		.byte	0x1
+ 525 0069 3F       		.uleb128 0x3f
+ 526 006a 19       		.uleb128 0x19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 13
 
 
- 529 0072 19       		.uleb128 0x19
- 530 0073 11       		.uleb128 0x11
- 531 0074 01       		.uleb128 0x1
- 532 0075 12       		.uleb128 0x12
- 533 0076 06       		.uleb128 0x6
- 534 0077 40       		.uleb128 0x40
- 535 0078 18       		.uleb128 0x18
- 536 0079 9742     		.uleb128 0x2117
- 537 007b 19       		.uleb128 0x19
- 538 007c 01       		.uleb128 0x1
- 539 007d 13       		.uleb128 0x13
- 540 007e 00       		.byte	0
- 541 007f 00       		.byte	0
- 542 0080 0A       		.uleb128 0xa
- 543 0081 898201   		.uleb128 0x4109
- 544 0084 00       		.byte	0
- 545 0085 11       		.uleb128 0x11
- 546 0086 01       		.uleb128 0x1
- 547 0087 31       		.uleb128 0x31
- 548 0088 13       		.uleb128 0x13
- 549 0089 00       		.byte	0
- 550 008a 00       		.byte	0
- 551 008b 0B       		.uleb128 0xb
- 552 008c 34       		.uleb128 0x34
- 553 008d 00       		.byte	0
- 554 008e 03       		.uleb128 0x3
- 555 008f 0E       		.uleb128 0xe
- 556 0090 3A       		.uleb128 0x3a
- 557 0091 0B       		.uleb128 0xb
- 558 0092 3B       		.uleb128 0x3b
- 559 0093 0B       		.uleb128 0xb
- 560 0094 49       		.uleb128 0x49
- 561 0095 13       		.uleb128 0x13
- 562 0096 02       		.uleb128 0x2
- 563 0097 18       		.uleb128 0x18
- 564 0098 00       		.byte	0
- 565 0099 00       		.byte	0
- 566 009a 0C       		.uleb128 0xc
- 567 009b 2E       		.uleb128 0x2e
- 568 009c 00       		.byte	0
- 569 009d 3F       		.uleb128 0x3f
- 570 009e 19       		.uleb128 0x19
- 571 009f 03       		.uleb128 0x3
- 572 00a0 0E       		.uleb128 0xe
- 573 00a1 3A       		.uleb128 0x3a
- 574 00a2 0B       		.uleb128 0xb
- 575 00a3 3B       		.uleb128 0x3b
- 576 00a4 0B       		.uleb128 0xb
- 577 00a5 27       		.uleb128 0x27
- 578 00a6 19       		.uleb128 0x19
- 579 00a7 49       		.uleb128 0x49
- 580 00a8 13       		.uleb128 0x13
- 581 00a9 3C       		.uleb128 0x3c
- 582 00aa 19       		.uleb128 0x19
- 583 00ab 00       		.byte	0
- 584 00ac 00       		.byte	0
- 585 00ad 0D       		.uleb128 0xd
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 14
+ 527 006b 03       		.uleb128 0x3
+ 528 006c 0E       		.uleb128 0xe
+ 529 006d 3A       		.uleb128 0x3a
+ 530 006e 0B       		.uleb128 0xb
+ 531 006f 3B       		.uleb128 0x3b
+ 532 0070 0B       		.uleb128 0xb
+ 533 0071 27       		.uleb128 0x27
+ 534 0072 19       		.uleb128 0x19
+ 535 0073 11       		.uleb128 0x11
+ 536 0074 01       		.uleb128 0x1
+ 537 0075 12       		.uleb128 0x12
+ 538 0076 06       		.uleb128 0x6
+ 539 0077 40       		.uleb128 0x40
+ 540 0078 18       		.uleb128 0x18
+ 541 0079 9742     		.uleb128 0x2117
+ 542 007b 19       		.uleb128 0x19
+ 543 007c 01       		.uleb128 0x1
+ 544 007d 13       		.uleb128 0x13
+ 545 007e 00       		.byte	0
+ 546 007f 00       		.byte	0
+ 547 0080 0A       		.uleb128 0xa
+ 548 0081 898201   		.uleb128 0x4109
+ 549 0084 00       		.byte	0
+ 550 0085 11       		.uleb128 0x11
+ 551 0086 01       		.uleb128 0x1
+ 552 0087 31       		.uleb128 0x31
+ 553 0088 13       		.uleb128 0x13
+ 554 0089 00       		.byte	0
+ 555 008a 00       		.byte	0
+ 556 008b 0B       		.uleb128 0xb
+ 557 008c 34       		.uleb128 0x34
+ 558 008d 00       		.byte	0
+ 559 008e 03       		.uleb128 0x3
+ 560 008f 0E       		.uleb128 0xe
+ 561 0090 3A       		.uleb128 0x3a
+ 562 0091 0B       		.uleb128 0xb
+ 563 0092 3B       		.uleb128 0x3b
+ 564 0093 0B       		.uleb128 0xb
+ 565 0094 49       		.uleb128 0x49
+ 566 0095 13       		.uleb128 0x13
+ 567 0096 02       		.uleb128 0x2
+ 568 0097 18       		.uleb128 0x18
+ 569 0098 00       		.byte	0
+ 570 0099 00       		.byte	0
+ 571 009a 0C       		.uleb128 0xc
+ 572 009b 2E       		.uleb128 0x2e
+ 573 009c 00       		.byte	0
+ 574 009d 3F       		.uleb128 0x3f
+ 575 009e 19       		.uleb128 0x19
+ 576 009f 03       		.uleb128 0x3
+ 577 00a0 0E       		.uleb128 0xe
+ 578 00a1 3A       		.uleb128 0x3a
+ 579 00a2 0B       		.uleb128 0xb
+ 580 00a3 3B       		.uleb128 0x3b
+ 581 00a4 0B       		.uleb128 0xb
+ 582 00a5 27       		.uleb128 0x27
+ 583 00a6 19       		.uleb128 0x19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 14
 
 
- 586 00ae 2E       		.uleb128 0x2e
- 587 00af 01       		.byte	0x1
- 588 00b0 3F       		.uleb128 0x3f
- 589 00b1 19       		.uleb128 0x19
- 590 00b2 03       		.uleb128 0x3
- 591 00b3 0E       		.uleb128 0xe
- 592 00b4 3A       		.uleb128 0x3a
- 593 00b5 0B       		.uleb128 0xb
- 594 00b6 3B       		.uleb128 0x3b
- 595 00b7 0B       		.uleb128 0xb
- 596 00b8 27       		.uleb128 0x27
- 597 00b9 19       		.uleb128 0x19
- 598 00ba 3C       		.uleb128 0x3c
- 599 00bb 19       		.uleb128 0x19
- 600 00bc 01       		.uleb128 0x1
- 601 00bd 13       		.uleb128 0x13
- 602 00be 00       		.byte	0
- 603 00bf 00       		.byte	0
- 604 00c0 0E       		.uleb128 0xe
- 605 00c1 05       		.uleb128 0x5
- 606 00c2 00       		.byte	0
- 607 00c3 49       		.uleb128 0x49
- 608 00c4 13       		.uleb128 0x13
- 609 00c5 00       		.byte	0
- 610 00c6 00       		.byte	0
- 611 00c7 0F       		.uleb128 0xf
- 612 00c8 2E       		.uleb128 0x2e
- 613 00c9 00       		.byte	0
- 614 00ca 3F       		.uleb128 0x3f
- 615 00cb 19       		.uleb128 0x19
- 616 00cc 03       		.uleb128 0x3
- 617 00cd 0E       		.uleb128 0xe
- 618 00ce 3A       		.uleb128 0x3a
- 619 00cf 0B       		.uleb128 0xb
- 620 00d0 3B       		.uleb128 0x3b
- 621 00d1 0B       		.uleb128 0xb
- 622 00d2 27       		.uleb128 0x27
- 623 00d3 19       		.uleb128 0x19
- 624 00d4 3C       		.uleb128 0x3c
- 625 00d5 19       		.uleb128 0x19
- 626 00d6 00       		.byte	0
- 627 00d7 00       		.byte	0
- 628 00d8 00       		.byte	0
- 629              		.section	.debug_aranges,"",%progbits
- 630 0000 34000000 		.4byte	0x34
- 631 0004 0200     		.2byte	0x2
- 632 0006 00000000 		.4byte	.Ldebug_info0
- 633 000a 04       		.byte	0x4
- 634 000b 00       		.byte	0
- 635 000c 0000     		.2byte	0
- 636 000e 0000     		.2byte	0
- 637 0010 00000000 		.4byte	.LFB0
- 638 0014 20000000 		.4byte	.LFE0-.LFB0
- 639 0018 00000000 		.4byte	.LFB1
- 640 001c 20000000 		.4byte	.LFE1-.LFB1
- 641 0020 00000000 		.4byte	.LFB2
- 642 0024 2C000000 		.4byte	.LFE2-.LFB2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 15
+ 584 00a7 49       		.uleb128 0x49
+ 585 00a8 13       		.uleb128 0x13
+ 586 00a9 3C       		.uleb128 0x3c
+ 587 00aa 19       		.uleb128 0x19
+ 588 00ab 00       		.byte	0
+ 589 00ac 00       		.byte	0
+ 590 00ad 0D       		.uleb128 0xd
+ 591 00ae 2E       		.uleb128 0x2e
+ 592 00af 01       		.byte	0x1
+ 593 00b0 3F       		.uleb128 0x3f
+ 594 00b1 19       		.uleb128 0x19
+ 595 00b2 03       		.uleb128 0x3
+ 596 00b3 0E       		.uleb128 0xe
+ 597 00b4 3A       		.uleb128 0x3a
+ 598 00b5 0B       		.uleb128 0xb
+ 599 00b6 3B       		.uleb128 0x3b
+ 600 00b7 0B       		.uleb128 0xb
+ 601 00b8 27       		.uleb128 0x27
+ 602 00b9 19       		.uleb128 0x19
+ 603 00ba 3C       		.uleb128 0x3c
+ 604 00bb 19       		.uleb128 0x19
+ 605 00bc 01       		.uleb128 0x1
+ 606 00bd 13       		.uleb128 0x13
+ 607 00be 00       		.byte	0
+ 608 00bf 00       		.byte	0
+ 609 00c0 0E       		.uleb128 0xe
+ 610 00c1 05       		.uleb128 0x5
+ 611 00c2 00       		.byte	0
+ 612 00c3 49       		.uleb128 0x49
+ 613 00c4 13       		.uleb128 0x13
+ 614 00c5 00       		.byte	0
+ 615 00c6 00       		.byte	0
+ 616 00c7 0F       		.uleb128 0xf
+ 617 00c8 2E       		.uleb128 0x2e
+ 618 00c9 00       		.byte	0
+ 619 00ca 3F       		.uleb128 0x3f
+ 620 00cb 19       		.uleb128 0x19
+ 621 00cc 03       		.uleb128 0x3
+ 622 00cd 0E       		.uleb128 0xe
+ 623 00ce 3A       		.uleb128 0x3a
+ 624 00cf 0B       		.uleb128 0xb
+ 625 00d0 3B       		.uleb128 0x3b
+ 626 00d1 0B       		.uleb128 0xb
+ 627 00d2 27       		.uleb128 0x27
+ 628 00d3 19       		.uleb128 0x19
+ 629 00d4 3C       		.uleb128 0x3c
+ 630 00d5 19       		.uleb128 0x19
+ 631 00d6 00       		.byte	0
+ 632 00d7 00       		.byte	0
+ 633 00d8 00       		.byte	0
+ 634              		.section	.debug_aranges,"",%progbits
+ 635 0000 34000000 		.4byte	0x34
+ 636 0004 0200     		.2byte	0x2
+ 637 0006 00000000 		.4byte	.Ldebug_info0
+ 638 000a 04       		.byte	0x4
+ 639 000b 00       		.byte	0
+ 640 000c 0000     		.2byte	0
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 15
 
 
- 643 0028 00000000 		.4byte	.LFB3
- 644 002c 18000000 		.4byte	.LFE3-.LFB3
- 645 0030 00000000 		.4byte	0
- 646 0034 00000000 		.4byte	0
- 647              		.section	.debug_ranges,"",%progbits
- 648              	.Ldebug_ranges0:
- 649 0000 00000000 		.4byte	.LFB0
- 650 0004 20000000 		.4byte	.LFE0
- 651 0008 00000000 		.4byte	.LFB1
- 652 000c 20000000 		.4byte	.LFE1
- 653 0010 00000000 		.4byte	.LFB2
- 654 0014 2C000000 		.4byte	.LFE2
- 655 0018 00000000 		.4byte	.LFB3
- 656 001c 18000000 		.4byte	.LFE3
- 657 0020 00000000 		.4byte	0
- 658 0024 00000000 		.4byte	0
- 659              		.section	.debug_line,"",%progbits
- 660              	.Ldebug_line0:
- 661 0000 AB000000 		.section	.debug_str,"MS",%progbits,1
- 661      02005800 
- 661      00000201 
- 661      FB0E0D00 
- 661      01010101 
- 662              	.LASF15:
- 663 0000 54696D65 		.ascii	"TimerEnableState\000"
- 663      72456E61 
- 663      626C6553 
- 663      74617465 
- 663      00
- 664              	.LASF31:
- 665 0011 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Timer_ir_PM.c\000"
- 665      6E657261 
- 665      7465645F 
- 665      536F7572 
- 665      63655C50 
- 666              	.LASF29:
- 667 0038 54696D65 		.ascii	"Timer_ir_Enable\000"
- 667      725F6972 
- 667      5F456E61 
- 667      626C6500 
- 668              	.LASF27:
- 669 0048 54696D65 		.ascii	"Timer_ir_WriteControlRegister\000"
- 669      725F6972 
- 669      5F577269 
- 669      7465436F 
- 669      6E74726F 
- 670              	.LASF26:
- 671 0066 54696D65 		.ascii	"Timer_ir_WriteCounter\000"
- 671      725F6972 
- 671      5F577269 
- 671      7465436F 
- 671      756E7465 
- 672              	.LASF22:
- 673 007c 54696D65 		.ascii	"Timer_ir_Sleep\000"
- 673      725F6972 
- 673      5F536C65 
- 673      657000
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 16
+ 641 000e 0000     		.2byte	0
+ 642 0010 00000000 		.4byte	.LFB0
+ 643 0014 20000000 		.4byte	.LFE0-.LFB0
+ 644 0018 00000000 		.4byte	.LFB1
+ 645 001c 20000000 		.4byte	.LFE1-.LFB1
+ 646 0020 00000000 		.4byte	.LFB2
+ 647 0024 2C000000 		.4byte	.LFE2-.LFB2
+ 648 0028 00000000 		.4byte	.LFB3
+ 649 002c 18000000 		.4byte	.LFE3-.LFB3
+ 650 0030 00000000 		.4byte	0
+ 651 0034 00000000 		.4byte	0
+ 652              		.section	.debug_ranges,"",%progbits
+ 653              	.Ldebug_ranges0:
+ 654 0000 00000000 		.4byte	.LFB0
+ 655 0004 20000000 		.4byte	.LFE0
+ 656 0008 00000000 		.4byte	.LFB1
+ 657 000c 20000000 		.4byte	.LFE1
+ 658 0010 00000000 		.4byte	.LFB2
+ 659 0014 2C000000 		.4byte	.LFE2
+ 660 0018 00000000 		.4byte	.LFB3
+ 661 001c 18000000 		.4byte	.LFE3
+ 662 0020 00000000 		.4byte	0
+ 663 0024 00000000 		.4byte	0
+ 664              		.section	.debug_line,"",%progbits
+ 665              	.Ldebug_line0:
+ 666 0000 AB000000 		.section	.debug_str,"MS",%progbits,1
+ 666      02005800 
+ 666      00000201 
+ 666      FB0E0D00 
+ 666      01010101 
+ 667              	.LASF16:
+ 668 0000 54696D65 		.ascii	"TimerEnableState\000"
+ 668      72456E61 
+ 668      626C6553 
+ 668      74617465 
+ 668      00
+ 669              	.LASF32:
+ 670 0011 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Timer_ir_PM.c\000"
+ 670      6E657261 
+ 670      7465645F 
+ 670      536F7572 
+ 670      63655C50 
+ 671              	.LASF30:
+ 672 0038 54696D65 		.ascii	"Timer_ir_Enable\000"
+ 672      725F6972 
+ 672      5F456E61 
+ 672      626C6500 
+ 673              	.LASF28:
+ 674 0048 54696D65 		.ascii	"Timer_ir_WriteControlRegister\000"
+ 674      725F6972 
+ 674      5F577269 
+ 674      7465436F 
+ 674      6E74726F 
+ 675              	.LASF27:
+ 676 0066 54696D65 		.ascii	"Timer_ir_WriteCounter\000"
+ 676      725F6972 
+ 676      5F577269 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 16
 
 
- 674              	.LASF3:
- 675 008b 73686F72 		.ascii	"short unsigned int\000"
- 675      7420756E 
- 675      7369676E 
- 675      65642069 
- 675      6E7400
- 676              	.LASF10:
- 677 009e 646F7562 		.ascii	"double\000"
- 677      6C6500
- 678              	.LASF16:
- 679 00a5 54696D65 		.ascii	"TimerUdb\000"
- 679      72556462 
- 679      00
- 680              	.LASF21:
- 681 00ae 54696D65 		.ascii	"Timer_ir_RestoreConfig\000"
- 681      725F6972 
- 681      5F526573 
- 681      746F7265 
- 681      436F6E66 
- 682              	.LASF9:
- 683 00c5 666C6F61 		.ascii	"float\000"
- 683      7400
- 684              	.LASF1:
- 685 00cb 756E7369 		.ascii	"unsigned char\000"
- 685      676E6564 
- 685      20636861 
- 685      7200
- 686              	.LASF20:
- 687 00d9 54696D65 		.ascii	"Timer_ir_SaveConfig\000"
- 687      725F6972 
- 687      5F536176 
- 687      65436F6E 
- 687      66696700 
- 688              	.LASF13:
- 689 00ed 72656738 		.ascii	"reg8\000"
- 689      00
- 690              	.LASF28:
- 691 00f2 54696D65 		.ascii	"Timer_ir_Stop\000"
- 691      725F6972 
- 691      5F53746F 
- 691      7000
- 692              	.LASF5:
- 693 0100 6C6F6E67 		.ascii	"long unsigned int\000"
- 693      20756E73 
- 693      69676E65 
- 693      6420696E 
- 693      7400
- 694              	.LASF12:
- 695 0112 75696E74 		.ascii	"uint8\000"
- 695      3800
- 696              	.LASF24:
- 697 0118 54696D65 		.ascii	"Timer_ir_ReadCounter\000"
- 697      725F6972 
- 697      5F526561 
- 697      64436F75 
- 697      6E746572 
- 698              	.LASF25:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 17
+ 676      7465436F 
+ 676      756E7465 
+ 677              	.LASF23:
+ 678 007c 54696D65 		.ascii	"Timer_ir_Sleep\000"
+ 678      725F6972 
+ 678      5F536C65 
+ 678      657000
+ 679              	.LASF3:
+ 680 008b 73686F72 		.ascii	"short unsigned int\000"
+ 680      7420756E 
+ 680      7369676E 
+ 680      65642069 
+ 680      6E7400
+ 681              	.LASF12:
+ 682 009e 646F7562 		.ascii	"double\000"
+ 682      6C6500
+ 683              	.LASF17:
+ 684 00a5 54696D65 		.ascii	"TimerUdb\000"
+ 684      72556462 
+ 684      00
+ 685              	.LASF22:
+ 686 00ae 54696D65 		.ascii	"Timer_ir_RestoreConfig\000"
+ 686      725F6972 
+ 686      5F526573 
+ 686      746F7265 
+ 686      436F6E66 
+ 687              	.LASF11:
+ 688 00c5 666C6F61 		.ascii	"float\000"
+ 688      7400
+ 689              	.LASF1:
+ 690 00cb 756E7369 		.ascii	"unsigned char\000"
+ 690      676E6564 
+ 690      20636861 
+ 690      7200
+ 691              	.LASF21:
+ 692 00d9 54696D65 		.ascii	"Timer_ir_SaveConfig\000"
+ 692      725F6972 
+ 692      5F536176 
+ 692      65436F6E 
+ 692      66696700 
+ 693              	.LASF14:
+ 694 00ed 72656738 		.ascii	"reg8\000"
+ 694      00
+ 695              	.LASF29:
+ 696 00f2 54696D65 		.ascii	"Timer_ir_Stop\000"
+ 696      725F6972 
+ 696      5F53746F 
+ 696      7000
+ 697              	.LASF5:
+ 698 0100 6C6F6E67 		.ascii	"long unsigned int\000"
+ 698      20756E73 
+ 698      69676E65 
+ 698      6420696E 
+ 698      7400
+ 699              	.LASF9:
+ 700 0112 75696E74 		.ascii	"uint8\000"
+ 700      3800
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 17
 
 
- 699 012d 54696D65 		.ascii	"Timer_ir_ReadControlRegister\000"
- 699      725F6972 
- 699      5F526561 
- 699      64436F6E 
- 699      74726F6C 
- 700              	.LASF33:
- 701 014a 54696D65 		.ascii	"Timer_ir_backup\000"
- 701      725F6972 
- 701      5F626163 
- 701      6B757000 
- 702              	.LASF30:
- 703 015a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 703      4320342E 
- 703      392E3320 
- 703      32303135 
- 703      30333033 
- 704 018d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 704      20726576 
- 704      6973696F 
- 704      6E203232 
- 704      31323230 
- 705 01c0 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 705      66756E63 
- 705      74696F6E 
- 705      2D736563 
- 705      74696F6E 
- 706              	.LASF19:
- 707 01e8 54696D65 		.ascii	"Timer_ir_backupStruct\000"
- 707      725F6972 
- 707      5F626163 
- 707      6B757053 
- 707      74727563 
- 708              	.LASF23:
- 709 01fe 54696D65 		.ascii	"Timer_ir_Wakeup\000"
- 709      725F6972 
- 709      5F57616B 
- 709      65757000 
- 710              	.LASF8:
- 711 020e 756E7369 		.ascii	"unsigned int\000"
- 711      676E6564 
- 711      20696E74 
- 711      00
- 712              	.LASF7:
- 713 021b 6C6F6E67 		.ascii	"long long unsigned int\000"
- 713      206C6F6E 
- 713      6720756E 
- 713      7369676E 
- 713      65642069 
- 714              	.LASF14:
- 715 0232 73697A65 		.ascii	"sizetype\000"
- 715      74797065 
- 715      00
- 716              	.LASF32:
- 717 023b 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
- 717      73657273 
- 717      5C647566 
- 717      6D615C44 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\cco46OQV.s 			page 18
-
-
- 717      65736B74 
- 718 0268 426F745F 		.ascii	"Bot_Lib_IR.cydsn\000"
- 718      4C69625F 
- 718      49522E63 
- 718      7964736E 
+ 701              	.LASF25:
+ 702 0118 54696D65 		.ascii	"Timer_ir_ReadCounter\000"
+ 702      725F6972 
+ 702      5F526561 
+ 702      64436F75 
+ 702      6E746572 
+ 703              	.LASF26:
+ 704 012d 54696D65 		.ascii	"Timer_ir_ReadControlRegister\000"
+ 704      725F6972 
+ 704      5F526561 
+ 704      64436F6E 
+ 704      74726F6C 
+ 705              	.LASF34:
+ 706 014a 54696D65 		.ascii	"Timer_ir_backup\000"
+ 706      725F6972 
+ 706      5F626163 
+ 706      6B757000 
+ 707              	.LASF10:
+ 708 015a 75696E74 		.ascii	"uint32\000"
+ 708      333200
+ 709              	.LASF31:
+ 710 0161 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 710      4320342E 
+ 710      392E3320 
+ 710      32303135 
+ 710      30333033 
+ 711 0194 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 711      20726576 
+ 711      6973696F 
+ 711      6E203232 
+ 711      31323230 
+ 712 01c7 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 712      66756E63 
+ 712      74696F6E 
+ 712      2D736563 
+ 712      74696F6E 
+ 713              	.LASF20:
+ 714 01ef 54696D65 		.ascii	"Timer_ir_backupStruct\000"
+ 714      725F6972 
+ 714      5F626163 
+ 714      6B757053 
+ 714      74727563 
+ 715              	.LASF24:
+ 716 0205 54696D65 		.ascii	"Timer_ir_Wakeup\000"
+ 716      725F6972 
+ 716      5F57616B 
+ 716      65757000 
+ 717              	.LASF8:
+ 718 0215 756E7369 		.ascii	"unsigned int\000"
+ 718      676E6564 
+ 718      20696E74 
  718      00
- 719              	.LASF6:
- 720 0279 6C6F6E67 		.ascii	"long long int\000"
+ 719              	.LASF7:
+ 720 0222 6C6F6E67 		.ascii	"long long unsigned int\000"
  720      206C6F6E 
- 720      6720696E 
- 720      7400
- 721              	.LASF11:
- 722 0287 63686172 		.ascii	"char\000"
+ 720      6720756E 
+ 720      7369676E 
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9Arr2Z.s 			page 18
+
+
+ 720      65642069 
+ 721              	.LASF15:
+ 722 0239 73697A65 		.ascii	"sizetype\000"
+ 722      74797065 
  722      00
- 723              	.LASF2:
- 724 028c 73686F72 		.ascii	"short int\000"
- 724      7420696E 
- 724      7400
- 725              	.LASF4:
- 726 0296 6C6F6E67 		.ascii	"long int\000"
- 726      20696E74 
- 726      00
- 727              	.LASF0:
- 728 029f 7369676E 		.ascii	"signed char\000"
- 728      65642063 
- 728      68617200 
- 729              	.LASF17:
- 730 02ab 496E7465 		.ascii	"InterruptMaskValue\000"
- 730      72727570 
- 730      744D6173 
- 730      6B56616C 
- 730      756500
- 731              	.LASF18:
- 732 02be 54696D65 		.ascii	"TimerControlRegister\000"
- 732      72436F6E 
- 732      74726F6C 
- 732      52656769 
- 732      73746572 
- 733              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 723              	.LASF33:
+ 724 0242 433A5C55 		.ascii	"C:\\Users\\dufma\\Desktop\\Project\\Zumo-PSoC\\Zumo"
+ 724      73657273 
+ 724      5C647566 
+ 724      6D615C44 
+ 724      65736B74 
+ 725 026f 426F745F 		.ascii	"Bot_Lib_IR.cydsn\000"
+ 725      4C69625F 
+ 725      49522E63 
+ 725      7964736E 
+ 725      00
+ 726              	.LASF6:
+ 727 0280 6C6F6E67 		.ascii	"long long int\000"
+ 727      206C6F6E 
+ 727      6720696E 
+ 727      7400
+ 728              	.LASF13:
+ 729 028e 63686172 		.ascii	"char\000"
+ 729      00
+ 730              	.LASF2:
+ 731 0293 73686F72 		.ascii	"short int\000"
+ 731      7420696E 
+ 731      7400
+ 732              	.LASF4:
+ 733 029d 6C6F6E67 		.ascii	"long int\000"
+ 733      20696E74 
+ 733      00
+ 734              	.LASF0:
+ 735 02a6 7369676E 		.ascii	"signed char\000"
+ 735      65642063 
+ 735      68617200 
+ 736              	.LASF18:
+ 737 02b2 496E7465 		.ascii	"InterruptMaskValue\000"
+ 737      72727570 
+ 737      744D6173 
+ 737      6B56616C 
+ 737      756500
+ 738              	.LASF19:
+ 739 02c5 54696D65 		.ascii	"TimerControlRegister\000"
+ 739      72436F6E 
+ 739      74726F6C 
+ 739      52656769 
+ 739      73746572 
+ 740              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

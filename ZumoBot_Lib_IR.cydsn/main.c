@@ -21,22 +21,129 @@
 
 int rread(void);
 
-CY_ISR_PROTO(irreceiver_isr_handler);
 
-CY_ISR(irreceiver_isr_handler)
+#define START_BIT_TIME  100000
+#define ONE_TIME        59000    
+
+void wait_going_up(void)
 {
-    printf("%x \r\n", IR_receiver_Read());
+    while(!IR_receiver_Read()==1);
+}    
+void wait_going_down(void)
+{
+    while(IR_receiver_Read()==1);
 }
+
+uint count_down_time(void)
+{
+    Timer_ir_WriteCounter(90000);
+    Timer_ir_Start();
+    wait_going_up();        
+    Timer_ir_Stop();
+    return(Timer_ir_ReadCounter());
+}
+
+uint count_up_time(void)
+{
+    Timer_ir_WriteCounter(90000);
+    Timer_ir_Start();
+    wait_going_down();      
+    Timer_ir_Stop();
+    return(Timer_ir_ReadCounter());
+}
+
+
+uint32 get_IR(void)
+{
+    int bit[32]={0};
+    uint32 val;
+    uint t1, t2, i, j;
+    t1 = 0;
+    t2 = 0; 
+    
+    wait_going_down();
+  
+    t1 = count_down_time();
+    t2 = count_up_time();
+    
+    printf("%d %d %d\r\n",t1,t2,t1+t2);
+ /*   if((t1 + t2) > START_BIT_TIME)
+    {
+        printf("START \r\n");
+        
+        for(i = 0; i < 32; i++)
+        {
+             wait_going_up();
+            t2 = count_up_time();
+            if(t2 > ONE_TIME)
+            {
+                bit[i]=1;
+            }
+            else
+                bit[i]=0; 
+        } 
+        
+        int cnt;
+        for(cnt=0; cnt<32; cnt++)
+            printf("%d ",bit[cnt]);
+        printf("\r\n\n");
+    } // end if START bit identification
+  */  
+    
+    return val;
+}
+
+
 
 int main()
 {
     CyGlobalIntEnable; 
     UART_Start();
     printf("Start\r\n");
-    Timer_ir_Start();
+    
+    uint32 IR_val;
+    
     for(;;)
     {
+        IR_val = get_IR();
+     
+/*
+        Timer_ir_Start();
+         printf("B %d\r\n",(int)(Timer_ir_ReadPeriod()));
+        CyDelay(13);
+        Timer_ir_Stop();
+        printf("A %d\r\n",(unsigned int)(Timer_ir_ReadCounter()));
+       // printf("%d\r\n",(before-after));
+        Timer_ir_WriteCounter(0xFFFF);
         
+        //*/
+        
+        //  printf("%d %d\r\n",IR_receiver_Read(),Timer_ir_ReadCapture());
+        /*
+        if(IR_receiver_Read()==1)
+        {
+            Timer_ir_Enable();
+        }
+        else
+        {
+            Timer_ir_Stop();
+            int time = Timer_ir_ReadPeriod()-Timer_ir_ReadCapture();
+            printf("%d\r\n",time);
+        }
+      */
+        
+        //  printf("%d\r\n",time);
+        /*
+        int temp =IR_receiver_Read();
+        if(before ==1 && temp==0)
+        {
+            printf("wow\r\n");
+            Timer_ir_Start();
+            Timer_ir_Enable();
+        }
+        before = temp;
+        printf("%d \r\n", IR_receiver_Read());
+        */
     }
     
        /*  //nunchuk//

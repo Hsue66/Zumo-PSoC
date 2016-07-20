@@ -3,11 +3,12 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="3" name="ZumoBot_Lib_IR-000" persistent="" platform="NOT_USED">
-<current_project name=".\ZumoBot_Lib_IR.cyprj" />
+<current_project name="..\ZumoBot_Lib_IR_Copy.cydsn\ZumoBot_Lib_IR_Copy.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
 <v>.\ZumoBot_Lib_IR.cyprj</v>
+<v>..\ZumoBot_Lib_IR_Copy.cydsn\ZumoBot_Lib_IR_Copy.cyprj</v>
 </projects>
 <workspace_id v="8e241d1a-ccc5-44de-8871-ca8d053c4b9b" />
 <WriteAppVersionLastSavedWith v="3.3.0.9604" />

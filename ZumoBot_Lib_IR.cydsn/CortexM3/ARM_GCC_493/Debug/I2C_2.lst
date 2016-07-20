@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
   29:.\Generated_Source\PSoC5/I2C_2.c **** /*******************************************************************************
   30:.\Generated_Source\PSoC5/I2C_2.c **** * Function Name: I2C_2_Init
   31:.\Generated_Source\PSoC5/I2C_2.c **** ********************************************************************************
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/I2C_2.c **** *
@@ -110,7 +110,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
   64:.\Generated_Source\PSoC5/I2C_2.c ****     I2C_2_INT_MASK_REG = I2C_2_DEFAULT_INT_MASK;
   41              		.loc 1 64 0
   42 0008 0125     		movs	r5, #1
-  43 000a 1433     		adds	r3, r3, #20
+  43 000a 1033     		adds	r3, r3, #16
   44 000c 1D70     		strb	r5, [r3]
   65:.\Generated_Source\PSoC5/I2C_2.c **** 
   66:.\Generated_Source\PSoC5/I2C_2.c ****     /* Enable interrupt generation in status */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
   45              		.loc 1 67 0
   46 000e FFF7FEFF 		bl	CyEnterCriticalSection
   47              	.LVL0:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 3
 
 
   68:.\Generated_Source\PSoC5/I2C_2.c ****     I2C_2_INT_ENABLE_REG |= I2C_2_INTR_ENABLE;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
   93:.\Generated_Source\PSoC5/I2C_2.c **** 
   94:.\Generated_Source\PSoC5/I2C_2.c ****     /* Set FSM to default state */
   95:.\Generated_Source\PSoC5/I2C_2.c ****     I2C_2_state = I2C_2_SM_IDLE;
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 4
 
 
   77              		.loc 1 95 0
@@ -214,9 +214,9 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
   91              	.L4:
   92              		.align	2
   93              	.L3:
-  94 0054 74640040 		.word	1073767540
-  95 0058 98640040 		.word	1073767576
-  96 005c 28640040 		.word	1073767464
+  94 0054 7B640040 		.word	1073767547
+  95 0058 9B640040 		.word	1073767579
+  96 005c 27640040 		.word	1073767463
   97 0060 80E100E0 		.word	-536813184
   98 0064 00000000 		.word	I2C_2_ISR
   99 0068 00000000 		.word	I2C_2_state
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  113:.\Generated_Source\PSoC5/I2C_2.c **** }
  114:.\Generated_Source\PSoC5/I2C_2.c **** 
  115:.\Generated_Source\PSoC5/I2C_2.c **** 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 5
 
 
  116:.\Generated_Source\PSoC5/I2C_2.c **** /*******************************************************************************
@@ -292,13 +292,13 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  125              	.L7:
  126              		.align	2
  127              	.L6:
- 128 000c 74640040 		.word	1073767540
+ 128 000c 7B640040 		.word	1073767547
  129              		.cfi_endproc
  130              	.LFE1:
  131              		.size	I2C_2_Enable, .-I2C_2_Enable
  132              		.section	.text.I2C_2_Start,"ax",%progbits
  133              		.align	2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 6
 
 
  134              		.global	I2C_2_Start
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  149 0002 074B     		ldr	r3, .L11
  150 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  151 0006 23B9     		cbnz	r3, .L9
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 7
 
 
  192:.\Generated_Source\PSoC5/I2C_2.c ****     {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  214:.\Generated_Source\PSoC5/I2C_2.c **** *  None.
  215:.\Generated_Source\PSoC5/I2C_2.c **** *
  216:.\Generated_Source\PSoC5/I2C_2.c **** *******************************************************************************/
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 8
 
 
  217:.\Generated_Source\PSoC5/I2C_2.c **** void I2C_2_Stop(void) 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  193              		.loc 1 261 0
  194 0006 0A49     		ldr	r1, .L14+4
  195 0008 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 9
 
 
  196 000a 03F0FD03 		and	r3, r3, #253
@@ -503,7 +503,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  276:.\Generated_Source\PSoC5/I2C_2.c ****     /* Disable interrupt on stop (enabled by write transaction) */
  277:.\Generated_Source\PSoC5/I2C_2.c ****     I2C_2_DISABLE_INT_ON_STOP;
  201              		.loc 1 277 0
- 202 0014 1431     		adds	r1, r1, #20
+ 202 0014 1031     		adds	r1, r1, #16
  203 0016 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
  204 0018 03F0DF03 		and	r3, r3, #223
  205 001c 0B70     		strb	r3, [r1]
@@ -523,8 +523,8 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  215 002a 00BF     		.align	2
  216              	.L14:
  217 002c 80E100E0 		.word	-536813184
- 218 0030 74640040 		.word	1073767540
- 219 0034 68640040 		.word	1073767528
+ 218 0030 7B640040 		.word	1073767547
+ 219 0034 6B640040 		.word	1073767531
  220 0038 80E200E0 		.word	-536812928
  221 003c 00000000 		.word	I2C_2_state
  222              		.cfi_endproc
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  230              		.size	I2C_2_initVar, 1
  231              	I2C_2_initVar:
  232 0000 00       		.space	1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 10
 
 
  233              		.text
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  287 0060 696E7400 		.ascii	"int\000"
  288 0064 02       		.uleb128 0x2
  289 0065 04       		.byte	0x4
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 11
 
 
  290 0066 07       		.byte	0x7
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  344 00da 31       		.byte	0x31
  345 00db 00000000 		.4byte	.LFB0
  346 00df 78000000 		.4byte	.LFE0-.LFB0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 12
 
 
  347 00e3 01       		.uleb128 0x1
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  401 014c 00000000 		.4byte	.LFB2
  402 0150 28000000 		.4byte	.LFE2-.LFB2
  403 0154 01       		.uleb128 0x1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 13
 
 
  404 0155 9C       		.byte	0x9c
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  458 01cd 7F010000 		.4byte	.LASF27
  459 01d1 04       		.byte	0x4
  460 01d2 7F       		.byte	0x7f
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 14
 
 
  461 01d3 DD010000 		.4byte	0x1dd
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  515 001b 0E       		.uleb128 0xe
  516 001c 00       		.byte	0
  517 001d 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 15
 
 
  518 001e 03       		.uleb128 0x3
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  572 0054 3A       		.uleb128 0x3a
  573 0055 0B       		.uleb128 0xb
  574 0056 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 16
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 16
 
 
  575 0057 0B       		.uleb128 0xb
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  629 0094 18       		.uleb128 0x18
  630 0095 9142     		.uleb128 0x2111
  631 0097 18       		.uleb128 0x18
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 17
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 17
 
 
  632 0098 00       		.byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  686 00d1 03       		.uleb128 0x3
  687 00d2 0E       		.uleb128 0xe
  688 00d3 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 18
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 18
 
 
  689 00d4 0B       		.uleb128 0xb
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  743 010a 00       		.byte	0
  744 010b 00       		.byte	0
  745 010c 14       		.uleb128 0x14
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 19
 
 
  746 010d 2E       		.uleb128 0x2e
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  800 0018 00000000 		.4byte	.LFB3
  801 001c 40000000 		.4byte	.LFE3
  802 0020 00000000 		.4byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 20
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 20
 
 
  803 0024 00000000 		.4byte	0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  826      69676E65 
  826      6420696E 
  826      7400
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 21
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 21
 
 
  827              	.LASF25:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  850 017f 43794578 		.ascii	"CyExitCriticalSection\000"
  850      69744372 
  850      69746963 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 22
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 22
 
 
  850      616C5365 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 1
  871      325F5374 
  871      6F7000
  872              	.LASF4:
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccQTfOFM.s 			page 23
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\cc9bibhg.s 			page 23
 
 
  873 025c 6C6F6E67 		.ascii	"long int\000"
