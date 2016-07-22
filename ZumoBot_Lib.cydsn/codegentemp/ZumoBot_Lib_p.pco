@@ -115,6 +115,7 @@ set_location "\Timer_RL:TimerHW\" timercell -1 -1 2
 set_io "SCL_1(0)" iocell 12 0
 set_io "SDA_2(0)" iocell 1 5
 set_location "\PWM:PWMUDB:genblk1:ctrlreg\" controlcell 1 3 6 
+set_io "IR_receiver(0)" iocell 1 7
 # Note: port 12 is the logical name for port 7
 set_io "SDA_1(0)" iocell 12 1
 set_io "MotorPwmRight(0)" iocell 3 6

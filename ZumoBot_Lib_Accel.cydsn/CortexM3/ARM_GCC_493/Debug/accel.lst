@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
   37              	.LVL0:
   38 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
   39              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 2
 
 
   40              		.cfi_offset 4, -24
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
   90 0056 FFF7FEFF 		bl	atan2
   91              	.LVL12:
   92 005a 0DA3     		adr	r3, .L3
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 3
 
 
   93 005c D3E90023 		ldrd	r2, [r3]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  141              		.file 6 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
  142              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
  143              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 4
 
 
  144              	.Ldebug_info0:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  198 006f 02       		.uleb128 0x2
  199 0070 04       		.byte	0x4
  200 0071 07       		.byte	0x7
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 5
 
 
  201 0072 15000000 		.4byte	.LASF8
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  255 00e5 11       		.byte	0x11
  256 00e6 81000000 		.4byte	0x81
  257 00ea 21000000 		.4byte	.LLST1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 6
 
 
  258 00ee 09       		.uleb128 0x9
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  312 016d 56010000 		.4byte	.LASF28
  313 0171 07       		.byte	0x7
  314 0172 B2       		.byte	0xb2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 7
 
 
  315 0173 68000000 		.4byte	0x68
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  369 002e 0B       		.uleb128 0xb
  370 002f 0B       		.uleb128 0xb
  371 0030 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 8
 
 
  372 0031 0B       		.uleb128 0xb
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  426 0068 19       		.uleb128 0x19
  427 0069 01       		.uleb128 0x1
  428 006a 13       		.uleb128 0x13
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 9
 
 
  429 006b 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  483 00a7 18       		.uleb128 0x18
  484 00a8 9142     		.uleb128 0x2111
  485 00aa 18       		.uleb128 0x18
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 10
 
 
  486 00ab 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  540 00e1 12       		.uleb128 0x12
  541 00e2 2E       		.uleb128 0x2e
  542 00e3 01       		.byte	0x1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 11
 
 
  543 00e4 3F       		.uleb128 0x3f
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  597 0046 0F000000 		.4byte	.LVL2-1
  598 004a 0100     		.2byte	0x1
  599 004c 52       		.byte	0x52
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 12
 
 
  600 004d 0F000000 		.4byte	.LVL2-1
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  654 0008 00000000 		.4byte	0
  655 000c 00000000 		.4byte	0
  656              		.section	.debug_line,"",%progbits
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 13
 
 
  657              	.Ldebug_line0:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  680 0089 73686F72 		.ascii	"short unsigned int\000"
  680      7420756E 
  680      7369676E 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 14
 
 
  680      65642069 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 1
  705              	.LASF23:
  706 0180 2E5C6163 		.ascii	".\\accel.c\000"
  706      63656C2E 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccmTxOHD.s 			page 15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwoxblh.s 			page 15
 
 
  706      6300

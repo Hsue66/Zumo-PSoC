@@ -56,13 +56,12 @@
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\MotorDirRight_aliases.h" value="NONE;MotorDirRight" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\MotorDirRight.c" value="ARM_C_FILE;MotorDirRight" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\MotorDirRight.h" value="NONE;MotorDirRight" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\irreceiver_isr.c" value="ARM_C_FILE;irreceiver_isr" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\irreceiver_isr.h" value="NONE;irreceiver_isr" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_ir.c" value="ARM_C_FILE;Timer_ir" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_ir.h" value="NONE;Timer_ir" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_ir_PM.c" value="ARM_C_FILE;Timer_ir" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\timer_clock.c" value="ARM_C_FILE;timer_clock" />
-  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\timer_clock.h" value="NONE;timer_clock" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\RL_aliases.h" value="NONE;RL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\RL.c" value="ARM_C_FILE;RL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\RL.h" value="NONE;RL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_RL.c" value="ARM_C_FILE;Timer_RL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_RL.h" value="NONE;Timer_RL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_RL_PM.c" value="ARM_C_FILE;Timer_RL" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\SDA_2_aliases.h" value="NONE;SDA_2" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\SDA_2.c" value="ARM_C_FILE;SDA_2" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\SDA_2.h" value="NONE;SDA_2" />
@@ -93,6 +92,29 @@
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\IR_receiver_aliases.h" value="NONE;IR_receiver" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\IR_receiver.c" value="ARM_C_FILE;IR_receiver" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\IR_receiver.h" value="NONE;IR_receiver" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\IR_led_aliases.h" value="NONE;IR_led" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\IR_led.c" value="ARM_C_FILE;IR_led" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\IR_led.h" value="NONE;IR_led" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_RR.c" value="ARM_C_FILE;Timer_RR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_RR.h" value="NONE;Timer_RR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_RR_PM.c" value="ARM_C_FILE;Timer_RR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\sensor_isr.c" value="ARM_C_FILE;sensor_isr" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\sensor_isr.h" value="NONE;sensor_isr" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\RR_aliases.h" value="NONE;RR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\RR.c" value="ARM_C_FILE;RR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\RR.h" value="NONE;RR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\LL_aliases.h" value="NONE;LL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\LL.c" value="ARM_C_FILE;LL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\LL.h" value="NONE;LL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_LL.c" value="ARM_C_FILE;Timer_LL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_LL.h" value="NONE;Timer_LL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_LL_PM.c" value="ARM_C_FILE;Timer_LL" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_LR.c" value="ARM_C_FILE;Timer_LR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_LR.h" value="NONE;Timer_LR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\Timer_LR_PM.c" value="ARM_C_FILE;Timer_LR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\LR_aliases.h" value="NONE;LR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\LR.c" value="ARM_C_FILE;LR" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\LR.h" value="NONE;LR" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\UART_IntClock.c" value="ARM_C_FILE;UART_IntClock" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\UART_IntClock.h" value="NONE;UART_IntClock" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_IR.cydsn\codegentemp\I2C_2_IntClock.c" value="ARM_C_FILE;I2C_2_IntClock" />

@@ -112,6 +112,9 @@
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\Trig.h" value="NONE;Trig" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\ultra_isr.c" value="ARM_C_FILE;ultra_isr" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\ultra_isr.h" value="NONE;ultra_isr" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\IR_receiver_aliases.h" value="NONE;IR_receiver" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\IR_receiver.c" value="ARM_C_FILE;IR_receiver" />
+  <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\IR_receiver.h" value="NONE;IR_receiver" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\UART_IntClock.c" value="ARM_C_FILE;UART_IntClock" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\UART_IntClock.h" value="NONE;UART_IntClock" />
   <file name="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\codegentemp\I2C_2_IntClock.c" value="ARM_C_FILE;I2C_2_IntClock" />

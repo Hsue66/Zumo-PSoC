@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
   55 001b 40       		.byte	64
   56 001c 4C       		.byte	76
   57 001d 06       		.byte	6
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 2
 
 
   58 001e 01       		.byte	1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  112 0054 58       		.byte	88
  113 0055 19       		.byte	25
  114 0056 01       		.byte	1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 3
 
 
  115 0057 40       		.byte	64
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  169 008d 4D       		.byte	77
  170 008e 01       		.byte	1
  171 008f 40       		.byte	64
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 4
 
 
  172 0090 07       		.byte	7
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  226 00c6 E2       		.byte	-30
  227 00c7 80       		.byte	-128
  228 00c8 E6       		.byte	-26
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 5
 
 
  229 00c9 02       		.byte	2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  283 00ff 07       		.byte	7
  284 0100 36       		.byte	54
  285 0101 08       		.byte	8
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 6
 
 
  286 0102 37       		.byte	55
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  340 0138 9B       		.byte	-101
  341 0139 01       		.byte	1
  342 013a 9D       		.byte	-99
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 7
 
 
  343 013b 40       		.byte	64
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  397 0171 02       		.byte	2
  398 0172 01       		.byte	1
  399 0173 90       		.byte	-112
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 8
 
 
  400 0174 02       		.byte	2
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  454 01aa 37       		.byte	55
  455 01ab 08       		.byte	8
  456 01ac 38       		.byte	56
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 9
 
 
  457 01ad 10       		.byte	16
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  511 01e3 4F       		.byte	79
  512 01e4 C2       		.byte	-62
  513 01e5 5F       		.byte	95
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 10
 
 
  514 01e6 C4       		.byte	-60
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  568 021c 1E       		.byte	30
  569 021d 01       		.byte	1
  570 021e 22       		.byte	34
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 11
 
 
  571 021f 0B       		.byte	11
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  625 0255 F3       		.byte	-13
  626 0256 9B       		.byte	-101
  627 0257 0C       		.byte	12
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 12
 
 
  628 0258 9D       		.byte	-99
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  682 028e 10       		.byte	16
  683 028f 0A       		.byte	10
  684 0290 14       		.byte	20
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 13
 
 
  685 0291 08       		.byte	8
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  739 02c7 20       		.byte	32
  740 02c8 73       		.byte	115
  741 02c9 04       		.byte	4
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 14
 
 
  742 02ca 82       		.byte	-126
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  796 0300 C2       		.byte	-62
  797 0301 E0       		.byte	-32
  798 0302 C4       		.byte	-60
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 15
 
 
  799 0303 53       		.byte	83
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  853 0339 04       		.byte	4
  854 033a 59       		.byte	89
  855 033b 04       		.byte	4
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 16
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 16
 
 
  856 033c 5F       		.byte	95
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  910 0372 27       		.byte	39
  911 0373 02       		.byte	2
  912 0374 2B       		.byte	43
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 17
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 17
 
 
  913 0375 40       		.byte	64
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  967 03ab 08       		.byte	8
  968 03ac 94       		.byte	-108
  969 03ad 20       		.byte	32
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 18
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 18
 
 
  970 03ae 95       		.byte	-107
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1024 03e4 10       		.byte	16
  1025 03e5 40       		.byte	64
  1026 03e6 11       		.byte	17
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 19
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 19
 
 
  1027 03e7 0E       		.byte	14
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1081 041d 04       		.byte	4
  1082 041e 49       		.byte	73
  1083 041f FF       		.byte	-1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 20
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 20
 
 
  1084 0420 4A       		.byte	74
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1138 0456 B0       		.byte	-80
  1139 0457 04       		.byte	4
  1140 0458 B1       		.byte	-79
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 21
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 21
 
 
  1141 0459 02       		.byte	2
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1195 048f 40       		.byte	64
  1196 0490 E2       		.byte	-30
  1197 0491 40       		.byte	64
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 22
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 22
 
 
  1198 0492 E4       		.byte	-28
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1252 04c8 35       		.byte	53
  1253 04c9 80       		.byte	-128
  1254 04ca 36       		.byte	54
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 23
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 23
 
 
  1255 04cb 19       		.byte	25
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1309 0501 E1       		.byte	-31
  1310 0502 CC       		.byte	-52
  1311 0503 FD       		.byte	-3
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 24
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 24
 
 
  1312 0504 CE       		.byte	-50
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1366 053a 35       		.byte	53
  1367 053b 03       		.byte	3
  1368 053c 39       		.byte	57
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 25
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 25
 
 
  1369 053d 20       		.byte	32
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1423 0573 4D       		.byte	77
  1424 0574 88       		.byte	-120
  1425 0575 03       		.byte	3
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 26
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 26
 
 
  1426 0576 8A       		.byte	-118
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1480 05ac C1       		.byte	-63
  1481 05ad 03       		.byte	3
  1482 05ae C6       		.byte	-58
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 27
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 27
 
 
  1483 05af C0       		.byte	-64
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1537 05e5 18       		.byte	24
  1538 05e6 11       		.byte	17
  1539 05e7 08       		.byte	8
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 28
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 28
 
 
  1540 05e8 13       		.byte	19
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1594 061e 54       		.byte	84
  1595 061f 08       		.byte	8
  1596 0620 56       		.byte	86
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 29
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 29
 
 
  1597 0621 11       		.byte	17
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1651 0657 01       		.byte	1
  1652 0658 14       		.byte	20
  1653 0659 02       		.byte	2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 30
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 30
 
 
  1654 065a 15       		.byte	21
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1708 0690 86       		.byte	-122
  1709 0691 0A       		.byte	10
  1710 0692 8A       		.byte	-118
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 31
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 31
 
 
  1711 0693 01       		.byte	1
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1765 06c9 FF       		.byte	-1
  1766 06ca CD       		.byte	-51
  1767 06cb A0       		.byte	-96
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 32
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 32
 
 
  1768 06cc CF       		.byte	-49
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1822 0702 0F       		.byte	15
  1823 0703 22       		.byte	34
  1824 0704 10       		.byte	16
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 33
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 33
 
 
  1825 0705 0A       		.byte	10
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1879 073b 10       		.byte	16
  1880 073c 46       		.byte	70
  1881 073d 20       		.byte	32
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 34
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 34
 
 
  1882 073e 4F       		.byte	79
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1936 0774 C2       		.byte	-62
  1937 0775 BF       		.byte	-65
  1938 0776 C4       		.byte	-60
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 35
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 35
 
 
  1939 0777 AF       		.byte	-81
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  1993 07ad 0B       		.byte	11
  1994 07ae A5       		.byte	-91
  1995 07af 25       		.byte	37
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 36
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 36
 
 
  1996 07b0 A7       		.byte	-89
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2050 07e6 30       		.byte	48
  2051 07e7 01       		.byte	1
  2052 07e8 31       		.byte	49
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 37
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 37
 
 
  2053 07e9 06       		.byte	6
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2107 081f 01       		.byte	1
  2108 0820 B0       		.byte	-80
  2109 0821 03       		.byte	3
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 38
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 38
 
 
  2110 0822 B2       		.byte	-78
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2164 0858 DD       		.byte	-35
  2165 0859 22       		.byte	34
  2166 085a DF       		.byte	-33
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 39
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 39
 
 
  2167 085b 01       		.byte	1
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2221 0891 40       		.byte	64
  2222 0892 2F       		.byte	47
  2223 0893 48       		.byte	72
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 40
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 40
 
 
  2224 0894 30       		.byte	48
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2278 08ca 8D       		.byte	-115
  2279 08cb 04       		.byte	4
  2280 08cc 8F       		.byte	-113
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 41
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 41
 
 
  2281 08cd 06       		.byte	6
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2335 0903 C2       		.byte	-62
  2336 0904 CA       		.byte	-54
  2337 0905 B4       		.byte	-76
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 42
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 42
 
 
  2338 0906 CC       		.byte	-52
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2392 093c 2C       		.byte	44
  2393 093d 18       		.byte	24
  2394 093e 2F       		.byte	47
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 43
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 43
 
 
  2395 093f 02       		.byte	2
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2449 0975 18       		.byte	24
  2450 0976 96       		.byte	-106
  2451 0977 06       		.byte	6
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 44
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 44
 
 
  2452 0978 98       		.byte	-104
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2506 09ae CA       		.byte	-54
  2507 09af FF       		.byte	-1
  2508 09b0 CB       		.byte	-53
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 45
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 45
 
 
  2509 09b1 FF       		.byte	-1
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2563 09e7 80       		.byte	-128
  2564 09e8 12       		.byte	18
  2565 09e9 09       		.byte	9
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 46
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 46
 
 
  2566 09ea 13       		.byte	19
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2620 0a20 79       		.byte	121
  2621 0a21 40       		.byte	64
  2622 0a22 7A       		.byte	122
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 47
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 47
 
 
  2623 0a23 01       		.byte	1
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2677 0a59 FF       		.byte	-1
  2678 0a5a C2       		.byte	-62
  2679 0a5b FF       		.byte	-1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 48
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 48
 
 
  2680 0a5c C4       		.byte	-60
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2734 0a92 82       		.byte	-126
  2735 0a93 20       		.byte	32
  2736 0a94 98       		.byte	-104
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 49
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 49
 
 
  2737 0a95 08       		.byte	8
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2791 0acb 80       		.byte	-128
  2792 0acc DE       		.byte	-34
  2793 0acd 20       		.byte	32
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 50
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 50
 
 
  2794 0ace E2       		.byte	-30
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2848 0b04 E6       		.byte	-26
  2849 0b05 20       		.byte	32
  2850 0b06 0B       		.byte	11
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 51
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 51
 
 
  2851 0b07 40       		.byte	64
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2905 0b3d 10       		.byte	16
  2906 0b3e EE       		.byte	-18
  2907 0b3f 10       		.byte	16
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 52
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 52
 
 
  2908 0b40 0B       		.byte	11
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  2962 0b76 C4       		.byte	-60
  2963 0b77 08       		.byte	8
  2964 0b78 E2       		.byte	-30
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 53
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 53
 
 
  2965 0b79 01       		.byte	1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3019 0baf 54       		.byte	84
  3020 0bb0 7B       		.byte	123
  3021 0bb1 FF       		.byte	-1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 54
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 54
 
 
  3022 0bb2 00       		.byte	0
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3076 0be8 00       		.byte	0
  3077 0be9 00       		.byte	0
  3078 0bea 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 55
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 55
 
 
  3079 0beb 00       		.byte	0
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3133 0c21 00       		.byte	0
  3134 0c22 83       		.byte	-125
  3135 0c23 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 56
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 56
 
 
  3136 0c24 00       		.byte	0
@@ -3315,7 +3315,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3147 0c2f 00       		.byte	0
  3148 0c30 60       		.byte	96
  3149 0c31 00       		.byte	0
- 3150 0c32 00       		.byte	0
+ 3150 0c32 80       		.byte	-128
  3151 0c33 00       		.byte	0
  3152 0c34 60       		.byte	96
  3153 0c35 00       		.byte	0
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3190 0000 00       		.byte	0
  3191 0001 00       		.byte	0
  3192 0002 40       		.byte	64
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 57
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 57
 
 
  3193 0003 05       		.byte	5
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3243 002d 05       		.byte	0x5
  3244 002e 85010000 		.4byte	.LASF2
  3245 0032 02       		.uleb128 0x2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 58
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 58
 
 
  3246 0033 02       		.byte	0x2
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3300 0098 69010000 		.4byte	.LASF12
  3301 009c 07       		.uleb128 0x7
  3302 009d 82000000 		.4byte	.LASF13
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 59
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 59
 
 
  3303 00a1 01       		.byte	0x1
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3357 011c 27010000 		.4byte	0x127
  3358 0120 09       		.uleb128 0x9
  3359 0121 95000000 		.4byte	0x95
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 60
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 60
 
 
  3360 0125 0B       		.byte	0xb
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3414 0027 00       		.byte	0
  3415 0028 03       		.uleb128 0x3
  3416 0029 0E       		.uleb128 0xe
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 61
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 61
 
 
  3417 002a 3A       		.uleb128 0x3a
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3471 0060 13       		.uleb128 0x13
  3472 0061 2F       		.uleb128 0x2f
  3473 0062 0B       		.uleb128 0xb
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 62
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 62
 
 
  3474 0063 00       		.byte	0
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3514      7200
  3515              	.LASF5:
  3516 0046 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 63
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 63
 
 
  3516      20756E73 
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 1
  3534      666C6173 
  3534      6870726F 
  3534      74656374 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccPIdRBc.s 			page 64
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccDoRY5K.s 			page 64
 
 
  3535              	.LASF15:

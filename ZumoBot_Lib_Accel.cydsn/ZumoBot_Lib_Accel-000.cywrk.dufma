@@ -13,10 +13,11 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib_Accel-000">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Source Files\accel_magnet.h">
 <ExpandedNodeIds>
 <v>ZumoBot_Lib_Accel-000</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel</v>
+<v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\TopDesign</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\ZumoBot_Lib_Accel.cydwr</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Header Files</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Header Files\cyapicallbacks.h</v>
@@ -214,6 +215,7 @@
 <VisibleNodeIds>
 <v>ZumoBot_Lib_Accel-000</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel</v>
+<v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\TopDesign</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\ZumoBot_Lib_Accel.cydwr</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Header Files</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Header Files\cyapicallbacks.h</v>
@@ -248,7 +250,6 @@
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
 <v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
-<v>ZumoBot_Lib_Accel-000\ZumoBot_Lib_Accel\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -458,6 +459,7 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\main.c" />
+<name v=".\accel_magnet.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

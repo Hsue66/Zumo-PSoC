@@ -64,6 +64,8 @@
 #include "Trig_aliases.h"
 #include "Trig.h"
 #include "ultra_isr.h"
+#include "IR_receiver_aliases.h"
+#include "IR_receiver.h"
 #include "UART_IntClock.h"
 #include "I2C_2_IntClock.h"
 #include "core_cm3_psoc5.h"

@@ -1,112 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="I2C_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
-    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_timeout_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="or_udb_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_sda_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="bI2C_UDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="I2C_2_CSR" address="0x4000646B" bitWidth="8" desc="I2C Status Register" hidden="false">
-      <field name="lost_arb" from="6" to="6" access="R" resetVal="" desc="If set, indicates arbitration was lost (multi-master and multi-master-slave modes)." />
-      <field name="stop_status" from="5" to="5" access="R" resetVal="" desc="If set, indicates a Stop condition was detected on the bus." />
-      <field name="bus_busy" from="4" to="4" access="R" resetVal="" desc="If set, indicates the bus is busy. Data is currently being transmitted or received." />
-      <field name="address" from="3" to="3" access="R" resetVal="" desc="Address detection. If set, indicates that an address byte was sent." />
-      <field name="master_mode" from="2" to="2" access="R" resetVal="" desc="Indicates that a valid Start condition was generated and a hardware device is operating as bus master." />
-      <field name="lrb" from="1" to="1" access="R" resetVal="" desc="Last Received Bit. Indicates the state of the last received bit, which is the ACK/NAK received for the last byte transmitted. Cleared = ACK and set = NAK." />
-      <field name="byte_complete" from="0" to="0" access="R" resetVal="" desc="Transmit or receive status since the last read of this register. In Transmit mode this bit indicates that eight bits of data plus ACK/NAK have been transmitted since the last read. In Receive mode this bit indicates that eight bits of data have been received since the last read of this register." />
-    </register>
-    <register name="I2C_2_CFG" address="0x4000647B" bitWidth="8" desc="I2C Configuration Register" hidden="false">
-      <field name="start_gen" from="7" to="7" access="RW" resetVal="" desc="Set to 1 to generate a Start condition on the bus. This bit must be cleared by firmware before initiating the next transaction." />
-      <field name="stop_gen" from="6" to="6" access="RW" resetVal="" desc="Set to 1 to generate a Stop condition on the bus. This bit must be cleared by firmware before initiating the next transaction." />
-      <field name="restart_gen" from="5" to="5" access="RW" resetVal="" desc="Set to 1 to generate a Restart condition on the bus. This bit must be cleared by firmware after a Restart condition is generated." />
-      <field name="nack" from="4" to="4" access="RW" resetVal="" desc="Set to 1 to NAK the next read byte. Clear to ACK next read byte. This bit must be cleared by firmware between bytes." />
-      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="Set to 1 to set the current mode to transmit or clear to 0 to receive a byte of data. This bit must be cleared by firmware before starting the next transmit or receive transaction." />
-      <field name="master_en" from="1" to="1" access="RW" resetVal="" desc="Set to 1 to enable the master functionality." />
-    </register>
-    <register name="I2C_2_INT_MASK" address="0x4000648B" bitWidth="8" desc="I2C Interrupt Enable Mask" hidden="false">
-      <field name="lost_arb" from="6" to="6" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-      <field name="bus_busy" from="4" to="4" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-      <field name="address" from="3" to="3" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-      <field name="master_mode" from="2" to="2" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-      <field name="lrb" from="1" to="1" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-      <field name="byte_complete" from="0" to="0" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
-    </register>
-    <register name="I2C_2_DATA" address="0x40006507" bitWidth="8" desc="I2C Data Register" hidden="false">
-      <field name="data" from="7" to="0" access="RW" resetVal="" desc="Read received data or write data to transmit." />
-    </register>
-  </block>
-  <block name="timer_clock_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="ZeroTerminal_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SCL_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="timer_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SDA_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="not_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="IR_receiver" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="ultra_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Timer" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
-    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer_RR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="TimerUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="Timer_COUNTER" address="0x4000640E" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
-    <register name="Timer_PERIOD" address="0x4000642E" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
-    <register name="Timer_STATUS_MASK" address="0x4000648F" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
-      <field name="TIMER_STS_TC" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on TC" />
-      <field name="TIMER_STS_CAPT" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Capture" />
-      <field name="TIMER_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="FIFO Full Status " />
-      <field name="TIMER_STS_FIFO_NEMPTY" from="3" to="3" access="R" resetVal="" desc="FIFO Empty status " />
+    <block name="TimerHW" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="Timer_RR_GLOBAL_ENABLE" address="0x400043A3" bitWidth="8" desc="PM.ACT.CFG" hidden="false">
+      <field name="en_timer" from="3" to="0" access="RW" resetVal="" desc="Enable timer/counters." />
     </register>
-    <register name="Timer_STATUS_AUX_CTRL" address="0x4000649F" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
-      <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
-        <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
-        <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
+    <register name="Timer_RR_CONTROL" address="0x40004F24" bitWidth="8" desc="TMRx.CFG0" hidden="false">
+      <field name="EN" from="0" to="0" access="RW" resetVal="" desc="Enables timer/comparator." />
+      <field name="MODE" from="1" to="1" access="RW" resetVal="" desc="Mode. (0 = Timer; 1 = Comparator)">
+        <value name="Timer" value="0" desc="Timer mode. CNT/CMP register holds timer count value." />
+        <value name="Comparator" value="1" desc="Comparator mode. CNT/CMP register holds comparator threshold value." />
       </field>
-      <field name="FIFO1_CLR" from="1" to="1" access="RW" resetVal="" desc="FIFO1 clear">
-        <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
-        <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
+      <field name="ONESHOT" from="2" to="2" access="RW" resetVal="" desc="Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block." />
+      <field name="CMP_BUFF" from="3" to="3" access="RW" resetVal="" desc="Buffer compare register. Compare register updates only on timer terminal count." />
+      <field name="INV" from="4" to="4" access="RW" resetVal="" desc="Invert sense of TIMEREN signal" />
+      <field name="DB" from="5" to="5" access="RW" resetVal="" desc="Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.">
+        <value name="Timer" value="0" desc="CMP and TC are output." />
+        <value name="Deadband" value="1" desc="PHI1 (instead of CMP) and PHI2 (instead of TC) are output." />
       </field>
-      <field name="FIFO0_LVL" from="2" to="2" access="RW" resetVal="" desc="FIFO level">
-        <value name="E_FIFO_LVL_0" value="0" desc="FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty" />
-        <value name="E_FIFO_LVL_1" value="1" desc="FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full" />
+      <field name="DEADBAND_PERIOD" from="7" to="6" access="RW" resetVal="" desc="Deadband Period" />
+    </register>
+    <register name="Timer_RR_CONTROL2" address="0x40004F25" bitWidth="8" desc="TMRx.CFG1" hidden="false">
+      <field name="IRQ_SEL" from="0" to="0" access="RW" resetVal="" desc="Irq selection. (0 = raw interrupts; 1 = status register interrupts)" />
+      <field name="FTC" from="1" to="1" access="RW" resetVal="" desc="First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.">
+        <value name="Disable FTC" value="0" desc="Disable the single cycle pulse, which signifies the timer is starting." />
+        <value name="Enable FTC" value="1" desc="Enable the single cycle pulse, which signifies the timer is starting." />
       </field>
-      <field name="FIFO1_LVL" from="3" to="3" access="RW" resetVal="" desc="FIFO level">
-        <value name="E_FIFO_LVL_0" value="0" desc="FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty" />
-        <value name="E_FIFO_LVL_1" value="1" desc="FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full" />
+      <field name="DCOR" from="2" to="2" access="RW" resetVal="" desc="Disable Clear on Read (DCOR) of Status Register SR0." />
+      <field name="DBMODE" from="3" to="3" access="RW" resetVal="" desc="Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND)." />
+      <field name="CLK_BUS_EN_SEL" from="6" to="4" access="RW" resetVal="" desc="Digital Global Clock selection." />
+      <field name="BUS_CLK_SEL" from="7" to="7" access="RW" resetVal="" desc="Bus Clock selection." />
+    </register>
+    <register name="Timer_RR_CONTROL3_" address="0x40004F26" bitWidth="8" desc="TMRx.CFG2" hidden="false">
+      <field name="TMR_CFG" from="1" to="0" access="RW" resetVal="" desc="Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ">
+        <value name="Continuous" value="0" desc="Timer runs while EN bit of CFG0 register is set to '1'." />
+        <value name="Pulsewidth" value="1" desc="Timer runs from positive to negative edge of TIMEREN." />
+        <value name="Period" value="10" desc="Timer runs from positive to positive edge of TIMEREN." />
+        <value name="Irq" value="11" desc="Timer runs until IRQ." />
       </field>
-      <field name="INT_EN" from="4" to="4" access="RW" resetVal="" desc="">
-        <value name="E_INT_EN0" value="0" desc="Interrupt disabled" />
-        <value name="E_INT_EN1" value="1" desc="Interrupt enabled" />
+      <field name="COD" from="2" to="2" access="RW" resetVal="" desc="Clear On Disable (COD). Clears or gates outputs to zero." />
+      <field name="ROD" from="3" to="3" access="RW" resetVal="" desc="Reset On Disable (ROD). Resets internal state of output logic" />
+      <field name="CMP_CFG" from="6" to="4" access="RW" resetVal="" desc="Comparator configurations">
+        <value name="Equal" value="0" desc="Compare Equal " />
+        <value name="Less than" value="1" desc="Compare Less Than " />
+        <value name="Less than or equal" value="10" desc="Compare Less Than or Equal ." />
+        <value name="Greater" value="11" desc="Compare Greater Than ." />
+        <value name="Greater than or equal" value="100" desc="Compare Greater Than or Equal " />
       </field>
-      <field name="CNT_START" from="5" to="5" access="RW" resetVal="" desc="FIFO0 clear">
-        <value name="E_CNT_START0" value="0" desc="Disable counter" />
-        <value name="E_CNT_START1" value="1" desc="Enable counter" />
+      <field name="HW_EN" from="7" to="7" access="RW" resetVal="" desc="When set Timer Enable controls counting." />
+    </register>
+    <register name="Timer_RR_PERIOD" address="0x40004F28" bitWidth="16" desc="TMRx.PER0 - Assigned Period" hidden="false" />
+    <register name="Timer_RR_COUNTER" address="0x40004F2A" bitWidth="16" desc="TMRx.CNT_CMP0 - Current Down Counter Value" hidden="false" />
+  </block>
+  <block name="sensor_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="RR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="ultra_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IR_receiver" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="timer_clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IR_led" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LL" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="and_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer_LR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="TimerHW" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="Timer_LR_GLOBAL_ENABLE" address="0x400043A3" bitWidth="8" desc="PM.ACT.CFG" hidden="false">
+      <field name="en_timer" from="3" to="0" access="RW" resetVal="" desc="Enable timer/counters." />
+    </register>
+    <register name="Timer_LR_CONTROL" address="0x40004F0C" bitWidth="8" desc="TMRx.CFG0" hidden="false">
+      <field name="EN" from="0" to="0" access="RW" resetVal="" desc="Enables timer/comparator." />
+      <field name="MODE" from="1" to="1" access="RW" resetVal="" desc="Mode. (0 = Timer; 1 = Comparator)">
+        <value name="Timer" value="0" desc="Timer mode. CNT/CMP register holds timer count value." />
+        <value name="Comparator" value="1" desc="Comparator mode. CNT/CMP register holds comparator threshold value." />
       </field>
+      <field name="ONESHOT" from="2" to="2" access="RW" resetVal="" desc="Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block." />
+      <field name="CMP_BUFF" from="3" to="3" access="RW" resetVal="" desc="Buffer compare register. Compare register updates only on timer terminal count." />
+      <field name="INV" from="4" to="4" access="RW" resetVal="" desc="Invert sense of TIMEREN signal" />
+      <field name="DB" from="5" to="5" access="RW" resetVal="" desc="Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.">
+        <value name="Timer" value="0" desc="CMP and TC are output." />
+        <value name="Deadband" value="1" desc="PHI1 (instead of CMP) and PHI2 (instead of TC) are output." />
+      </field>
+      <field name="DEADBAND_PERIOD" from="7" to="6" access="RW" resetVal="" desc="Deadband Period" />
+    </register>
+    <register name="Timer_LR_CONTROL2" address="0x40004F0D" bitWidth="8" desc="TMRx.CFG1" hidden="false">
+      <field name="IRQ_SEL" from="0" to="0" access="RW" resetVal="" desc="Irq selection. (0 = raw interrupts; 1 = status register interrupts)" />
+      <field name="FTC" from="1" to="1" access="RW" resetVal="" desc="First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.">
+        <value name="Disable FTC" value="0" desc="Disable the single cycle pulse, which signifies the timer is starting." />
+        <value name="Enable FTC" value="1" desc="Enable the single cycle pulse, which signifies the timer is starting." />
+      </field>
+      <field name="DCOR" from="2" to="2" access="RW" resetVal="" desc="Disable Clear on Read (DCOR) of Status Register SR0." />
+      <field name="DBMODE" from="3" to="3" access="RW" resetVal="" desc="Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND)." />
+      <field name="CLK_BUS_EN_SEL" from="6" to="4" access="RW" resetVal="" desc="Digital Global Clock selection." />
+      <field name="BUS_CLK_SEL" from="7" to="7" access="RW" resetVal="" desc="Bus Clock selection." />
+    </register>
+    <register name="Timer_LR_CONTROL3_" address="0x40004F0E" bitWidth="8" desc="TMRx.CFG2" hidden="false">
+      <field name="TMR_CFG" from="1" to="0" access="RW" resetVal="" desc="Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ">
+        <value name="Continuous" value="0" desc="Timer runs while EN bit of CFG0 register is set to '1'." />
+        <value name="Pulsewidth" value="1" desc="Timer runs from positive to negative edge of TIMEREN." />
+        <value name="Period" value="10" desc="Timer runs from positive to positive edge of TIMEREN." />
+        <value name="Irq" value="11" desc="Timer runs until IRQ." />
+      </field>
+      <field name="COD" from="2" to="2" access="RW" resetVal="" desc="Clear On Disable (COD). Clears or gates outputs to zero." />
+      <field name="ROD" from="3" to="3" access="RW" resetVal="" desc="Reset On Disable (ROD). Resets internal state of output logic" />
+      <field name="CMP_CFG" from="6" to="4" access="RW" resetVal="" desc="Comparator configurations">
+        <value name="Equal" value="0" desc="Compare Equal " />
+        <value name="Less than" value="1" desc="Compare Less Than " />
+        <value name="Less than or equal" value="10" desc="Compare Less Than or Equal ." />
+        <value name="Greater" value="11" desc="Compare Greater Than ." />
+        <value name="Greater than or equal" value="100" desc="Compare Greater Than or Equal " />
+      </field>
+      <field name="HW_EN" from="7" to="7" access="RW" resetVal="" desc="When set Timer Enable controls counting." />
+    </register>
+    <register name="Timer_LR_PERIOD" address="0x40004F10" bitWidth="16" desc="TMRx.PER0 - Assigned Period" hidden="false" />
+    <register name="Timer_LR_COUNTER" address="0x40004F12" bitWidth="16" desc="TMRx.CNT_CMP0 - Current Down Counter Value" hidden="false" />
+  </block>
+  <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="timer_clock_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer_LL" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="TimerHW" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="Timer_LL_GLOBAL_ENABLE" address="0x400043A3" bitWidth="8" desc="PM.ACT.CFG" hidden="false">
+      <field name="en_timer" from="3" to="0" access="RW" resetVal="" desc="Enable timer/counters." />
+    </register>
+    <register name="Timer_LL_CONTROL" address="0x40004F00" bitWidth="8" desc="TMRx.CFG0" hidden="false">
+      <field name="EN" from="0" to="0" access="RW" resetVal="" desc="Enables timer/comparator." />
+      <field name="MODE" from="1" to="1" access="RW" resetVal="" desc="Mode. (0 = Timer; 1 = Comparator)">
+        <value name="Timer" value="0" desc="Timer mode. CNT/CMP register holds timer count value." />
+        <value name="Comparator" value="1" desc="Comparator mode. CNT/CMP register holds comparator threshold value." />
+      </field>
+      <field name="ONESHOT" from="2" to="2" access="RW" resetVal="" desc="Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block." />
+      <field name="CMP_BUFF" from="3" to="3" access="RW" resetVal="" desc="Buffer compare register. Compare register updates only on timer terminal count." />
+      <field name="INV" from="4" to="4" access="RW" resetVal="" desc="Invert sense of TIMEREN signal" />
+      <field name="DB" from="5" to="5" access="RW" resetVal="" desc="Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.">
+        <value name="Timer" value="0" desc="CMP and TC are output." />
+        <value name="Deadband" value="1" desc="PHI1 (instead of CMP) and PHI2 (instead of TC) are output." />
+      </field>
+      <field name="DEADBAND_PERIOD" from="7" to="6" access="RW" resetVal="" desc="Deadband Period" />
+    </register>
+    <register name="Timer_LL_CONTROL2" address="0x40004F01" bitWidth="8" desc="TMRx.CFG1" hidden="false">
+      <field name="IRQ_SEL" from="0" to="0" access="RW" resetVal="" desc="Irq selection. (0 = raw interrupts; 1 = status register interrupts)" />
+      <field name="FTC" from="1" to="1" access="RW" resetVal="" desc="First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.">
+        <value name="Disable FTC" value="0" desc="Disable the single cycle pulse, which signifies the timer is starting." />
+        <value name="Enable FTC" value="1" desc="Enable the single cycle pulse, which signifies the timer is starting." />
+      </field>
+      <field name="DCOR" from="2" to="2" access="RW" resetVal="" desc="Disable Clear on Read (DCOR) of Status Register SR0." />
+      <field name="DBMODE" from="3" to="3" access="RW" resetVal="" desc="Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND)." />
+      <field name="CLK_BUS_EN_SEL" from="6" to="4" access="RW" resetVal="" desc="Digital Global Clock selection." />
+      <field name="BUS_CLK_SEL" from="7" to="7" access="RW" resetVal="" desc="Bus Clock selection." />
+    </register>
+    <register name="Timer_LL_CONTROL3_" address="0x40004F02" bitWidth="8" desc="TMRx.CFG2" hidden="false">
+      <field name="TMR_CFG" from="1" to="0" access="RW" resetVal="" desc="Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ">
+        <value name="Continuous" value="0" desc="Timer runs while EN bit of CFG0 register is set to '1'." />
+        <value name="Pulsewidth" value="1" desc="Timer runs from positive to negative edge of TIMEREN." />
+        <value name="Period" value="10" desc="Timer runs from positive to positive edge of TIMEREN." />
+        <value name="Irq" value="11" desc="Timer runs until IRQ." />
+      </field>
+      <field name="COD" from="2" to="2" access="RW" resetVal="" desc="Clear On Disable (COD). Clears or gates outputs to zero." />
+      <field name="ROD" from="3" to="3" access="RW" resetVal="" desc="Reset On Disable (ROD). Resets internal state of output logic" />
+      <field name="CMP_CFG" from="6" to="4" access="RW" resetVal="" desc="Comparator configurations">
+        <value name="Equal" value="0" desc="Compare Equal " />
+        <value name="Less than" value="1" desc="Compare Less Than " />
+        <value name="Less than or equal" value="10" desc="Compare Less Than or Equal ." />
+        <value name="Greater" value="11" desc="Compare Greater Than ." />
+        <value name="Greater than or equal" value="100" desc="Compare Greater Than or Equal " />
+      </field>
+      <field name="HW_EN" from="7" to="7" access="RW" resetVal="" desc="When set Timer Enable controls counting." />
+    </register>
+    <register name="Timer_LL_PERIOD" address="0x40004F04" bitWidth="16" desc="TMRx.PER0 - Assigned Period" hidden="false" />
+    <register name="Timer_LL_COUNTER" address="0x40004F06" bitWidth="16" desc="TMRx.CNT_CMP0 - Current Down Counter Value" hidden="false" />
+  </block>
+  <block name="ZeroTerminal_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="timer_clock_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Trig" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="UART" BASE="0x0" SIZE="0x0" desc="UART" visible="true" hidden="false">
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="TX_UART_TX_DATA" address="0x40006447" bitWidth="8" desc="TX Data Register" hidden="false" />
+    <register name="TX_UART_TX_STATUS" address="0x40006467" bitWidth="8" desc="TX status register" hidden="false">
+      <field name="UART_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
+      <field name="UART_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
+      <field name="UART_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="UART_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
+    </register>
+    <register name="RX_UART_RX_ADDRESS1" address="0x40006529" bitWidth="8" desc="RX Address1 Register" hidden="false" />
+    <register name="RX_UART_RX_ADDRESS2" address="0x40006539" bitWidth="8" desc="RX Address2 Register" hidden="false" />
+    <register name="RX_UART_RX_DATA" address="0x40006549" bitWidth="8" desc="RX Data Register" hidden="false" />
+    <register name="RX_UART_RX_STATUS" address="0x40006569" bitWidth="8" desc="RX status register" hidden="false">
+      <field name="UART_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" />
+      <field name="UART_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" />
+      <field name="UART_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="UART_RX_STS_STOP_ERROR" from="3" to="3" access="R" resetVal="" desc="" />
+      <field name="UART_RX_STS_OVERRUN" from="4" to="4" access="R" resetVal="" desc="" />
+      <field name="UART_RX_STS_FIFO_NOTEMPTY" from="5" to="5" access="R" resetVal="" desc="" />
+      <field name="UART_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" />
     </register>
   </block>
-  <block name="Echo" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Trig" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SDA_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SCL_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="I2C" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="BusClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -191,7 +300,11 @@
       <field name="timeout_period_highnibble" from="3" to="0" access="RW" resetVal="" desc="The configuration of this register along with that in register TMOUT_CFG1 to define the number units before SCL or SDA stuck low timeout triggers the I2C interrupt. The one unit is equal to SYSCLK/1024. The TMOUT_CFG1 defines higher octet of the period." />
     </register>
   </block>
-  <block name="MotorPwmRight" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Rx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="MotorDirLeft" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Tx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SCL_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="PWM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="vmIRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="vmCompare" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -202,7 +315,7 @@
     <block name="PWMUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <register name="PWM__COMPARE1" address="0x40006525" bitWidth="8" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
     <register name="PWM__COMPARE2" address="0x40006535" bitWidth="8" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
-    <register name="PWM_Control_Reg" address="0x40006575" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+    <register name="PWM_Control_Reg" address="0x40006574" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the PWM" />
       <field name="CTRL_CMPMODE2" from="5" to="3" access="RW" resetVal="" desc="Compare mode 2" />
       <field name="CTRL_CMPMODE1" from="2" to="0" access="RW" resetVal="" desc="Compare mode 1" />
@@ -241,33 +354,80 @@
       </field>
     </register>
   </block>
-  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="MotorPwmLeft" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SDA_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="MotorPwmRight" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="MotorDirRight" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="irreceiver_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Timer_ir" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
-    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="timer_clock_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="I2C_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_timeout_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_udb_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_sda_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="bI2C_UDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="I2C_2_DATA" address="0x4000640D" bitWidth="8" desc="I2C Data Register" hidden="false">
+      <field name="data" from="7" to="0" access="RW" resetVal="" desc="Read received data or write data to transmit." />
+    </register>
+    <register name="I2C_2_CSR" address="0x4000646F" bitWidth="8" desc="I2C Status Register" hidden="false">
+      <field name="lost_arb" from="6" to="6" access="R" resetVal="" desc="If set, indicates arbitration was lost (multi-master and multi-master-slave modes)." />
+      <field name="stop_status" from="5" to="5" access="R" resetVal="" desc="If set, indicates a Stop condition was detected on the bus." />
+      <field name="bus_busy" from="4" to="4" access="R" resetVal="" desc="If set, indicates the bus is busy. Data is currently being transmitted or received." />
+      <field name="address" from="3" to="3" access="R" resetVal="" desc="Address detection. If set, indicates that an address byte was sent." />
+      <field name="master_mode" from="2" to="2" access="R" resetVal="" desc="Indicates that a valid Start condition was generated and a hardware device is operating as bus master." />
+      <field name="lrb" from="1" to="1" access="R" resetVal="" desc="Last Received Bit. Indicates the state of the last received bit, which is the ACK/NAK received for the last byte transmitted. Cleared = ACK and set = NAK." />
+      <field name="byte_complete" from="0" to="0" access="R" resetVal="" desc="Transmit or receive status since the last read of this register. In Transmit mode this bit indicates that eight bits of data plus ACK/NAK have been transmitted since the last read. In Receive mode this bit indicates that eight bits of data have been received since the last read of this register." />
+    </register>
+    <register name="I2C_2_CFG" address="0x4000647E" bitWidth="8" desc="I2C Configuration Register" hidden="false">
+      <field name="start_gen" from="7" to="7" access="RW" resetVal="" desc="Set to 1 to generate a Start condition on the bus. This bit must be cleared by firmware before initiating the next transaction." />
+      <field name="stop_gen" from="6" to="6" access="RW" resetVal="" desc="Set to 1 to generate a Stop condition on the bus. This bit must be cleared by firmware before initiating the next transaction." />
+      <field name="restart_gen" from="5" to="5" access="RW" resetVal="" desc="Set to 1 to generate a Restart condition on the bus. This bit must be cleared by firmware after a Restart condition is generated." />
+      <field name="nack" from="4" to="4" access="RW" resetVal="" desc="Set to 1 to NAK the next read byte. Clear to ACK next read byte. This bit must be cleared by firmware between bytes." />
+      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="Set to 1 to set the current mode to transmit or clear to 0 to receive a byte of data. This bit must be cleared by firmware before starting the next transmit or receive transaction." />
+      <field name="master_en" from="1" to="1" access="RW" resetVal="" desc="Set to 1 to enable the master functionality." />
+    </register>
+    <register name="I2C_2_INT_MASK" address="0x4000648F" bitWidth="8" desc="I2C Interrupt Enable Mask" hidden="false">
+      <field name="lost_arb" from="6" to="6" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+      <field name="bus_busy" from="4" to="4" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+      <field name="address" from="3" to="3" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+      <field name="master_mode" from="2" to="2" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+      <field name="lrb" from="1" to="1" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+      <field name="byte_complete" from="0" to="0" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." />
+    </register>
+  </block>
+  <block name="ZeroTerminal_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Echo" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="TimerUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="Timer_ir_COUNTER" address="0x4000640A" bitWidth="24" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
-    <register name="Timer_ir_PERIOD" address="0x4000642A" bitWidth="24" desc="UDB.D0 - Assigned Period" hidden="false" />
-    <register name="Timer_ir_Control_Reg" address="0x4000647A" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
-      <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the Timer" />
-      <field name="CTRL_CMODE" from="6" to="5" access="RW" resetVal="" desc="Capture Mode" />
-      <field name="CTRL_TEN" from="4" to="4" access="RW" resetVal="" desc="Trigger Enable Bit" />
-      <field name="CTRL_TMODE" from="3" to="2" access="RW" resetVal="" desc="Trigger Mode" />
-      <field name="CTRL_IC" from="1" to="0" access="RW" resetVal="" desc="Interrupt Count" />
-    </register>
-    <register name="Timer_ir_STATUS_MASK" address="0x4000648C" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="Timer_COUNTER" address="0x4000640E" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
+    <register name="Timer_PERIOD" address="0x4000642E" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
+    <register name="Timer_STATUS_MASK" address="0x4000648B" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="TIMER_STS_TC" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on TC" />
       <field name="TIMER_STS_CAPT" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Capture" />
       <field name="TIMER_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="FIFO Full Status " />
       <field name="TIMER_STS_FIFO_NEMPTY" from="3" to="3" access="R" resetVal="" desc="FIFO Empty status " />
     </register>
-    <register name="Timer_ir_STATUS_AUX_CTRL" address="0x4000649C" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="Timer_STATUS_AUX_CTRL" address="0x4000649B" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -294,31 +454,66 @@
       </field>
     </register>
   </block>
-  <block name="MotorDirLeft" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="UART" BASE="0x0" SIZE="0x0" desc="UART" visible="true" hidden="false">
-    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SCL_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="timer_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="RL" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SDA_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer_RL" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="TimerHW" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="TX_UART_TX_DATA" address="0x40006449" bitWidth="8" desc="TX Data Register" hidden="false" />
-    <register name="RX_UART_RX_STATUS" address="0x40006467" bitWidth="8" desc="RX status register" hidden="false">
-      <field name="UART_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" />
-      <field name="UART_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" />
-      <field name="UART_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="UART_RX_STS_STOP_ERROR" from="3" to="3" access="R" resetVal="" desc="" />
-      <field name="UART_RX_STS_OVERRUN" from="4" to="4" access="R" resetVal="" desc="" />
-      <field name="UART_RX_STS_FIFO_NOTEMPTY" from="5" to="5" access="R" resetVal="" desc="" />
-      <field name="UART_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" />
+    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="Timer_RL_GLOBAL_ENABLE" address="0x400043A3" bitWidth="8" desc="PM.ACT.CFG" hidden="false">
+      <field name="en_timer" from="3" to="0" access="RW" resetVal="" desc="Enable timer/counters." />
     </register>
-    <register name="TX_UART_TX_STATUS" address="0x40006469" bitWidth="8" desc="TX status register" hidden="false">
-      <field name="UART_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
-      <field name="UART_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
-      <field name="UART_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="UART_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
+    <register name="Timer_RL_CONTROL" address="0x40004F18" bitWidth="8" desc="TMRx.CFG0" hidden="false">
+      <field name="EN" from="0" to="0" access="RW" resetVal="" desc="Enables timer/comparator." />
+      <field name="MODE" from="1" to="1" access="RW" resetVal="" desc="Mode. (0 = Timer; 1 = Comparator)">
+        <value name="Timer" value="0" desc="Timer mode. CNT/CMP register holds timer count value." />
+        <value name="Comparator" value="1" desc="Comparator mode. CNT/CMP register holds comparator threshold value." />
+      </field>
+      <field name="ONESHOT" from="2" to="2" access="RW" resetVal="" desc="Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block." />
+      <field name="CMP_BUFF" from="3" to="3" access="RW" resetVal="" desc="Buffer compare register. Compare register updates only on timer terminal count." />
+      <field name="INV" from="4" to="4" access="RW" resetVal="" desc="Invert sense of TIMEREN signal" />
+      <field name="DB" from="5" to="5" access="RW" resetVal="" desc="Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.">
+        <value name="Timer" value="0" desc="CMP and TC are output." />
+        <value name="Deadband" value="1" desc="PHI1 (instead of CMP) and PHI2 (instead of TC) are output." />
+      </field>
+      <field name="DEADBAND_PERIOD" from="7" to="6" access="RW" resetVal="" desc="Deadband Period" />
     </register>
-    <register name="RX_UART_RX_ADDRESS1" address="0x4000652B" bitWidth="8" desc="RX Address1 Register" hidden="false" />
-    <register name="RX_UART_RX_ADDRESS2" address="0x4000653B" bitWidth="8" desc="RX Address2 Register" hidden="false" />
-    <register name="RX_UART_RX_DATA" address="0x4000654B" bitWidth="8" desc="RX Data Register" hidden="false" />
+    <register name="Timer_RL_CONTROL2" address="0x40004F19" bitWidth="8" desc="TMRx.CFG1" hidden="false">
+      <field name="IRQ_SEL" from="0" to="0" access="RW" resetVal="" desc="Irq selection. (0 = raw interrupts; 1 = status register interrupts)" />
+      <field name="FTC" from="1" to="1" access="RW" resetVal="" desc="First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.">
+        <value name="Disable FTC" value="0" desc="Disable the single cycle pulse, which signifies the timer is starting." />
+        <value name="Enable FTC" value="1" desc="Enable the single cycle pulse, which signifies the timer is starting." />
+      </field>
+      <field name="DCOR" from="2" to="2" access="RW" resetVal="" desc="Disable Clear on Read (DCOR) of Status Register SR0." />
+      <field name="DBMODE" from="3" to="3" access="RW" resetVal="" desc="Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND)." />
+      <field name="CLK_BUS_EN_SEL" from="6" to="4" access="RW" resetVal="" desc="Digital Global Clock selection." />
+      <field name="BUS_CLK_SEL" from="7" to="7" access="RW" resetVal="" desc="Bus Clock selection." />
+    </register>
+    <register name="Timer_RL_CONTROL3_" address="0x40004F1A" bitWidth="8" desc="TMRx.CFG2" hidden="false">
+      <field name="TMR_CFG" from="1" to="0" access="RW" resetVal="" desc="Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ">
+        <value name="Continuous" value="0" desc="Timer runs while EN bit of CFG0 register is set to '1'." />
+        <value name="Pulsewidth" value="1" desc="Timer runs from positive to negative edge of TIMEREN." />
+        <value name="Period" value="10" desc="Timer runs from positive to positive edge of TIMEREN." />
+        <value name="Irq" value="11" desc="Timer runs until IRQ." />
+      </field>
+      <field name="COD" from="2" to="2" access="RW" resetVal="" desc="Clear On Disable (COD). Clears or gates outputs to zero." />
+      <field name="ROD" from="3" to="3" access="RW" resetVal="" desc="Reset On Disable (ROD). Resets internal state of output logic" />
+      <field name="CMP_CFG" from="6" to="4" access="RW" resetVal="" desc="Comparator configurations">
+        <value name="Equal" value="0" desc="Compare Equal " />
+        <value name="Less than" value="1" desc="Compare Less Than " />
+        <value name="Less than or equal" value="10" desc="Compare Less Than or Equal ." />
+        <value name="Greater" value="11" desc="Compare Greater Than ." />
+        <value name="Greater than or equal" value="100" desc="Compare Greater Than or Equal " />
+      </field>
+      <field name="HW_EN" from="7" to="7" access="RW" resetVal="" desc="When set Timer Enable controls counting." />
+    </register>
+    <register name="Timer_RL_PERIOD" address="0x40004F1C" bitWidth="16" desc="TMRx.PER0 - Assigned Period" hidden="false" />
+    <register name="Timer_RL_COUNTER" address="0x40004F1E" bitWidth="16" desc="TMRx.CNT_CMP0 - Current Down Counter Value" hidden="false" />
   </block>
-  <block name="Rx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Tx_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

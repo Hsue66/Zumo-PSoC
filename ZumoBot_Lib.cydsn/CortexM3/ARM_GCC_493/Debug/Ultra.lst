@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
   36 0000 38B5     		push	{r3, r4, r5, lr}
   37              		.cfi_def_cfa_offset 16
   38              		.cfi_offset 3, -16
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 2
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 2
 
 
   39              		.cfi_offset 4, -12
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
   29:.\Ultra.c     ****         Timer_WriteCounter(0xFFFF);         // Counter initialization
   84              		.loc 1 29 0
   85 0048 4FF6FF70 		movw	r0, #65535
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 3
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 3
 
 
   86 004c FFF7FEFF 		bl	Timer_WriteCounter
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  129              	.LVL14:
  130 0006 08BD     		pop	{r3, pc}
  131              		.cfi_endproc
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 4
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 4
 
 
  132              	.LFE64:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  182 0027 06       		.byte	0x6
  183 0028 38020000 		.4byte	.LASF0
  184 002c 02       		.uleb128 0x2
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 5
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 5
 
 
  185 002d 01       		.byte	0x1
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  239 0093 4C000000 		.4byte	0x4c
  240 0097 05       		.uleb128 0x5
  241 0098 6C000000 		.4byte	.LASF13
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 6
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 6
 
 
  242 009c 04       		.byte	0x4
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  296 011c 0B       		.uleb128 0xb
  297 011d 01       		.uleb128 0x1
  298 011e 51       		.byte	0x51
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 7
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 7
 
 
  299 011f 02       		.uleb128 0x2
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  353 0189 0E       		.uleb128 0xe
  354 018a 8C000000 		.4byte	0x8c
  355 018e 0F       		.uleb128 0xf
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 8
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 8
 
 
  356 018f 6900     		.ascii	"i\000"
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  410 0202 06       		.byte	0x6
  411 0203 6A       		.byte	0x6a
  412 0204 0E020000 		.4byte	0x20e
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 9
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 9
 
 
  413 0208 14       		.uleb128 0x14
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  467 002c 24       		.uleb128 0x24
  468 002d 00       		.byte	0
  469 002e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 10
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 10
 
 
  470 002f 0B       		.uleb128 0xb
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  524 0065 18       		.uleb128 0x18
  525 0066 9642     		.uleb128 0x2116
  526 0068 19       		.uleb128 0x19
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 11
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 11
 
 
  527 0069 01       		.uleb128 0x1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  581 00a7 00       		.byte	0
  582 00a8 00       		.byte	0
  583 00a9 0D       		.uleb128 0xd
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 12
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 12
 
 
  584 00aa 34       		.uleb128 0x34
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  638 00e0 18       		.uleb128 0x18
  639 00e1 00       		.byte	0
  640 00e2 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 13
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 13
 
 
  641 00e3 11       		.uleb128 0x11
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  695 0119 13       		.uleb128 0x13
  696 011a 00       		.byte	0
  697 011b 00       		.byte	0
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 14
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 14
 
 
  698 011c 14       		.uleb128 0x14
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  752              		.section	.debug_line,"",%progbits
  753              	.Ldebug_line0:
  754 0000 99010000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 15
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 15
 
 
  754      02006A01 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  778 008c 6C6F6E67 		.ascii	"long unsigned int\000"
  778      20756E73 
  778      69676E65 
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 16
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 16
 
 
  778      6420696E 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 1
  800      6400
  801              	.LASF9:
  802 018d 6C6F6E67 		.ascii	"long long unsigned int\000"
-ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccwOEdjt.s 			page 17
+ARM GAS  C:\Users\dufma\AppData\Local\Temp\ccsqKpQt.s 			page 17
 
 
  802      206C6F6E 
