@@ -18,6 +18,7 @@
 #include "I2C_made.h"
 #include "gyro.h"
 #include "accel_magnet.h"
+#include "IR.h"
 
 int rread(void);
 
@@ -26,6 +27,19 @@ int main()
     CyGlobalIntEnable; 
     UART_Start();
     printf("Start\r\n");
+    
+    
+     /*  //IR receiver//
+    ----------------------------------------------------*/
+    unsigned int IR_val; 
+    
+    for(;;)
+    {
+       IR_val = get_IR();
+       printf("%x\r\n\n",IR_val);
+    }
+    
+    ///---------------------------------------------------------- */
     
        /*  //nunchuk//
     ----------------------------------------------------
@@ -39,7 +53,7 @@ int main()
     //----------------------------------------------------*/
     
     /* //accelerometer//
-    //--------------------------------------------------------------*/
+    //--------------------------------------------------------------
     I2C_Start();
   
     uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;

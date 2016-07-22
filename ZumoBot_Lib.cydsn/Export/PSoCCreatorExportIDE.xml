@@ -52,6 +52,8 @@
           <File BuildType="BUILD" Toolchain="">.\I2C_made.c</File>
           <File BuildType="BUILD" Toolchain="">.\I2C_made.h</File>
           <File BuildType="BUILD" Toolchain="">.\magnet.c</File>
+          <File BuildType="BUILD" Toolchain="">.\IR.c</File>
+          <File BuildType="BUILD" Toolchain="">.\IR.h</File>
           <File BuildType="BUILD" Toolchain="">.\cyapicallbacks.h</File>
         </Files>
       </Folder>
@@ -197,6 +199,9 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Trig_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Trig.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Trig.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IR_receiver_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IR_receiver.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IR_receiver.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\Export\ARM_GCC_Generic">

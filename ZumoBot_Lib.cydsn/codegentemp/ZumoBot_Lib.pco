@@ -1,5 +1,5 @@
 # ZumoBot_Lib
-# 2016-07-08 07:37:10Z
+# 2016-07-22 11:07:14Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -26,6 +26,7 @@ set_io "SDA_2(0)" iocell 1 5
 set_io "SCL_2(0)" iocell 1 6
 set_io "Echo(0)" iocell 2 0
 set_io "Trig(0)" iocell 0 7
+set_io "IR_receiver(0)" iocell 1 7
 set_location "\PWM:PWMUDB:status_2\" 3 0 0 3
 set_location "Net_310" 0 5 0 1
 set_location "\UART:BUART:counter_load_not\" 0 5 1 2

@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2016-07-08T07:37:16Z")
+ (DATE "2016-07-22T11:07:20Z")
  (DESIGN "ZumoBot_Lib")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")
@@ -554,6 +554,7 @@
     (INTERCONNECT SCL_2\(0\)_PAD SCL_2\(0\).pad_in (0.000:0.000:0.000))
     (INTERCONNECT Echo\(0\)_PAD Echo\(0\).pad_in (0.000:0.000:0.000))
     (INTERCONNECT Trig\(0\)_PAD Trig\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT IR_receiver\(0\)_PAD IR_receiver\(0\).pad_in (0.000:0.000:0.000))
    )
   )
  )

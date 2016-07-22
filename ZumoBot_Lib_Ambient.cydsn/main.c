@@ -26,26 +26,19 @@ int main()
     CyGlobalIntEnable; 
     UART_Start();
     printf("Start\r\n");
-    
-    
- 
-        
-
+   
     I2C_Start();
     for(;;)
     {
         uint16 value =0;
-       value = I2C_read(0x39,0xA0);
+        value = I2C_read(0x39,0x80);
+        printf("%d ",value);
+        
+        I2C_write(0x39,0x80,0x03);
+        
+        value = I2C_read(0x39,0x80);
         printf("%d\r\n",value);
-        
-        I2C_write(0x39,0xA0,0x03);
-        
-        value = I2C_read(0x39,0xA0);
-        printf("%d\r\n",value);
-       
-        
-       
-        
+ 
     }
  
     

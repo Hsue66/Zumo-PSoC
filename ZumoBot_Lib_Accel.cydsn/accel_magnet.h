@@ -23,7 +23,7 @@ uint16 convert_raw(uint8 L, uint8 H);
 
 #define WHO_AM_I_ACCEL      0x0F
 #define ACCEL_MAG_ADDR      0x1D
-#define ACCEL_CTRL1_REG     0x20                
+#define ACCEL_CTRL1_REG     0x22                
 #define ACCEL_CTRL7_REG     0x26
 
 #define OUT_X_L_M           0x08            // Magnetometer output
