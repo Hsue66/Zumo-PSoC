@@ -1,19 +1,6 @@
---------------- Build Started: 07/26/2016 10:30:33 Project: ZumoBot_Lib_Ambient, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Build Started: 07/26/2016 12:10:49 Project: ZumoBot_Lib_Ambient, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\main.c -o .\CortexM3\ARM_GCC_493\Debug\main.o
-.\main.c: In function 'main':
-.\main.c:73:43: warning: variable 'Data1High' set but not used [-Wunused-but-set-variable]
-         uint8 Data0Low,Data0High,Data1Low,Data1High;
-                                           ^
-.\main.c:73:34: warning: variable 'Data1Low' set but not used [-Wunused-but-set-variable]
-         uint8 Data0Low,Data0High,Data1Low,Data1High;
-                                  ^
-.\main.c:73:24: warning: variable 'Data0High' set but not used [-Wunused-but-set-variable]
-         uint8 Data0Low,Data0High,Data1Low,Data1High;
-                        ^
-.\main.c:73:15: warning: variable 'Data0Low' set but not used [-Wunused-but-set-variable]
-         uint8 Data0Low,Data0High,Data1Low,Data1High;
-               ^
 arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_493\Debug\ZumoBot_Lib_Ambient.a .\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_493\Debug\PWM.o .\CortexM3\ARM_GCC_493\Debug\PWM_PM.o .\CortexM3\ARM_GCC_493\Debug\Clock_1.o .\CortexM3\ARM_GCC_493\Debug\SDA_1.o .\CortexM3\ARM_GCC_493\Debug\SCL_1.o .\CortexM3\ARM_GCC_493\Debug\I2C.o .\CortexM3\ARM_GCC_493\Debug\I2C_BOOT.o .\CortexM3\ARM_GCC_493\Debug\I2C_INT.o .\CortexM3\ARM_GCC_493\Debug\I2C_PM.o .\CortexM3\ARM_GCC_493\Debug\I2C_SLAVE.o .\CortexM3\ARM_GCC_493\Debug\I2C_MASTER.o .\CortexM3\ARM_GCC_493\Debug\UART.o .\CortexM3\ARM_GCC_493\Debug\UART_PM.o .\CortexM3\ARM_GCC_493\Debug\UART_INT.o .\CortexM3\ARM_GCC_493\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_493\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM3\ARM_GCC_493\Debug\CyDmac.o .\CortexM3\ARM_GCC_493\Debug\CyFlash.o .\CortexM3\ARM_GCC_493\Debug\CyLib.o .\CortexM3\ARM_GCC_493\Debug\cyPm.o .\CortexM3\ARM_GCC_493\Debug\CySpc.o .\CortexM3\ARM_GCC_493\Debug\cyutils.o .\CortexM3\ARM_GCC_493\Debug\MotorPwmLeft.o .\CortexM3\ARM_GCC_493\Debug\MotorPwmRight.o .\CortexM3\ARM_GCC_493\Debug\MotorDirLeft.o .\CortexM3\ARM_GCC_493\Debug\MotorDirRight.o .\CortexM3\ARM_GCC_493\Debug\IR_led.o .\CortexM3\ARM_GCC_493\Debug\sensor_isr.o .\CortexM3\ARM_GCC_493\Debug\LL.o .\CortexM3\ARM_GCC_493\Debug\Timer_LL.o .\CortexM3\ARM_GCC_493\Debug\Timer_LL_PM.o .\CortexM3\ARM_GCC_493\Debug\Timer_RR.o .\CortexM3\ARM_GCC_493\Debug\Timer_RR_PM.o .\CortexM3\ARM_GCC_493\Debug\Timer_RL.o .\CortexM3\ARM_GCC_493\Debug\Timer_RL_PM.o .\CortexM3\ARM_GCC_493\Debug\RL.o .\CortexM3\ARM_GCC_493\Debug\RR.o .\CortexM3\ARM_GCC_493\Debug\Timer_LR.o .\CortexM3\ARM_GCC_493\Debug\Timer_LR_PM.o .\CortexM3\ARM_GCC_493\Debug\LR.o .\CortexM3\ARM_GCC_493\Debug\SDA_2.o .\CortexM3\ARM_GCC_493\Debug\SCL_2.o .\CortexM3\ARM_GCC_493\Debug\I2C_2.o .\CortexM3\ARM_GCC_493\Debug\I2C_2_BOOT.o .\CortexM3\ARM_GCC_493\Debug\I2C_2_INT.o .\CortexM3\ARM_GCC_493\Debug\I2C_2_PM.o .\CortexM3\ARM_GCC_493\Debug\I2C_2_SLAVE.o .\CortexM3\ARM_GCC_493\Debug\I2C_2_MASTER.o .\CortexM3\ARM_GCC_493\Debug\I2C_2_IntClock.o .\CortexM3\ARM_GCC_493\Debug\timer_clock_4.o .\CortexM3\ARM_GCC_493\Debug\Timer.o .\CortexM3\ARM_GCC_493\Debug\Timer_PM.o .\CortexM3\ARM_GCC_493\Debug\Echo.o .\CortexM3\ARM_GCC_493\Debug\ultra_isr.o .\CortexM3\ARM_GCC_493\Debug\Trig.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_493\Debug\ZumoBot_Lib_Ambient.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM3\ARM_GCC_493\Debug\ZumoBot_Lib_Ambient.elf .\CortexM3\ARM_GCC_493\Debug\main.o .\CortexM3\ARM_GCC_493\Debug\nunchuk.o .\CortexM3\ARM_GCC_493\Debug\Motor.o .\CortexM3\ARM_GCC_493\Debug\Ultra.o .\CortexM3\ARM_GCC_493\Debug\Reflectance.o .\CortexM3\ARM_GCC_493\Debug\accel.o .\CortexM3\ARM_GCC_493\Debug\gyro.o .\CortexM3\ARM_GCC_493\Debug\I2C_made.o .\CortexM3\ARM_GCC_493\Debug\magnet.o .\CortexM3\ARM_GCC_493\Debug\cymetadata.o .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o .\CortexM3\ARM_GCC_493\Debug\ZumoBot_Lib_Ambient.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -g -ffunction-sections -Og -ffat-lto-objects -l m -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_493\Debug/ZumoBot_Lib_Ambient.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -u _printf_float -Wl,--gc-sections -u _printf_float -Wl,--end-group
@@ -21,4 +8,4 @@ cyelftool.exe -C C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_Ambient.cy
 cyelftool.exe -S C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_Ambient.cydsn\CortexM3\ARM_GCC_493\Debug\ZumoBot_Lib_Ambient.elf
 Flash used: 23040 of 262144 bytes (8.8 %).
 SRAM used: 6653 of 65536 bytes (10.2 %). Stack: 2048 bytes. Heap: 4096 bytes.
---------------- Build Succeeded: 07/26/2016 10:30:35 ---------------
+--------------- Build Succeeded: 07/26/2016 12:10:54 ---------------

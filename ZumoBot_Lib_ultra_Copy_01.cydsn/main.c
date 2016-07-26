@@ -28,9 +28,9 @@ int main()
         
     for(;;)
     {       
-        CyDelay(100); 
+       // CyDelay(100); 
         Trigger_Write(1);           // Trigger High
-        CyDelayUs(10);              // 10 micro seconds for trigger input signals
+       // CyDelayUs(10);              // 10 micro seconds for trigger input signals
         Trigger_Write(0);           // Trigger Low
     }
 }

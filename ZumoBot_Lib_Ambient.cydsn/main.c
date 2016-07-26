@@ -63,22 +63,25 @@ int main()
     printf("%x ",value);
     
     I2C_write(0x29,0x80,0x03);
-    
     value = I2C_read(0x29,0x80);
     printf("%x\r\n",value);
         
+    printf("%f\r\n", pow(1.5, 1.4));
     for(;;)
     {
         
         uint8 Data0Low,Data0High,Data1Low,Data1High;
-        Data0Low = I2C_read(0x49,CH0_L);
-        Data0High = I2C_read(0x49,CH0_H);
-        Data1Low = I2C_read(0x49,CH1_L);
-        Data1High = I2C_read(0x49,CH1_H);
+        Data0Low = I2C_read(0x29,CH0_L);
+        Data0High = I2C_read(0x29,CH0_H);
+        Data1Low = I2C_read(0x29,CH1_L);
+        Data1High = I2C_read(0x29,CH1_H);
         
         uint8 CH0, CH1;
-        CH0 = convert_raw(CH0_L,CH0_H);
-        CH1 = convert_raw(CH1_L,CH1_H);
+        CH0 = convert_raw(Data0Low,Data0High);
+        CH1 = convert_raw(Data1Low,Data1High);
+
+   //     printf("%d %d %d %d\r\n",Data0Low,Data0High, Data1Low,Data1High);
+   //     printf("%d %d\r\n",CH0,CH1);
         
         float data = 0;
         data = getLux(CH0,CH1);

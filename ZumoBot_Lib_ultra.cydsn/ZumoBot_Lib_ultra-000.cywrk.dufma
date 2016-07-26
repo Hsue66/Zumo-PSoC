@@ -615,11 +615,9 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Ultra.h" />
-<name v=".\Ultra.c" />
-<name v=".\main.c" />
-<name v=".\TopDesign\TopDesign.cysch" />
-<name v=".\ZumoBot_Lib_ultra.cydwr" />
+<name v="..\ZumoBot_Lib_ultra_Copy_01.cydsn\main.c" />
+<name v="..\ZumoBot_Lib_ultra_Copy_01.cydsn\TopDesign\TopDesign.cysch" />
+<name v="..\ZumoBot_Lib_ultra_Copy_01.cydsn\ZumoBot_Lib_ultra_Copy_01.cydwr" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

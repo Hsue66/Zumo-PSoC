@@ -352,6 +352,41 @@
 <VisibleNodeIds>
 <v>ZumoBot_Lib_Ambient-000</v>
 <v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\accel.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\Echo.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\gyro.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_BOOT.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_INT.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_IntClock.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_MASTER.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_PM.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_2_SLAVE.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_BOOT.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_INT.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_made.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_MASTER.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_PM.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\I2C_SLAVE.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\IR_led.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\LL.lst</v>
+<v>ZumoBot_Lib_Ambient-000\ZumoBot_Lib_Ambient\CortexM3\ARM_GCC_493\Debug\Listing Files\LR.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
