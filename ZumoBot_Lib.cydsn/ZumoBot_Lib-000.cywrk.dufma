@@ -433,6 +433,8 @@
 <OpenDocs>
 <name v=".\main.c" />
 <name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\IR.c" />
+<name v=".\ZumoBot_Lib.cydwr" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
