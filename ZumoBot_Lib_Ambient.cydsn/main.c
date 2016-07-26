@@ -18,8 +18,34 @@
 #include "I2C_made.h"
 #include "gyro.h"
 #include "accel_magnet.h"
+#include <math.h>
 
 int rread(void);
+
+#define CH0_L           0x8C
+#define CH0_H           0x8D
+#define CH1_L           0x8E
+#define CH1_H           0x8F
+
+float getLux(uint8 CH0, uint8 CH1)
+{
+	float result = 0;
+    float ChannelRatio = (float)CH1/CH0;
+    
+    if(ChannelRatio <= 0.50F)
+        result = (0.0304 * CH0) - (0.062 * CH0 * pow(ChannelRatio, 1.4));
+    else if(ChannelRatio <= 0.61F)
+        result = (0.0224 * CH0) - (0.031 * CH1);
+    else if(ChannelRatio <= 0.80F)
+        result = (0.0128 * CH0) - (0.0153 * CH1);
+    else if(ChannelRatio <= 1.30F)
+        result = (0.00146 * CH0) - (0.00112 * CH1);
+    else
+        result = 0;
+
+    return result;
+}
+
 
 int main()
 {
@@ -28,17 +54,36 @@ int main()
     printf("Start\r\n");
    
     I2C_Start();
+    
+    uint16 value =0;
+    
+    I2C_write(0x29,0x80,0x00);
+    
+    value = I2C_read(0x29,0x80);
+    printf("%x ",value);
+    
+    I2C_write(0x29,0x80,0x03);
+    
+    value = I2C_read(0x29,0x80);
+    printf("%x\r\n",value);
+        
     for(;;)
     {
-        uint16 value =0;
-        value = I2C_read(0x39,0x80);
-        printf("%d ",value);
         
-        I2C_write(0x39,0x80,0x03);
+        uint8 Data0Low,Data0High,Data1Low,Data1High;
+        Data0Low = I2C_read(0x49,CH0_L);
+        Data0High = I2C_read(0x49,CH0_H);
+        Data1Low = I2C_read(0x49,CH1_L);
+        Data1High = I2C_read(0x49,CH1_H);
         
-        value = I2C_read(0x39,0x80);
-        printf("%d\r\n",value);
- 
+        uint8 CH0, CH1;
+        CH0 = convert_raw(CH0_L,CH0_H);
+        CH1 = convert_raw(CH1_L,CH1_H);
+        
+        float data = 0;
+        data = getLux(CH0,CH1);
+        printf("%f\r\n",data);
+        
     }
  
     
