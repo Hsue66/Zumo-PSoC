@@ -40,7 +40,7 @@ float getLux(float CH0, float CH1)
         result = (0.0128 * CH0) - (0.0153 * CH1);
     else if((0.80<ChannelRatio)&&(ChannelRatio <= 1.30))
         result = (0.00146 * CH0) - (0.00112 * CH1);
-    else if(1.30<ChannelRatio)
+    else 
         result = 0;
 
     return result;
@@ -66,6 +66,8 @@ int main()
     value = I2C_read(0x29,0x80);
     printf("%x\r\n",value);
         
+    value = I2C_read(0x29,0x81);
+    printf("%x\r\n",value);
     for(;;)
     {
         
@@ -80,16 +82,19 @@ int main()
         CH1 = convert_raw(Data1Low,Data1High);
 
    //     printf("%d %d %d %d\r\n",Data0Low,Data0High, Data1Low,Data1High);
-   /*      printf("%d %d\r\n",CH0,CH1);
+   //     printf("%d %d\r\n",CH0,CH1);
+   //        printf("%f\r\n",(float)CH1/CH0);
         
-       */ 
    
+        
+  //*
         float Ch0 = CH0;
         float Ch1 = CH1;
         
         float data = 0;
         data = getLux(Ch0,Ch1);
         printf("%f\r\n",data);
+       //*/
         
         
     }
