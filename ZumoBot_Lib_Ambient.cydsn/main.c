@@ -27,20 +27,20 @@ int rread(void);
 #define CH1_L           0x8E
 #define CH1_H           0x8F
 
-float getLux(uint8 CH0, uint8 CH1)
+float getLux(float CH0, float CH1)
 {
 	float result = 0;
     float ChannelRatio = (float)CH1/CH0;
     
-    if(ChannelRatio <= 0.50F)
+    if((0<ChannelRatio) && (ChannelRatio <= 0.5))
         result = (0.0304 * CH0) - (0.062 * CH0 * pow(ChannelRatio, 1.4));
-    else if(ChannelRatio <= 0.61F)
+    else if((0.5<ChannelRatio)&&(ChannelRatio <= 0.61))
         result = (0.0224 * CH0) - (0.031 * CH1);
-    else if(ChannelRatio <= 0.80F)
+    else if((0.61<ChannelRatio)&&(ChannelRatio <= 0.80))
         result = (0.0128 * CH0) - (0.0153 * CH1);
-    else if(ChannelRatio <= 1.30F)
+    else if((0.80<ChannelRatio)&&(ChannelRatio <= 1.30))
         result = (0.00146 * CH0) - (0.00112 * CH1);
-    else
+    else 
         result = 0;
 
     return result;
@@ -66,7 +66,8 @@ int main()
     value = I2C_read(0x29,0x80);
     printf("%x\r\n",value);
         
-    printf("%f\r\n", pow(1.5, 1.4));
+    value = I2C_read(0x29,0x81);
+    printf("%x\r\n",value);
     for(;;)
     {
         
@@ -82,10 +83,19 @@ int main()
 
    //     printf("%d %d %d %d\r\n",Data0Low,Data0High, Data1Low,Data1High);
    //     printf("%d %d\r\n",CH0,CH1);
+   //        printf("%f\r\n",(float)CH1/CH0);
+        
+   
+        
+  //*
+        float Ch0 = CH0;
+        float Ch1 = CH1;
         
         float data = 0;
-        data = getLux(CH0,CH1);
+        data = getLux(Ch0,Ch1);
         printf("%f\r\n",data);
+       //*/
+        
         
     }
  
