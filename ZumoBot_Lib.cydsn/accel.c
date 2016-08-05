@@ -17,6 +17,7 @@
 #include <accel_magnet.h>
 #include <stdio.h>
 
+
 void value_convert_accel(uint16 X_AXIS, uint16 Y_AXIS, uint16 Z_AXIS)
 {
     double AccXangle, AccYangle;
