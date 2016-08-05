@@ -20,7 +20,24 @@
 #include "accel_magnet.h"
 #include "IR.h"
 
+#include <time.h>
+
 int rread(void);
+
+
+uint16 value_convert_gyro(uint16 raw)            // ****THING TO DO : converting to angle!!!****
+{
+    float rate_result;
+    float angle_result;
+    float G_GAIN = 0.07;
+    
+  
+    rate_result = (float)raw * G_GAIN;          // degrees per second for Gyroscope
+    angle_result += rate_result * 0.02;
+    
+    return angle_result;
+    //return rate_result;
+}
 
 int main()
 {
@@ -28,6 +45,128 @@ int main()
     UART_Start();
     printf("Start\r\n");
     
+    /* //gyroscope & accelerometer combine//
+    //-----------------------------------------------------*/
+    I2C_Start();
+  
+    uint8 X_L_G, X_H_G, Y_L_G, Y_H_G, Z_L_G, Z_H_G;
+    uint16 X_G, Y_G, Z_G;
+    
+    uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
+    int16 X_A, Y_A, Z_A;
+    
+    I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+    I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps    
+    
+    I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer into active mode
+    I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x20);
+    
+    for(;;)
+    {
+        //print out gyroscope output
+        
+        X_L_G = I2C_read(GYRO_ADDR, OUT_X_AXIS_L);
+        X_H_G = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
+        Y_L_G = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
+        Y_H_G = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
+        Z_L_G = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
+        Z_H_G = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
+        
+        X_G = convert_raw( X_L_G, X_H_G );
+        Y_G = convert_raw( Y_L_G, Y_H_G );
+        Z_G = convert_raw(Z_L_G, Z_H_G );
+        
+        X_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_A);
+        X_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_A);
+        Y_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_A);
+        Y_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_A);
+        Z_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_A);
+        Z_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_A);
+        
+        X_A = convert_raw(X_L_A, X_H_A);
+        Y_A = convert_raw(Y_L_A, Y_H_A);
+        Z_A = convert_raw(Z_L_A, Z_H_A);
+        
+   //     printf("ACCEL: %d %d %d %d %d %d \r\n", X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A);
+        value_convert_accel(X_A, Y_A, Z_A);
+        printf("\n");
+        
+        
+        //printf("H L : %d %d %d %d %d %d \r\n", X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, Z_AXIS_H);
+      //  printf("%d %d %d \r\n", X_AXIS, Y_AXIS, Z_AXIS);
+        printf("%d %d %d \r\n", value_convert_gyro(X_G), value_convert_gyro(Y_G), value_convert_gyro(Z_G));    
+        
+       CyDelay(20);
+    
+    }
+    //-----------------------------------------------------*/
+    
+      /* //gyroscope//
+     //-----------------------------------------------------
+    I2C_Start();
+  
+    uint8 X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, Z_AXIS_H;
+    int16 X_AXIS, Y_AXIS, Z_AXIS;
+    
+    I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+    I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps    
+    
+    for(;;)
+    {
+        //print out gyroscope output
+        
+        X_AXIS_L = I2C_read(GYRO_ADDR, OUT_X_AXIS_L);
+        X_AXIS_H = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
+        Y_AXIS_L = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
+        Y_AXIS_H = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
+        Z_AXIS_L = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
+        Z_AXIS_H = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
+        
+        X_AXIS = convert_raw(X_AXIS_H, X_AXIS_L);
+        Y_AXIS = convert_raw(Y_AXIS_H, Y_AXIS_L);
+        Z_AXIS = convert_raw(Z_AXIS_H, Z_AXIS_L);
+        
+        
+        //printf("H L : %d %d %d %d %d %d \r\n", X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, Z_AXIS_H);
+      //  printf("%d %d %d \r\n", X_AXIS, Y_AXIS, Z_AXIS);
+        printf("%d %d %d \r\n", value_convert_gyro(X_AXIS), value_convert_gyro(Y_AXIS), value_convert_gyro(Z_AXIS));
+        
+       CyDelay(20);
+    }
+    ///-----------------------------------------------------------------*/ 
+   
+    /* //accelerometer//
+    //--------------------------------------------------------------
+    I2C_Start();
+  
+    uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
+    int16 X_AXIS, Y_AXIS, Z_AXIS;
+    
+    I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer into active mode
+    I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x20);
+    
+    
+    for(;;)
+    {
+        //print out accelerometer output
+        X_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_A);
+        X_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_A);
+        Y_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_A);
+        Y_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_A);
+        Z_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_A);
+        Z_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_A);
+        
+        X_AXIS = convert_raw(X_L_A, X_H_A);
+        Y_AXIS = convert_raw(Y_L_A, Y_H_A);
+        Z_AXIS = convert_raw(Z_L_A, Z_H_A);
+        
+   //     printf("ACCEL: %d %d %d %d %d %d \r\n", X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A);
+        value_convert_accel(X_AXIS, Y_AXIS, Z_AXIS);
+        printf("\n");
+        
+        CyDelay(50);
+    }
+    ///---------------------------------------------------------- */
     
      /*  //IR receiver//
     ----------------------------------------------------
@@ -52,39 +191,7 @@ int main()
     }
     //----------------------------------------------------*/
     
-    /* //accelerometer//
-    //--------------------------------------------------------------
-    I2C_Start();
-  
-    uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
-    int16 X_AXIS, Y_AXIS, Z_AXIS;
     
-    I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer into active mode
-    I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
-    
-    
-    for(;;)
-    {
-        //print out accelerometer output
-        X_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_A);
-        X_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_A);
-        X_AXIS = convert_raw(X_L_A, X_H_A);
-        
-        Y_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_A);
-        Y_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_A);
-        Y_AXIS = convert_raw(Y_L_A, Y_H_A);
-        
-        Z_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_A);
-        Z_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_A);
-        Z_AXIS = convert_raw(Z_L_A, Z_H_A);
-        
-        printf("ACCEL: %d %d %d %d %d %d \r\n", X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A);
-        value_convert_accel(X_AXIS, Y_AXIS, Z_AXIS);
-        printf("\n");
-        
-        CyDelay(50);
-    }
-    ///---------------------------------------------------------- */
      
      /* //ultra//
     ----------------------------------------------------
@@ -136,50 +243,6 @@ int main()
     }
     ///----------------------------------------------------*/
     
-    
-   /* //gyroscope//
-     //-----------------------------------------------------*/
-    I2C_Start();
-  
-    uint8 X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, Z_AXIS_H;
-    //uint8 X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M;
-    //uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
-    int16 X_AXIS, Y_AXIS, Z_AXIS;
-    
-    I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
-    I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps    
-    
-    for(;;)
-    {
-        //print out gyroscope output
-        X_AXIS_L = I2C_read(GYRO_ADDR, OUT_X_AXIS_L);
-        X_AXIS_H = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
-        X_AXIS = convert_raw(X_AXIS_H, X_AXIS_L);
-        
-        
-        Y_AXIS_L = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
-        Y_AXIS_H = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
-        Y_AXIS = convert_raw(Y_AXIS_H, Y_AXIS_L);
-        
-        
-        Z_AXIS_L = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
-        Z_AXIS_H = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
-        Z_AXIS = convert_raw(Z_AXIS_H, Z_AXIS_L);
-        
-        
-        //printf("X_AXIS_L: %d, X_AXIS_H: %d, average: %d \r\n", X_AXIS_L, X_AXIS_H, (X_AXIS_H+X_AXIS_L)/2);
-        //printf("Y_AXIS_L: %d, Y_AXIS_H: %d, average: %d \r\n", Y_AXIS_L, Y_AXIS_H, (Y_AXIS_H+Y_AXIS_L)/2);
-        //printf("Z_AXIS_L: %d, Z_AXIS_H: %d, average: %d \r\n", Z_AXIS_L, Z_AXIS_H, (Z_AXIS_H+Z_AXIS_L)/2);
-        
-        printf("H L : %d %d %d %d %d %d \r\n", X_AXIS_L, X_AXIS_H, Y_AXIS_L, Y_AXIS_H, Z_AXIS_L, Z_AXIS_H);
-        printf("%d %d %d \r\n", X_AXIS, Y_AXIS, Z_AXIS);
-        //printf("%d %d %d \r\n", value_convert_gyro(X_AXIS), value_convert_gyro(Y_AXIS), value_convert_gyro(Z_AXIS));
-        
-       CyDelay(50);
-    }
-    ///-----------------------------------------------------------------*/ 
-   
-  
     
     /* //magnetometer//
      //--------------------------------------------------------------

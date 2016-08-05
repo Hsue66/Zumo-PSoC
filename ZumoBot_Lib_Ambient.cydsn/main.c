@@ -27,11 +27,11 @@ int rread(void);
 #define CH1_L           0x8E
 #define CH1_H           0x8F
 
-float getLux(float CH0, float CH1)
+double getLux(double CH0, double CH1)
 {
-	float result = 0;
-    float ChannelRatio = (float)CH1/CH0;
-    
+	double result = 0;
+    double ChannelRatio = (double)CH1/CH0;
+    /*
     if((0<ChannelRatio) && (ChannelRatio <= 0.5))
         result = (0.0304 * CH0) - (0.062 * CH0 * pow(ChannelRatio, 1.4));
     else if((0.5<ChannelRatio)&&(ChannelRatio <= 0.61))
@@ -42,7 +42,16 @@ float getLux(float CH0, float CH1)
         result = (0.00146 * CH0) - (0.00112 * CH1);
     else 
         result = 0;
-
+*/
+    
+      if(ChannelRatio <= 0.5)
+        result = (0.0224 * CH0) - (0.031 * CH1);
+    else if(ChannelRatio <= 0.61)
+        result = (0.0128 * CH0) - (0.0153 * CH1);
+    else if(ChannelRatio <= 0.80)
+        result = (0.0128 * CH0) - (0.0153 * CH1);
+    else if(ChannelRatio <= 1.30)
+         result = (0.00146 * CH0) - (0.00112 * CH1);
     return result;
 }
 
@@ -83,17 +92,17 @@ int main()
 
    //     printf("%d %d %d %d\r\n",Data0Low,Data0High, Data1Low,Data1High);
    //     printf("%d %d\r\n",CH0,CH1);
-   //        printf("%f\r\n",(float)CH1/CH0);
+           printf("%f\r\n",(float)CH1/CH0);
         
    
         
-  //*
-        float Ch0 = CH0;
-        float Ch1 = CH1;
+  /*
+        double Ch0 = CH0;
+        double Ch1 = CH1;
         
-        float data = 0;
+        double data = 0;
         data = getLux(Ch0,Ch1);
-        printf("%f\r\n",data);
+        printf("%lf\r\n",data);
        //*/
         
         

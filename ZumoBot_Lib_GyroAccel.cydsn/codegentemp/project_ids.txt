@@ -1,0 +1,6 @@
+C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib.cydsn\ZumoBot_Lib.cyprj|b4089b36-6ab5-49d5-b747-6b9b9b305f0e
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|9415fc7b-27e7-4bbd-b937-fa06a9f23103
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|23b20b85-d141-4a79-add4-ad4cf034c964
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|f552c111-a894-4047-bab9-c262dc6b616c
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|bd7c4628-7d27-4123-8bc1-df6146e44796
+C:\Users\dufma\Desktop\Project\Zumo-PSoC\ZumoBot_Lib_GyroAccel.cydsn\ZumoBot_Lib_GyroAccel.cyprj|469b8383-0aae-434b-a5aa-1cd4ba19ac46
